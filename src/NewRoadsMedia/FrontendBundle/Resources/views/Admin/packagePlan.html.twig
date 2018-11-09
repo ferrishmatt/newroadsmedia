@@ -1,0 +1,60 @@
+{% extends base_template %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(function() {
+            $('#form_action_0').on('ifChanged', function() {
+                $('#form_size').prop('disabled', '');
+                $('tr.form-size').show();
+            });
+            $('#form_action_1').on('ifChanged', function() {
+                $('#form_size').prop('disabled', 'disabled');
+                $('tr.form-size').hide();
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block form %}
+    {{ form_errors(form) }}
+    {{ form_start(form) }}
+    <table class="table table-bordered">
+        <tr>
+            <td>
+                {{ form_label(form.id) }}
+            </td>
+            <td>
+                {{ form_widget(form.id) }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.email) }}
+            </td>
+            <td>
+                {{ form_widget(form.email) }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.action) }}
+            </td>
+            <td>
+                {{ form_row(form.action.0) }}<br/>
+                {{ form_row(form.action.1) }}
+            </td>
+        </tr>
+        <tr class="form-size"{% if form.action.vars.value.1 %} style="display: none;"{% endif %}>
+            <td>
+                {{ form_label(form.size) }}
+            </td>
+            <td>
+                {% set attr = form.action.vars.value.1 ? {'disabled': 'disabled'} : {} %}
+                {{ form_widget(form.size, {'attr': attr}) }}
+            </td>
+        </tr>
+    </table>
+    {{ form_end(form) }}
+    <a href="{{ admin.generateObjectUrl('list', object) }}">&lt;&lt; Back</a>
+{% endblock %}

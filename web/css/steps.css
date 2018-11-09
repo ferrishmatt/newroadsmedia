@@ -1,0 +1,96 @@
+.steps-container {
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+}
+
+.steps-container .steps {
+    background-color: #f9f9f9;
+    border: 1px solid #d4d4d4;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+    -moz-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+    box-shadow: 0 1px 4px rgba(0,0,0,.065);
+    min-height: 36px;
+}
+
+.steps-container .steps li {
+    position: relative;
+    float: left;
+    padding: 0 20px 0 30px;
+    margin: 0;
+    font-size: 16px;
+    line-height: 36px;
+    color: #e3e3e3;
+    cursor: default;
+    background: #959595;
+}
+
+.steps-container .steps li.active {
+    background: #9ec44a;
+    color: #fff;
+}
+
+.steps-container .steps li.first {
+    border-radius: 4px 0 0 4px;
+    padding-left: 20px;
+}
+
+.chevron {
+    display: inline-block;
+    border: 18px solid transparent;
+    border-right: 0;
+    border-left: 14px solid #d4d4d4;
+    position: absolute;
+    top: 0;
+    right: -14px;
+}
+
+.chevron:before {
+    position: absolute;
+    top: -18px;
+    right: 1px;
+    display: block;
+    border: 18px solid transparent;
+    border-right: 0;
+    border-left: 14px solid #959595;
+    content: "";
+}
+
+.steps-container .steps li.active .chevron:before {
+    border-left: 14px solid #9ec44a;
+}
+
+.steps-container .steps li.active .badge {
+    background-color: #f47920;
+}
+
+.steps-container .steps li.first {
+    z-index: 10;
+}
+
+.steps-container .steps li.second {
+    z-index: 9;
+}
+
+.steps-container .steps li.third {
+    z-index: 8;
+}
+
+.steps-container .steps li.fourth {
+    z-index: 7;
+}
+
+.steps-container .steps li.fifth {
+    z-index: 6;
+}
+
+.button {
+    background: #9ec44a;
+}

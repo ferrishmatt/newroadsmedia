@@ -1,0 +1,35 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/advanced-search.css') }}"/>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <br/>
+    {{ form_start(form) }}
+        <fieldset>
+            <legend>Advanced Job Search</legend>
+            <br/><br/>
+            <div class="row">
+                {{ form_row(form.keywords) }}
+                {{ form_row(form.industry) }}
+                {{ form_row(form.position) }}
+            </div>
+            <div class="row">
+                {{ form_row(form.jobType) }}
+                {{ form_row(form.salary) }}
+                {{ form_row(form.location, {'label': 'Location'}) }}
+                {{ form_row(form.datePosted) }}
+            </div>
+            <div class="row" style="text-align: center;">
+                <div>
+                    <button type="submit">Search</button>
+                </div>
+            </div>
+            <br/><br/>
+        </fieldset>
+    {{ form_end(form) }}
+    </div>
+{% endblock %}

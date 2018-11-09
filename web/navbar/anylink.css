@@ -1,0 +1,34 @@
+.anylinkcss{
+position:absolute;
+visibility: hidden;
+font:normal 12px Arial;
+line-height: 18px;
+z-index: 100;
+background-color: #FE6700;
+width: 250px;
+margin-left: 0;
+margin-top: 0;
+text-align: left;
+}
+
+.anylinkcss a{
+width: 100%;
+display: block;
+text-indent: 3px;
+border-bottom: 1px solid #DDD;
+padding: 5px 0;
+text-decoration: none;
+text-indent: 5px;
+color: white;
+}
+
+.anylinkcss a:hover{ /*hover background color*/
+background-color: #6688CC;
+text-decoration: none;
+color: white;
+}
+
+.anylinkcss a.navlink:link, a.navlink:visited{ /*hover background color*/
+text-decoration: none;
+color: white;
+}

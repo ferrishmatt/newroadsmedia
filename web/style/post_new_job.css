@@ -1,0 +1,85 @@
+.normaltext {
+	font: 12px arial, helvetica, sans-serif;
+}
+.required {
+	font: 22px arial, helvetica, sans-serif;
+	color : Red;
+}
+
+.missing {
+	font: 12px arial, helvetica, sans-serif;
+	font-weight: bold;
+	color : Red;
+}
+
+.clear    { font-size: 1px; line-height: 1px; height: 1px; clear:both; }
+
+.bold { font-weight:bold; }
+
+.italic { font-style:italic; }
+
+.indent { margin-left:20px; }
+
+#newusers th {
+    border:1px solid #000;
+    padding:5px 2px;
+    text-align:center;
+    width:20%;
+    color:white; font-weight:normal; font-size:11px;
+    background:#7fa2c5;
+}
+
+#newusers th#active {
+    background:#f90;
+}
+
+#newusers td {
+    padding:15px 12px;
+    text-align:left;
+    border:1px solid black;
+    border-top:0;
+    background:#e1e0d4;
+}
+
+#newusers th.firsttd {
+    border-left:1px solid #000;
+    white-space:nowrap;
+}
+
+.tablehighlight{
+    border-left:1px solid #000;
+    white-space:nowrap;
+}
+
+#form {
+    margin:15px 0 4px 0;
+    clear:both;
+    font-weight:bold;
+}
+
+.req {
+    color:#c00;
+}
+
+.formfield {
+    border:1px solid #000;
+}
+
+#form input {
+    border:1px solid #B8B8B8;
+    width:68px;
+    height:18px;
+    margin-right:12px;
+}
+
+#form input.submitbtn {
+    position:relative;
+    background-color:#7BA2C6;
+    border:1px solid #696969;
+    width:125px;
+    color:#FFF;
+    font-size:11px;
+    text-align:center;
+    font-weight:bold;
+    margin-right:0;
+}

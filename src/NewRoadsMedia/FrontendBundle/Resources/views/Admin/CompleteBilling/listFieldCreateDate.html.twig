@@ -1,0 +1,5 @@
+{% extends admin.getTemplate('base_list_field') %}
+
+{% block field %}
+    {{ value | date('M j, Y g:ia T', 'America/Los_Angeles') }}
+{% endblock %}

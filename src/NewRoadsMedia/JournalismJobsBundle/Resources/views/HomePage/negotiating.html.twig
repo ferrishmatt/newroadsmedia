@@ -1,0 +1,122 @@
+{% set page_name = '' %}
+
+{% extends "::base.html.twig" %}
+
+{% block title %}Negotiating Salary Offers{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://ucarecdn.com/widget/2.8.2/uploadcare/uploadcare.min.js" charset="utf-8"></script>
+    <script src="{{ asset('js/upload-care.js') }}"></script>
+    <script src="{{ asset('js/jquery.wordcount.js') }}"></script>
+    <script src="{{ asset('js/job-listing.js') }}"></script>
+    <script type="text/javascript">
+        $(function() {
+            {% if nonRegisteredForm.resumeFile is defined %}
+                uploadcare_init('{{ nonRegisteredForm.resumeFile.vars.id }}');
+            {% endif %}
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {#<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"/>#}
+    <link rel="stylesheet" href="{{ asset('css/job-listing.css') }}"/>
+{% endblock %}
+
+{% block content %}
+<div class="inner-content text-article">
+    <img class="article-photo" src="{{ asset('bundles/newroadsmediajournalismjobs/images/job_interview.jpg') }}">
+    <div class="article-wrap">
+    <p class="pre-headline">Career Advice</p>
+
+    <h1 class="article-title">Negotiating Salary Offers</h1>
+
+    <p class="byline-share-line">
+	<b class="byline">By Joe Grimm</b>
+	<a href="#" title="Share Job" class="share-job-link"><img src="{{ asset('images/icons/share_icon.png') }}" alt="Share Job"/>Share</a>
+    </p>
+
+    <ul class="job-listing-share">
+                    <li>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ url('ViewJobPost', {'jobId': job.id}) }}" target="_blank" title="Share on Facebook"><img
+                                    src="{{ asset('images/icons/facebook_icon.png') }}" alt="Share on Facebook"/>Facebook</a>
+                    </li>
+                    <li>
+                        {% set twitterUrl = 'http://twitter.com/share?text=' ~ (('Great Job on ' ~ parameter('site_title')) | url_encode) ~ '&url=' ~ url('ViewJobPost', { 'jobId': job.id } ) %}
+                        <a href="{{ twitterUrl }}" target="_blank" title="Share on Twitter"><img
+                                    src="{{ asset('images/icons/twitter_icon.png') }}" alt="Share on Twitter"/>Twitter</a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ url('ViewJobPost', {'jobId': job.id}) }}&title={{ (parameter('site_title') ~ ' - ' ~ job.titleOfPositionOpen) | url_encode }}&summary=&source=" target="_blank" title="Share on Linked In"><img
+                                    src="{{ asset('images/icons/linked_in_icon.png') }}" alt="Share on Linked In"/>Linked In</a>
+                    </li>
+                    <li>
+                        <a href="https://plus.google.com/share?url={{ url('ViewJobPost', {'jobId': job.id}) }}" target="_blank" title="Share on Google Plus"><img
+                                    src="{{ asset('images/icons/google_plus_icon.png') }}" alt="Share on Google Plus"/>Google +</a>
+                    </li>
+                    <li style="display: none;">
+                        <a class="email" href="#" title="E-mail this job to a friend"><img src="{{ asset('images/icons/email_icon.png') }}" alt="E-mail this job to a friend"/>E-mail</a>
+                    </li>
+                </ul>
+
+    <p>If you want to negotiate the best deal for yourself going into a job, do as I say, not as I do.</p>
+
+    <p>When the Detroit Free Press asked me whether I wanted a job, I immediately yelled, "Yes!"</p>
+
+    <p>Not very cool, I know.</p>
+
+    <p>And I quickly slammed any door I had for negotiating. Fortunately, I was treated pretty well anyway. Now, I tell people (even people I make offers to) not to accept instantly.</p>
+
+    <p>A little about the dynamics of hiring: Between the time when a company offers you a job and you accept, you have leverage.</p>
+
+    <p>Inside the company, a bunch of people have met and decided that you are the person, out of a handful of candidates, whom they want to hire. The person who makes the call is expected to get your acceptance. They do not want to reconvene, go to the next candidate or re-ignite their search.</p>
+
+    <div class="article-quote">"Be excited, but don't commit on the spot."</div>
+
+    <p>Often, the company has room to improve its offer.</p>
+
+    <p>When you get an offer from a place where you'd like to work, be effusive with your thanks. (I love it when people get excited about a job offer. It's one of the big thrills of our job and gets people started off on the right foot.)</p>
+
+    <p>Be excited, but don't commit on the spot. Tell the employer you'd like some time to think it over. That's only reasonable. But what's a reasonable amount of time? That's debatable. Overnight at the bare minimum. A couple of days is reasonable. More than a week might make it seem as though you're playing one offer against others, or aren't very interested.</p>
+
+    <p>When they make the offer, get the particulars. How much will they pay? When do they want you to start? What are the specifics of the job? What about vacation pay and insurance? (These are questions you may have wondered about, but declined to get specific about during the interview process.) How about moving expenses? Training opportunities? When will you be up for a salary review?</p>
+
+    <h2>The Money.</h2>
+
+    <p>The key question, of course, usually is how much you'll earn. When will they review your salary? Typically, that happens after a year. Can they make it six months? This could mean a more immediate raise, not just in the first year, but subsequent years' raises will come faster, too. This is especially good to negotiate for if you and the company agree that the wage rate isn't as high as would seem appropriate for someone with your skills, and you're both willing to bank on your ability to prove yourself.</p>
+
+    <h2>Experience Level.</h2>
+
+    <p>A key question is to ask what experience level they're crediting to you. Especially in the first five years of a career, salary and paid vacation may be structured around how much experience you have. How are they counting the three internships you had? Some will count them, some won't and some are negotiable. You want to get that number up as high as you can.</p>
+
+    <h2>Vacation.</h2>
+
+    <p>How much vacation will you get, and when will you get it? Some places don't allow you to take vacation until the calendar year after the year in which it was earned. That means, that if you start in February, you won't get vacation until the next year. You could be looking at a year or more without a break. Ask whether you can take some in the current year.</p>
+
+    <p>Vacations tend to be earned on a pro-rated basis for the first year -- so many days off for so many days worked -- and in lumps of two, three or four weeks in the second year and beyond. The number of weeks depends on your experience. If vacation time is important to you, find out whether you can get to that three- or four-week level a year earlier.</p>
+
+    <h2>Moving Expenses.</h2>
+
+    <p>How will the company handle your move? Will they pay "all reasonable costs"? Does that include your piano? Your pets? Your car? Will they set you up with house or apartment hunting help? Will they pay for the visit out to look? If it looks like their moving policy won't cover the expenses from your move, can they give you a lump sum (some call it a signing bonus) to make up the difference?</p>
+
+    <h2>Training Opportunities.</h2>
+
+    <p>Few people negotiate development opportunities, but this is an option, too. Ask what and how you'll be learning skills for your new job, especially if it's something new for you. What form will on-the-job training take? Will you have a mentor? Periodic progress reports?</p>
+
+    <p>Even the start date is negotiable. They may want you right away, but you haven't had a week off in years. Maybe you want to blow that week into your transition time so you can relax, get ready and celebrate your new job.</p>
+
+    <h2>Get It In Writing.</h2>
+
+    <p>Now that you know what might be negotiable, decide what you really need. Reasonable people don't negotiate everything. Go for your top-priority items. The way you handle negotiations will affect the way you begin your job. You want to be smart and ready to work with your new employers, not pushy and demanding.</p>
+
+    <p>Finally, ask them to put in an offer letter. This is a polite way to ask for it all in writing. This should not be taken as a sign of mistrust, but as a sign that you're thorough, above board and business like. It's a reasonable request. Don't then be surprised if they ask you to sign off on your acceptance, too.</p>
+
+    <p>ABOUT: Joe Grimm is an Editor in Residence at Michigan State University School of Journalism. Before that, he was a newsroom recruiter and staff development editor at the Detroit Free Press from 1990 until August 2008.</p>
+    </div>
+</div>
+
+{% endblock %}

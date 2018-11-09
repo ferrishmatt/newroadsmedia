@@ -1,0 +1,21 @@
+{% extends base_template %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style type="text/css">
+        #form {
+            display: inline-block;
+        }
+    </style>
+{% endblock %}
+
+{% block form %}
+    <p>
+        Are you sure you want to reset the <strong>{{ object.name }}</strong> counter currently set to <strong>{{ object.counter }}</strong>?
+    </p>
+    {{ form_errors(form) }}
+    {{ form_start(form) }}
+    <a href="javascript:history.go(-1);" class="btn btn-default">Cancel</a>
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}

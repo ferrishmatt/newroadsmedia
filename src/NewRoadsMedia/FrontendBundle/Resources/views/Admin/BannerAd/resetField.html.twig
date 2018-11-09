@@ -1,0 +1,6 @@
+{% if admin.hasRoute('edit') %}
+    <a href="{{ admin.generateObjectUrl('reset', object) }}" class="btn btn-sm btn-default">
+        <i class="glyphicon glyphicon-refresh"></i>
+        Reset Counter
+    </a>
+{% endif %}

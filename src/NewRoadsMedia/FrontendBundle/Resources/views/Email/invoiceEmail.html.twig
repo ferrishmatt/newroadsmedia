@@ -1,0 +1,25 @@
+{% set isMultiple = invoiceTrack.jobs | length > 1 %}
+<p>
+    <img src= "{{ app.request.schemeAndHttpHost ~ asset('images/JJ_logo_smaller.gif') }}" alt="" style="display: block;" />
+</p>
+<p>
+    Thank you for posting your job{% if isMultiple %}s{% endif %} on {{ parameter('site_title') }}. Below is important information about your ad{% if isMultiple %}s{% endif %} and application procedure{% if isMultiple %}s{% endif %}.
+    If you have any questions, please call {{ parameter('site_phone') }} or email {{ parameter('email.info') }}.
+</p>
+<p style="color:red;font-size:1.3em;">
+    Attached is your invoice in the amount of ${{ invoiceTrack.amount | number_format(2) }}. To avoid having your
+    ad removed, please print this invoice and submit for payment processing.
+</p>
+<p>
+    <strong>Administration:</strong><br/>
+    To edit your listing{% if isMultiple %}s{% endif %}, click on the link for the <a href= "{{ url('EmployerManager') }}">Employer Login</a> on our
+    home page and log in with your with your email address and password. The link to search the general resume database
+    is also stored in your Employer Account. Click on the link that says "Search Resume Database." When you need to
+    post, delete or renew an ad, log into your Employer Account. If you need assistance, call {{ parameter('site_phone') }}, or send
+    an e-mail to {{ parameter('email.contact') }}.
+</p>
+<p>
+    {{ parameter('site_title') }}<br/>
+    Tel. {{ parameter('site_phone') }}<br/>
+    E-mail: {{ parameter('email.contact') }}
+</p>

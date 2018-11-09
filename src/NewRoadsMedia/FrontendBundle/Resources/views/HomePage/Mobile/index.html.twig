@@ -1,0 +1,31 @@
+{% extends '@NewRoadsMediaFrontend/Layout/mobile.html.twig' %}
+
+{% block content %}
+    <h3>Find Your Next {{ parameter('job_type') }} Job</h3>
+    <h4>Search {{ totalCount | number_format() }} Jobs</h4>
+    <p>
+        <strong>Quick Search:</strong>
+        <a href="{{ path('JobPosts', {'datePosted': 1}) }}">Today</a> |
+        <a href="{{ path('JobPosts', {'datePosted': 2}) }}">Yesterday</a> |
+        <a href="{{ path('JobPosts', {'datePosted': 4}) }}">Past Week</a>
+    </p>
+    <br/>
+    {{ form_start(searchForm, {'action': path('JobPosts'), 'method': ‘POST’}) }}
+    <div class="form-group">
+        {{ form_row(searchForm.keywords, {'label': 'Enter Job Title or Skills', 'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(searchForm.location, {'label': 'Location', 'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        <button type="submit" class="form-control btn btn-success btn-block"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search Jobs</button>
+        <p class="text-right">
+            <a class="advanced-search" href="{{ path('AdvancedSearch') }}">&gt; Advanced Search</a>
+        </p>
+    </div>
+    {{ form_end(searchForm) }}
+
+    {{ render(controller('NewRoadsMediaFrontendBundle:HomePage:featuredJobs')) }}
+    {{ render(controller('NewRoadsMediaFrontendBundle:HomePage:careerAdvice')) }}
+    {{ render(controller('NewRoadsMediaFrontendBundle:HomePage:news')) }}
+{% endblock %}

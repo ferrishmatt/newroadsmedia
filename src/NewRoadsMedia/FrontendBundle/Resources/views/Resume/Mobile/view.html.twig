@@ -1,0 +1,103 @@
+{% extends "@NewRoadsMediaFrontend/Layout/mobile.html.twig" %}
+
+{% block title %}View Profile{% endblock %}
+
+{% block content %}
+    {% if resume.id == user.id %}
+        <p class="text-center">
+            <a href="{{ path('EditResume') }}" class="btn btn-default">Edit Profile</a>
+            <a href="{{ path('JobSeekerFolder') }}" class="btn btn-default">Your Account</a>
+        </p>
+    {% endif %}
+    <div class="row">
+        <div class="col-xs-7 col-sm-8">
+            {% if resume.profilePicture %}
+                <img src="{{ resume.profilePicture }}" class="profile-picture"/>
+            {% endif %}
+            <h1>{{ resume.name }}</h1>
+
+            <strong>Job Title:</strong> {{ resume.title }}<br/>
+            <strong>Current Location:</strong> {{ resume.city }}, {{ resume.currentState }}<br/>
+            {% if resume.certification and resume.certification.teaching %}
+                <strong>Certifications:</strong> {{ resume.certification.teaching }} <br/>
+                <strong>States:</strong> {{ resume.certification.locations | join(', ') }}<br/>
+            {% endif %}
+            {% if resume.industries | length > 0 %}
+                <strong>{{ 'profile.industry' | trans() }}:</strong> {{ resume.industries | join(', ') }}<br/>
+            {% endif %}
+            {% if resume.focus | length > 0 %}
+                    <strong>STEM Focus: </strong> {{ resume.focus | join(', ') }}<br/>
+            {% endif %}
+            {% if resume.specialty %}
+                <strong>{{ 'profile.specialty' | trans() }}:</strong> {{ resume.specialty }}<br/>
+            {% endif %}
+            {% if resume.experience %}
+                <strong>Experience:</strong> {{ resume.experience }}<br/>
+            {% endif %}
+            {% if resume.currentJobStatus %}
+                <strong>Job Status:</strong> {{ resume.currentJobStatus }}<br/>
+            {% endif %}
+            {% if resume.dateAvailableText %}
+                <strong>Date Available:</strong> {{ resume.dateAvailableText }}<br/>
+            {% endif %}
+
+            {% if resume.resumeJobObjective %}
+                <br/>
+                <strong>Objective:</strong> {{ resume.resumeJobObjective | raw }}
+            {% endif %}
+
+            {% if hasResumeAccess and resume.resumeFile %}
+                <br/>
+                <a class="btn btn-default" href="{{ path('PreviewResumeFile', {'resumeId': resume.id}) }}">View Resume</a>
+                <a class="btn btn-default" href="{{ path('DownloadResume', {'resumeId': resume.id}) }}">Download Resume</a>
+            {% endif %}
+        </div>
+        <div class="col-xs-5 col-sm-4">
+            <h2>Contact Me</h2>
+            {% if resume.contactEmail %}
+                <a href="mailto:{{ resume.contactEmail }}" class="btn btn-default btn-block">
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                    {{ resume.contactEmail }}
+                </a>
+            {% endif %}
+            {% if resume.phone or resume.phoneArea %}
+                <a href="tel://{{ resume.phoneArea }}-{{ resume.phone }}" class="btn btn-default btn-block">
+                    <span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
+                    {{ resume.phoneArea }}-{{ resume.phone }}
+                </a>
+            {% endif %}
+            {% if resume.website %}
+                <a href="{{ resume.website }}" class="btn btn-default btn-block">
+                    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+                    Personal Website
+                </a>
+            {% endif %}
+            {% if resume.socialMedia %}
+                {% if resume.socialMedia.linkedIn %}
+                    <a href="{{ resume.socialMedia.linkedIn }}" class="btn btn-default btn-block">
+                        <img src="{{ asset('images/profile/linkedin.png') }}"/>
+                        Linkedin
+                    </a>
+                {% endif %}
+                {% if resume.socialMedia.twitter %}
+                    <a href="{{ resume.socialMedia.twitter }}" class="btn btn-default btn-block">
+                        <img src="{{ asset('images/profile/twitter.png') }}"/>
+                        Twitter
+                    </a>
+                {% endif %}
+                {% if resume.socialMedia.facebook %}
+                    <a href="{{ resume.socialMedia.facebook }}" class="btn btn-default btn-block">
+                        <img src="{{ asset('images/profile/facebook.png') }}"/>
+                        Facebook
+                    </a>
+                {% endif %}
+                {% if resume.socialMedia.googlePlus %}
+                    <a href="{{ resume.socialMedia.googlePlus }}" class="btn btn-default btn-block">
+                        <img src="{{ asset('images/profile/googleplus.png') }}"/>
+                        Google+
+                    </a>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

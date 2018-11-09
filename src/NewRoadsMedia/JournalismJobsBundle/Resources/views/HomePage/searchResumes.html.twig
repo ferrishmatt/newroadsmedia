@@ -1,0 +1,40 @@
+{% set page_name = 'Search Resumes Home Page' %}
+
+{% extends 'NewRoadsMediaFrontendBundle:HomePage:rawContent.html.twig' %}
+
+{% block innerContent %}
+    <table width="98%" border="0" align="center">
+        <tbody><tr>
+            <td colspan="8">
+                <table width="100%" border="0">
+                    <tbody><tr>
+                        <td><font face="Arial, Helvetica, sans-serif" size="5"><b><font color="#FF8E00">Search Resumes</font></b></font></td>
+                        <td>
+                            <div align="right"><font face="Arial, Helvetica, sans-serif" size="2"></font></div>
+                        </td>
+                    </tr>
+                    </tbody></table>
+
+                <div class="horizontalRule"></div>
+
+
+                <br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>
+                    <font face="Arial" size="4"><b>NEW EMPLOYERS<br></b></font>
+                    Employers or recruiters can access our resume database for ${{ parameter('ad_cost') }} for 5 weeks. Please send your request to: <a href= "mailto: info@journalismjobs.com">info@journalismjobs.com</a></li>. We will set up access and email you a payment link.
+                </p>
+                <br/>
+                <p>
+                    <font face="Arial, Helvetica, sans-serif" size="4"><b>REGISTERED EMPLOYERS</b><br></font>
+                    <font face="ProximaNova-Reg, Arial, Helvetica, sans-serif" size="3">If you have a job ad currently running on JournalismJobs.com, please log into your employer account and click on the link for the general resume database. Resume access is included with a paid ad.</font>
+                    <br/>
+                    <br/>
+                </p>
+            </td>
+        </tr>
+        </tbody></table>
+{% endblock %}

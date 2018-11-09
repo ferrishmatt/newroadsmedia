@@ -1,0 +1,64 @@
+<a href="{{ path('Index') }}" id="logo">
+    <img id="logo" src="{{ asset('images/logos/jj-logo-2.png') }}" width="300" alt="{{ parameter('site_title') }}" />
+</a>
+<ul class="new-nav">
+    <li class="resources navigation-link">
+        <a href="#" class="normalCase">Search Jobs</a>
+        <ul>
+            <li><a href="{{ path('JobPosts') }}">View All Listings</a></li>
+            <li><a href="{{ path('ViewMediaJobs', {'media': 'Newspapers' } ) }}">Newspapers / Wire Services</a></li>
+            <li><a href="{{ path('ViewMediaJobs', {'media': 'Online_Media' } ) }}">Digital Media / Startups</a></li>
+            <li><a href="{{ path('ViewMediaJobs', {'media': 'TV' } ) }}">Television / Radio</a></li>
+            <li><a href="{{ path('ViewMediaJobs', {'media': 'Magazines' } ) }}">Magazines / Publishing</a></li>
+            <li><a href="{{ path('ViewMediaJobs', {'media': 'Trade_Publications_Newsletters' } ) }}">Trade Publications / Newsletters</a></li>
+            <li><a href="{{ path('ViewMediaJobs', {'media': 'PR_Media_Relations_Communications' } ) }}">PR / Media Relations / Communications</a></li>
+            <li><a href="{{ path('ViewMediaJobs', {'media': 'Nonprofit' } ) }}">Nonprofit / Academia / Government / Other</a></li>
+            <li><a href="{{ path('ViewMediaJobs', {'media': 'Finance' } ) }}">Financial / Technology / Misc. Jobs</a></li>
+            <li><a href="{{ path('ViewMediaJobs', {'media': 'Diversity' } ) }}">Diversity Jobs</a></li>
+        </ul>
+    </li>
+    {% if app.user %}
+        <li class="navigation-link navigation-user-details">
+            <ul>
+                <li class="navigation-account-icon">
+                    <img src="http://www.journalismjobs.com/images/user-icon-2.png" />
+                </li>
+                <li class="navigation-user-links">
+                    <div class="navigation-greeting">Hello, {{ app.user.displayName }}</span>
+                    <div>
+                        {% if is_granted('ROLE_EMPLOYER') %}
+                            <a class="navigation-account" href="{{ path('EmployerManager') }}">&gt; Your Account</a>
+                            <a class="navigation-account" href="{{ path('LogoutEmployer') }}">&gt; Log Out</a>
+                        {% else %}
+                            <a class="navigation-account" href="{{ path('JobSeekerFolder') }}">&gt; Your Account</a>
+                            <a class="navigation-account" href="{{ path('LogoutJobSeeker') }}">&gt; Log Out</a>
+                        {% endif %}
+                    </div>
+                </li>
+            </ul>
+        </li>
+    {% else %}
+      <li class="resources navigation-link">
+          <img src="http://www.journalismjobs.com/images/user-icon-2.png" height="20" /><a href="#" class="normalCase">Job Seekers <span class="arrow-down"></span></a>
+          <ul>
+              <li><a href="https://www.journalismjobs.com/login_post_resume">Post a Resume</a></li>
+              <li><a href="https://www.journalismjobs.com/login_job_seeker">Login</a></li>
+	      <li><a href="http://www.journalismjobs.com/career-advice">Career Advice</a></li>
+	      <li><a href="http://www.journalismjobs.com/fellowship_listings">Journalism Fellowships</a></li>
+	      <li><a href="http://www.journalismjobs.com/media-resources">Media Resources</a></li>      
+          </ul>
+      </li>
+      <li class="resources navigation-link">
+          <img src="http://www.journalismjobs.com/bundles/newroadsmediajournalismjobs/images/building_icon.png" height="20" /><a href="#" class="normalCase">Employers <span class="arrow-down"></span></a>
+          <ul>
+              <li><a href="http://www.journalismjobs.com/post-new-job">Post a Job</a></li>
+              <li><a href="https://www.journalismjobs.com/post-new-job/create-account">Create Account</a></li>
+              <li><a href="https://www.journalismjobs.com/login_employer">Login</a></li>
+          </ul>
+      </li>
+
+      <li class="navigation-link navigation-link-post-job">
+          <a href="{{ path('PostNewJob') }}">Post A Job</a>
+      </li>
+    {% endif %}
+</ul>

@@ -1,0 +1,224 @@
+.employer-manager {
+    margin-top: 40px;
+}
+
+.employer-manager .employer-welcome {
+    color: #f90;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.employer-manager .employer-actions h1 {
+    margin-top: 20px;
+    color: #006cb5;
+}
+
+.employer-manager .credits {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.employer-manager .credits strong {
+    color: #f90;
+}
+
+.employer-manager .job-links a {
+    color: #fff;
+    border: 3px solid #0082c7;
+    border-radius: 25px;
+    display: inline-block;
+    padding: 18px 20px;
+    width: 155px;
+    float: left;
+    margin-right: 20px;
+    line-height: 24px;
+    height: 55px;
+}
+
+.employer-manager .job-links a img {
+    float: left;
+    margin-right: 15px;
+}
+
+.employer-manager .job-links {
+    clear: both;
+    height: 140px;
+}
+
+.employer-manager .job-links a {
+    font-weight: bold;
+    width: 299px;
+    height: 90px;
+    border-color: #d1d2d4;
+}
+
+.employer-manager .job-links a .title {
+    display: block;
+    font-size: 24px;
+    padding-top: 5px;
+}
+.employer-manager .job-links a .description {
+    display: block;
+    color: #272727;
+    font-size: 16px;
+    line-height: 20px;
+    padding-top: 15px;
+    padding-right: 5px;
+}
+
+.employer-manager .job-links a.post-a-job-link .title {
+    color: #7bb200;
+}
+
+.employer-manager .job-links a.search-resumes-link .title {
+    color: #f90;
+}
+
+.employer-manager .job-links a.account-info-link .title {
+    color: #828282;
+}
+
+.employer-manager .job-links a.account-info-link{
+    margin-right: 0;
+}
+
+#content .employer-manager .right-column {
+    float: right;
+    width: 350px;
+    position: relative;
+}
+
+#content .employer-manager .checkmark {
+    color: green;
+}
+
+#content .employer-manager .multiple-link {
+    font-size: 16px;
+    font-weight: bold;
+    position: absolute;
+    top: 50px;
+}
+
+#content .employer-manager .multiple-link a {
+    font-weight: bold;
+    color: #f90;
+}
+
+.employer-manager .multiple-link a:hover {
+    text-decoration: underline;
+    color: #f90;
+}
+
+#content .employer-manager h1.manage {
+    color: #686868;
+    border-bottom: 3px solid #d1d2d4;
+    padding-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.employer-job-ads {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 95px;
+}
+
+.employer-job-ads tbody.odd {
+    background-color: #eef5fa;
+}
+
+.employer-job-ads tr td {
+    padding: 20px 0 0;
+    vertical-align: top;
+}
+
+.employer-job-ads tr.bottom-row td {
+    padding-bottom: 20px;
+}
+
+.employer-job-ads td.icon {
+    text-align: center;
+    width: 70px;
+}
+
+.employer-job-ads td.title {
+    padding-top: 14px;
+    width: 650px;
+}
+
+.employer-job-ads td.description {
+    padding-top: 16px;
+    font-weight: bold;
+}
+
+.employer-job-ads td.description p {
+    font-weight: bold;
+}
+
+.employer-job-ads td.description strong {
+    color: #f90;
+}
+
+#content .employer-job-ads td.title {
+    color: #000;
+}
+
+#content .employer-job-ads td.title a {
+    color: #04377d;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#content .employer-job-ads td.title a:hover {
+    color: #000;
+}
+
+#content .employer-job-ads a.action-button {
+    color: #000;
+    border: 1px solid #918f90;
+    font-size: 14px;
+    padding: 5px 10px 5px 30px;
+    border-radius: 2px;
+    background: #fff no-repeat 5px center;
+}
+
+#content .employer-job-ads a.action-button:hover {
+    border-color: #0d6eb3;
+    color: #0d6eb3;
+}
+
+#content .employer-job-ads a.edit-action-button {
+    background-image: url('/images/layout/employer/icon-edit.png')
+}
+
+#content .employer-job-ads a.delete-action-button {
+    background-image: url('/images/layout/employer/icon-delete.png')
+}
+
+#content .employer-job-ads a.suspend-action-button {
+    background-image: url('/images/layout/employer/icon-suspend.png')
+}
+
+#content .employer-job-ads a.renew-action-button {
+    background-image: url('/images/layout/employer/icon-renew.png')
+}
+
+#content .employer-job-ads a.applicant-action-button {
+    padding-left: 10px;
+}
+
+#content .employer-job-ads a.applicant-action-button strong {
+    color: #f90;
+}
+
+/* Page links */
+
+.employer-manager .page-links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.employer-manager .separator {
+    display: inline-block;
+    margin: 0 5px;
+}

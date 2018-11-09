@@ -1,0 +1,18 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+<div>
+    <font color="red"><strong>
+            Your Credit Card transaction was successful. <br> Please print this page as your receipt.
+        </strong>
+    </font>
+    <p>
+        Result: {{ response.response_msg }} <br/>
+        Authorization Number: {{ response.trans_id }}<br/>
+        Authorization Code: {{ response.authorization }} <br/>
+        Amount Charged: ${{ invoice.amount | number_format(2) }}<br/>
+        Invoice Number: {{ invoice.invoice }}
+    </p>
+    <br/>
+</div>
+{% endblock content %}

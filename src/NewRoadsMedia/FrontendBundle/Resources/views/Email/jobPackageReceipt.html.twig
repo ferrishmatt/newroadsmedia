@@ -1,0 +1,34 @@
+<p>Dear {{ parameter('site_title') }} User,</p>
+
+<p>Thank you for your purchase of {{ jobPackageCount }} job ads on {{ parameter('site_title') }}.</p>
+
+<p>
+    <strong>PAYMENT DETAILS:</strong><br/>
+    Company: {{ payment.employer.company }}.<br/>
+    Total Paid: ${{ payment.chargeAmount | number_format(2, '.', ',') }}.<br/>
+    Today's Date: {{ 'now' | date('F d, Y') }}.<br/>
+    Authorization Code: {{ payment.authorizationCode }}.<br/>
+    Card Type: {{ payment.creditCard }}.
+</p>
+
+<p>
+    <strong>TAX INFO:</strong><br/>
+    NewRoadsMedia.com LLC, dba {{ parameter('site_title') }}<br/>
+    Federal Employer Identification Number (FEIN): 26-0105723.
+</p>
+
+<p>
+    <strong>NOTE:</strong><br/>
+    Your job credits never expire.
+</p>
+
+<p>Thank you again for you business.</p>
+
+<p>The Staff at {{ parameter('site_title') }}</p>
+
+<p>
+    <a href="mailto:{{ parameter('email.info') }}">{{ parameter('email.info') }}</a><br/>
+    Tel. {{ parameter('site_phone') }}
+</p>
+
+<p><a href="{{ parameter('base_url') }}">{{ parameter('base_url') }}</a></p>

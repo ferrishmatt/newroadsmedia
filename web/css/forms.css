@@ -1,0 +1,181 @@
+input {
+	font-family: Tahoma, Arial, Verdana;
+	font-size: 11px;
+	padding-left: 5px;
+}
+#textbox {
+	background-image: url(/images/inputbg.gif);
+	background-repeat: repeat-x;
+	border: 1px solid #A2A2A4;
+	padding-left: 5px;
+}
+#box_top {
+	background-image: url(/images/box_top.gif);
+	background-repeat: no-repeat;
+	width: 526px;
+	height: 27px;
+	padding-right: 13px;
+	padding-left: 13px;
+	text-align: left;
+	font-size: 11px;
+	font-weight: bold;
+	color: #003366;
+	vertical-align: middle;
+}
+#box_middle {
+	background-color: #F9F9F9;
+	background-image: url(/images/box_middle.gif);
+	background-repeat: repeat-y;
+	padding-right: 13px;
+	padding-left: 13px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	font-size: 11px;
+}
+#box_bottom {
+	background-image: url(/images/box_bottom.gif);
+	background-repeat: no-repeat;
+	height: 7px;
+	width: 526px;
+}
+#box {
+	margin-bottom: 7px;
+	margin-top: 8px;
+	font-weight: bold;
+}
+#steps {
+	background-image: url(/images/formimages/steps_bg.gif);
+	background-repeat: repeat-x;
+	text-align: center;
+	margin-top: 8px;
+	margin-bottom: 7px;
+	height: 22px;
+}
+#formtext {
+	font-size: 11px;
+	font-weight: bold;
+	text-align: right;
+	vertical-align: top;
+}
+select {
+	font-family: Tahoma, Arial, Verdana;
+	font-size: 11px;
+}
+.smallformtext {
+	font-size: 10px;
+	color: #003366;
+	font-weight: normal;
+	padding-top: 8px;
+}
+#jobcatagory {
+	font-size: 11px;
+}
+.jobcredits {
+	font-weight: bold;
+	color: #333333;
+	font-size: 11px;
+}
+#box_middle_duration {
+
+	background-color: #DDEAF3;
+	background-image: url(/images/box_middle.gif);
+	background-repeat: repeat-y;
+	padding-right: 13px;
+	padding-left: 13px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+#box_bottom_duration {
+
+	background-image: url(/images/box_bottom_duration.gif);
+	background-repeat: no-repeat;
+	height: 7px;
+	width: 526px;
+}
+#button {
+	margin-top: -5px;
+}
+#formfieldtitles {
+	font-weight: bold;
+	text-align: right;
+}
+#formfieldtitles_left {
+	font-weight: bold;
+	text-align: left;
+}
+#numbered_left {
+	background-image: url(/images/formimages/numbered_left.gif);
+	background-repeat: no-repeat;
+	height: 22px;
+	background-color: #7FA2C5;
+	width: 55px;
+	vertical-align: middle;
+	padding-left: 10px;
+}
+#numbered {
+	background-color: #7FA2C5;
+	color: #FFFFFF;
+}
+#numbered_right {
+	background-image: url(/images/formimages/numbered_right.gif);
+	background-repeat: no-repeat;
+	background-position: right;
+	width: 55px;
+	padding-right: 10px;
+	text-align: right;
+}
+numactive {
+	font-weight: bold;
+}
+.numberedbg {
+	background-image: url(/images/formimages/numbered_bg.gif);
+	background-repeat: repeat-x;
+	background-position: center;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+.searchtitle {
+	background: url(/images/pagetitles/title_searchresults.gif) no-repeat left;
+}
+
+input.submitbtn,
+button.submitbtn,
+a.submitbtn {
+    background-color: #FF8E00;
+    color: #FFF;
+    font-size: 100%;
+    vertical-align: middle;
+    display: inline-block;
+    width: 200px;
+    padding: 4px 1px;
+    margin: 0 15px 0 0;
+    border: 0;
+    line-height: 20px;
+    text-decoration: none;
+ }
+ 
+input.back,
+a.back {
+    background-color: #003366;
+    color: #FFF;
+    font-size: 100%;
+    vertical-align: middle;
+    display: inline-block;
+    width: 300px;
+    padding: 4px 1px;
+    margin: 0 15px 0 0;
+    border: 0;
+    line-height: 20px;
+    text-decoration: none;
+}
+
+.green-button {
+    background-color: #7bb200;
+    color: #fff !important;
+    display: inline-block;
+    width: 200px;
+    padding: 4px 1px;
+    line-height: 20px;
+    text-decoration: none !important;
+    font-size: 15px;
+}

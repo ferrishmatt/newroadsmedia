@@ -1,0 +1,49 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Your Current Job Alerts{% endblock %}
+
+{% block content %}
+<div>
+    <table width="100%" border="0">
+        <tbody><tr>
+            <td>
+                <font face="Arial, Helvetica, sans-serif" size="3"><b><font color="#000000">
+                    <a href="{{ path('JobSeekerFolder') }}">< Return to Job Seeker Account</a>
+                </font></b></font>
+            </td>
+            <td>
+                <!--
+                <div align="right"><font face="Arial, Helvetica, sans-serif" size="2"><b><font color="#333366">{{ 'now' | date('F d, Y') }}</font></b></font></div>
+                -->
+            </td>
+        </tr>
+        </tbody></table>
+    <br/><br/><br/>
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <h2>Your Current Job Alerts</h2>
+        <table width="600">
+            <tr>
+                <th>Delete?</th>
+                <th>Expires</th>
+                <th>Industry</th>
+                <th>Job Type</th>
+                <th>Location</th>
+                <th>Position</th>
+            </tr>
+            {% for index, notification in notifications %}
+                <tr>
+                    <td>{{ form_widget(form.notifications[index]) }}</td>
+                    <td>{{ notification.expiration | date('m-d-Y') }}</td>
+                    <td>{{ notification.industry }}</td>
+                    <td>{{ notification.jobType }}</td>
+                    <td>{{ notification.location }}</td>
+                    <td>{{ notification.position }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br/>
+        <button type="submit">Delete Selected Notifications</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

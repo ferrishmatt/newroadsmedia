@@ -1,0 +1,20 @@
+{% extends '@NewRoadsMediaFrontend/Layout/mobile.html.twig' %}
+
+{% form_theme form '@NewRoadsMediaFrontend/Layout/mobileForm.html.twig' %}
+
+{% block content %}
+    <h1>Advanced Job Search</h1>
+    {{ form_start(form) }}
+    {{ form_row(form.keywords) }}
+    {{ form_row(form.industry) }}
+    {{ form_row(form.position) }}
+    {{ form_row(form.jobType) }}
+    {{ form_row(form.salary) }}
+    {{ form_row(form.location, {'label': 'Location'}) }}
+    {{ form_row(form.datePosted) }}
+    {{ form_rest(form) }}
+    <div class="form-group">
+        <button type="submit" class="form-control btn btn-success"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search Jobs</button>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

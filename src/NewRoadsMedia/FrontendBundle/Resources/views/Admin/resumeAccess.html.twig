@@ -1,0 +1,9 @@
+{% extends base_template %}
+
+{% block form %}
+    {{ form_errors(form) }}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+    <a href="{{ admin.generateObjectUrl('list', object) }}">&lt;&lt; Back</a>
+{% endblock %}

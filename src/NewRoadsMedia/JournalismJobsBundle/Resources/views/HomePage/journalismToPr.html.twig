@@ -1,0 +1,99 @@
+{% set page_name = '' %}
+
+{% extends "::base.html.twig" %}
+
+{% block title %}5 Things Journalists Should Know Before a Career Switch to PR{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://ucarecdn.com/widget/2.8.2/uploadcare/uploadcare.min.js" charset="utf-8"></script>
+    <script src="{{ asset('js/upload-care.js') }}"></script>
+    <script src="{{ asset('js/jquery.wordcount.js') }}"></script>
+    <script src="{{ asset('js/job-listing.js') }}"></script>
+    <script type="text/javascript">
+        $(function() {
+            {% if nonRegisteredForm.resumeFile is defined %}
+                uploadcare_init('{{ nonRegisteredForm.resumeFile.vars.id }}');
+            {% endif %}
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+<div class="inner-content text-article">
+    <div class="article-photo">
+        <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/journalismToPr.png') }}">
+        <span class="photo-caption">Lori Russo</span>
+    </div>
+    <div class="article-wrap">
+    <p class="pre-headline">FROM JOURNALISM TO PR</p>
+
+    <h1 class="article-title">5 Things Journalists Should Know Before a Career Switch to PR</h1>
+
+    <p class="byline-share-line">
+	<b class="byline">Erica Sweeney</b>
+	<a href="#" title="Share Job" class="share-job-link"><img src="{{ asset('images/icons/share_icon.png') }}" alt="Share Job"/>Share</a>
+    </p>
+
+    <ul class="job-listing-share">
+                    <li>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ url('ViewJobPost', {'jobId': job.id}) }}" target="_blank" title="Share on Facebook"><img
+                                    src="{{ asset('images/icons/facebook_icon.png') }}" alt="Share on Facebook"/>Facebook</a>
+                    </li>
+                    <li>
+                        {% set twitterUrl = 'http://twitter.com/share?text=' ~ (('Great Job on ' ~ parameter('site_title')) | url_encode) ~ '&url=' ~ url('ViewJobPost', { 'jobId': job.id } ) %}
+                        <a href="{{ twitterUrl }}" target="_blank" title="Share on Twitter"><img
+                                    src="{{ asset('images/icons/twitter_icon.png') }}" alt="Share on Twitter"/>Twitter</a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ url('ViewJobPost', {'jobId': job.id}) }}&title={{ (parameter('site_title') ~ ' - ' ~ job.titleOfPositionOpen) | url_encode }}&summary=&source=" target="_blank" title="Share on Linked In"><img
+                                    src="{{ asset('images/icons/linked_in_icon.png') }}" alt="Share on Linked In"/>Linked In</a>
+                    </li>
+                    <li>
+                        <a href="https://plus.google.com/share?url={{ url('ViewJobPost', {'jobId': job.id}) }}" target="_blank" title="Share on Google Plus"><img
+                                    src="{{ asset('images/icons/google_plus_icon.png') }}" alt="Share on Google Plus"/>Google +</a>
+                    </li>
+                    <li style="display: none;">
+                        <a class="email" href="#" title="E-mail this job to a friend"><img src="{{ asset('images/icons/email_icon.png') }}" alt="E-mail this job to a friend"/>E-mail</a>
+                    </li>
+                </ul>
+          <p>Lori Russo only took one public relations course in college, but it wasn’t really her thing. So she went into broadcast journalism.</p>
+
+          <p>She started working as an assignment editor and sports producer at WMAR-TV, the ABC affiliate, in Baltimore while she was still in college. After three years regularly working nights, weekends and holidays at what she remembers as $8 per hour, Russo decided to make a career move — into PR. “I made the choice because I felt like [broadcasting] wasn’t a sustainable situation for me,” she explains. “I wanted to have a little bit of a life outside of work.” In 1999, Russo joined the national public relations firm Stanton Communications as an account manager.</p>
+
+          <p>At the time, she says she didn’t know anything about PR, but she has learned quickly and risen through Stanton’s ranks. In 2015, she was named president of the company and leads its Washington, D.C., and Baltimore offices. Over the years, Russo has encountered many former print and broadcast journalists who’ve moved into PR — some successful, some not. After working on both sides herself, she sees why some journalists struggle with making the leap.</p>
+
+          <p>Russo suggests that journalists thinking about switching to PR should first consider these five things:</p>
+
+          <h2>1. You pitch stories to ex-colleagues and rivals.</h2>
+
+          <p>A major component of any PR job is soliciting media coverage. PR bosses often expect former journalists to leverage their media relationships to get coverage for clients, Russo explains. This means you may be seeking coverage from former co-workers or former competition. “It changes the dynamic, and some aren’t comfortable with that,” she says.</p>
+
+          <div class="article-quote">"Sales is part of the job."</div>
+
+          <h2>2. Sales is part of the job.</h2>
+
+          <p>PR jobs often come with the added task of driving new business, which Russo says sometimes is surprising for industry newcomers. This means persuasive skills are a must, and they are put to good use, something that journalists don’t regularly do.</p>
+
+          <h2>3. Stories usually lack balance.</h2>
+
+          <p>Journalists purse truth and present all sides of a story without bias. “In PR, it’s not so much about balance,” Russo explains. “It’s what is my client’s side of the story, and that’s what I’m pushing. For some journalists, that’s tough.”</p>
+
+          <h2>4. The work goes home with you.</h2>
+
+          <p>Though it depends on the journalism job, Russo says in her TV career, after the work was done, she was done for the day. However, the continuous strategizing and idea generating in PR “is something you don’t shut off,” she explains. “You take everything home with you.”</p>
+
+          <h2>5. Good storytelling matters.</h2>
+
+          <p>Storytelling is where journalists excel in PR, Russo insists. “In PR, we tend to get wrapped up in what a client wants the story to be or what the marketing director wants the story to be,” she explains. “Journalists can look at something and say, ‘No, you’re missing it. This is what the story needs to be in order for a journalist to pay attention to it.’”</p>
+
+          <h2>Still considering the switch?</h2>
+
+          <p>PR opportunities exist across all industries and beats. Russo recommends that journalists think about what they most enjoy covering and look for a PR firm or other organization that specializes in that area.</p>
+
+          <p>Also, talk to former journalists who have successfully and unsuccessfully transitioned into PR. “Get as many perspectives as you can,” she suggests.</p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,170 @@
+{% extends '::base.html.twig' %}
+
+{% form_theme form _self %}
+
+{% block form_row %}
+    <div class="form-row">
+        {{ form_label(form) }}
+        {{ form_widget(form) }}
+        {{ form_errors(form) }}
+    </div>
+{% endblock %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors | length > 0 %}
+            <ul class="form-errors">
+                {% for error in errors %}
+                    <li>{{ error.message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}
+
+{% block title %}{{ parameter('site_title') }} -- {% if action == 'edit' %}Edit{% else %}Post{% endif %} Your Resume{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/resume.css') }}"/>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('index_files/jquery-1.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/resume.js') }}"></script>
+    <script type="text/javascript">
+        $(function() {
+            var $workSampleInputs = $('#work-samples').find('.form-collection-child-work-sample');
+            var workSamplesCount = $workSampleInputs.length;
+            for (var i = workSamplesCount; i < 2; i++) {
+                $('.form-add').click();
+            }
+
+            $('input[type="url"').each(function(){
+                if (this.value == ''){
+                    this.value = 'http://'
+                }
+            });
+
+            $('#resume_form').on('submit', function(){
+                $('input[type="url"').each(function(){
+                    if (this.value == 'http://'){
+                        this.value = '';
+                    }
+                });
+
+            })
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+<div>
+    <div class="profile_header">
+        <h1>Add Profile Information</h1>
+        <div id="profile_legend" style="width: 100%">
+            <span style="padding-left: 25px; color: #f90;">Please click "Save Changes" to save resume.</span>
+            <div style="float: right;">
+                <span class="legend_complete">complete</span>
+                <span class="legend_incomplete">incomplete</span>
+            </div>
+        </div>
+    </div>
+    {{ form_errors(form) }}
+    {{ form_start(form) }}
+
+    <div id="profile">
+        <div id="profile-menu">
+            <ul>
+                <li class="active {{ form.vars.complete[0] ? 'complete' : 'incomplete' }}"><a href="#basic-profile-info">Basic Profile Info</a></li>
+                <li class="{{ form.vars.complete[1] ? 'complete' : 'incomplete' }}"><a href="#experience">Work Experience</a></li>
+                <li class="{{ form.vars.complete[2] ? 'complete' : 'incomplete' }}"><a href="#work-samples">Work Samples</a></li>
+                <li class="{{ form.vars.complete[3] ? 'complete' : 'incomplete' }}"><a href="#social-media-accounts">Social Media Accounts</a></li>
+                <li class="{{ form.vars.complete[4] ? 'complete' : 'incomplete' }}"><a href="#job-objective">Job Objective</a></li>
+            </ul>
+            <a id="view-your-profile" href="{{ path('ViewResume', {'resumeId': resume.id}) }}">View Your Profile</a>
+        </div>
+        <div id="profile-content">
+            <div id="basic-profile-info" class="active content">
+                {{ form_row(form.name) }}
+                {{ form_row(form.email) }}
+                <!--
+                {{ form_row(form.contactEmail) }}
+                -->
+                <div class="form-row">
+                    {{ form_label(form.phone) }}
+                    {{ form_widget(form.phoneArea) }}
+                    {{ form_widget(form.phone) }}
+                    {{ form_errors(form.phoneArea) }}
+                    {{ form_errors(form.phone) }}
+                </div>
+                {{ form_row(form.website) }}
+                <!--<div class="form-row">
+                    {{ form_label(form.image) }}
+                    {% if resume.profilePicture %}
+                        <div id="profile-picture">
+                            <img src="{{ resume.profilePicture }}"/>
+                            <br/>
+                            <a href="{{ path('DeleteProfileImage') }}">Remove Photo</a>
+                        </div>
+                    {% endif %}
+                    {{ form_widget(form.image) }}
+                    {{ form_errors(form.image) }}
+                </div>-->
+            </div>
+            <div id="experience" class="content">
+                <div class="form-row" id="form_industries">
+                    {{ form_label(form.industries) }}
+                    <table class="full-width">
+                        {% for row in form.industries | batch(3) %}
+                            <tr>
+                                {% for child in row %}
+                                    <td>
+                                        {{ form_widget(child) }}
+                                        {{ form_label(child) }}
+                                        {{ form_errors(child) }}
+                                    </td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </table>
+                    {{ form_errors(form.industries) }}
+                </div>
+                {{ form_row(form.title) }}
+                {{ form_row(form.company) }}
+                {{ form_row(form.position) }}
+                {{ form_row(form.experience) }}
+                {{ form_row(form.specialty) }}
+                {{ form_row(form.jobType) }}
+                {{ form_row(form.salary) }}
+                {{ form_row(form.city) }}
+                {{ form_row(form.currentState) }}
+                {{ form_row(form.desiredCity) }}
+                {{ form_row(form.desiredState) }}
+            </div>
+            <div id="work-samples" class="content">
+                {{ form_label(form.workSamples) }}
+                <div class="form-collection" data-index="{{ form.workSamples.vars.collection_index }}" data-child-selector=".form-collection-child-work-sample" data-prototype-name="__work_sample__" data-prototype="{% filter escape %}{% include 'NewRoadsMediaJournalismJobsBundle:Resume:prototypeWorkSamples.html.twig' with {'workSample': form.workSamples.vars.prototype} %}{% endfilter %}">
+                {% for workSample in form.workSamples %}
+                    {% include 'NewRoadsMediaJournalismJobsBundle:Resume:prototypeWorkSamples.html.twig' with {'workSample': workSample} %}
+                {% endfor %}
+                {% do form.workSamples.setRendered() %}
+                </div>
+                <a href="#" class="form-add">&gt; Add more work samples</a>
+            </div>
+            <div id="social-media-accounts" class="content">
+                {{ form_row(form.socialMedia) }}
+            </div>
+            <div id="job-objective" class="content">
+                {{ form_row(form.resumeJobObjective, {'attr': {'class': 'ckeditor'}}) }}
+            </div>
+        </div>
+        <div id="profile-save">
+            <button type="submit">Save Changes</button>
+        </div>
+        <div class="clear"></div>
+    </div>
+    {{ form_end(form) }}
+</div>
+{% endblock content %}

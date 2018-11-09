@@ -1,0 +1,29 @@
+{% extends '@NewRoadsMediaFrontend/Layout/mobile.html.twig' %}
+
+{% block title %}Delete Account{% endblock %}
+
+{% form_theme form '@NewRoadsMediaFrontend/Layout/mobileForm.html.twig' %}
+
+{% block content %}
+    {% if isDeleted %}
+        <div class="alert alert-success">
+            <p class="text-center">Your account was successfully deleted.</p>
+        </div>
+    {% else %}
+        {{ form_start(form) }}
+        {% if is_granted('ROLE_JOB_SEEKER') %}
+            <p class="text-center">
+                Click the button below to delete your Job Seeker Account, which includes your resume.<br/>
+                Once you delete your Job Seeker Account, you <em>cannot</em> retrieve it.
+            </p>
+            <p class="text-center">
+                Otherwise, click on the <em>back</em> button in your browser to return to <br/>
+                your Job Seeker Account. Thanks and good luck.
+            </p>
+        {% endif %}
+        <p class="text-center">
+            {{ form_widget(form.delete, {'attr': {'class': 'btn btn-danger'}}) }}
+        </p>
+        {{ form_end(form) }}
+    {% endif %}
+{% endblock %}

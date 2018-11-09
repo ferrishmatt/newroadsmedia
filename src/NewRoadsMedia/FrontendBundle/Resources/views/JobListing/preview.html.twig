@@ -1,0 +1,95 @@
+
+
+<html>
+
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+
+<title>{{ parameter('site_title') }} - Job Listing - {{ job.titleOfPositionOpen }}</title>
+
+
+</head>
+
+
+
+
+<body bgcolor="#FFFFFF" text="#000000" link="#333366" vlink="#006699" alink="#660033">
+
+ <table width="100%" border="0" align="center" cellpadding="4" cellspacing="0">
+
+  <tr>
+    <td colspan="8">
+      <table width="100%" border="0">
+        <tr>
+          <td>
+
+				<font face="Arial, Helvetica, sans-serif" size="2"><b><font color="#000000">|
+				<a href="{{ path('Index') }}">Home</a> | Job Posts </font></b></font>
+
+			</td>
+          	<td>
+            <div align="right"><font face="Arial, Helvetica, sans-serif" size="2"><b><font color="#333366">{{ "now" | date("F d, Y" )}} </font></b></font></div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+
+
+
+
+
+
+
+
+
+        <table border="0" cellspacing="0" cellpadding="0">
+
+		  <tr>
+            <td colspan="2"><img src="{{ asset('graphics/blank.gif') }}" width="20" height="10"></td>
+          </tr>
+
+          <tr>
+            <td><img src="{{ asset('graphics/blank.gif') }}" width="80" height="1" border="0"></td>
+            <td><img src="{{ asset('graphics/blank.gif') }}" width="120" height="1" border="0"></td>
+
+			<td width="100%" rowspan="100%" valign="top" width="300">
+
+
+
+
+
+
+
+
+			</td>
+
+          </tr>
+
+
+
+{% include 'NewRoadsMediaFrontendBundle:JobListing:jobListing.html.twig' %}
+
+</table>
+
+<font face="Arial, Helvetica, sans-serif" size="3"><font color="#660033">
+<BR><div align=center><b>When applying, mention you saw this opening listed at {{ parameter('site_title') }}.</div>
+</b><br>
+
+
+
+
+<div align="center"><font size="1"><b>Job ads copyrighted by {{ parameter('site_title') }} -- © 1998-{{ "now" | date("Y") }}</b></font></div><br><br>
+
+    </td>
+  </tr>
+</table>
+
+
+</body>
+</html>

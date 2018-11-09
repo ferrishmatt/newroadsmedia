@@ -1,0 +1,137 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ parameter('site_title') }}:  Search Resumes{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/form.css') }}"/>
+    <style type="text/css">
+        #content h1 {
+            font-size: 200%;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        #content h1 strong {
+            color: #ff8e00;
+        }
+
+        #content p.searching-resumes {
+            margin: 30px 0;
+        }
+
+        .cssform #resume_search_focus {
+            display: inline-block;
+        }
+
+        .cssform #resume_search_focus label {
+            float: none;
+            margin: 0;
+            display: inline-block;
+            width: auto;
+            margin-right: 5px;
+            font-weight: normal;
+        }
+        .cssform p {
+            padding: 15px 0 15px 155px;
+        }
+
+        #content input[type="text"], #content select {
+            display: inline-block;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            width: 230px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div>
+    <h1>There are <strong>{{ count | number_format(0, '.', ',') }}</strong> resumes in the database.</h1>
+
+    <p class="searching-resumes">
+        <strong>SEARCHING RESUMES: For best results</strong>, limit your criteria to <strong>two fields</strong> (for example, category = newspapers and
+        position = reporter/writer).  Thank you for using {{ parameter('site_title') }}.
+    </p>
+
+    {{ form_start(form, {'attr': {'class': 'cssform'}}) }}
+        <fieldset>
+            <legend>Search Resumes</legend>
+            <p>
+                {{ form_label(form.keywords) }}
+                {{ form_widget(form.keywords) }}
+            </p>
+            <p>
+                {{ form_label(form.industry) }}
+                {{ form_widget(form.industry) }}
+            </p>
+            {% if form.focus.children %}
+                <p>
+                    {{ form_label(form.focus) }}
+                    <span id="resume_search_focus">
+                        {% for child in form.focus.children %}
+                            {{ form_widget(child) }}
+                            {{ form_label(child) }}
+                            <br/>
+                        {% endfor %}
+                        {{ form_widget(form.nonFocused) }}
+                        {{ form_label(form.nonFocused) }}
+                    </span>
+                </p>
+            {% else %}
+                {% do form.focus.setRendered %}
+                {% do form.nonFocused.setRendered %}
+            {% endif %}
+            <p>
+                {{ form_label(form.position) }}
+                {{ form_widget(form.position) }}
+            </p>
+            <p>
+                {{ form_label(form.specialty) }}
+                {{ form_widget(form.specialty) }}
+            </p>
+            <p>
+                {{ form_label(form.market) }}
+                {{ form_widget(form.market) }}
+            </p>
+            <p>
+                {{ form_label(form.experience) }}
+                {{ form_widget(form.experience) }}
+            </p>
+            <p>
+                {{ form_label(form.education) }}
+                {{ form_widget(form.education) }}
+            </p>
+            <p>
+                {{ form_label(form.jobType) }}
+                {{ form_widget(form.jobType) }}
+            </p>
+            <p>
+                {{ form_label(form.desiredState) }}
+                {{ form_widget(form.desiredState) }}
+            </p>
+            <p>
+                {{ form_label(form.salary) }}
+                {{ form_widget(form.salary) }}
+            </p>
+            <p>
+                {{ form_label(form.language) }}
+                {{ form_widget(form.language) }}
+            </p>
+            <br>
+            <button type="submit" name="Search">Search</button>
+            <br><br>
+        </fieldset>
+    {{ form_end(form) }}
+</div>
+{% endblock content %}

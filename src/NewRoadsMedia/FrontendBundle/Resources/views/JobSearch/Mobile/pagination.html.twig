@@ -1,0 +1,17 @@
+{% if pageCount > 1%}
+    <div class="text-center">
+        <ul class="pagination">
+            {% if page > 1 %}
+                {#<li><a href="{{ path('JobPosts', params | merge({'page': 1})) }}">&lt;&lt;</a></li>#}
+                <li><a href="{{ path('JobPosts', params | merge({'page': page - 1})) }}">&lt;</a></li>
+            {% endif %}
+            {% for i in pageStart..pageEnd %}
+                <li{% if i == page %} class="active"{% endif %}><a href="{{ path('JobPosts', params | merge({'page': i})) }}">{{ i }}</a></li>
+            {% endfor %}
+            {% if page < pageCount %}
+                <li><a href="{{ path('JobPosts', params | merge({'page': page + 1})) }}">&gt;</a></li>
+                {#<li><a href="{{ path('JobPosts', params | merge({'page': pageCount})) }}">&gt;&gt;</a></li>#}
+            {% endif %}
+        </ul>
+    </div>
+{% endif %}

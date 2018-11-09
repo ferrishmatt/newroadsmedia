@@ -1,0 +1,100 @@
+{% extends '::base.html.twig' %}
+
+{% form_theme form _self %}
+
+{% block form_row %}
+    <div>
+        {{ form_label(form) }}
+        {{ form_widget(form) }}
+        {{ form_errors(form) }}
+    </div>
+{% endblock %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors | length > 0 %}
+            <ul class="form-errors">
+                {% for error in errors %}
+                    <li>{{ error.message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style type="text/css">
+        #content {
+            margin: 20px auto;
+            width: 700px;
+        }
+
+        #form {
+            margin-top: 30px;
+        }
+
+        #form label {
+            display: inline-block;
+            width: 200px;
+            vertical-align: middle;
+        }
+
+        #form input,
+        #form select,
+        #form textarea {
+            display: inline-block;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            width: 230px;
+            margin: 5px 0;
+            vertical-align: middle;
+        }
+
+        #form #form_info {
+            width: 450px;
+            height: 150px;
+        }
+
+        #form button[type="submit"] {
+            background-color: #f90;
+            text-transform: uppercase;
+            font-size: 15px;
+            font-weight: bold;
+            display: block;
+            padding: 8px 25px;
+            color: #fff;
+            border: 1px outset;
+            margin: 30px auto 0;
+            cursor: pointer;
+        }
+
+        #form .form-errors {
+            color: #e80c4d;
+            font-weight: bold;
+            margin-left: 205px;
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <h1>Unlimited Job Ads</h1>
+    <p>Please complete the fields below to obtain pricing information for unlimited job postings.</p>
+    {{ form_errors(form) }}
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}

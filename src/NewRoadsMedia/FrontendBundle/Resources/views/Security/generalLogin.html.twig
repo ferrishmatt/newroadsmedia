@@ -1,0 +1,67 @@
+{% extends '::base.html.twig' %}
+{% set isToggable = loginJobSeeker is defined and targetJobSeeker is defined %}
+
+{% block title %}Account Login{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/login.css') }}"/>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% if isToggable %}
+    <script type="text/javascript" src="{{ asset('index_files/jquery-1.js') }}"></script>
+    <script type="text/javascript">
+        $(function() {
+            var $loginSelect = $('#login-select');
+
+            $('form').submit(function() {
+                var $formErrors = $('.form-errors').html('').hide();
+                var value = $('#login-select').find(':input:checked').val();
+                if (!value) {
+                    $formErrors.html('Please select the account type you are logging into.').show();
+                    return false;
+                }
+
+                var action = value == 1 ? '{{ loginJobSeeker }}' : '{{ loginEmployer }}';
+                var target = value == 1 ? '{{ targetJobSeeker }}' : '{{ targetEmployer }}';
+                $(this).attr('action', action);
+                $('#_target_path').val(target);
+
+                return true;
+            });
+
+            $loginSelect.find(':input').change(function() {
+                $('.form-errors').html('').hide();
+                $loginSelect.find('label').removeClass('active');
+                $loginSelect.find('input:checked').closest('label').addClass('active');
+            });
+        });
+    </script>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="general-login">
+    <h1>{% block login_heading %}Sign In{% endblock %}</h1>
+
+    <div class="form-errors"{% if not form.vars.errors %} style="display: none;"{% endif %}>{{ form_errors(form) }}</div>
+
+    {% if isToggable %}
+    <div id="login-select">
+        <label for="login-employer"><input type="radio" id="login-employer" value="2" name="login_select"/>I'm an Employer</label>
+        <label for="login-job-seeker"><input type="radio" id="login-job-seeker" value="1" name="login_select"/>I'm a Job Seeker</label>
+    </div>
+    {% endif %}
+
+    {{ form_start(form) }}
+        {{ form_row(form._username, {'label': false, 'attr': {'placeholder': 'Your Email Address'}}) }}
+        {{ form_row(form._password, {'label': false, 'attr': {'placeholder': 'Your Password'}}) }}
+        <button class="button-success">Sign In</button>
+        <div class="forgot-password">
+            <a href="{{ path('ForgotPassword') }}">Forgot Password?</a>
+        </div>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

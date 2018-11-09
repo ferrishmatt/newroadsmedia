@@ -1,0 +1,169 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Job Notification{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style type="text/css">
+        .star {
+            color: #f00;
+        }
+
+        #content h2 {
+            color: #339;
+            font: bold 22px Arial, Helvetica, sans-serif;
+            margin: 0;
+        }
+
+        .form-errors {
+            color: #900;
+            font-weight: bold;
+            text-align: center;
+            padding: 15px;
+        }
+
+        #submit{
+            border: 1px solid #abcc64;
+            background-color: #9ec44a;
+            color: #fff;
+            font-weight: normal;
+            padding: 5px 15px;
+            margin-left: 10px;
+            font-size: 15px;
+            border-radius: 3px;
+        }
+
+        #job_notification_subscriptionStatus label{
+            margin-right: 20px;
+        }
+
+        #submit-container{
+            text-align: center;
+            margin-top:20px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div>
+    {% if form.vars.errors %}
+        <div class="form-errors">
+            {{ form_errors(form) }}
+        </div>
+    {% endif %}
+
+    {{ form_start(form) }}
+
+    <table border="0" width="100%" cellpadding="4" cellspacing="0">
+    <tbody>
+    <tr>
+        <td colspan="3" height="2">
+            <span class="star">*</span>denotes required field
+        </td>
+    </tr>
+    <tr valign="top">
+        <td colspan="3" height="3">
+            <h2>Job Alerts -- Select Your Criteria</h2>
+            <div class="horizontalRule"></div>
+        </td>
+    </tr>
+    <tr valign="top">
+        <td colspan="3">
+            Sign-up to receive free job alerts by email daily. Execute multiple searches using the same email address. Delete your subscription at any time. <br/>
+        </td>
+    </tr>
+
+    <tr valign="top">
+        <td rowspan="2">
+            <span class="star">*</span>Industry<br/>
+            <table id="industries-table">
+            {% for row in form.industries | batch(3) %}
+                <tr>
+                {% for child in row %}
+                    <td>
+                        {{ form_widget(child) }}
+                        {{ form_label(child) }}
+                    </td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+            </table>
+        </td>
+        <td>
+            {{ form_label(form.location) }}<br/>
+            {{ form_widget(form.location) }}
+        </td>
+        <td>
+            {{ form_label(form.jobType) }}<br/>
+            {{ form_widget(form.jobType) }}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            {{ form_label(form.position) }}<br/>
+            {{ form_widget(form.position) }}
+        </td>
+    </tr>
+    {% if form.focus.children %}
+        <tr>
+            <td>
+                {{ form_label(form.focus) }}
+                <div style="margin-top: 5px;">
+                    {% for focus in form.focus %}
+                        {{ form_widget(focus) }}
+                        {{ form_label(focus) }}
+                        {{ form_errors(focus) }}
+                    {% endfor %}
+                    {{ form_widget(form.nonFocused) }}
+                    {{ form_label(form.nonFocused) }}
+                    {{ form_errors(form.nonFocused) }}
+                </div>
+            </td>
+        </tr>
+    {% else %}
+        {% do form.focus.setRendered %}
+        {% do form.nonFocused.setRendered %}
+    {% endif %}
+
+    </tbody></table>
+
+    {#
+    <table width="100%" border="0" cellpadding="4" cellspacing="0">
+        <tbody>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td bgcolor="#FFFFFF">
+                    <font face="Arial, Helvetica, sans-serif" size="5" color="#333399"><b>Duration</b></font>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    #}
+    <table>
+        <tbody>
+        {#
+        <tr>
+            <td>
+                <p><font face="Arial, Helvetica, sans-serif" size="3"> Send me job announcements for:</font></p>
+            </td>
+            <td>
+                {{ form_widget(form.expiration) }}
+            </td>
+        </tr>
+        #}
+        <tr>
+            <td colspan="2">
+                {{ form_widget(form.subscriptionStatus) }}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div id="submit-container">
+        <input type="submit" name="Submit" value="Submit Request" id="submit"/>
+    </div>
+    {{ form_end(form) }}
+</div>
+{% endblock content %}

@@ -1,0 +1,9 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% if page_name is defined %}{{ page_name }}{% else %}{{ parent() }}{% endif %}{% endblock %}
+
+{% block content %}
+    <div class="inner-content">
+        {% block innerContent %}{% endblock %}
+    </div>
+{% endblock content %}

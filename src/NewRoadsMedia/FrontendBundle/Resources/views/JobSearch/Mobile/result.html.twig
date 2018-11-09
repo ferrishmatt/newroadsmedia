@@ -1,0 +1,26 @@
+{% set link = job.isExternal ? job.website : path('ViewJobPost', {'jobId': job.id}) %}
+<h4>
+    <a href="{{ link }}">{{ job.titleOfPositionOpen }}</a>
+    {% if is_new_job(job) %}
+        <span class="label label-success label-new">New</span>
+    {% endif %}
+</h4>
+<p>{% if job.company %}{{ job.company }}{% else %}Not Specified{% endif %}</p>
+<ul class="list-inline">
+    {% if job.jobCity or job.location %}
+        <li class="location">
+            <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+            {% if job.jobCity %}{{ job.jobCity }}, {% endif %}{% if job.location %}{{ job.location.locationDescription }}{% endif %}
+        </li>
+    {% endif %}
+    {% if job.jobType %}
+        <li class="status">
+            <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+            {{ job.jobType }}
+        </li>
+    {% endif %}
+    <li class="posted">
+        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+        Posted: <span class="date">{{ job.createDate | smart_day('M j') }}</span>
+    </li>
+</ul>

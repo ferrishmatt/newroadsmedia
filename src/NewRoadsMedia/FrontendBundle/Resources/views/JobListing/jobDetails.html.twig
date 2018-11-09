@@ -1,0 +1,88 @@
+{% set includeCompany = includeCompany is defined and includeCompany %}
+{% set includeLocation = includeLocation is not defined or includeLocation %}
+<table class="job-listing">
+    {% if includeCompany and job.company %}
+        <tr>
+            <td class="label">Company</td>
+            <td>{{ job.company }}</td>
+        </tr>
+    {% endif %}
+    <tr>
+        <td class="label">Date Posted</td>
+        <td>{{ job.createDate | date('F d, Y') }}</td>
+    </tr>
+    {% if job.industries | length > 0 %}
+        <tr>
+            <td class="label">{% if job.industries | length == 1 %}Industry{% else %}Industries{% endif %}</td>
+            <td>{{ job.industries | join(', ') }}</td>
+        </tr>
+    {% endif %}
+    {% if includeLocation %}
+        <tr>
+            <td class="label">Location</td>
+            {% if job.jobCity or (job.location and job.location.locationDescription) %}
+                <td>{% if job.jobCity %}{{ job.jobCity }},{% endif %} {% if job.location and job.location.locationDescription %}{{ job.location.locationDescription }}{% endif %}</td>
+            {% else %}
+                <td>Not Specified</td>
+            {% endif %}
+        </tr>
+    {% endif %}
+    {#{% if job.position %}#}
+        {#<tr>#}
+            {#<td class="label">Position</td>#}
+            {#<td>{{ job.position }}</td>#}
+        {#</tr>#}
+    {#{% endif %}#}
+    {% if job.focus | length > 0 %}
+        <tr>
+            <td class="label">Focus</td>
+            <td>{{ job.focus | join(', ') }}</td>
+        </tr>
+    {% endif %}
+    {% if job.specialty %}
+        <tr>
+            <td class="label">Specialty</td>
+            <td>{{ job.specialty }}</td>
+        </tr>
+    {% endif %}
+    <tr>
+        <td class="label">Job Status</td>
+        <td>{% if job.jobType%}{{ job.jobType }}{% else %}Not Specified{% endif %}</td>
+    </tr>
+    {#
+        This is specific to teachingjobs.com. Only teachingjobs.com has the ability to set positionType and industry 2
+        refers to the public schools industry directly.
+    #}
+    {% if job.positionType and job.hasIndustry(2) %}
+        <tr>
+            <td class="label">Job Type</td>
+            <td>{{ job.positionType }}</td>
+        </tr>
+    {% endif %}
+    <tr>
+        <td class="label">Salary</td>
+        <td>{% if job.salaryText %}{{ job.salaryText }}{% else %}Not Specified{% endif %}</td>
+    </tr>
+    {% if job.certificationNeeded %}
+        <tr>
+            <td class="label">Certificate Needed</td>
+            <td>
+                {{ job.certificationNeeded }}{% if job.certificatesNeeded %}, {{ job.certificatesNeeded }}{% endif %}
+            </td>
+        </tr>
+    {% endif %}
+    {% if job.education %}
+        <tr>
+            <td class="label">Education</td>
+            <td>
+                {{ job.education }}
+            </td>
+        </tr>
+    {% endif %}
+    {% if job.website %}
+        <tr>
+            <td class="label">Website</td>
+            <td><a href="{{ job.website }}" target="new">{{ job.website }}</a></td>
+        </tr>
+    {% endif %}
+</table>

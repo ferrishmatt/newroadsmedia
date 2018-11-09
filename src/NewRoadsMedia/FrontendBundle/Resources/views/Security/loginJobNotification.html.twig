@@ -1,0 +1,15 @@
+{% extends 'NewRoadsMediaFrontendBundle:Security:loginJobBasket.html.twig' %}
+
+{% block title %}{{ parameter('site_title') }} -- Job Alert Login{% endblock %}
+
+{% block login_heading %}
+    <h2>Create a Free Account for <strong>Job Alerts</strong></h2>
+    <br/>
+    <h3>Other Account Benefits:</h3>
+    <ul>
+        <li>Post a resume and let employers contact you about their openings.</li>
+        <li>Apply for jobs online using your {{ parameter('site_title') }} resume profile.</li>
+        <li>Manage the entire search using your own password-protected account.</li>
+    </ul>
+    <br/>
+{% endblock %}

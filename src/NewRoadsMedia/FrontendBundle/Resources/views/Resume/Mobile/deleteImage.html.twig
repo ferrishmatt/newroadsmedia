@@ -1,0 +1,20 @@
+{% extends '@NewRoadsMediaFrontend/Layout/mobile.html.twig' %}
+
+{% block title %}Delete Profile Photo{% endblock %}
+
+{% block content %}
+    <h1>Delete Profile Photo</h1>
+    <p class="text-center">
+        Are you sure you want to delete your profile photo?
+    </p>
+    <p class="text-center">
+        <img src="{{ resume.profilePicture }}"/>
+    </p>
+    <br/>
+    {{ form_start(form) }}
+    <p class="text-center">
+        <a class="btn btn-default" href="{{ path('EditResume') }}">Cancel</a>
+        {{ form_widget(form.submit, {'attr': {'class': 'btn btn-danger'}}) }}
+    </p>
+    {{ form_end(form) }}
+{% endblock %}

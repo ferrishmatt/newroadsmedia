@@ -1,0 +1,113 @@
+{% set page_name = '' %}
+
+{% extends "::base.html.twig" %}
+
+{% block title %}10 Do’s and Don’ts of Applying for Jobs Online{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://ucarecdn.com/widget/2.8.2/uploadcare/uploadcare.min.js" charset="utf-8"></script>
+    <script src="{{ asset('js/upload-care.js') }}"></script>
+    <script src="{{ asset('js/jquery.wordcount.js') }}"></script>
+    <script src="{{ asset('js/job-listing.js') }}"></script>
+    <script type="text/javascript">
+        $(function() {
+            {% if nonRegisteredForm.resumeFile is defined %}
+                uploadcare_init('{{ nonRegisteredForm.resumeFile.vars.id }}');
+            {% endif %}
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {#<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"/>#}
+    <link rel="stylesheet" href="{{ asset('css/job-listing.css') }}"/>
+{% endblock %}
+
+{% block content %}
+<div class="inner-content text-article">
+    <img class="article-photo" src="{{ asset('bundles/newroadsmediajournalismjobs/images/job_search_online.jpg') }}">
+    <div class="article-wrap">
+    <p class="pre-headline">Job Search</p>
+
+    <h1 class="article-title">10 Do’s and Don’ts of Applying for Jobs Online</h1>
+
+    <p class="byline-share-line">
+	<b class="byline">By Erica Sweeney</b>
+	<a href="#" title="Share Job" class="share-job-link"><img src="{{ asset('images/icons/share_icon.png') }}" alt="Share Job"/>Share</a>
+    </p>
+
+    <ul class="job-listing-share">
+                    <li>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ url('ViewJobPost', {'jobId': job.id}) }}" target="_blank" title="Share on Facebook"><img
+                                    src="{{ asset('images/icons/facebook_icon.png') }}" alt="Share on Facebook"/>Facebook</a>
+                    </li>
+                    <li>
+                        {% set twitterUrl = 'http://twitter.com/share?text=' ~ (('Great Job on ' ~ parameter('site_title')) | url_encode) ~ '&url=' ~ url('ViewJobPost', { 'jobId': job.id } ) %}
+                        <a href="{{ twitterUrl }}" target="_blank" title="Share on Twitter"><img
+                                    src="{{ asset('images/icons/twitter_icon.png') }}" alt="Share on Twitter"/>Twitter</a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ url('ViewJobPost', {'jobId': job.id}) }}&title={{ (parameter('site_title') ~ ' - ' ~ job.titleOfPositionOpen) | url_encode }}&summary=&source=" target="_blank" title="Share on Linked In"><img
+                                    src="{{ asset('images/icons/linked_in_icon.png') }}" alt="Share on Linked In"/>Linked In</a>
+                    </li>
+                    <li>
+                        <a href="https://plus.google.com/share?url={{ url('ViewJobPost', {'jobId': job.id}) }}" target="_blank" title="Share on Google Plus"><img
+                                    src="{{ asset('images/icons/google_plus_icon.png') }}" alt="Share on Google Plus"/>Google +</a>
+                    </li>
+                    <li style="display: none;">
+                        <a class="email" href="#" title="E-mail this job to a friend"><img src="{{ asset('images/icons/email_icon.png') }}" alt="E-mail this job to a friend"/>E-mail</a>
+                    </li>
+                </ul>
+
+                <p>Over the years, I’ve completed countless job applications online. Often they were successful, landing me the job, while other times they were not. I’ve done a lot of things right, but I've also made my fair share of mistakes. Below are some tips you might find helpful as you look for your next job.</p>
+
+
+                <h2>1. Research the company before applying.</h2>
+
+                <p>Before even applying, visit the company’s website and social media pages to make sure it’s a place you actually want to work and that your mission aligns with theirs. This will also help you in case you get called in for an interview.</p>
+
+                <h2>2. Read the job description carefully.</h2>
+
+                <p>Go over the job description several times to make sure you have a clear understanding of what the job duties are and what type of person they're seeking. If the ad says you need 10 years of experience, but you've only got two, move onto the next job listing. Overlooking a key requirement will most likely result in rejection. </p>
+
+                <h2>3. Apply as soon as you can.</h2>
+
+                <p>Once you see a job posting, keep in mind a lot of other people may have seen it as well. Make sure  to apply ASAP, even if the application deadline is not for another 10 days. There's the off-chance the company might make a decision earlier, and you don't want to miss out.</p>
+
+                <h2>4. Follow all instructions in the posting.</h2>
+
+                <p>Following directions is extremely important. Postings may ask that you apply only via email or through a job portal. Either way, do what it asks. Also, include all of the information requested: cover letter, resume, work samples, references, salary requirements and whatever else.</p>
+
+                <h2>5. Write a cover letter.</h2>
+
+                <p>Cover letters are very important. This is where you get to say something about yourself that is not in your resume. Make sure to use keywords from the job posting to illustrate why you’re a great fit for the job. </p>
+
+                <h2>6. Include your LinkedIn profile.</h2>
+
+                <p>Linkedin is a common tool used by employers to review applicants. Make sure your profile is up-to-date.</p>
+
+                <h2>7. Review your social media accounts.</h2>
+
+                <p>Before including any social media accounts with your application, make sure they do not contain text or photos that could be deemed offensive or unprofessional. If you can't delete sensitive material, at least change all of your settings to private so no one except your friends and connections can see them.</p>
+
+                <h2>8. Don’t get too personal.</h2>
+
+                <p>Like they always say, never discuss politics or religion with strangers. The same rings true when applying for a job. Keep your thoughts to yourself.</p>
+
+                <h2>9. Make sure to follow up.</h2>
+
+                <p>It’s always a good idea to follow up a week or so after applying. A short email or phone call saying you're just checking in to see how your application is going might be fine (unless the job posting clearly states no follow-up emails or phone calls).</p>
+
+                <h2>10. Don’t hit the ‘send’ button too soon.</h2>
+
+                <p>Proofread and revise your application and cover letter before sending. Compare what you’re about to send with the original job posting to ensure they align. Always avoid submitting incomplete information, as that might indicate what type of worker you'd be if you got the job. </p>
+
+                <p>Follow these do’s and don’ts when you apply for your next job and perhaps you'll get lucky and land your dream job.</p>
+    </div>
+</div>
+
+{% endblock %}

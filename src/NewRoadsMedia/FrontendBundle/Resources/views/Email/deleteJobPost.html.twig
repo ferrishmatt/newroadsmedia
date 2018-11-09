@@ -1,0 +1,23 @@
+<p>Dear {{ parameter('site_title') }} User,</p>
+
+<p>Below is the text of the ad you just deleted on {{ parameter('site_title') }}. We thought you would like to keep a copy for your records.</p>
+
+<p>
+Thank you, <br/>
+{{ parameter('site_title') }}<br/>
+Tel. {{ parameter('site_phone') }}<br/>
+E-mail: {{ parameter('email.contact') }}<br/>
+</p>
+
+<p>
+YOUR AD CRITERIA:<br/>
+Company: {{ job.company }}<br/>
+Industries: {{ job.industries | join(', ') }}<br/>
+Position: {{ job.titleOfPositionOpen }}<br/>
+Location: {{ job.location }}<br/>
+Job Status: {{ job.jobType }}<br/>
+Your job ad ID # is: {{ job.id }}<br/>
+</p>
+
+<p>YOUR JOB AD:</p>
+{{ job.adDescription | raw }}

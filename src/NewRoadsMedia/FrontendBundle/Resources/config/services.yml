@@ -1,0 +1,396 @@
+parameters:
+    # Services
+    journalism_jobs_frontend.cloudconvert.class:         NewRoadsMedia\FrontendBundle\Service\CloudConvert
+    journalism_jobs_frontend.device.class:               NewRoadsMedia\FrontendBundle\Service\Device
+    journalism_jobs_frontend.mailer.class:               NewRoadsMedia\FrontendBundle\Service\Mailer
+    journalism_jobs_frontend.user.class:                 NewRoadsMedia\FrontendBundle\Service\User
+
+    # Entities
+    journalism_jobs_frontend.entity.application.class:   NewRoadsMedia\FrontendBundle\Entity\Application
+    journalism_jobs_frontend.entity.banner_ad.class:     NewRoadsMedia\FrontendBundle\Entity\BannerAd
+    journalism_jobs_frontend.entity.configuration.class: NewRoadsMedia\FrontendBundle\Entity\Configuration
+    journalism_jobs_frontend.entity.crawler_exclusion.class: NewRoadsMedia\FrontendBundle\Entity\CrawlerExclusion
+    journalism_jobs_frontend.entity.duration.class:      NewRoadsMedia\FrontendBundle\Entity\Duration
+    journalism_jobs_frontend.entity.employer.class:      NewRoadsMedia\FrontendBundle\Entity\Employer
+    journalism_jobs_frontend.entity.focus.class:         NewRoadsMedia\FrontendBundle\Entity\Focus
+    journalism_jobs_frontend.entity.industry.class:      NewRoadsMedia\FrontendBundle\Entity\Industry
+    journalism_jobs_frontend.entity.invoice.class:       NewRoadsMedia\FrontendBundle\Entity\Invoice
+    journalism_jobs_frontend.entity.invoice_track.class: NewRoadsMedia\FrontendBundle\Entity\InvoiceTrack
+    journalism_jobs_frontend.entity.location.class:      NewRoadsMedia\FrontendBundle\Entity\Location
+    journalism_jobs_frontend.entity.job.class:           NewRoadsMedia\FrontendBundle\Entity\Job
+    journalism_jobs_frontend.entity.job_basket.class:    NewRoadsMedia\FrontendBundle\Entity\JobBasket
+    journalism_jobs_frontend.entity.job_type.class:      NewRoadsMedia\FrontendBundle\Entity\JobType
+    journalism_jobs_frontend.entity.job_view.class:      NewRoadsMedia\FrontendBundle\Entity\JobView
+    journalism_jobs_frontend.entity.location.class:      NewRoadsMedia\FrontendBundle\Entity\Location
+    journalism_jobs_frontend.entity.news.class:          NewRoadsMedia\FrontendBundle\Entity\News
+    journalism_jobs_frontend.entity.notification.class:  NewRoadsMedia\FrontendBundle\Entity\Notification
+    journalism_jobs_frontend.entity.payment.class:       NewRoadsMedia\FrontendBundle\Entity\Payment
+    journalism_jobs_frontend.entity.position.class:      NewRoadsMedia\FrontendBundle\Entity\Position
+    journalism_jobs_frontend.entity.resume.class:        NewRoadsMedia\FrontendBundle\Entity\Resume
+    journalism_jobs_frontend.entity.simply_hired.class:  NewRoadsMedia\FrontendBundle\Entity\SimplyHired
+    journalism_jobs_frontend.entity.user_forgot_password_request.class: NewRoadsMedia\FrontendBundle\Entity\UserForgotPasswordRequest
+
+    # Entity Managers
+    journalism_jobs_frontend.manager.application.class:   NewRoadsMedia\FrontendBundle\Manager\ApplicationManager
+    journalism_jobs_frontend.manager.banner_ad.class:     NewRoadsMedia\FrontendBundle\Manager\BannerAdManager
+    journalism_jobs_frontend.manager.configuration.class: NewRoadsMedia\FrontendBundle\Manager\ConfigurationManager
+    journalism_jobs_frontend.manager.crawler_exclusion.class: NewRoadsMedia\FrontendBundle\Doctrine\ObjectManager
+    journalism_jobs_frontend.manager.duration.class:      NewRoadsMedia\FrontendBundle\Doctrine\ObjectManager
+    journalism_jobs_frontend.manager.employer.class:      NewRoadsMedia\FrontendBundle\Manager\EmployerManager
+    journalism_jobs_frontend.manager.focus.class:         NewRoadsMedia\FrontendBundle\Doctrine\ObjectManager
+    journalism_jobs_frontend.manager.industry.class:      NewRoadsMedia\FrontendBundle\Doctrine\ObjectManager
+    journalism_jobs_frontend.manager.invoice.class:       NewRoadsMedia\FrontendBundle\Manager\InvoiceManager
+    journalism_jobs_frontend.manager.invoice_track.class: NewRoadsMedia\FrontendBundle\Manager\InvoiceTrackManager
+    journalism_jobs_frontend.manager.location.class:      NewRoadsMedia\FrontendBundle\Doctrine\ObjectManager
+    journalism_jobs_frontend.manager.job.class:           NewRoadsMedia\FrontendBundle\Manager\JobManager
+    journalism_jobs_frontend.manager.job_basket.class:    NewRoadsMedia\FrontendBundle\Doctrine\ObjectManager
+    journalism_jobs_frontend.manager.job_type.class:      NewRoadsMedia\FrontendBundle\Doctrine\ObjectManager
+    journalism_jobs_frontend.manager.job_view.class:      NewRoadsMedia\FrontendBundle\Doctrine\ObjectManager
+    journalism_jobs_frontend.manager.location.class:      NewRoadsMedia\FrontendBundle\Doctrine\ObjectManager
+    journalism_jobs_frontend.manager.news.class:          NewRoadsMedia\FrontendBundle\Doctrine\ObjectManager
+    journalism_jobs_frontend.manager.notification.class:  NewRoadsMedia\FrontendBundle\Doctrine\ObjectManager
+    journalism_jobs_frontend.manager.payment.class:       NewRoadsMedia\FrontendBundle\Manager\PaymentManager
+    journalism_jobs_frontend.manager.position.class:      NewRoadsMedia\FrontendBundle\Manager\PositionManager
+    journalism_jobs_frontend.manager.resume.class:        NewRoadsMedia\FrontendBundle\Manager\ResumeManager
+    journalism_jobs_frontend.manager.simply_hired.class:  NewRoadsMedia\FrontendBundle\Doctrine\ObjectManager
+    journalism_jobs_frontend.manager.user_forgot_password_request.class: NewRoadsMedia\FrontendBundle\Manager\UserForgotPasswordRequestManager
+
+    # Forms
+    journalism_jobs_frontend.form.job_posts_search.class: NewRoadsMedia\FrontendBundle\Form\Type\JobSearchFormType
+    journalism_jobs_frontend.form.post_new_job.class:     NewRoadsMedia\FrontendBundle\Form\Type\PostNewJobFormType
+    journalism_jobs_frontend.form.resume.class:           NewRoadsMedia\FrontendBundle\Form\Type\ResumeFormType
+
+
+    #
+    journalismjobs.twig.engine.class: NewRoadsMedia\FrontendBundle\Twig\TwigEngine
+
+services:
+
+    # Entity Object Managers
+
+    journalismjobs.manager.application:
+        class: %journalism_jobs_frontend.manager.application.class%
+        arguments:
+            em: @doctrine.orm.default_entity_manager
+            class: %journalism_jobs_frontend.entity.application.class%
+            directory: %kernel.root_dir%/files/application-resumes
+
+    journalismjobs.manager.banner_ad:
+        class: %journalism_jobs_frontend.manager.banner_ad.class%
+        arguments:
+            em: @doctrine.orm.default_entity_manager
+            class: %journalism_jobs_frontend.entity.banner_ad.class%
+            session: @session
+
+    journalismjobs.manager.configuration:
+        class: %journalism_jobs_frontend.manager.configuration.class%
+        arguments:
+            em: @doctrine.orm.default_entity_manager
+            class: %journalism_jobs_frontend.entity.configuration.class%
+
+    journalismjobs.manager.crawler_exclusion:
+        class: %journalism_jobs_frontend.manager.crawler_exclusion.class%
+        arguments:
+            em: @doctrine.orm.default_entity_manager
+            class: %journalism_jobs_frontend.entity.crawler_exclusion.class%
+
+    journalismjobs.manager.duration:
+        class: %journalism_jobs_frontend.manager.duration.class%
+        arguments:
+            em: @doctrine.orm.default_entity_manager
+            class: %journalism_jobs_frontend.entity.duration.class%
+
+    journalismjobs.manager.employer:
+        class: %journalism_jobs_frontend.manager.employer.class%
+        arguments:
+            em: @doctrine.orm.default_entity_manager
+            class: %journalism_jobs_frontend.entity.employer.class%
+            jobManager: @journalismjobs.manager.job
+
+    journalismjobs.manager.focus:
+        class: %journalism_jobs_frontend.manager.focus.class%
+        arguments:
+            em: @doctrine.orm.default_entity_manager
+            class: %journalism_jobs_frontend.entity.focus.class%
+
+    journalismjobs.manager.industry:
+        class: %journalism_jobs_frontend.manager.industry.class%
+        arguments:
+            em: @doctrine.orm.default_entity_manager
+            class: %journalism_jobs_frontend.entity.industry.class%
+
+    journalismjobs.manager.invoice:
+        class: %journalism_jobs_frontend.manager.invoice.class%
+        arguments:
+            em: @doctrine.orm.default_entity_manager
+            class: %journalism_jobs_frontend.entity.invoice.class%
+
+    journalismjobs.manager.invoice_track:
+        class: %journalism_jobs_frontend.manager.invoice_track.class%
+        arguments:
+            em: @doctrine.orm.default_entity_manager
+            class: %journalism_jobs_frontend.entity.invoice_track.class%
+
+    journalismjobs.manager.location:
+        class: %journalism_jobs_frontend.manager.location.class%
+        arguments:
+            em: @doctrine.orm.default_entity_manager
+            class: %journalism_jobs_frontend.entity.location.class%
+
+    journalismjobs.manager.job:
+        class: %journalism_jobs_frontend.manager.job.class%
+        arguments:
+            em: @doctrine.orm.default_entity_manager
+            class: %journalism_jobs_frontend.entity.job.class%
+            focusManager: @journalismjobs.manager.focus
+            positionManager: @journalismjobs.manager.position
+            imageHandling: @image.handling
+            configuration: @journalismjobs.manager.configuration
+            adCost: %ad_cost%
+            featuredAdCost:   %featured_ad_cost%
+            diversityAdCost:  %diversity_ad_cost%
+            frontpageAdCost:  %frontpage_ad_cost%
+            imageDir: /media/company
+            web: %kernel.root_dir%/../../web
+
+    journalismjobs.manager.job_basket:
+        class: %journalism_jobs_frontend.manager.job_basket.class%
+        arguments:
+            em: @doctrine.orm.default_entity_manager
+            class: %journalism_jobs_frontend.entity.job_basket.class%
+
+    journalismjobs.manager.job_type:
+        class: %journalism_jobs_frontend.manager.job_type.class%
+        arguments:
+            em: @doctrine.orm.default_entity_manager
+            class: %journalism_jobs_frontend.entity.job_type.class%
+
+    journalismjobs.manager.job_view:
+        class: %journalism_jobs_frontend.manager.job_view.class%
+        arguments:
+            em: @doctrine.orm.default_entity_manager
+            class: %journalism_jobs_frontend.entity.job_view.class%
+
+    journalismjobs.manager.location:
+        class: %journalism_jobs_frontend.manager.location.class%
+        arguments:
+            em: @doctrine.orm.default_entity_manager
+            class: %journalism_jobs_frontend.entity.location.class%
+
+    journalismjobs.manager.news:
+        class: %journalism_jobs_frontend.manager.news.class%
+        arguments:
+            em: @doctrine.orm.default_entity_manager
+            class: %journalism_jobs_frontend.entity.news.class%
+
+    journalismjobs.manager.notification:
+        class: %journalism_jobs_frontend.manager.notification.class%
+        arguments:
+            em: @doctrine.orm.default_entity_manager
+            class: %journalism_jobs_frontend.entity.notification.class%
+
+    journalismjobs.manager.payment:
+        class: %journalism_jobs_frontend.manager.payment.class%
+        arguments:
+            em: @doctrine.orm.default_entity_manager
+            class: %journalism_jobs_frontend.entity.payment.class%
+            authorizeNetTestMode: %authorize_net_test_mode%
+            logger: @journalismjobs.payment_logger
+            siteTitle: %site_title%
+            login: %authorize.net.login%
+            transactionKey: %authorize.net.transaction_key%
+
+    journalismjobs.manager.position:
+        class: %journalism_jobs_frontend.manager.position.class%
+        arguments:
+            em: @doctrine.orm.default_entity_manager
+            class: %journalism_jobs_frontend.entity.position.class%
+
+    journalismjobs.manager.resume:
+        class: %journalism_jobs_frontend.manager.resume.class%
+        arguments:
+            em: @doctrine.orm.default_entity_manager
+            class: %journalism_jobs_frontend.entity.resume.class%
+            imageHandling: @image.handling
+            directory: %kernel.root_dir%/files/resumes
+            web: %kernel.root_dir%/../../web
+            imageDir: /media/profile
+
+    journalismjobs.manager.simply_hired:
+        class: %journalism_jobs_frontend.manager.simply_hired.class%
+        arguments:
+            em: @doctrine.orm.default_entity_manager
+            class: %journalism_jobs_frontend.entity.simply_hired.class%
+
+    journalismjobs.manager.user_forgot_password_request:
+        class: %journalism_jobs_frontend.manager.user_forgot_password_request.class%
+        arguments:
+            em: @doctrine.orm.default_entity_manager
+            class: %journalism_jobs_frontend.entity.user_forgot_password_request.class%
+            mailer: @journalismjobs.frontend.mailer
+
+    # Forms
+
+    journalismjobs.file.form.type:
+        class: NewRoadsMedia\FrontendBundle\Form\Type\FileUploadFormType
+        arguments: [%kernel.root_dir%/../../web]
+        tags:
+            - { name: form.type, alias: file_upload }
+
+    journalismjobs.id_to_entity.form.type:
+        class: NewRoadsMedia\FrontendBundle\Form\Type\IdToEntityFormType
+        arguments: [@doctrine.orm.default_entity_manager]
+        tags:
+            - { name: form.type, alias: id_to_entity }
+
+    journalismjobs.job_posts_search.form.type:
+        class: %journalism_jobs_frontend.form.job_posts_search.class%
+        tags:
+            - { name: form.type, alias: job_posts_search }
+
+    journalismjobs.location_with_count.form.type:
+        class: NewRoadsMedia\FrontendBundle\Form\Type\LocationWithCountFormType
+        arguments: [@journalismjobs.manager.location]
+        tags:
+            - { name: form.type, alias: location_with_count }
+
+    journalismjobs.position.form.type:
+        class: NewRoadsMedia\FrontendBundle\Form\Type\PositionFormType
+        arguments: [@journalismjobs.manager.position]
+        tags:
+            - { name: form.type, alias: position }
+
+    journalismjobs.post_new_job.form.type:
+        class: %journalism_jobs_frontend.form.post_new_job.class%
+        tags:
+            - { name: form.type, alias: post_new_job }
+        arguments: [@journalismjobs.manager.duration, @journalismjobs.manager.job, @journalismjobs.manager.focus]
+
+    journalismjobs.post_resume.form.type:
+        class: NewRoadsMedia\FrontendBundle\Form\Type\PostResumeFormType
+        tags:
+            - { name: form.type, alias: post_resume }
+        arguments: [%certifications%]
+
+    journalismjobs.resume.form.type:
+        class: %journalism_jobs_frontend.form.resume.class%
+        arguments: []
+        tags:
+            - { name: form.type, alias: resume }
+
+    journalismjobs.string_to_boolean.form.type:
+        class: NewRoadsMedia\FrontendBundle\Form\Type\StringToBooleanFormType
+        tags:
+            - { name: form.type, alias: string_to_boolean }
+
+    # Handlers
+    journalismjobs.handler.access_denied:
+        class: NewRoadsMedia\FrontendBundle\Handler\AccessDeniedHandler
+        arguments: [@security.context]
+        tags:
+            - { name: kernel.event_listener, event: security.kernel_response, method: handle }
+
+    # Event Listeners
+    journalismjobs.event_listener.login_success:
+        class: NewRoadsMedia\FrontendBundle\EventListener\ActivityEventListener
+        arguments: [@security.context, @doctrine.orm.default_entity_manager]
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onCoreController }
+
+    journalismjobs.event_listener.device_redirect:
+        class: NewRoadsMedia\FrontendBundle\EventListener\DeviceRedirectEventListener
+        arguments: [@router]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+
+    # Loggers
+    journalismjobs.application_logger:
+        class: Symfony\Bridge\Monolog\Logger
+        arguments: [applications]
+        calls:
+            - [pushHandler, [@journalismjobs.application_logger_handler]]
+
+    journalismjobs.application_logger_handler:
+        class: Monolog\Handler\StreamHandler
+        arguments: [%kernel.root_dir%/logs/%kernel.environment%.application.log, 200]
+
+    journalismjobs.payment_logger:
+        class: Symfony\Bridge\Monolog\Logger
+        arguments: [payments]
+        calls:
+            - [pushHandler, [@journalismjobs.payment_logger_handler]]
+
+    journalismjobs.payment_logger_handler:
+        class: Monolog\Handler\StreamHandler
+        arguments: [%kernel.root_dir%/logs/%kernel.environment%.payment.log, 200]
+
+    # Twig
+    templating.engine.twig:
+        class: %journalismjobs.twig.engine.class%
+        arguments: [@twig, @templating.name_parser, @templating.locator, @journalismjobs.frontend.device]
+        public: false
+
+    # Twig Extensions
+    journalismjobs.twig.extension.add_links:
+        class: NewRoadsMedia\FrontendBundle\Twig\AddLinksExtension
+        tags:
+            - { name: twig.extension }
+
+    journalismjobs.twig.extension.filter_black_listed:
+        class: NewRoadsMedia\FrontendBundle\Twig\FilterBlackListedExtension
+        tags:
+            - { name: twig.extension }
+
+    journalismjobs.twig.extension.contains_html:
+        class: NewRoadsMedia\FrontendBundle\Twig\ContainsHtmlExtension
+        tags:
+            - { name: twig.extension }
+
+    journalismjobs.twig.extension.new_job:
+        class: NewRoadsMedia\FrontendBundle\Twig\NewJobExtension
+        arguments: [@journalismjobs.frontend.last_activity]
+        tags:
+            - { name: twig.extension }
+
+    journalismjobs.twig.extension.parameter:
+        class: NewRoadsMedia\FrontendBundle\Twig\ParameterExtension
+        arguments: [@service_container]
+        tags:
+            - { name: twig.extension }
+
+    journalismjobs.twig.extension.smart_day:
+        class: NewRoadsMedia\FrontendBundle\Twig\SmartDayExtension
+        tags:
+            - { name: twig.extension }
+
+    journalismjobs.twig.extension.strip_script:
+        class: NewRoadsMedia\FrontendBundle\Twig\StripScriptExtension
+        tags:
+            - { name: twig.extension }
+
+    # Other Services
+    journalismjobs.frontend.cloudconvert:
+        class: %journalism_jobs_frontend.cloudconvert.class%
+        arguments: [%cloud_convert_api_key%, %kernel.root_dir%/files/html-resumes]
+
+    journalismjobs.frontend.device:
+        class: %journalism_jobs_frontend.device.class%
+        arguments: [@mobile_detect.mobile_detector, @session]
+
+    journalismjobs.frontend.uploadcare:
+        class: Uploadcare\Api
+        arguments: [%uploadcare_public_key%, %uploadcare_secret_key%]
+
+    # Listeners
+    journalismjobs.frontend.last_activity:
+        class: NewRoadsMedia\FrontendBundle\Service\LastActivity
+        arguments: [@session]
+
+    journalismjobs.frontend.mailer:
+        class: %journalism_jobs_frontend.mailer.class%
+        arguments: [@templating, @mailer, @validator, @knp_snappy.pdf, %ad_cost%, %diversity_ad_cost%,  %featured_ad_cost%, %site_title%, %email.contact%, %email.accounting%, %email.info%, %email.receipt%, %logo_path%]
+
+    journalismJobs.frontend.user:
+        class: %journalism_jobs_frontend.user.class%
+        arguments: [@event_dispatcher, @request, @security.context, @security.encoder_factory, @journalismjobs.manager.resume]
+        scope: request

@@ -1,0 +1,143 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Career Corner Articles{% endblock %}
+
+{% block content %}
+
+<style>
+body {
+        background-color: #f0f0f0;
+}
+
+#header {
+        background-color: #fff;
+}
+
+.slide-tick-wrap {
+        display: inline-block;
+        vertical-align: top;
+}
+</style>
+
+<div id="career-advice">
+        <div id="career-advice-content">
+                <div id="career-advice-articles">
+                        <h2>
+                                Career Advice
+                        </h2>
+                        <div class="your-class">
+                                <div class="slide-tick-wrap">
+                                        <div class="image">
+                                                <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/writer_at_desk2.jpg') }}" />
+                                        </div>
+                                        <h4>
+                                                <a href="http://www.journalismjobs.com/quitting_your_job_to_become_a_freelancer">7 Things to Know Before Becoming a Full-Time Freelancer</a>
+                                        </h4>
+                                        <div class="details">
+                                                Staying organized is very important.
+                                        </div>
+                                </div>
+                                <div class="slide-tick-wrap">
+                                        <div class="image">
+                                                <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/job_interview2.jpg') }}" />
+                                        </div>
+                                        <h4>
+                                                <a href="http://www.journalismjobs.com/negotiating_salary_offers">Negotiating Salary Offers</a>
+                                        </h4>
+                                        <div class="details">
+                                                Get the best deal for yourself.
+                                        </div>
+                                </div>
+                                <div class="slide-tick-wrap">
+                                        <div class="image">
+                                                <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/website_tools_photo_small.jpg') }}" />
+                                        </div>
+                                        <h4>
+                                                <a href="http://www.journalismjobs.com/ten_indispensable_websites_for_journalists">10 Indispensable Websites for Working Journalists</a>
+                                        </h4>
+                                        <div class="details">
+                                                Make your job easier.
+                                        </div>
+                                </div>
+                                <div class="slide-tick-wrap">
+                                        <div class="image">
+                                                <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/public_relations_photo_small.png') }}" />
+                                        </div>
+                                        <h4>
+                                                <a href="http://www.journalismjobs.com/switching_from_journalism_to_PR">Making the Switch From Journalism to PR</a>
+                                        </h4>
+                                        <div class="details">
+                                                A former journalist offers some insight.
+                                        </div>
+                                </div>
+                                <div class="slide-tick-wrap">
+                                        <div class="image">
+                                                <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/journalism_school_class2.jpg') }}" />
+                                        </div>
+                                        <h4>
+                                                <a href="http://www.journalismjobs.com/graduate_degree_needed_for_journalism">Do You Need a Graduate Degree in Journalism?</a>
+                                        </h4>
+                                        <div class="details">
+                                                For some media professionals, the degree is essential.
+                                        </div>
+                                </div>
+                                <div class="slide-tick-wrap">
+                                        <div class="image">
+                                                <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/social_media_job_search_small.jpg') }}" />
+                                        </div>
+                                        <h4>
+                                                <a href="http://www.journalismjobs.com/using_social_media_to_find_a_job">Using Social Media in Your Job Search</a>
+                                        </h4>
+                                        <div class="details">
+                                                Social media can play an important role in finding a new job.
+                                        </div>
+                                </div>
+                                <div class="slide-tick-wrap">
+                                        <div class="image">
+                                                <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/job_search_online_small.jpg') }}" />
+                                        </div>
+                                        <h4>
+                                                <a href="http://www.journalismjobs.com/applying_for_jobs_online">10 Do’s and Don’ts of Applying for Jobs Online</a>
+                                        </h4>
+                                        <div class="details">
+                                                Follow these tips to jump-start your job search.
+                                        </div>
+                                </div>
+                                <div class="slide-tick-wrap">
+                                        <div class="image">
+                                                <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/interviewing_job_photo_small.jpg') }}" />
+                                        </div>
+                                        <h4>
+                                                <a href="http://www.journalismjobs.com/successful_interview_tips">Nine Things to Say During an Interview</a>
+                                        </h4>
+                                        <div class="details">
+                                                Focus on the positives of the job and don't offer unsolicited advice.
+                                        </div>
+                                </div>
+                                <div class="slide-tick-wrap">
+                                        <div class="image">
+                                                <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/tax_tips_for_freelancers_small.jpg') }}" />
+                                        </div>
+                                        <h4>
+                                                <a href="http://www.journalismjobs.com/tax_tips_for_freelance_writers">6 Tax Tips Every Freelancer Needs to Know</a>
+                                        </h4>
+                                        <div class="details">
+                                                Tax time can be very stressful. Use these tips to make the process simpler.
+                                        </div>
+                                </div>
+                                <div class="slide-tick-wrap">
+                                        <div class="image">
+                                                <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/video_interview_small.jpg') }}" />
+                                        </div>
+                                        <h4>
+                                                <a href="http://www.journalismjobs.com/tips_for_doing_a_video_interview">How to Ace a Video Interview</a>
+                                        </h4>
+                                        <div class="details">
+                                                Doing a video interview can be challenging. Make sure you're ready.
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</div>
+{% endblock %}

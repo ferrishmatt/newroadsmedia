@@ -1,0 +1,24 @@
+
+<h4>
+    <a href="{{ job.url }}" target=“_blank”>{{ job.name }}</a>
+    <span class="label label-success label-new">New</span>
+</h4>
+<p>{% if job.hiring_company %}{{ job.hiring_company.name }}{% else %}Not Specified{% endif %}</p>
+<ul class="list-inline">
+    {% if job.location %}
+        <li class="location">
+            <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+            {{ job.location }}
+        </li>
+    {% endif %}
+    {% if job.category %}
+        <li class="status">
+            <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+            {{ job.category }}
+        </li>
+    {% endif %}
+    <li class="posted">
+        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+        Posted: <span class="date">{{ job.posted_time_friendly }}</span>
+    </li>
+</ul>

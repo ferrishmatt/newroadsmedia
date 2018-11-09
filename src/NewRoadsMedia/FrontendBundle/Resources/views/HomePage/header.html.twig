@@ -1,0 +1,37 @@
+<div id="header">
+    <div id="first-navigation">
+        <div class="container">
+            <div id="social-media">
+                {{ include('@NewRoadsMediaFrontend/HomePage/headerSocialMedia.html.twig') }}
+            </div>
+            <div id="account-links">
+                <ul>
+                    {% if app.user and is_granted('ROLE_EMPLOYER') %}
+                        <li><span class="greeting">Hello, {{ app.user.displayName }}</span></li>
+                        <li><a class="account" href="{{ path('EmployerManager') }}">&gt; Your Account</a></li>
+                        <li><a class="account" href="{{ path('LogoutEmployer') }}">&gt; Log Out</a></li>
+                    {% elseif app.user and is_granted('ROLE_JOB_SEEKER') %}
+                        <li><span class="greeting">Hello, {{ app.user.displayName }}</span></li>
+                        <li><a class="account" href="{{ path('JobSeekerFolder') }}">&gt; Your Account</a></li>
+                        <li><a class="account" href="{{ path('LogoutJobSeeker') }}">&gt; Log Out</a></li>
+                    {% else %}
+                        <li><a href="{{ path('PostNewJob') }}" class="post-jobs-button">Post Jobs</a></li>
+                        <li><a href="{{ path('PostResume') }}" class="post-resume-button">Post a Resume</a></li>
+                        <li>
+                            <a href="{{ path('Login') }}" class="account-login">Account Login</a>
+                            <ul>
+                                <li><a href="{{ path('EmployerManager') }}">Employers</a></li>
+                                <li><a href="{{ path('JobSeekerFolder') }}">Job Seekers</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="second-navigation">
+        <div class="container">
+            {% include 'NewRoadsMediaFrontendBundle:HomePage:navigation.html.twig' %}
+        </div>
+    </div>
+</div>

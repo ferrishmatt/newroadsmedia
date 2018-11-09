@@ -1,0 +1,219 @@
+services:
+
+# Blocks
+
+    sonata.block.quick_links:
+        class: NewRoadsMedia\FrontendBundle\Admin\Block\QuickLinksBlock
+        arguments: ["sonata.block.quick_links", @templating, %allowFree%]
+        tags:
+            - { name: sonata.block }
+
+# Accounts
+
+    sonata.admin.view_employer_account:
+        class: NewRoadsMedia\FrontendBundle\Admin\ViewEmployerAccountAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Accounts", label: "View Employer Accounts" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\Employer, ~]
+
+    sonata.admin.view_job_seeker_account:
+        class: NewRoadsMedia\FrontendBundle\Admin\ViewJobSeekerAccountAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Accounts", label: "View Job Seeker Accounts" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\Resume, ~]
+
+# Bill Tracking
+
+    sonata.admin.bill_tracking:
+        class: NewRoadsMedia\FrontendBundle\Admin\CompleteBillingAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Bill Tracking", label: "Complete Billing" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\Job, ~]
+
+    sonata.admin.daily_billing:
+        class: NewRoadsMedia\FrontendBundle\Admin\DailyBillingAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Bill Tracking", label: "Daily Billing" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\Job, NewRoadsMediaFrontendBundle:AdminDailyBilling]
+
+# Configuration
+    sonata.admin.configuration:
+        class: NewRoadsMedia\FrontendBundle\Admin\ConfigurationAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Configuration", label: "Configuration" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\Configuration, ~]
+
+# Crawler Exclusion
+    sonata.admin.crawler_exclusion:
+        class: NewRoadsMedia\FrontendBundle\Admin\CrawlerExclusionAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Crawlers", label: "Crawler Exclusions" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\CrawlerExclusion, ~]
+
+# Employer
+
+    sonata.admin.employer:
+        class: NewRoadsMedia\FrontendBundle\Admin\EmployerAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Employer", label: "Employer" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\Employer, NewRoadsMediaFrontendBundle:AdminEmployer]
+
+    sonata.admin.calendar:
+        class: NewRoadsMedia\FrontendBundle\Admin\CalendarAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Events", label: "Calendar" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\Calendar, ~]
+
+# Invoice
+
+    sonata.admin.invoice:
+        class: NewRoadsMedia\FrontendBundle\Admin\InvoiceAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Invoice", label: "Paid Invoices" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\Invoice, ~]
+
+    sonata.admin.invoice_track:
+        class: NewRoadsMedia\FrontendBundle\Admin\InvoiceTrackAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Invoice", label: "Invoice Track" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\InvoiceTrack, ~]
+
+# Banner Ads
+    sonata.admin.banner_ad:
+        class: NewRoadsMedia\FrontendBundle\Admin\BannerAdAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Ads", label: "Banner Ads" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\BannerAd, NewRoadsMediaFrontendBundle:AdminBannerAd]
+
+# Job Posts
+
+    sonata.admin.application:
+        class: NewRoadsMedia\FrontendBundle\Admin\ApplicationAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Job Posts", label: "Applications" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\Application, ~]
+
+    sonata.admin.date_posted:
+        class: NewRoadsMedia\FrontendBundle\Admin\DatePostedAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Job Posts", label: "Date Posted" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\DatePosted, ~]
+
+    sonata.admin.duration:
+        class: NewRoadsMedia\FrontendBundle\Admin\DurationAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Job Posts", label: "Durations" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\Duration, ~]
+
+    sonata.admin.focus:
+        class: NewRoadsMedia\FrontendBundle\Admin\FocusAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Job Posts", label: "Focus" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\Focus, ~]
+
+    sonata.admin.job:
+        class: NewRoadsMedia\FrontendBundle\Admin\JobAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Job Posts", label: "Jobs" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\Job, NewRoadsMediaFrontendBundle:AdminJob]
+
+    sonata.admin.job_type:
+        class: NewRoadsMedia\FrontendBundle\Admin\JobTypeAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Job Posts", label: "Job Types" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\JobType, ~]
+
+    sonata.admin.location:
+        class: NewRoadsMedia\FrontendBundle\Admin\LocationAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Job Posts", label: "Locations" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\Location, ~]
+
+    sonata.admin.media:
+        class: NewRoadsMedia\FrontendBundle\Admin\MediaAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Job Posts", label: "Media" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\Media, ~]
+
+    sonata.admin.payment:
+        class: NewRoadsMedia\FrontendBundle\Admin\PaymentAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Job Posts", label: "Payments" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\Payment, ~]
+
+    sonata.admin.salary:
+        class: NewRoadsMedia\FrontendBundle\Admin\SalaryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Job Posts", label: "Salaries" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\Salary, ~]
+
+# News
+    sonata.admin.news:
+        class: NewRoadsMedia\FrontendBundle\Admin\NewsAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "News", label: "News" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\News, ~]
+
+# Notifications
+
+    sonata.admin.notification:
+        class: NewRoadsMedia\FrontendBundle\Admin\NotificationAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Notifications", label: "Notifications" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\Notification, ~]
+
+# Resume
+
+    sonata.admin.education:
+        class: NewRoadsMedia\FrontendBundle\Admin\EducationAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Resume", label: "Education" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\Education, ~]
+
+    sonata.admin.experience:
+        class: NewRoadsMedia\FrontendBundle\Admin\ExperienceAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Resume", label: "Experience" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\Experience, ~]
+
+    sonata.admin.industry:
+        class: NewRoadsMedia\FrontendBundle\Admin\IndustryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Resume", label: "Industry" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\Industry, ~]
+
+    sonata.admin.job_status:
+        class: NewRoadsMedia\FrontendBundle\Admin\JobStatusAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Resume", label: "Job Status" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\JobStatus, ~]
+
+    sonata.admin.market:
+        class: NewRoadsMedia\FrontendBundle\Admin\MarketAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Resume", label: "Market" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\Market, ~]
+
+    sonata.admin.position:
+        class: NewRoadsMedia\FrontendBundle\Admin\PositionAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Resume", label: "Position" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\Position, ~]
+
+    sonata.admin.position_group:
+        class: NewRoadsMedia\FrontendBundle\Admin\PositionGroupAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Resume", label: "Position Group" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\PositionGroup, ~]
+
+    sonata.admin.resume:
+        class: NewRoadsMedia\FrontendBundle\Admin\ResumeAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Resume", label: "Resume" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\Resume, ~]
+
+    sonata.admin.specialty:
+        class: NewRoadsMedia\FrontendBundle\Admin\SpecialtyAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Resume", label: "Specialty" }
+        arguments: [~, NewRoadsMedia\FrontendBundle\Entity\Specialty, ~]

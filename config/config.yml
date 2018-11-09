@@ -1,0 +1,121 @@
+imports:
+    - { resource: security.yml }
+    - { resource: sonata.yml }
+    - { resource: assets.yml }
+
+framework:
+    #esi:             ~
+    translator:      { fallback: %locale% }
+    secret:          %secret%
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        assets_version: %assets_version%
+    default_locale:  "%locale%"
+    trusted_proxies: ~
+    session:
+        save_path: null
+    fragments:       ~
+    http_method_override: true
+
+# Twig Configuration
+twig:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+    form:
+        resources:
+            - NewRoadsMediaFrontendBundle:Form:fields.html.twig
+    globals:
+        company_name_long:      JournalismJobs.com
+        company_name_short:     JournalismJobs.com
+        base_url:               https://www.journalismjobs.com/
+        ad_cost:                %ad_cost%
+        featured_ad_cost:       %featured_ad_cost%
+        diversity_ad_cost:      %diversity_ad_cost%
+
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    write_to:       %kernel.root_dir%/../../web/
+    use_controller: false
+    bundles:        [ ]
+    #java: /usr/bin/java
+    filters:
+        cssrewrite: ~
+        #closure:
+        #    jar: %kernel.root_dir%/Resources/java/compiler.jar
+        #yui_css:
+        #    jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   %database_driver%
+        host:     %database_host%
+        port:     %database_port%
+        dbname:   %database_name%
+        user:     %database_user%
+        password: %database_password%
+        charset:  UTF8
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        auto_mapping: true
+        dql:
+            datetime_functions:
+                CONVERT_TZ:    NewRoadsMedia\FrontendBundle\Doctrine\DBAL\Query\ConvertTz
+                DATE:          NewRoadsMedia\FrontendBundle\Doctrine\DBAL\Query\Date
+                TIMESTAMPDIFF: NewRoadsMedia\FrontendBundle\Doctrine\DBAL\Query\TimestampDiff
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: mail
+    host:      localhost
+    username:  ~
+    password:  ~
+    spool:     { type: memory }
+    auth_mode:  ~
+    encryption: ~
+    port:       ~
+    disable_delivery:   false
+
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     "xvfb-run -a -s \"-screen 0 640x480x16\" -e %kernel.root_dir%/logs/snappy.log wkhtmltopdf --margin-top 0 --margin-bottom 0 --margin-left 0 --margin-right 0"
+        options:    []
+    image:
+        enabled:    false
+
+gregwar_captcha:
+    as_url: true
+    charset: 1234567890
+    invalid_message: The Captcha value you entered is invalid. Please try again.
+    max_front_lines: 0
+    max_behind_lines: 0
+    reload: true
+
+gregwar_image:
+    cache_dir:  media/cache
+    web_dir: %kernel.root_dir%/../../web
+
+kachkaev_assets_version:
+    filename: %kernel.root_dir%/../../config/assets.yml        # name of the file where application parameters are stored
+    parametername: assets_version                              # name of property that defines assets version in that file
+    manager: Kachkaev\AssetsVersionBundle\AssetsVersionManager # location of version manager
+
+mobile_detect:
+    redirect:
+        mobile: ~
+        tablet: ~
+    switch_device_view: ~
+
+parameters:
+    authorize_net_test_mode: true
+    cloud_convert_api_key: WAjn_EHRUI21LBLIyJxvf-3Ft0HqI4RpDVyr2pGCrH_5GU9SrnHJo_FdDciFtyjthkDR6xpvTyNCwktDJS6P9Q
+    uploadcare_public_key: 750f0f71bc3b703af902
+    uploadcare_secret_key: 13fbb852cd30b5cd3fa5

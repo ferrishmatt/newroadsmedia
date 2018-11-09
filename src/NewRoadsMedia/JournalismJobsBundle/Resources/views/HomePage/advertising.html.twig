@@ -1,0 +1,100 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Advertising{% endblock %}
+
+{% block top_banner %}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style type="text/css">
+        #content h2 {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        #content .inner-content h1 {
+            color: #000;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        #content .inner-content ul {
+            margin: 0 0 20px;
+        }
+        #details {
+            width: 680px;
+        }
+        #content #details p {
+            clear: none;
+        }
+        #content .button {
+            border: 1px solid #abcc64;
+            border-radius: 3px;
+            background-color: #9ec44a;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 7px 8px 7px 15px;
+            display: inline-block;
+            text-align: left;
+            cursor: pointer;
+        }
+        #content .button:hover {
+            color: #fff;
+        }
+        #content .button .arrow {
+            float: right;
+            margin-left: 8px;
+            margin-top: -1px;
+        }
+        #quick-facts {
+            float: right;
+            width: 290px;
+            border-left: 1px solid #000;
+            padding-left: 70px;
+        }
+        #quick-facts p {
+            text-align: center;
+        }
+
+        #content .inner-content h1,
+        #content .inner-content p {
+            clear: none;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="inner-content">
+    <div id="quick-facts">
+        <h1>Need to Post a Job Ad?</h1>
+        <ul>
+            <li>Ads start at ${{ parameter('ad_cost') }} and run for 5 weeks.</li>
+            <li>Resume database access is included.</li>
+            <li>All job ads are promoted on our social media accounts to thousands of followers.</li>
+        </ul>
+        <p>
+            <a class="button" href="{{ path('PostNewJob') }}">Post Your Ad Now!<span class="arrow">›</span></a>
+        </p>
+    </div>
+    <div id="details">
+        <h1>Reach Your Target Audience With a Banner Ad</h1>
+        <p>Whether you're looking to promote a graduate program, training seminar, or fellowship opportunity, we have one of the best target audiences in the media business.</p>
+
+        <h2 class="subheading">Format:</h2>
+        <p>Banner or button ads can be animated GIFs, JPEGS or Flash Files.</p>
+
+        <h2>Traffic:</h2>
+        <p>JournalismJobs.com receives 2.5 to 3 million page views a month, and has a Google Page Rank of 7.</p>
+
+        <h2>Contact:</h2>
+        <p>For more information, send an e-mail to <a href="mailto:info@journalismjobs.com">info@journalismjobs.com</a>, or call {{ parameter('site_phone') }}.</p>
+
+        <h2>Ad Sizes Available:</h2>
+        <p>Large Banner Ad (728 pixels wide x 90 pixels tall):</p>
+        <p><img src="{{ asset('images/abe_banner.jpg') }}" border="0" alt="Click here to visit our sponsor"/></p>
+        <p>Large Button Ad (260 pixels wide x 200 pixels wide):</p>
+        <p><img src="{{ asset('images/american_university_button_ad_2011.gif') }}" border="0" alt="Click here to visit our sponsor"/></p>
+        <p>Small Button Ad -- (260 pixels wide x 90 pixels tall):</p>
+        <p><img src="{{ asset('images/banners/ASJA2015-JournalismJobs-260x90.gif') }}" border="0" alt="Click here to visit our sponsor"></p>
+    </div>
+</div>
+{% endblock %}

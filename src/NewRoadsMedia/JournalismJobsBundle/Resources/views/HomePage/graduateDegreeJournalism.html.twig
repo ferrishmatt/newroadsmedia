@@ -1,0 +1,114 @@
+{% set page_name = '' %}
+
+{% extends "::base.html.twig" %}
+
+{% block title %}Do You Need a Graduate Degree in Journalism?{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://ucarecdn.com/widget/2.8.2/uploadcare/uploadcare.min.js" charset="utf-8"></script>
+    <script src="{{ asset('js/upload-care.js') }}"></script>
+    <script src="{{ asset('js/jquery.wordcount.js') }}"></script>
+    <script src="{{ asset('js/job-listing.js') }}"></script>
+    <script type="text/javascript">
+        $(function() {
+            {% if nonRegisteredForm.resumeFile is defined %}
+                uploadcare_init('{{ nonRegisteredForm.resumeFile.vars.id }}');
+            {% endif %}
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {#<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"/>#}
+    <link rel="stylesheet" href="{{ asset('css/job-listing.css') }}"/>
+{% endblock %}
+
+{% block content %}
+<div class="inner-content text-article">
+    <img class="article-photo" src="{{ asset('bundles/newroadsmediajournalismjobs/images/journalism_school_class.jpg') }}">
+    <div class="article-wrap">
+    <p class="pre-headline">Career Advice</p>
+
+    <h1 class="article-title">Do You Need a Graduate Degree in Journalism?</h1>
+
+    <p class="byline-share-line">
+	<b class="byline">By Walden Siew</b>
+	<a href="#" title="Share Job" class="share-job-link"><img src="{{ asset('images/icons/share_icon.png') }}" alt="Share Job"/>Share</a>
+    </p>
+
+    <ul class="job-listing-share">
+                    <li>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ url('ViewJobPost', {'jobId': job.id}) }}" target="_blank" title="Share on Facebook"><img
+                                    src="{{ asset('images/icons/facebook_icon.png') }}" alt="Share on Facebook"/>Facebook</a>
+                    </li>
+                    <li>
+                        {% set twitterUrl = 'http://twitter.com/share?text=' ~ (('Great Job on ' ~ parameter('site_title')) | url_encode) ~ '&url=' ~ url('ViewJobPost', { 'jobId': job.id } ) %}
+                        <a href="{{ twitterUrl }}" target="_blank" title="Share on Twitter"><img
+                                    src="{{ asset('images/icons/twitter_icon.png') }}" alt="Share on Twitter"/>Twitter</a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ url('ViewJobPost', {'jobId': job.id}) }}&title={{ (parameter('site_title') ~ ' - ' ~ job.titleOfPositionOpen) | url_encode }}&summary=&source=" target="_blank" title="Share on Linked In"><img
+                                    src="{{ asset('images/icons/linked_in_icon.png') }}" alt="Share on Linked In"/>Linked In</a>
+                    </li>
+                    <li>
+                        <a href="https://plus.google.com/share?url={{ url('ViewJobPost', {'jobId': job.id}) }}" target="_blank" title="Share on Google Plus"><img
+                                    src="{{ asset('images/icons/google_plus_icon.png') }}" alt="Share on Google Plus"/>Google +</a>
+                    </li>
+                    <li style="display: none;">
+                        <a class="email" href="#" title="E-mail this job to a friend"><img src="{{ asset('images/icons/email_icon.png') }}" alt="E-mail this job to a friend"/>E-mail</a>
+                    </li>
+                </ul>
+
+<p><i>Walden Siew, a News Editor with Investment News, is a 1995 graduate of Northwestern University's Medill School of Journalism.</i></p>
+
+<p>So you're thinking about getting a graduate degree in journalism. In that case -- if you've done your basic reporting -- you're probably getting a lot of contradictory advice.</p>
+
+<p>The crusty city editor or beat reporter is probably telling you it's a waste of time. "Graduate degree in journalism! You learn everything on the job," a Chicago Sun-Times reporter growled at me long ago. Thanks for the advice, buddy, but his sentiments came too late. I happened to meet him while on a treasure hunt that Northwestern University assigned to their fresh-faced J-school students to learn about the joys of digging through public records.</p>
+
+<p>So, when I say J-school is not a waste of time, well, to say otherwise would be to invalidate a year of my life and thousands of dollars in tuition and expenses.</p>
+
+<p>But besides that, I also happen to believe it's true. Here's why:</p>
+
+<h2>Experience</h2>
+
+<p>The great luxury of graduate school is the chance to work on a variety of beats -- a freedom few reporters have once entrenched in their job. I got to cover state government in Springfield (IL), Chicago politics, business news and also research then-emerging media companies such as America Online. The top J-schools also typically have good instruction on computer-assisted reporting, international programs or specialty training. They often have the latest equipment, which may spoil you. Accustomed to high-speed Internet-access, I was shocked to find Stone Age-era computers at my first newspaper job out of school.</p>
+
+<p>One caveat: If you have experience in newspapers or an undergraduate degree in journalism, grad school may be redundant for you. That's a familiar complaint of some J-school students who did come in with more experience. Otherwise, it can be a great opportunity for discovery.</p>
+
+<div class="article-quote">"Look for schools that can boast journalists with impressive credentials."</div>
+
+<h2>Learn From The Best</h2>
+
+<p>Look for schools that can boast journalists with impressive credentials. Get experience you don't get at a newspaper job. Any specialized training will help you down the road, if not immediately at your first job. Pay less attention to the location of the school and more attention to quality of instructors. J-school should give you the opportunity to meet and learn from experts in the field.</p>
+
+<h2>Networking</h2>
+
+<p>There's a long list of those who have tread the path before you; it's remarkable how often you cross paths. It does help. But besides the networking, J-schools attract a lot of quality people from diverse backgrounds, ranging from former lawyers and MBAs to the stereotypical Woodward and Bernstein wannabes. Learn from students, journalists and professors who you admire, and keep in touch. Avoid those you don't.</p>
+
+<h2>Alumni Services</h2>
+
+<p>Along with networking, alumni services often can tell you about new job openings, journalism seminars and the latest trends in your field.</p>
+
+<p>Here's the other side of the story.</p>
+
+<h2>1. Cost</h2>
+
+<p>Enough said.</p>
+
+<h2>2. Experience</h2>
+
+<p>Most of what you learn in any formal training is rarely used in "the real world." That old Sun-Times reporter was right in that you probably will learn most of what you need to know on the job. But if we extend that logic, why go to college, or even high school? However, if you know you want to be a sports reporter and have landed your first job at the local paper, you probably are on the best path to getting your dream job.</p>
+
+<h2>3. Pay</h2>
+
+<p>While a J-school degree may be impressive, it doesn't usually pay off when negotiating a salary or raise. Most newspapers and broadcast jobs pay by experience, and this is especially so for unionized companies. Just another consideration.</p>
+
+<p>Last Advice: Graduate school is a huge investment, both in time and money. Before embarking, make sure you are fairly committed to becoming a journalist. How? If you don't have a lot of experience, get an internship. Freelance stories. Get your feet wet before you take the plunge. Don't go to grad school because you didn't get into law school or don't have anything better to do. Good luck!</p>
+    </div>
+</div>
+
+{% endblock %}

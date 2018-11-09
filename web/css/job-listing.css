@@ -1,0 +1,401 @@
+#content h1.apply-online {
+    font-size: 32px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #bbb;
+    padding-bottom: 10px;
+    margin: 10px 0 20px;
+}
+
+.apply-email {
+    width: 500px !important;
+    border-right: 2px solid #bbb;
+    padding-right: 50px;
+}
+.apply-email .description {
+    font-weight: bold;
+}
+#content .apply-email h3 {
+    color: #f90;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+#content .apply-email h4 {
+    color: #C7560A;
+    font-weight: normal;
+    margin: 20px 0 10px;
+    font-style: normal;
+}
+#content .apply-email h4 small {
+    color: #000;
+    font-weight: bold;
+}
+
+.contact label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.contact input {
+    margin-bottom: 20px;
+    border-radius: 4px;
+    padding: 4px;
+    border: 1px solid #B4B4B4;
+    width: 288px;
+}
+
+.resume-tabs {
+    margin-bottom: 20px;
+}
+.resume-tabs ul {
+    float: left;
+    height: 23px;
+}
+.resume-tabs ul li {
+    float: left;
+    border: 1px solid #B4B4B4;
+    margin: 0 5px 1px 0;
+    padding: 3px 7px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.resume-tabs ul li.active {
+    border-bottom: 1px solid #fff;
+}
+.resume-tabs ul li a {
+    font-size: 12px;
+    font-weight: bold;
+}
+.resume-tabs ul li a:hover {
+    text-decoration: underline;
+}
+.resume-tabs .tab {
+    border: 1px solid #B4B4B4;
+    clear: left;
+    display: none;
+    padding: 15px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.resume-tabs .tab.active {
+    display: block;
+}
+.resume-tabs .tab label {
+    display: block;
+}
+
+#apply-now {
+    background-color: #7bb200;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 8px 25px;
+    color: #fff;
+    border: 0;
+    cursor: pointer;
+}
+
+#non_registered_application_resumeFile {
+    border: 1px solid #B4B4B4;
+    border-radius: 4px;
+    padding: 4px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.apply-email textarea {
+    width: 100%;
+    padding: 0;
+    height: 146px;
+}
+
+.shadedbackground {
+    background-color: #FFF;
+    background: -moz-linear-gradient(bottom, #F1F0EE 0%, #FFFFFF 30%);
+    background: -webkit-linear-gradient(bottom, #F1F0EE 0%, #FFFFFF 30%);
+    background: -o-linear-gradient(bottom, #F1F0EE 0%, #FFFFFF 30%);
+    background: linear-gradient(bottom, #F1F0EE 0%, #FFFFFF 30%);
+}
+
+#captcha-container {
+    margin-top: 30px;
+}
+#captcha-container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#submit-application {
+    background-color: #f90;
+    color: #fff;
+    border: 0;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 30px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+/* Old Apply Process */
+.registered-job-seekers {
+    float: right;
+    width: 450px !important;
+    margin-right: 30px;
+}
+
+.registered-job-seekers p {
+    padding: 0 0 10px;
+}
+
+.registered-job-seekers .registered-form {
+    background-color: #eee;
+    padding: 15px 30px;
+}
+
+.registered-job-seekers .registered-form a {
+    color: #f90;
+    font-weight: bold;
+}
+
+.registered-job-seekers .login {
+    width: 250px;
+    margin: 0 auto;
+}
+
+#content .registered-job-seekers h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.registered-job-seekers label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 2px;
+}
+
+.registered-job-seekers button {
+    margin: 20px auto 5px;
+    display: block;
+}
+
+.registered-job-seekers input {
+    width: 235px;
+    padding: 5px;
+}
+
+.registered-job-seekers .form-errors {
+    color: #b00;
+    font-weight: bold;
+}
+
+#registered_application_coverLetter {
+    width: 380px;
+    height: 200px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.word-count {
+    color: #000;
+}
+
+.registered-form .word-count {
+    color: #f90;
+}
+
+.job-listing-share {
+    width: 150px;
+    border-top: 1px solid #eee;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+    display: none;
+    position: absolute;
+}
+
+.job-listing-share li a {
+    display: block;
+    padding: 5px;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+}
+
+.job-listing-share li a img {
+    vertical-align: middle;
+    margin-right: 7px;
+}
+
+#company-logo {
+    max-width: 250px;
+    margin: 30px auto 0;
+    display: block;
+    padding-left: 50px;
+}
+
+/* Email Dialog */
+#dialog-email label {
+    display: inline-block;
+    width: 100px;
+    vertical-align: top;
+    color: #666666;
+}
+#job_listing_email > div {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 20px 10px;
+}
+
+#job_listing_email > div > label {
+    display:block;
+}
+#job_listing_email > div > input {
+    background: transparent;
+    border: 1px solid #ccc;
+    height: 20px;
+    line-height: 20px;
+    outline: none;
+    color: #000;
+    width: 480px;
+    margin-top:10px;
+    border-radius: 5px;
+}
+#dialog-email textarea {
+    width: 480px;
+    height: 80px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-family: arial,helvetica,sans-serif;
+    font-size: 13px;
+    margin-top:10px;
+    border-radius: 5px;
+}
+#dialog-email .form-errors {
+    color: #900;
+    font-weight: bold;
+    text-align: center;
+}
+#dialog-email .form-errors li {
+    margin: 20px 0 0;
+}
+#dialog-email p.success {
+    font-weight: bold;
+    color: #090;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Jquery UI */
+.ui-dialog {
+    background: #fff;
+    border: 1px solid #d2d2d1;
+    box-shadow: 0 0 8px 4px rgba(0,0,0,.25);
+    overflow: hidden;
+}
+
+.ui-dialog-titlebar {
+    border-bottom: 1px solid #d2d2d1;
+    background: #f1f1f1;
+    height: 49px;
+}
+
+.ui-dialog-titlebar .ui-dialog-titlebar-close {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 49px;
+    height: 49px;
+    line-height: 49px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    border-left: 1px solid #d2d2d1;
+}
+
+.ui-dialog-titlebar .ui-dialog-title {
+    height: 49px;
+    line-height: 49px;
+    margin: 0 50px 0 22px;
+    border: 0;
+    font-size: 1pc;
+    font-family: helvetica neue,helvetica,arial,sans-serif;
+    font-weight: 700;
+    color: #333;
+}
+
+.ui-dialog-content {
+}
+
+.ui-dialog-buttonpane {
+    padding: 20px;
+}
+
+.ui-dialog-buttonpane .ui-dialog-buttonset {
+    text-align: right;
+}
+
+.ui-dialog-buttonpane .ui-dialog-buttonset .ui-button {
+    background-color: #9ec44a;
+    color: #fff;
+    border: 1px solid #abcc64;
+    border-radius: 3px;
+    padding: 8px 15px;
+    font-size: 15px;
+}
+
+.ui-button {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    line-height: normal;
+    margin-right: .1em;
+    cursor: pointer;
+    vertical-align: middle;
+    text-align: center;
+    overflow: visible; /* removes extra width in IE */
+}
+
+.ui-widget-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.ui-widget-overlay {
+    background: #aaaaaa;
+    opacity: .3;
+    filter: Alpha(Opacity=30); /* support: IE8 */
+}
+
+.ui-front {
+    z-index: 100;
+}
+
+#banner-ad-bottom-job-listing{
+    margin-top:40px;
+    text-align: center;
+}
+
+#dialog-email label[for="job_listing_email_captcha"]{
+    display:inline-block;
+    width:250px;
+    float:left;
+}
+
+#dialog-email img{
+    float:left;
+}
+#dialog-email br{
+    clear: both;
+}
+
+#dialog-email #job_listing_email_captcha{
+    margin-top:0px;
+}
+
+.top-left-banner {
+    padding: 0px 20px 20px 20px;
+}

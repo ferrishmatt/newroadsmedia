@@ -1,0 +1,788 @@
+/* top, right, bottom, left */	
+
+body {
+margin: 0;
+padding: 0 0 10px 0;
+border: 0;
+text-align: center;
+background-color: #E1E0D4;
+font: 12px/16px verdana, arial, helvetica, sans-serif;
+}
+
+img {
+border:0;
+padding:0;
+margin:0;
+}
+
+
+h1 {
+font: bold 10px/15px verdana, arial, helvetica, sans-serif;
+text-transform: uppercase;
+color:#333;
+}
+
+h1.largepad {
+font: 16px verdana, arial, helvetica, sans-serif;
+padding-left: 20px;
+text-transform: none;
+color:#333;
+font-weight:bold
+}
+
+h1.large {
+font: 16px verdana, arial, helvetica, sans-serif;
+text-transform: none;
+color:#333;
+font-weight:bold;
+}
+
+h2 {
+font: bold 11px/13px verdana, arial, helvetica, sans-serif;
+color: #333;
+margin: 10px 0 5px 0;
+}
+
+div#container {
+position: relative; 
+color: #000;
+background: #FFF;
+width: 980px;
+text-align:left;
+margin-top: 5px;
+margin-bottom:5px;
+margin-left:auto;
+margin-right:auto;
+padding:0;
+}
+
+div#logo {
+float: left;
+border:0;
+padding:0;
+margin: 20px 5px 10px 0;
+}
+
+div#tagline {
+float: right;
+text-transform: uppercase;
+border:0;
+padding:0;
+margin: 43px 10px 0 0;
+} 
+* html div#tagline {margin-right: 5px;} 
+
+div#tagline h1 {
+font: bold 13px/16px arial, helvetica, sans-serif;
+text-transform: uppercase;
+color:#999;
+margin: 0;
+}
+
+div#topnav {
+clear: both;
+width: 980px;
+margin: 0 0 2px 0;
+background:#69c;
+border:0;
+padding: 0;
+font: 13px arial, helvetica, sans-serif;
+/*height:30px;*/
+overflow:auto;
+}
+
+div#topnav a { text-decoration: none; color: #fff; }
+div#topnav a:hover, a:active { color: white; }
+
+#topnav ul {
+
+margin: 0;
+padding-left: 0;
+} 
+
+#topnav ul li {
+float:left;
+margin: 0;
+padding: 3px 25px;
+list-style: none;
+border-left: 1px solid #fff;
+}
+
+
+div#search {
+clear: both;
+width: 980px;
+background: #f90;
+margin-bottom: 15px;
+overflow:auto;
+}
+
+div#bluetop {
+float: left;
+width: 542px;
+background: #334888 url(http://www.journalismjobs.com/images/bg_bluesearch.gif) bottom right no-repeat;
+color: #fff;
+border-right: 2px solid #fff;
+}
+
+* html div#bluetop {
+width: 544px;
+}
+
+div#blueleft {
+float: left;
+text-align: left;
+width: 255px;
+margin: 0 0 15px 0;
+}
+
+.looking {
+margin: 22px 0 21px 25px;
+}
+
+.quicksearch {
+clear: both;
+padding-bottom:3px;
+margin-left: 44px;
+
+}
+
+div#searchform {
+margin-bottom: 20px;
+padding: 9px 0 4px 18px;
+background: #E1E0D4;
+color: #333;
+margin-left:25px;
+}
+
+.formmargin {
+margin: 0;
+padding: 0;
+}
+
+div#searchform p {
+font: 11px/11px verdana, arial, helvetica, sans-serif;
+margin: 0px;
+padding:0 0 6px 0;
+}
+
+div#searchform a, div#searchform a:visited {
+color: #333;
+text-decoration: none;
+}
+
+div#searchform a:hover {
+color: #69c;
+text-decoration: underline;
+}
+
+.input {
+width: 170px;
+margin:0 0 3px 0;
+border: 1px solid #C9C9CA;
+padding:0;
+}
+
+.checkbox {
+margin:4px 0 0 0;
+padding: 0;
+}
+
+* html .checkbox {
+margin:0 0 -1px -3px;
+}
+
+.submit {
+text-align: left;
+margin: 0 0 0 9px;
+padding: 0;
+border: 0;
+}
+
+div#icons {
+width: 230px;
+text-align: center;
+font: 10px/11px verdana, arial, helvetica, sans-serif;
+margin-left:25px;
+}
+
+div#icons a {
+color:  #ccc;
+}
+
+div#postresume {
+float: left;
+width: 76px;
+padding-top: 4px;
+}
+
+div#jobalert {
+float: left;
+width: 77px;
+}
+
+div#folder {
+float: right;
+width: 76px;
+padding-top: 11px;
+}
+
+div#blueright {
+float: right;
+padding-right:25px;
+margin: 20px 0 12px 0;
+}
+
+div#blueright h1 {
+color: #fff;
+font: 11px/11px verdana, arial, helvetica, sans-serif;
+font-weight: bold;
+padding-bottom: 0;
+margin-bottom: 0;
+}
+
+div#blueright ul {
+list-style: none outside;
+/* removed url(http://www.journalismjobs.com/images/bullet_angled.gif) from line above */
+marker-offset: 5px; 
+text-align:left; 
+margin-left 5px; 
+padding: 0; 
+}
+
+div#blueright ul li {
+font: 11px/12px verdana, arial, helvetica, sans-serif;
+border-bottom: 1px dotted #7383AE;
+padding-bottom: 3px;
+}
+
+div#blueright ul li#lastitem {
+border: none;
+padding: 0;
+}
+
+div#blueright ul li a, div#blueright ul li a:visited {
+color: #fff;
+text-decoration: none;
+}
+
+div#blueright ul li a:hover {
+color: #69c;
+
+}
+
+div#bluebottom {
+clear: both;
+text-align: left;
+font: 11px/11px verdana, arial, helvetica, sans-serif;
+border-top:  1px dotted #fff;
+padding: 5px 15px 9px 15px;
+margin: 0 15px;
+}
+
+div#bluebottom .bottomhead {
+font-weight: bold;
+color: #69c;
+text-transform: uppercase;
+}
+
+div#bluebottom .bottomhead a, div#bluebottom .bottomhead a:visited {
+color: #fff;
+text-decoration: none;
+text-transform: none;
+}
+
+div#bluebottom .bottomhead a:hover {
+color: #fff;
+text-decoration: underline;
+text-transform: none;
+}
+
+div#empcorner {
+float: right;
+width: 211px;
+padding-bottom: 13px;
+}
+
+div#keyboard {
+height: 121px;
+background: #fff url(http://www.journalismjobs.com/images/pic_keyboard.jpg) top right no-repeat;
+border-bottom: 2px solid #fff;
+}
+
+.employercorner {
+margin: 7px 0 12px 15px;
+}
+
+div#empcorner ul { 
+list-style: square;
+margin-left: 10px;
+color: #fff;
+}
+
+div#empcorner ul li a { 
+color: #fff;
+font-weight: bold;
+}
+
+div#content {
+clear: both;
+margin: 0 0 10px 0;
+padding:0 6px;
+overflow:auto;
+}
+
+div#content p {
+font: 13px arial, helvetica, sans-serif;
+font-weight: normal;
+color: #666;
+margin: 5px 5px 5px 12px;
+}
+
+div#content h2 {
+font: 12px arial, helvetica, sans-serif;
+background: #d8d8d8;
+font-weight: bold;
+color: #036;
+border-bottom: 1px solid #A1A1A1;
+padding: 3px 0 3px 10px;
+margin: 0;
+}
+
+div#content h3 {
+font: 11px arial, helvetica, sans-serif;
+font-weight: bold;
+color: #666;
+margin: 5px 5px 5px 12px;
+}
+
+div#content ul { 
+list-style-type: none;
+margin: 0 0 10px 0;
+padding-left:8px;
+padding-right:8px;
+color: #666;
+}
+
+div#content ul li { 
+font: 12px arial, helvetica, sans-serif;
+font-weight: normal;
+background:url(http://www.journalismjobs.com/images/bullet_orange1.gif) 0 1px no-repeat;
+padding-left:16px;
+}
+
+* html div#content ul li { 
+font: 12px arial, helvetica, sans-serif;
+font-weight: normal;
+background-position: 0 3px;
+}
+
+div#content ul li a, div#content ul li a:hover { 
+color: #348;
+}
+
+div#content ul li a:visited { 
+color: #69c;
+}
+
+div#content ul li a:active { 
+color: #f90;
+}
+
+div#contentleft {
+float: left;
+width: 655px;
+}
+
+div#threecol {
+margin: 0 15px 0 0;
+overflow:hidden;
+float:left;
+width:130px;
+}
+
+div#threecol ul { 
+margin: 6px 0 8px 0;
+padding-left:3px;
+padding-right:8px;
+color: #666;
+}
+
+div#threecol ul li { 
+font-size: 11px;
+padding:0 0 0 15px;
+margin:3px 0;
+}
+
+* html div#threecol ul li { 
+font-size: 11px;
+margin:1px 0;
+}
+
+div#col1, div#col2, div#col3 {
+border: 1px solid #A1A1A1;
+margin-bottom:15px;
+}
+
+div#medianews {
+width: 508px;
+margin-bottom: 14px; 
+float:left;
+border: 1px solid #A1A1A1;
+}
+
+div#medianews h2 {
+background: #FFF url(http://www.journalismjobs.com/images/bg_medianews.gif) bottom left no-repeat;
+border-bottom: 1px solid #A1A1A1;
+}
+
+#medianews dl, #medianews dt, #medianews dd{
+margin:0;
+padding:0;
+}
+
+#medianews dl {
+font-family:arial;
+margin:0;
+padding:8px 12px 0 8px;
+clear:both;
+}
+
+#medianews dt {
+font-size:13px;
+margin-bottom:1px;
+background:url(http://www.journalismjobs.com/images/bullet_orange1.gif) 0 1px no-repeat;
+padding-left:15px;
+margin-left:0;
+}
+
+#medianews dt a{
+font-weight:bold;
+}
+
+#medianews dd {
+font-size:12px;
+color:#666;
+overflow:hidden;
+margin:0 0 10px 6px;
+}
+
+#medianews dd.newsDate {
+font-size:10px;
+color:#666;
+margin-bottom:0px;
+}
+
+* html #medianews dd {
+height:1%;
+}
+
+#medianews dd.imgLeft img {
+float:left;
+margin:3px 6px 3px 0;
+border:1px solid #CCC;
+}
+
+#medianews dd.imgRight img {
+float:right;
+margin:3px 0 3px 6px; 
+border:1px solid #CCC;
+}
+
+#medianews p.moreNews {
+margin:15px 12px 12px 12px;
+}
+
+
+div#contentright {
+float: right;
+width: 236px;
+}
+
+div#spotlight {
+border: 1px solid #A1A1A1;
+margin-bottom: 14px;
+padding: 0;
+}
+
+div#spotlight p {
+font-size:12px;
+}
+
+div#training {
+border: 1px solid #A1A1A1;
+margin-bottom: 14px;
+padding: 0;
+}
+
+div#events {
+border: 1px solid #A1A1A1;
+margin-bottom: 14px;
+padding: 0;
+}
+
+/* LINK COLORS */
+
+a:link, a:visited { text-decoration: none; color:#348;}
+a:active, a:hover { text-decoration:underline; color:#69c;}
+
+
+div#homelink {
+float:left;
+width:250px;
+height:90px;
+}
+
+
+div#footer {
+clear: both;
+text-align:center;
+font: 11px/11px verdana, arial, helvetica, sans-serif;
+margin: 0 0 10px 0 ;
+}
+
+/* #footer a:link, #footer a:visited { color:#fff; text-decoration:none; } */
+/* #footer a:active, #footer a:hover { color:#f90; text-decoration:none; } */
+
+
+ul { 
+line-height: 16px;
+text-align:left;
+list-style-type: disc;
+padding-left: 20px;
+margin: 0 0 10px 20px;
+}
+
+ul li {
+margin-top:6px;
+text-align:left;
+}
+
+ul li ul {
+margin: 0 0 10px 10px;
+padding-left: 0px;
+}
+
+
+.ol {list-style-type: num; margin-top: 5pt; line-height: 16px }
+
+
+/* Form Field control */
+
+div#formspace {
+margin:0;
+padding:0 20px 0 0;
+float: right;
+position: relative;
+}
+
+div#subscriptionhome {
+width: 200px;
+margin:0;
+padding:0 45px 0 0;
+float: right;
+position: relative;
+}
+
+.formfield {
+font-family : arial,helvetica,sans-serif;  
+font-size : 10px;
+color: #909090;
+border : 1px solid #ccc;
+padding:1px;
+margin:0 0 10px 0;
+background:#fff;
+vertical-align: top;
+}
+
+
+/* Image control for ads */
+
+.bannerimage {
+clear: both;
+margin: 10px;
+} 
+
+div#google_ad {
+margin-bottom: 10px;
+padding: 0;
+text-align:center;
+} 
+
+div#bannerads {
+padding: 0; 
+margin: 10px 0 ; 
+text-align:center;
+} 
+
+div.center {
+text-align:center;
+}
+
+
+td.jobtitle {font-size: 10pt;
+	font-family: arial;}
+td.location {font-size: 10pt;
+	font-family: arial;}
+td.postdate {font-size: 10pt;
+	font-family: arial;}
+	
+
+div#criteria {background-color: #d2d2c1; margin: 1px 20px; padding: 2px; z-index: 1}
+div#results {margin: 0 20px;max-width:930px;}
+.jobsearch {font-size: 13px}
+
+div#featured {
+border: 1px solid #A1A1A1;
+margin-bottom: 14px;
+margin-left: 15px;
+padding-right: 10px;
+padding: 0;
+}
+div#featured ul li { 
+font: 12px arial, helvetica, sans-serif;
+font-weight: normal;
+background:url(http://www.teachingjobs.com/images/bullet_orange1.gif) 0 1px no-repeat;
+padding-left:16px;
+list-style: none;
+margin-left: -17px;
+padding-bottom: 5px
+}
+
+div#featured a { 
+color: #339;
+}
+
+h2.featured-jobs {font-family: arial; font-size: 9pt; font-weight: bold; color: #336; background-color:#eee; padding: 5px; margin-top: 0px; border-bottom: solid 1px #999}
+
+
+
+td.jobtitle_f {font-size: 10pt;
+	border-left: solid 1px #ffcc66; 
+	border-bottom: solid 1px #ffcc66; 
+	font-family: arial;}
+td.location_f {font-size: 10pt;
+	border-bottom: solid 1px #ffcc66; 
+	font-family: arial;}
+td.postdate_f {font-size: 10pt;
+	border-right: solid 1px #ffcc66; 
+	border-bottom: solid 1px #ffcc66; 
+	font-family: arial;}
+div.company {font-size: 12px}
+
+div.featured_job {font-size: 10px; background-image: URL(images/bg-featured.gif); background-color: #FFFFdd; border-top: solid 1px #ffcc66; 
+	border-left: solid 1px #ffcc66; border-right: solid 1px #ffcc66; margin-left: -5px; margin-right: -5px; margin-bottom: -5px; padding: 2px; color: 996600}
+	
+	div#formelements {padding-bottom: 9px} 
+	
+	.plainRow td{ 
+}
+.showRowUp td{
+background-color : #FFFFDD;        
+}
+
+#headernav {
+	width: 980px;
+	clear: both;
+	margin-left:0px;
+	margin-bottom: 10px;
+	margin-top: 5px;
+	}
+	
+#headernav #line {
+	max-height: 6px;
+	}
+	
+#headernav #nav img {
+	margin: 0;
+	padding: 0;
+	width: 134px;
+	max-width: 134px;
+	}
+	
+#headernav #nav img.leftend {
+	width: 21px;
+	}
+	
+#headernav #nav img.rightend {
+	width: 19px;
+	}
+	
+#headernav #nav {
+	width: 980px;
+	clear: both;
+	}
+
+#logotag {
+	margin: 0 0px;
+	}
+	
+#utilnav {
+list-style-type:none;
+float:right;
+border:1px solid #6699cc;
+margin:10px 0 0 0;
+padding:0;
+display:inline;
+}
+
+#utilnav li {
+float:left;
+background:url(/images/bkg_utilnav_brd.gif) right bottom no-repeat;
+padding:2px 6px;
+margin:0;
+}
+
+#utilnav li.noBd {
+background:none;
+}
+
+#utilnav li.first {
+color:#362d86;
+padding-right:0;
+font-weight:bold;
+}
+
+#utilnav a {
+color:#f36608;
+}
+
+/* For error messages */
+
+div#message {
+text-align: center;
+}
+
+div#message  h1	{
+margin-bottom:6px; font-size:150%; color:#464666;
+}
+
+div#message h2 {
+text-align: left;
+font: 18px arial, helvetica, sans-serif;
+font-weight: bold;
+color: #036;
+padding: 3px 0 3px 10px;
+margin: 0;
+}
+
+div#message  ul {
+list-style: none;
+}
+
+
+div#message  ul li { 
+font: 14px arial, helvetica, sans-serif;
+font-weight: normal;
+background:url(http://www.journalismjobs.com/images/bullet_orange1.gif) 0 1px no-repeat;
+padding-left:16px;
+}
+
+div#message p.left { 
+font: 14px arial, helvetica, sans-serif;
+text-align: left;
+}
+
+div#message p{ 
+font: 14px arial, helvetica, sans-serif;
+}

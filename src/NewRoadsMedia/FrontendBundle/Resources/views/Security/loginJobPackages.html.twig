@@ -1,0 +1,184 @@
+{% extends '::base.html.twig' %}
+
+{% form_theme form _self %}
+{% form_theme accountForm _self %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors | length > 0 %}
+            <ul class="form-errors">
+                {% for error in errors %}
+                    <li>{{ error.message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}
+
+{% block form_row %}
+    {{ form_label(form) }}
+    {{ form_widget(form) }}
+    {{ form_errors(form) }}
+{% endblock %}
+
+{% block title %}Create Account or Login{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css"  href="{{ asset('css/new_form.css') }}"/>
+    <link rel="stylesheet" type="text/css"  href="{{ asset('css/steps.css') }}"/>
+    <style type="text/css">
+        #content {
+            width: 950px;
+            margin-top: 30px;
+        }
+
+        #content .inner-content {
+            border: 1px solid #e3e3e3;
+            border-top-right-radius: 5px;
+            border-top-left-radius: 5px;
+            margin-top: -21px;
+            padding: 20px;
+            width:950px;
+        }
+
+        #content .inner-content p {
+            clear: none;
+        }
+
+        #content h2 {
+            margin: 0;
+        }
+
+        #content p {
+            padding: 15px 0;
+            font-size: 14px;
+        }
+
+        #content label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        #content input {
+            display: inline-block;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            width: 230px;
+        }
+
+        .login {
+            float: right;
+            padding: 19px;
+            margin-bottom: 20px;
+            background-color: #f5f5f5;
+            border: 1px solid #e3e3e3;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+            width: 275px;
+        }
+
+        .login input {
+            margin-bottom: 20px;
+        }
+
+        .create-account table {
+            border-collapse: collapse;
+        }
+
+        .create-account table td {
+            padding: 0 20px 20px 0;
+        }
+
+        .forgot-password {
+            float: right;
+        }
+
+        .form-errors {
+            font-weight: bold;
+            color: #e80c4d;
+            margin: 20px 0;
+            line-height: 20px;
+        }
+
+        .login .form-errors {
+            margin-top: 0;
+        }
+
+        .create-account .form-errors {
+            margin: 5px 0 0;
+        }
+
+        #content > div {
+            width: 970px;
+        }
+
+        tr#captcha label{
+            display:inline-block !important;
+            float:left;
+        }
+        tr#captcha img{
+            float:left;
+            margin-bottom:-6px;
+        }
+        tr#captcha br{
+            clear:both;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    {{ include('@NewRoadsMediaFrontend/JobPackage/steps.html.twig', {'step': 1}) }}
+    <div class="inner-content">
+        <div class="login">
+            <h2>Registered Employers</h2>
+            <p>Log in below to purchase your job package.</p>
+            {{ form_errors(form) }}
+            {{ form_start(form) }}
+                {{ form_row(form._username, {'label': 'Email Address'}) }}
+                {{ form_row(form._password) }}
+                <div>
+                    <button type="submit" class="button-gray">Log In</button>
+                    <a href="{{ path('ForgotPassword') }}" class="forgot-password">Forgot Password?</a>
+                </div>
+            {{ form_end(form) }}
+        </div>
+        <div class="create-account">
+            <h2>New User?</h2>
+            <p>Create an account to continue with your purchase.</p>
+            {{ form_errors(accountForm) }}
+            {{ form_start(accountForm) }}
+                <table>
+                    <tr>
+                        <td>{{ form_row(accountForm.name) }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ form_row(accountForm.company) }}</td>
+                        <td>{{ form_row(accountForm.email) }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ form_row(accountForm.password.first) }}</td>
+                        <td>{{ form_row(accountForm.password.second) }}</td>
+                    </tr>
+                    <tr id="captcha">
+                        <td colspan="2"><label>Type in this Security Code Below:</label>{{ form_widget(accountForm.captcha) }}</td>
+                    </tr>
+                </table>
+                <button type="submit" class="button">Create Account</button>
+            {{ form_end(accountForm) }}
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+<p>Dear {{ parameter('site_title') }} User,</p>
+
+<p>Below is the text of the ad you just removed from the viewable database on
+{{ parameter('site_title') }}. The ad will remain in your Employer Account just in case
+you need to repost it. Job seekers will not be able to see it.</p>
+
+<p>Thank you,<br/>
+{{ parameter('site_title') }}<br/>
+Tel. {{ parameter('site_phone') }} (Pacific Time Zone)<br/>
+E-mail: {{ parameter('email.contact') }}
+</p>
+
+<p>
+YOUR AD CRITERIA:<br/>
+Company: {{ job.company }}<br/>
+Industries: {{ job.industries | join(', ') }}<br/>
+Position: {{ job.titleOfPositionOpen }}<br/>
+Location: {{ job.location }}<br/>
+Job Status: {{ job.jobType }}<br/>
+Your job ad ID # is: {{ job.id }}<br/>
+</p>
+
+<p>YOUR JOB AD:</p>
+{{ job.adDescription | raw }}

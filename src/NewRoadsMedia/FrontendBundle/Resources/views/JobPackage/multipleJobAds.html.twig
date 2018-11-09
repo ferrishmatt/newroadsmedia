@@ -1,0 +1,235 @@
+{% extends '::base.html.twig' %}
+
+{% form_theme form _self %}
+
+{% block _form_errors %}
+    <div class="form-errors">
+        {{ form_errors(form) }}
+    </div>
+{% endblock %}
+
+{% block _form_jobPackage_row %}
+    <div id="form_jobPackage">
+        {{ form_label(form, null, {'label_attr': {'id': 'form_jobPackage_label'}}) }}
+        <div id="form_jobPackage_widget">
+        {% for child in form %}
+            <div>
+                {{ form_widget(child) }}
+                {{ form_label(child) }}
+                {{ form_errors(child) }}
+            </div>
+        {% endfor %}
+        </div>
+        {{ form_errors(form) }}
+    </div>
+{% endblock %}
+
+{% block _form_billing_city_row %}
+    <div>
+        {{ form_label(form, 'City/State') }}
+        {{ form_widget(form) }}
+        {{ form_errors(form) }}
+{% endblock %}
+
+{% block _form_billing_state_row %}
+        {{ form_widget(form) }}
+        {{ form_errors(form) }}
+    </div>
+{% endblock %}
+
+{% block _form_billing_zip_row %}
+    <div>
+        {{ form_label(form) }}
+        {{ form_widget(form) }}
+        {{ form_errors(form) }}
+{% endblock %}
+
+{% block _form_billing_zipPlus_row %}
+        {{ form_label(form) }}
+        {{ form_widget(form) }}
+        {{ form_errors(form) }}
+    </div>
+{% endblock %}
+
+{% block _form_billing_creditMonth_row %}
+    <div>
+        {{ form_label(form, 'Expiration Date') }}
+        {{ form_widget(form) }}
+        {{ form_errors(form) }}
+{% endblock %}
+
+{% block _form_billing_creditYear_row %}
+        {{ form_widget(form) }}
+        {{ form_errors(form) }}
+    </div>
+{% endblock %}
+
+{% block title %}Job Packages{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/forms.css') }}"/>
+    <link rel="stylesheet" type="text/css"  href="{{ asset('css/steps.css') }}"/>
+    <style type="text/css">
+        #content {
+            width: 950px;
+            margin-top: 30px;
+        }
+
+        .total-box {
+            float: right;
+            font-size: 32px;
+        }
+
+        .total-box .total {
+            color: #f90;
+            font-weight: bold;
+        }
+
+        #form_jobPackage_widget label,
+        #form_jobPackage_widget input {
+            cursor: pointer;
+        }
+
+        #form_jobPackage {
+            margin: 30px 0;
+        }
+
+        #form_jobPackage_widget {
+            width: 400px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        #form_jobPackage_widget label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        #form_billing label,
+        #form_jobPackage_label {
+            display: inline-block;
+            width: 300px;
+            margin-right: 2px;
+            font-weight: bold;
+            line-height: 20px;
+            font-size: 14px;
+            text-align: right;
+            padding-right: 10px;
+            padding-top: 5px;
+        }
+
+        #form_billing div {
+            padding-bottom: 12px;
+        }
+
+        #form_billing input[type="text"],
+        #form_billing input[type="email"] {
+            height: 24px;
+            font-size: 18px;
+            display: inline-block;
+            width: 300px;
+            vertical-align: top;
+        }
+
+        #form_billing textarea {
+            vertical-align: top;
+        }
+
+        #form_billing #form_billing_zip {
+            margin-left: -4px;
+            width: 75px;
+        }
+
+        #form_billing #form_billing_zipPlus {
+            margin-left: 2px;
+            width: 65px;
+        }
+
+        #form_billing #form_billing_specialBillingInstructions {
+            margin-left: 0;
+        }
+
+        #form_billing #form_billing_city {
+            margin-left: -4px;
+            width: 235px;
+        }
+
+        #form_billing #form_billing_state {
+            width: 50px;
+            margin-left:2px;
+        }
+
+        #form_billing #form_billing_creditCard {
+            margin-left: 0;
+        }
+
+        #form_billing #form_billing_creditMonth {
+            margin-left: -4px;
+        }
+
+        /* Form errors */
+        #form .form-errors {
+            display: none;
+        }
+
+        .form-errors {
+            color: red;
+            text-align: center;
+            line-height: 24px;
+            font-weight: bold;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('index_files/jquery-1.js') }}"></script>
+    <script type="text/javascript">
+        function number_format(number, decimals, dec_point, thousands_sep) {
+            var n = !isFinite(+number) ? 0 : +number,
+                    prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+                    sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+                    dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+                    toFixedFix = function (n, prec) {
+                        // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+                        var k = Math.pow(10, prec);
+                        return Math.round(n * k) / k;
+                    },
+                    s = (prec ? toFixedFix(n, prec) : Math.round(n)).toString().split('.');
+            if (s[0].length > 3) {
+                s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+            }
+            if ((s[1] || '').length < prec) {
+                s[1] = s[1] || '';
+                s[1] += new Array(prec - s[1].length + 1).join('0');
+            }
+            return s.join(dec);
+        }
+        $(function() {
+            var adCost = parseFloat({{ parameter('ad_cost') }});
+            $('#form_jobPackage_widget').find(':input').change(function() {
+                var jobCount = parseInt($(this).val());
+                var total = jobCount * adCost;
+                $('.total').text('$' + number_format(total, 2, '.', ','));
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    {{ include('@NewRoadsMediaFrontend/JobPackage/steps.html.twig', {'step': 2}) }}
+    {{ form_errors(form) }}
+    <div class="inner-content">
+        <div class="total-box">
+            Total: <span class="total">${{ total | number_format(2) }}</span>
+        </div>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <div style="text-align: center;">
+            <input type="submit" value="Complete Transaction" class="submitbtn">
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

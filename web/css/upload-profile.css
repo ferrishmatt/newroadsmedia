@@ -1,0 +1,92 @@
+.form-errors {
+    font-weight: bold;
+    color: #962D22;
+}
+
+#upload-your-resume {
+    padding-top: 40px;
+}
+
+#content h1 {
+    font-size: 32px;
+    border-bottom: 1px solid #999;
+    padding-bottom: 15px;
+    margin: 10px 0;
+}
+
+#content label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+#content label.inline {
+    display: inline-block;
+}
+
+#content input[type="text"] {
+    border-radius: 3px;
+    border: 1px solid #999;
+    width: 250px;
+    padding: 5px 10px;
+}
+
+#content select {
+    background-color: #fff;
+    padding: 4px 10px;
+    border-radius: 3px;
+}
+
+#content div.or {
+    font-size: 24px;
+    margin: 20px 0 5px;
+}
+
+#content .privacy-settings {
+    margin-top: 30px;
+}
+
+#content .privacy-settings ul {
+    margin-top: 5px;
+    border: 1px solid #999;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+#content .privacy-settings ul li {
+    display: inline-block;
+    width: 150px;
+    padding: 10px;
+    font-size: 16px;
+    line-height:20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#content .privacy-settings ul li.active {
+    background-color:#3c5897;
+    color: #fff;
+}
+
+#content .privacy-settings p {
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+#content button {
+    background-color: #84cf3e;
+    color: #fff;
+    border: 0;
+    border-radius: 3px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 30px;
+    cursor: pointer;
+}
+
+.resume-attachment-details {
+    font-style: italic;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #777;
+}

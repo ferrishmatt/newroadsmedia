@@ -1,0 +1,35 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+<table border="0" cellpadding="0" cellspacing="0" style="margin: 0 auto;">
+<TR>
+<TD width="380" valign="top">
+    <form method="POST" action="{{ path('SuspendJobPost', { 'jobId': job.id } ) }}">
+        <br><font face="Arial, Helvetica, sans-serif" size="2"><b>
+        <div align="center">Click the "Suspend Job" button to suspend Job Number {{ job.id }}. <br>
+		<br>
+		 The ad will remain in your account for your records and will not be viewable to job seekers. <br><br> Any remaining time on this ad <font color="red">cannot be saved</font> for later use. You will be charged if it is reposted. </b></font>
+        <div align="center">
+            <BR><input type="submit" name="Suspend" value="Suspend Job">        </div>
+
+	</form>
+</td>
+<td valign="top"><img src="graphics/blank.gif" width="10" height="1" border="0" alt=""></td>
+<td valign="top" bgcolor="#999999" width="1"><img src="graphics/blank.gif" width="1" height="1" border="0" alt=""></td>
+<td valign="top"><img src="graphics/blank.gif" width="10" height="1" border="0" alt=""></td>
+<TD width="380" valign="top">
+    <cfoutput>
+<form method="POST" action="{{ path('DeleteJobPost', { 'jobId': job.id } ) }}">
+
+        <br><font face="Arial, Helvetica, sans-serif" size="2"><b>
+        <div align="center">Click the "Delete Ad" button to delete Job Number {{ job.id }}. <br>
+		<br>
+		Your ad will be removed permanently. Any online resumes stored in your account will also be deleted. <p> We will e-mail you a copy of this ad for your records.</b></font>
+        <div align="center">
+            <BR><input type="submit" name="Delete" value="Delete Job">        </div>
+
+</form>
+</TD>
+</TR></table>
+
+{% endblock content %}

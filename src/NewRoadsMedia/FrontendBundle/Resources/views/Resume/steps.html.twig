@@ -1,0 +1,25 @@
+<div>
+    <table id="add-resume-steps">
+        <tr class="steps">
+            <td>Step 1</td>
+            <td>Step 2</td>
+            <td>Step 3</td>
+        </tr>
+        <tr class="bar">
+            <td colspan="3">
+                {% if step == 1 %}
+                    <img src="{{ asset('images/profile/bar_one.jpg') }}" alt="Step 1: Create Account"/>
+                {% elseif step == 2 %}
+                    <img src="{{ asset('images/profile/bar_two.jpg') }}" alt="Step 2: Upload Resume"/>
+                {% elseif step == 3 %}
+                    <img src="{{ asset('images/profile/bar_three.jpg') }}" alt="Step 3: Add Profile"/>
+                {% endif %}
+            </td>
+        </tr>
+        <tr class="text">
+            <td>Create Account</td>
+            <td>Upload Resume</td>
+            <td>Add Profile</td>
+        </tr>
+    </table>
+</div>

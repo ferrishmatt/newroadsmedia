@@ -1,0 +1,14 @@
+<h2 style="font-size:135%;">LATEST JOB LISTINGS</h2>
+{% for job in jobs %}
+    <ul>
+        <li style="font-family: ProximaNova-Reg, Helvetica, Helvetica, Arial, sans-serif;">
+            {% set link = job.isExternal ? job.website : path('ViewJobPost', {'jobId': job.id}) %}
+            <a href="{{ link }}" class="title">{{ job.titleOfPositionOpen }}</a>
+            <br/>
+            <span style="font-weight:bold;">{{ job.company }}</span> &ndash;
+            {% if job.jobCity %}{{ job.jobCity }},{% endif %}
+            {% if job.location %}{{ job.location.locationDescription }} - {% endif %}Posted {{ job.createDate | date('M d, Y') }}<br />
+            {{ job.adDescription | striptags | split(' ') | slice(0, 21) | join(' ') | raw }} . . .
+        </li>
+    </ul>
+{% endfor %}

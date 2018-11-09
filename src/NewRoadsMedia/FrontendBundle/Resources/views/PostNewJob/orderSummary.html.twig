@@ -1,0 +1,118 @@
+{% extends 'NewRoadsMediaFrontendBundle:PostNewJob:job.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style type="text/css">
+        #content h3 {
+            font-weight: bold;
+            margin: 15px 0 2px;
+        }
+
+        #content .job-title {
+            color: #f90;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        var jobs = [];
+        {% for job in jobs -%}
+        jobs[{{ job.id }}] = {{ job.industries | length * parameter('ad_cost') }};
+        {% endfor %}
+
+        $(function() {
+            var $enhancements = $('.enhancement');
+            $enhancements.change(function() {
+                var total = 0;
+                for (var jobId in jobs) {
+                    total += jobs[jobId];
+                    if ($('#job_' + jobId + '_is_frontpage').is(':checked')) {
+                        total += {{ parameter('frontpage_ad_cost') }};
+                    }
+                    if ($('#job_' + jobId + '_is_featured').is(':checked')) {
+                        total += {{ parameter('featured_ad_cost') }};
+                    }
+                    if ($('#job_' + jobId + '_is_diversity').is(':checked')) {
+                        total += {{ parameter('diversity_ad_cost') }};
+                    }
+                }
+                $('.total').html('$' + (total.toFixed(2)));
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    {{ include('@NewRoadsMediaFrontend/PostNewJob/steps.html.twig', {'step': 4}) }}
+    <div class="inner-content">
+    <center>
+        {{ form_start(form) }}
+            <h2>Order Summary</h2>
+
+            <table border="0" cellspacing="2">
+                {% for job in jobs %}
+                    <tr>
+                        <td>
+                            {% if loop.index > 1 %}
+                                <hr/>
+                            {% endif %}
+                            Job Title: <strong class="job-title">{{ job.titleOfPositionOpen }}</strong><br/>
+                            {% for industry in job.industries %}
+                                Industry selected: {{ industry }} {% if not employer.freeOption %}- ${{ parameter('ad_cost') | number_format(2) }}{% endif %}<br/>
+                            {% endfor %}
+                            <h3>Posting Enhancements:</h3>
+                            {% if jobManager.availableFrontPageAdCount > 0 %}
+                                <input name="job[{{ job.id }}][is_frontpage]" type="hidden" value="0"/>
+                                <input class="enhancement" data-id="{{ job.id }}" name="job[{{ job.id }}][is_frontpage]" type="checkbox" value="1" id="job_{{ job.id }}_is_frontpage"{% if job.isFrontpage %} checked="checked"{% endif %}/>
+                                <label for="job_{{ job.id }}_is_frontpage">Home Page Featured Jobs Section: ${{ parameter('frontpage_ad_cost') | number_format(2) }} for 5 days.</label>
+                                <br/>
+                            {% endif %}
+                            <input name="job[{{ job.id }}][is_diversity]" type="hidden" value="0"/>
+                            <input class="enhancement" data-id="{{ job.id }}" name="job[{{ job.id }}][is_diversity]" type="checkbox" value="1" id="job_{{ job.id }}_is_diversity"{% if job.isDiversityJob %} checked="checked"{% endif %}/>
+                            <label for="job_{{ job.id }}_is_diversity">Diversity Jobs Section: ${{ parameter('diversity_ad_cost') | number_format(2) }} for duration of posting.</label>
+                            <br/>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            {% if not employer.freeOption %}
+                <hr/>
+                <font face="arial" size="4"><b>
+                    {% if total == subtotal %}
+                        Total: <span style="color: red" class="total">${{ total | number_format(2) }}</span>
+                    {% else %}
+                        <table>
+                            <tr>
+                                <td>Subtotal:</td>
+                                <td style="text-align: right;">${{ subtotal | number_format(2) }}</td>
+                            </tr>
+                            <tr>
+                                <td>Package Plan Ads:</td>
+                                <td style="text-align: right;">-${{ (subtotal - total) | number_format(2) }}</td>
+                            </tr>
+                            <tr style="color:red;">
+                                <td>Total:</td>
+                                <td style="text-align: right;">${{ total | number_format(2) }}</td>
+                            </tr>
+                        </table>
+                    {% endif %}
+                </b></font>
+            {% endif %}
+            <br/><br/>
+
+            {{ form_widget(form.submit, {'attr': {'style': 'font-size: 15px; margin: 0; cursor: pointer;', 'class': 'submitbtn'}}) }}<br/><br/>
+            <a href="{{ postAnotherAdPath }}" class="green-button">Post Another Ad</a>
+        {{ form_end(form) }}
+
+        <br/><br/>
+        <p align="center"><font face="Arial, Helvetica, sans-serif" size="1"><b>
+            Copyright &copy; 1998-{{ 'now' | date('Y') }}. {{ parameter('site_title') }}. All Rights Reserved.<br>
+            Site usage subject to <a href="{{ path('Terms') }}">Terms and Conditions</a>.  Read our <a href="{{ path('PrivacyPolicy') }}">Privacy Policy</a>.
+            <br>
+            Tel. {{ parameter('site_phone') }}. &nbsp;&nbsp;E-mail: <a href="mailto:{{ parameter('email.info') }}">{{ parameter('email.info') }}</a>
+        </b></font></p>
+    </center>
+    </div>
+{% endblock %}

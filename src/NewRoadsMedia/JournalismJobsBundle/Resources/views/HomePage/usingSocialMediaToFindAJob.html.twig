@@ -1,0 +1,95 @@
+{% set page_name = '' %}
+
+{% extends "::base.html.twig" %}
+
+{% block title %}Using Social Media in Your Job Search{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://ucarecdn.com/widget/2.8.2/uploadcare/uploadcare.min.js" charset="utf-8"></script>
+    <script src="{{ asset('js/upload-care.js') }}"></script>
+    <script src="{{ asset('js/jquery.wordcount.js') }}"></script>
+    <script src="{{ asset('js/job-listing.js') }}"></script>
+    <script type="text/javascript">
+        $(function() {
+            {% if nonRegisteredForm.resumeFile is defined %}
+                uploadcare_init('{{ nonRegisteredForm.resumeFile.vars.id }}');
+            {% endif %}
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {#<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"/>#}
+    <link rel="stylesheet" href="{{ asset('css/job-listing.css') }}"/>
+{% endblock %}
+
+{% block content %}
+<div class="inner-content text-article">
+    <img class="article-photo" src="{{ asset('bundles/newroadsmediajournalismjobs/images/social_media_job_search.jpg') }}">
+    <div class="article-wrap">
+    <p class="pre-headline">Job Search</p>
+
+    <h1 class="article-title">Using Social Media in Your Job Search</h1>
+
+    <p class="byline-share-line">
+	<b class="byline">By Tim Sohn</b>
+	<a href="#" title="Share Job" class="share-job-link"><img src="{{ asset('images/icons/share_icon.png') }}" alt="Share Job"/>Share</a>
+    </p>
+
+    <ul class="job-listing-share">
+                    <li>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ url('ViewJobPost', {'jobId': job.id}) }}" target="_blank" title="Share on Facebook"><img
+                                    src="{{ asset('images/icons/facebook_icon.png') }}" alt="Share on Facebook"/>Facebook</a>
+                    </li>
+                    <li>
+                        {% set twitterUrl = 'http://twitter.com/share?text=' ~ (('Great Job on ' ~ parameter('site_title')) | url_encode) ~ '&url=' ~ url('ViewJobPost', { 'jobId': job.id } ) %}
+                        <a href="{{ twitterUrl }}" target="_blank" title="Share on Twitter"><img
+                                    src="{{ asset('images/icons/twitter_icon.png') }}" alt="Share on Twitter"/>Twitter</a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ url('ViewJobPost', {'jobId': job.id}) }}&title={{ (parameter('site_title') ~ ' - ' ~ job.titleOfPositionOpen) | url_encode }}&summary=&source=" target="_blank" title="Share on Linked In"><img
+                                    src="{{ asset('images/icons/linked_in_icon.png') }}" alt="Share on Linked In"/>Linked In</a>
+                    </li>
+                    <li>
+                        <a href="https://plus.google.com/share?url={{ url('ViewJobPost', {'jobId': job.id}) }}" target="_blank" title="Share on Google Plus"><img
+                                    src="{{ asset('images/icons/google_plus_icon.png') }}" alt="Share on Google Plus"/>Google +</a>
+                    </li>
+                    <li style="display: none;">
+                        <a class="email" href="#" title="E-mail this job to a friend"><img src="{{ asset('images/icons/email_icon.png') }}" alt="E-mail this job to a friend"/>E-mail</a>
+                    </li>
+                </ul>
+
+<p>Social media can play an important role in finding a new job. In fact, according to Staff.com, 92 percent of businesses use social media in the hiring process, and 45 percent of Fortune 500 companies include links to their social media accounts in their career portals.</p>
+
+<p>It’s critical that job seekers have their business and personal profiles up to date, with professional head shots, relevant keywords, and links to recent work samples. Employers are increasingly viewing personal social media profiles before interviewing candidates, so make sure your accounts are free of any inappropriate text or photos. You don't want to stand out for the wrong reasons.</p>
+
+<h2>Here are some other tips: </h2>
+<ul>
+    <li>As a media professional, your social media accounts are held to a higher standard. Make sure all communication is error-free.</li>
+    <li>Remove any content that bad-mouths a previous employer. </li>
+    <li>Delete comments on race, gender or religion that could be considered discriminatory.</li>
+    <li>Only share content that highlights your accomplishments and qualifications in a positive way.</li>
+    <li>Make sure your job titles and work experience are consistent on all social platforms. </li>
+    <li>Be engaged and post relevant messages about your industry on Twitter and Linkedin.</li>
+    <li>Follow your favorite employers on Twitter so you will know about job openings and company news first-hand.</li>
+    <li>Build social goodwill by answering questions and sharing knowledge on Facebook and Twitter. Employers will be impressed with your outreach.</li>
+</ul>
+
+<div class="article-quote">"Follow your favorite employers on Twitter."</div>
+
+<p>Maren Hogan, CEO of Red Branch Media, said social media is a golden opportunity to give an employers a snapshot of who you really are. "A blend of social and professional profiles that both exemplify and promote your work... is the best way to get a hiring manager to sit up and pay attention,” she said. </p>
+
+<h2>So, is it appropriate to make an initial inquiry for a job via social media?</h2>
+
+<p>Sree Sreenivasan, a former digital media professor at Columbia University Graduate School of Journalism, says applying for a job via social media is sort of a gray area. </p>
+
+<p>"It all depends on the particular managers," he said. "There's often not any way to tell who may like that approach. It's safe to follow them on Twitter and ask to connect on LinkedIn. Beyond that, unless they are super social and very active on channels, [it's] best not to reach out directly. [It's] much better to have someone who knows [them] reach out on your behalf via email or LinkedIn.”</p>
+
+    </div>
+</div>
+
+{% endblock %}

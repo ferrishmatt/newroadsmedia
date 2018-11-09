@@ -1,0 +1,155 @@
+{% extends '@NewRoadsMediaFrontend/Layout/mobile.html.twig' %}
+
+{% block content %}
+    <style>
+
+    #career-advice-articles .image img {
+        width: 100%;
+        /*margin-top: 30px;*/
+    }
+
+    #search_jobs{
+        background-color: #337ab7 !important;
+        border-color: #337ab7 !important;
+        background-image: linear-gradient(to bottom,#337ab7 0,#337ab7 100%) !important;
+    }
+
+    </style>
+
+    <h3>Find Your Next {{ parameter('job_type') }} Job</h3>
+    <h4>Search {{ totalCount | number_format() }} Jobs</h4>
+    <p>
+       	<strong>Quick Search:</strong>
+        <a href="{{ path('JobPosts', {'datePosted': 1}) }}">Today</a> |
+        <a href="{{ path('JobPosts', {'datePosted': 2}) }}">Yesterday</a> |
+        <a href="{{ path('JobPosts', {'datePosted': 4}) }}">Past Week</a>
+    </p>
+    <br/>
+    {{ form_start(searchForm, {'action': path('JobPosts'), 'method': 'POST'}) }}
+    <div class="form-group">
+        {{ form_row(searchForm.keywords, {'label': 'Enter Job Title or Skills', 'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(searchForm.location, {'label': 'Location', 'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        <button type="submit" id="search_jobs" class="form-control btn btn-success btn-block"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search Jobs</button>
+        <p class="text-right">
+            <a class="advanced-search" href="{{ path('AdvancedSearch') }}">&gt; Advanced Search</a>
+        </p>
+    </div>
+    {{ form_end(searchForm) }}
+
+    {{ render(controller('NewRoadsMediaFrontendBundle:HomePage:featuredJobs')) }}
+
+    <p class="advertisment_header">ADVERTISEMENT</p>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive ad unit -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-3003304833366179"
+         data-ad-slot="4896489033"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    {{ render(controller('NewRoadsMediaFrontendBundle:HomePage:news')) }}
+    <br class="clear"/>
+
+    <div id="career-advice-articles">
+        <h2>Career Advice</h2>
+        <div class="your-class">
+            <div>
+                <div class="slide-tick-wrap">
+                    <div class="image">
+                        <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/job_interview2.jpg') }}" />
+                    </div>
+                    <h4>
+                        <a href="http://www.journalismjobs.com/negotiating_salary_offers">Negotiating Salary Offers</a>
+                    </h4>
+		    <div class="career-advice-byline">By Joe Grimm</div>
+                    <div class="details">
+                        Get the best deal for yourself.
+                    </div>
+                </div>
+            </div>
+            <br class="clear"/>
+            <div>
+                <div class="slide-tick-wrap">
+                    <div class="image">
+                        <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/website_tools_photo_small.jpg') }}" />
+                    </div>
+                    <h4>
+                        <a href="http://www.journalismjobs.com/ten_indispensable_websites_for_journalists">10 Indispensable Websites for Working Journalists</a>
+                    </h4>
+		    <div class="career-advice-byline">By Erica Sweeney</div>
+                    <div class="details">
+                        Make your job easier.
+                    </div>
+                </div>
+            </div>
+            <br class="clear"/>
+            <div>
+                <div class="slide-tick-wrap">
+                    <div class="image">
+                        <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/public_relations_photo_small.png') }}" />
+                    </div>
+                    <h4>
+                        <a href="http://www.journalismjobs.com/switching_from_journalism_to_PR">Making the Switch From Journalism to PR</a>
+                    </h4>
+		    <div class="career-advice-byline">By Erica Sweeney</div>
+                    <div class="details">
+                        A former journalist offers some insight.
+                    </div>
+                </div>
+            </div>
+            <br class="clear"/>
+            <div>
+                <div class="slide-tick-wrap">
+                    <div class="image">
+                        <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/writer_at_desk2.jpg') }}" />
+                    </div>
+                    <h4>
+                        <a href="http://www.journalismjobs.com/quitting_your_job_to_become_a_freelancer">7 Things to Know Before Becoming a Full-Time Freelancer</a>
+                    </h4>
+		    <div class="career-advice-byline">By Erica Sweeney</div>
+                    <div class="details">
+                        Staying organized is very important.
+                    </div>
+                </div>
+            </div>
+            <br class="clear"/>
+            <div>
+                <div class="slide-tick-wrap">
+                    <div class="image">
+                        <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/journalism_school_class2.jpg') }}" />
+                    </div>
+                    <h4>
+                        <a href="http://www.journalismjobs.com/graduate_degree_needed_for_journalism">Do You Need a Graduate Degree in Journalism?</a>
+                    </h4>
+		    <div class="career-advice-byline">By Walden Siew</div>
+                    <div class="details">
+                        For some media professionals, the degree is essential.
+                    </div>
+                </div>
+            </div>
+            <br class="clear"/>
+            <div>
+                <div class="slide-tick-wrap">
+                    <div class="image">
+                        <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/social_media_job_search_small.jpg') }}" />
+                    </div>
+                    <h4>
+                        <a href="http://www.journalismjobs.com/using_social_media_to_find_a_job">Using Social Media in Your Job Search</a>
+                    </h4>
+		    <div class="career-advice-byline">By Tim Sohn</div>
+                    <div class="details">
+                        Social media can play an important role in finding a new job.
+                    </div>
+                </div>
+            </div>
+	    <a class="btn btn-default btn-block" style="float: left;" href="http://www.journalismjobs.com/career-advice">See More Career Advice</a>
+        </div>
+    </div>
+{% endblock %}

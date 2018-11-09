@@ -1,0 +1,43 @@
+<div id="footer">
+    <div class="footer-links">
+        <div class="container">
+            <ul class="links">
+                <li class="headli">Job Seekers</li>
+                <li><a href="{{ path('JobPosts') }}">Find a Job</a></li>
+                <li><a href="{{ path('JobNotification') }}">Job Alerts</a></li>
+                <li><a href="{{ path('PostResume') }}">Post a Resume</a></li>
+                <li><a href="{{ path('JobSeekerFolder') }}">Account Login</a></li>
+            </ul>
+            <ul class="links">
+                <li class="headli">Employers</li>
+                <li><a href="{{ path('PostNewJob') }}">Post a Job</a></li>
+                <li><a href="{{ path('SearchResumes') }}">Search Resumes</a></li>
+                <li><a href="{{ path('Advertising') }}">Advertising</a></li>
+                <li><a href="{{ path('EmployerManager') }}">Account Login</a></li>
+            </ul>
+            <ul class="links">
+                <li class="headli">General Info</li>
+                <li><a href="{{ path('AboutUs') }}">About Us</a></li>
+                <li><a href="{{ path('PrivacyPolicy') }}">Privacy Policy</a></li>
+                <li><a href="{{ path('Terms') }}">Terms and conditions</a></li>
+                <li><a href="{{ path(app.request.attributes.get('_route'), (app.request.attributes.get('_route_params') ?: []) | merge({'redirect': 'mobile'})) }}">Mobile-friendly site</a></li>
+            </ul>
+            <ul class="contact">
+                <li class="headli">Contact Us</li>
+                <li class="image"><a href="mailto:{{ parameter('email.info') }}"><img src="{{ asset('images/icons/layout/email.png') }}" alt="Email" width="24" height="24"/>{{ parameter('email.info') }}</a></li>
+                <li class="image"><img src="{{ asset('images/icons/layout/phone.png') }}" alt="Phone" width="24" height="24"/>{{ parameter('site_phone') }}</li>
+            </ul>
+            <ul class="get-connected">
+                <li class="headli">Get Connected</li>
+                <li class="image"><a href="{{ parameter('social.facebook') }}" target="_blank"><img src="{{ asset('images/icons/layout/facebook-footer.png') }}" alt="Facebook" width="24" height="24"/>Facebook</a></li>
+                <li class="image"><a href="https://www.twitter.com/{{ parameter('social.twitter') }}" target="_blank"><img src="{{ asset('images/icons/layout/twitter-footer.png') }}" alt="Twitter" width="24" height="24"/>Twitter</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="copyright">
+        <div class="container">
+            <a href="http://www.newroadsmedia.com/" target="_blank"><img src="{{ asset('images/logos/new_roads_media_logo2.jpg') }}" class="new-roads-media-logo" alt="NewRoadsMedia"/></a>
+            <p>&#169; 1998-{{ 'now' | date('Y') }} {{ parameter('site_title') }} All Rights Reserved.</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div id="secNav">
+    {% if app.user and is_granted('ROLE_EMPLOYER') %}
+        <ul class="account">
+            <li class="first"><b>Hello, {{ app.user.displayName }}</b></li>
+            <li><a href="{{ path('EmployerManager') }}" style="color:#FF9900">&gt; Your Account</a></li>
+            <li><a href="{{ path('LogoutEmployer') }}">Log Out</a></li>
+        </ul>
+    {% elseif app.user and is_granted('ROLE_JOB_SEEKER') %}
+        <ul class="account">
+            <li class="first"><b>Hello, {{ app.user.displayName }}</b></li>
+            <li><a href="{{ path('JobSeekerFolder') }}" style="color:#FF9900">&gt; Your Account</a></li>
+            <li> <a href="{{ path('LogoutJobSeeker') }}">Log Out</a></li>
+        </ul>
+    {% else %}
+        <a href="{{ path('PostNewJob') }}" class="post-jobs-button">+ Post Jobs</a></li>
+        <ul class="navigation">
+            <li>
+                <a class="text arrow-down" href="#">Employers</a>
+                <ul>
+                    <li><a href="{{ path('PostNewJob') }}">Post a Job</a></li>
+                    <li><a href="{{ path('SearchResumes') }}">Search Resumes</a></li>
+                    <li><a href="{{ path('EmployerManager') }}">Employer Login</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="text arrow-down" href="#">Job Seekers</a>
+                <ul>
+                    <li><a href="{{ path('PostResume') }}">Post a Resume</a></li>
+                    <li><a href="{{ path('JobNotification') }}">Job Alerts</a></li>
+                    <li><a href="{{ path('JobSeekerFolder') }}">Job Seeker Login</a></li>
+                </ul>
+            </li>
+            <li class="last">
+                <a class="text" href="{{ path('Login') }}">Login</a>
+            </li>
+        </ul>
+    {% endif %}
+</div>

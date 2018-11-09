@@ -1,0 +1,75 @@
+{% set isMultiple = invoiceTrack.jobs | length > 1 %}
+<p>
+    Thank you for posting your job{% if isMultiple %}s{% endif %} on {{ parameter('site_title') }}. Below is important information about your ad{% if isMultiple %}s{% endif %} and application procedure{% if isMultiple %}s{% endif %}.
+    If you have any questions, please call {{ parameter('site_phone') }} or email {{ parameter('email.info') }}.
+</p>
+<p>
+    <strong>Amount Paid:</strong> ${{ invoiceTrack.amount | number_format(2) }} <br/>
+    {% if invoiceTrack.payments | length > 0 %}
+        <strong>Last Four Digits of Credit Card Used:</strong> {{ invoiceTrack.payments.last.creditCardNumberLastFour }}<br/>
+        <strong>Transaction ID Number:</strong> {{ invoiceTrack.payments.last.transactionId }}<br/>
+    {% endif %}
+    <strong>Billing Company</strong>: {{ invoiceTrack.employer.billingCompany }} <br/>
+    <strong>Today's Date:</strong> {{ 'now' | date('F d, Y') }} <br/>
+    <strong>Description:</strong>
+</p>
+<div style="padding-left:30px;">{{ invoiceTrack.orderText | raw }}</div>
+<p>
+    <strong>Administration:</strong><br/>
+    To edit {% if isMultiple %}these listings{% else %}this listing{% endif %}, click on the link for the
+    <a href= "{{ url('EmployerManager') }}">Employer Login</a> on our
+    home page and log in with your e-mail address and password. The link to search the general resume database is also
+    stored in your Employer Folder. Click on the link that says "Search Resume Database." When you need to post, delete
+    or renew an ad, log into your Employer Folder. If you need assistance, call {{ parameter('site_phone') }}, or send an e-mail to
+    {{ parameter('email.contact') }}.
+</p>
+
+{% for job in invoiceTrack.jobs %}
+    <hr/>
+    <p>
+        <strong>Your Ad Criteria:</strong><br/>
+        Job ID: {{ job.id }}<br/>
+        Job Title: {% if job.titleOfPositionOpen %}{{ job.titleOfPositionOpen }}{% elseif job.position %}{{ job.position }}{% else %}Not Specified{% endif %} <br/>
+        {% if job.isDiversityJob() %}
+            Your ad will appear in both the general and diversity sections on {{ parameter('site_title') }}.
+        {% endif %}
+        Company: {% if job.company %}{{ job.company }}{% else %}Not Specified{% endif %} <br/>
+        {% if job.industries %}
+            {% if job.industries | length == 1 %}Industry{% else %}Industries{% endif %}: {{ job.industries | join(', ') }}<br/>
+        {% endif %}
+        Position: {% if job.titleOfPositionOpen %}{{ job.titleOfPositionOpen }}{% elseif job.position %}{{ job.position }}{% else %}Not Specified{% endif %}<br/>
+        Location: {{ job.jobCity }}, {{ job.location }}<br/>
+        Job Status: {% if job.jobType %}{{ job.jobType }}{% else %}Not Specified{% endif %} <br/>
+        Your ad will remain in our database until: {{ job.expirationDate | date('F d, Y') }} <br/>
+    </p>
+    <p>
+        <strong>Application Procedure:</strong>
+        {% if job.applyType == "a" %}
+            Candidates will apply for your job using the contact information you provided in the ad.
+        {% elseif job.applyType == "b" %}
+            You have decided to only accept online applications stored in your "Employer Account." **You must log into
+            your Employer Account periodically to review applications. These resumes will not be forwarded to you. To
+            access your Employer Account, click on the link for the <a href= "{{ url('EmployerManager') }}">Employer Login</a>
+            on our home page and log in with your email address and password. To change your application procedure, log
+            into your Employer Account and click on the "Edit this Job" link next to your listing.
+        {% elseif job.applyType == "c" %}
+            You are allowing applicants to apply for your job in two ways: They can use the contact information you provided
+            in the ad, or they can apply online through your Employer Account. If they apply through your Employer Folder,
+            a copy of their resume will be stored in your Employer Account. **You must log into your Employer Account
+            periodically to review online applications. These resumes will not be forwarded to you. To access your
+            Employer Account, click on the link for the "Employer Account" on our home page and log in with your email
+            address and password. To change your application procedure, log into your Employer Account and click on the
+            "Edit this Job" link next to your listing.
+        {% endif %}
+    </p>
+    <p>
+        <strong>Your Job Ad:</strong><br/>
+        {{ job.adDescription | raw }}
+    </p>
+{% endfor %}
+<hr/>
+<p>
+    {{ parameter('site_title') }}<br/>
+    Tel. {{ parameter('site_phone') }}<br/>
+    E-mail: {{ parameter('email.contact') }}
+</p>

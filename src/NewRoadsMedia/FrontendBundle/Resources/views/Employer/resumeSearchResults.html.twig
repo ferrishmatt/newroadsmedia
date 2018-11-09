@@ -1,0 +1,77 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+<style>
+    .resume-search-pages a{
+        color:#6b6c6e;
+    }
+    #resume-listing-table th{
+        background-color:#6b6c6e;
+    }
+</style>
+<div>
+    <table width="98%" border="0" align="center">
+      <tr>
+        <td>
+            <p><font face="Arial, Helvetica, sans-serif" size="2">
+            Your Search Produced: <b><font color="#660033">{{ count | number_format(0, '.', ',') }}</font></b> Matches
+            </font></p>
+            {% if pageCount > 1 %}
+            <table style="width: 555px;" id="pagination">
+                <tr>
+                    <td style="vertical-align: top; width: 50px;"><font size="1" face="arial" color="#990000">Page</font></td>
+                    <td style="vertical-align: top;">
+                        <ul style="margin: 0; padding: 0;" class="resume-search-pages">
+                            {% for i in 1..pageCount %}
+                                <li style="font-size: small; font-weight: bold; float: left; display: inline-block; margin: 4px 5px; width: 14px; text-align: right;">
+                                    <a href="{{ path('ResumeSearch', params | merge({'page': i})) }}">{{ i }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+            {% endif %}
+        </td>
+      </tr>
+      <tr>
+        <td>
+            <table border="0" width="100%" cellpadding="1" cellspacing="0" id="resume-listing-table">
+              <tr>
+                <th width="21%">Contact Name</th>
+                <th width="20%">Resume Action</th>
+                <th width="20%">Current Location</th>
+                <th width="20%">Desired Location</th>
+                <th width="19%">Phone Number</th>
+                <th>Actions</th>
+              </tr>
+              {% for resume in results %}
+                    <tr>
+                        <td width="21%">
+                            <a href="{{ path('ViewResume', { 'resumeId': resume.id } ) }}">
+                                {{ resume.displayFullName }}
+                            </a>
+                        </td>
+                        <td width="20%">{{ resume.dateEntered | date('F d, Y') }}</td>
+                        <td width="20%">{{ resume.currentState }}</td>
+                        <td width="20%">{{ resume.desiredState }}</td>
+                        <td width="19%">{{ resume.phoneArea }}-{{ resume.phone}}</td>
+                        <td>
+                            {% if resume.resumeFile %}
+                                <a href="{{ path('DownloadResume', {'resumeId': resume.id}) }}">Download</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <br clear="all">
+
+            {% if hasNextButton %}
+            <div align="center"><a href="{{ path('ResumeSearch', params | merge({'page': page + 1})) }}">Next {{ max }} matches</a></div>
+            {% endif %}
+         </td>
+      </tr>
+    </table>
+</div>
+{% endblock content %}

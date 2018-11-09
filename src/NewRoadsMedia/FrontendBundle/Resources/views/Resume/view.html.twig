@@ -1,0 +1,206 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}View Profile{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var $wrapper = $('#preview-resume-wrapper');
+            var $frame = $('#preview-resume-frame');
+            $('.view-resume').click(function() {
+                $wrapper.show();
+                if (!$frame.attr('src')) {
+                    $frame.attr('src', $frame.data('src'));
+                }
+
+                return false;
+            });
+            $('.close-resume').click(function() {
+                $wrapper.hide();
+
+                return false;
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/view-profile.css') }}"/>
+{% endblock %}
+
+{% block content %}
+    {% if resume.id == user.id %}
+        <div class="container top-links">
+            <a href="{{ path('EditResume') }}" class="button">&gt; Edit Profile</a>
+            <a href="{{ path('JobSeekerFolder') }}" class="button green">&gt; Your Account</a>
+        </div>
+    {% endif %}
+    <table id="view-profile">
+        <tr>
+            <td id="view-profile-snapshot">
+                {% if resume.profilePicture %}
+                    <img src="{{ resume.profilePicture }}" class="profile-picture"/>
+                {% endif %}
+                <h1>{{ resume.name }}</h1>
+                <div class="field-lines">
+                    <div class="field">
+                        <span class="label">Job Title: </span>
+                        <span class="value">{{ resume.title }}</span>
+                    </div>
+                    {% if resume.company %}
+                        <div class="field">
+                            <span class="label">Current Employer: </span>
+                            <span class="value">{{ resume.company }}</span>
+                        </div>
+                    {% endif %}
+                    {% if resume.certification and resume.certification.teaching %}
+                        <div class="field">
+                            <span class="label">Certifications: </span>
+                            <span class="value">{{ resume.certification.teaching }}</span>
+                            <span class="label">States: </span>
+                            <span class="value">{{ resume.certification.locations | join(', ') }}</span>
+                        </div>
+                    {% endif %}
+                    {% if resume.industries | length > 0 %}
+                        <div class="field">
+                            <span class="label">{{ 'profile.industry' | trans() }}: </span>
+                            <span class="value">{{ resume.industries | join(', ') }}</span>
+                        </div>
+                    {% endif %}
+                    {% if resume.focus | length > 0 %}
+                        <div class="field">
+                            <span class="label">STEM Focus:  </span>
+                            <span class="value">{{ resume.focus | join(', ') }}</span>
+                        </div>
+                    {% endif %}
+                    {% if resume.experience %}
+                        <div class="field">
+                            <span class="label">Experience: </span>
+                            <span class="value">{{ resume.experience }}</span>
+                        </div>
+                    {% endif %}
+                    {% if resume.specialty %}
+                        <div class="field">
+                            <span class="label">{{ 'profile.specialty' | trans() }}: </span>
+                            <span class="value">{{ resume.specialty }}</span>
+                        </div>
+                    {% endif %}
+                    {% if resume.currentJobStatus %}
+                        <div class="field">
+                            <span class="label">Job Status: </span>
+                            <span class="value">{{ resume.currentJobStatus }}</span>
+                        </div>
+                    {% endif %}
+                    {% if resume.salary %}
+                        <div class="field">
+                            <span class="label">Salary: </span>
+                            <span class="value">{{ resume.salary }}</span>
+                        </div>
+                    {% endif %}
+                    <div class="field">
+                        <span class="label">Current Location: </span>
+                        <span class="value">{{ resume.city }}, {{ resume.currentState }}</span>
+                    </div>
+                    <div class="field">
+                        <span class="label">Desired Location: </span>
+                        <span class="value">{{ resume.desiredState }}</span>
+                    </div>
+                    {% if resume.dateAvailableText %}
+                        <div class="field">
+                            <span class="label">Date Available: </span>
+                            <span class="value">{{ resume.dateAvailableText }}</span>
+                        </div>
+                    {% endif %}
+                </div>
+                <br/>
+                <div class="field">
+                    <span class="label">Objective: </span><br/>
+                    <div class="value" style="padding-left: 10px;">{{ resume.resumeJobObjective | raw }}</div>
+                </div>
+
+                {% if resume.workSamples | length > 0 %}
+                    <br/>
+                    <div class="field">
+                        <span class="label">Work Samples: </span><br/>
+                        <div class="value" style="padding-left: 10px;">
+                            {% for workSample in resume.workSamples %}
+                                {{ workSample.description }}: <a href="{{ workSample.website }}" target="_blank">{{ workSample.website }}</a><br/>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if hasResumeAccess and resume.resumeFile %}
+                    <div class="resume-file">
+                        <a href="#" class="view-resume">View Resume</a> |
+                        <a href="{{ path('PreviewResumeFile', {'resumeId': resume.id}) }}">Print Resume</a> |
+                        <a href="{{ path('DownloadResume', {'resumeId': resume.id}) }}">Download Resume</a>
+                    </div>
+                {% endif %}
+            </td>
+            <td id="view-profile-contact">
+                <div class="title">Contact Me</div>
+                <ul>
+                    {% if resume.contactEmail %}
+                        <li>
+                            <img src="{{ asset('images/profile/email_icon2.png') }}"/>
+                            <a href="mailto:{{ resume.contactEmail }}">{{resume.contactEmail}}</a>
+                        </li>
+                    {% endif %}
+                    {% if resume.phone or resume.phoneArea %}
+                        <li>
+                            <img src="{{ asset('images/profile/phone_icon2.png') }}"/>
+                            {{ resume.phoneArea }}-{{ resume.phone }}
+                        </li>
+                    {% endif %}
+                    {% if resume.website %}
+                        <li>
+                            <img src="{{ asset('images/profile/computer_mouse.png') }}"/>
+                            <a href="{{ resume.website }}" target="_blank">Personal Website</a>
+                        </li>
+                    {% endif %}
+                    {% if resume.socialMedia %}
+                        {% if resume.socialMedia.linkedIn %}
+                            <li>
+                                <img src="{{ asset('images/profile/linkedin.png') }}"/>
+                                <a href="{{ resume.socialMedia.linkedIn }}" target="_blank">Linkedin</a>
+                            </li>
+                        {% endif %}
+                        {% if resume.socialMedia.twitter %}
+                            <li>
+                                <img src="{{ asset('images/profile/twitter.png') }}"/>
+                                <a href="{{ resume.socialMedia.twitter }}" target="_blank">Twitter</a>
+                            </li>
+                        {% endif %}
+                        {% if resume.socialMedia.facebook %}
+                            <li>
+                                <img src="{{ asset('images/profile/facebook.png') }}"/>
+                                <a href="{{ resume.socialMedia.facebook }}" target="_blank">Facebook</a>
+                            </li>
+                        {% endif %}
+                        {% if resume.socialMedia.googlePlus %}
+                            <li>
+                                <img src="{{ asset('images/profile/googleplus.png') }}"/>
+                                <a href="{{ resume.socialMedia.googlePlus }}" target="_blank">Google+</a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                </ul>
+            </td>
+        </tr>
+
+        {# Resume Preview #}
+        {% if hasResumeAccess and resume.resumeFile %}
+            <tr id="preview-resume-wrapper">
+                <td colspan="2">
+                    <a id="preview-resume-close" class="close-resume" href="#">&gt; Close Resume View</a>
+                    <iframe id="preview-resume-frame" data-src="{{ url('PreviewResumeFile', {'resumeId': resume.id}) }}" width="100%" height="1220px"></iframe>
+                </td>
+            </tr>
+        {% endif %}
+
+    </table>
+{% endblock %}

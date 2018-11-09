@@ -1,0 +1,80 @@
+.form-errors {
+    text-align: center;
+    padding: 15px 0 5px;
+    font-weight: bold;
+    color: #900;
+}
+
+#content .general-login {
+    width: 478px;
+    border: 1px solid #ddd;
+    margin: 40px auto;
+    border-radius: 5px;
+    padding: 25px;
+}
+
+#content .general-login h1 {
+    text-align: center;
+    font-size: 28px;
+}
+
+#login-select {
+    text-align: center;
+}
+
+#login-select {
+    margin: 20px 0 0;
+}
+
+#login-select label {
+    display: inline-block;
+    border: 1px solid #ddd;
+    box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+    width: 227px;
+    cursor: pointer;
+    padding: 10px 5px;
+    font-size: 14px;
+}
+
+#login-select label:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+#login-select label:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#login-select label.active {
+    box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+    background: #eee;
+}
+
+#login-select input {
+    vertical-align: middle;
+    margin: 0 5px 1px 0;
+}
+
+#content form input[type="email"],
+#content form input[type="password"] {
+    padding: .8em;
+    line-height: 1.2;
+    font-size: 15px;
+    display: block;
+    margin: 20px 0;
+    width: 450px;
+}
+
+#content form button {
+    width: 450px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 2em;
+}
+
+#content form .forgot-password {
+    display: block;
+    margin-top: 35px;
+    text-align: center;
+}

@@ -1,0 +1,24 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Delete Account{% endblock %}
+
+{% block content %}
+    {% if isDeleted %}
+        <p style="text-align: center; font-weight: bold;">Your account was successfully deleted.</p>
+    {% else %}
+        {{ form_start(form) }}
+            <center>
+                <font face="Arial, Helvetica, sans-serif" size="3" color="#333366">
+                    {% if is_granted('ROLE_JOB_SEEKER') %}
+                        Click the button below to delete your Job Seeker Account, which includes your resume.<br>
+                        Once you delete your Job Seeker Account, you <i>cannot</i> retrieve it.<br>
+                        <br>
+                        Otherwise, click on the <i>back</i> button in your browser to return to <br> your Job
+                        Seeker Account. Thanks and good luck. <br>
+                    {% endif %}
+                </font>
+                <br>{{ form_widget(form.delete) }}
+            </center>
+        {{ form_end(form) }}
+    {% endif %}
+{% endblock %}

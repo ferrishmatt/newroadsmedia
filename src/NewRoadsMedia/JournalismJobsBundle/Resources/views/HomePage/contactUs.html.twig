@@ -1,0 +1,263 @@
+{% set page_name = 'Contact Us' %}
+
+{% extends 'NewRoadsMediaFrontendBundle:HomePage:rawContent.html.twig' %}
+
+{% block innerContent %}
+<p><font face="Arial, Helvetica, sans-serif" size="2"><p>
+<b>E-mail</b>: <a href="mailto:info@journalismjobs.com">info@journalismjobs.com</a><br>
+<br>
+<b>Phone</b>: {{ parameter('site_phone') }} -- Berkeley, California.<br>
+<br>
+Also check out our <b>Frequently Asked Questions </b> section below.<br>
+
+
+	<BR>
+	<TABLE width=100%>
+		<TD bgcolor="#333399">
+		<TABLE width=100%>
+			<TD><font size="3" face="arial,verdana,helvetica" color="#FFFFFF"><b><A NAME="faqtop">Frequently Asked Questions</A></B></TD>
+		</TR>
+		</TABLE></TD>
+	</TR>
+	<TR>
+		<TD><img src="{{ asset('pics/burg_arrow_white.gif') }}" width=11 height=10 alt="" border="0"><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><B><A href="#1">Post a Job Ad / Search Resumes</A></B></TD>
+	</TR>
+	<TR>
+		<TD><img src="{{ asset('pics/burg_arrow_white.gif') }}" width=11 height=10 alt="" border="0"><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><B><A href="#1dot1">Pay an Invoice</A></B></TD>
+	</TR>
+
+	<TR>
+		<TD><img src="{{ asset('pics/burg_arrow_white.gif') }}" width=11 height=10 alt="" border="0"><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><B><A href="#2">Searching for Jobs</A></B></TD>
+	</TR>
+	<TR>
+		<TD><img src="{{ asset('pics/burg_arrow_white.gif') }}" width=11 height=10 alt="" border="0"><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><B><A href="#3">Logging In</A></B></TD>
+	</TR>
+	<TR>
+		<TD><img src="{{ asset('pics/burg_arrow_white.gif') }}" width=11 height=10 alt="" border="0"><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><B><A href="#4">Resume Duration</A></B></TD>
+	</TR>
+	<TR>
+		<TD><img src="{{ asset('pics/burg_arrow_white.gif') }}" width=11 height=10 alt="" border="0"><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><B><A href="#6">Editing Your Resume</A></B></TD>
+	</TR>
+	<TR>
+		<TD><img src="{{ asset('pics/burg_arrow_white.gif') }}" width=11 height=10 alt="" border="0"><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><B><A href="#7">Cover Letters</A></B></TD>
+	</TR>
+	<TR>
+		<TD><img src="{{ asset('pics/burg_arrow_white.gif') }}" width=11 height=10 alt="" border="0"><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><B><A href="#9">Employer Folder</A></B></TD>
+	</TR>
+	<TR>
+		<TD><img src="{{ asset('pics/burg_arrow_white.gif') }}" width=11 height=10 alt="" border="0"><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><B><A href="#10">Job Notification</A></B></TD>
+	</TR>
+	<TR>
+		<TD><img src="{{ asset('pics/burg_arrow_white.gif') }}" width=11 height=10 alt="" border="0"><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><B><A href="#11">Job Seeker Folder</A></B></TD>
+	</TR>
+	<TR>
+		<TD><img src="{{ asset('pics/burg_arrow_white.gif') }}" width=11 height=10 alt="" border="0"><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><B><A href="#12">Search Resumes</A></B></TD>
+	</TR>
+	<TR>
+		<TD><img src="{{ asset('pics/burg_arrow_white.gif') }}" width=11 height=10 alt="" border="0"><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><B><A href="#13">Interns</A></B></TD>
+	</TR>
+	</TABLE><BR><BR>
+
+	<TABLE>
+	<TR>
+		<TD colspan=2><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="3" COLOR="#003366"><A NAME="1"><B>Post a Job Ad / Search Resumes</B></FONT></A></TD>
+	</TR>
+	<TR>
+		<TD rowspan=3><img src="{{ asset('pics/dot_clear.gif') }}" width=5 height=1 alt="" border="0"></td>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><font color="#FF0000"><B>Q.</B></FONT> Is there a cost to use JournalismJobs.com? </FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><font color="#FF0000"><B>A.</B></FONT> <b>Job Seekers:</b> JournalismJobs.com is a <b>free service for job seekers.</b> You can search for jobs, post a resume online, and manage the search online with the Job Seeker Folder feature. You also can receive free job announcements by e-mail.<BR> <p> <b>Employers:</b> Job ads are <b>$75 each</b>, and run for 5 weeks. Access to our resume database is included with the price of a paid ad. To post an ad, <a href="{{ path('PostNewJob') }}">click here</a>, or e-mail your opening to <a href="mailto:ads@journalismjobs.com">ads@journalismjobs.com</a>. Include contact information for billing purposes. Ads are posted the same day we receive them (including weekends). We will send you a bill. If you just want to access our resume database, the cost is $75 for a five-week subscription. Call {{ parameter('site_phone') }} to set up an account. </FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="1"><A href="#faqtop">Back to Top</A></TD>
+	</TR>
+	</TABLE><BR><BR>
+	<TABLE>
+	<TR>
+		<TD colspan=2><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="3" COLOR="#003366"><A NAME="1dot1"><B>Pay an Invoice</B></FONT></A></TD>
+	</TR>
+	<TR>
+		<TD rowspan=3><img src="{{ asset('pics/dot_clear.gif') }}" width=5 height=1 alt="" border="0"></td>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><font color="#FF0000"><B>Q.</B></FONT> How do I pay an invoice online? </FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><font color="#FF0000"><B>A.</B></FONT> You may use this <a href="/payment/">secure page</a> to pay by credit card </FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="1"><A href="#faqtop">Back to Top</A></TD>
+	</TR>
+	</TABLE><BR><BR>
+
+	<TABLE>
+	<TR>
+		<TD colspan=2><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="3" COLOR="#003366"><A NAME="2"><B>Searching for Jobs</FONT></A></TD>
+	</TR>
+	<TR>
+		<TD rowspan=3><img src="{{ asset('pics/dot_clear.gif') }}" width=5 height=1 alt="" border="0"></td>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><font color="#FF0000"><B>Q.</B></FONT> How do I search for job openings? </FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><font color="#FF0000"><B>A.</B></FONT> Click on any of the links in the "<a href="{{ path('JobPosts') }}">Find a Job</a>" section on the home page. From there, select the criteria that applies to your search.<br>
+</FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="1"><A href="#faqtop">Back to Top</A></TD>
+	</TR>
+	</TABLE><BR><BR>
+	<TABLE>
+	<TR>
+		<TD colspan=2><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="3" COLOR="#003366"><A NAME="3"><B>Logging In</FONT></A></TD>
+	</TR>
+	<TR>
+		<TD rowspan=3><img src="{{ asset('pics/dot_clear.gif') }}" width=5 height=1 alt="" border="0"></td>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><font color="#FF0000"><B>Q.</B></FONT>  I can't seem to log in to my account. Is there something I'm doing wrong? </FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><font color="#FF0000"><B>A.</B></FONT> Make sure you're logging into the right account. Sometimes users try to log into the Job Seeker Folder when they mean to access their Employer Folder. Also make sure you're logging in with the same e-mail address and password that was used to create the account. To retrieve a forgotten password, click on the "Password" link on the home page. </FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="1"><A href="#faqtop">Back to Top</A></TD>
+	</TR>
+	</TABLE><BR><BR>
+	<TABLE>
+	<TR>
+		<TD colspan=2><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="3" COLOR="#003366"><A NAME="4"><B>Resume Duration</FONT></A></TD>
+	</TR>
+	<TR>
+		<TD rowspan=3><img src="{{ asset('pics/dot_clear.gif') }}" width=5 height=1 alt="" border="0"></td>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><font color="#FF0000"><B>Q.</B></FONT> How long will my resume remain in the database? </FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><font color="#FF0000"><B>A.</B></FONT>  We typically let resumes run for six months. However, resume listings can be deleted or renewed at any time by the user. </FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="1"><A href="#faqtop">Back to Top</A></TD>
+	</TR>
+	</TABLE>
+	<TABLE>
+	<TR>
+
+	</TR>
+	</TABLE><BR><BR>
+	<TABLE>
+	<TR>
+		<TD colspan=2><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="3" COLOR="#003366"><A NAME="6"><B>Editing Your Resume</FONT></A></TD>
+	</TR>
+	<TR>
+		<TD rowspan=3><img src="{{ asset('pics/dot_clear.gif') }}" width=5 height=1 alt="" border="0"></td>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><font color="#FF0000"><B>Q.</B></FONT>  My resume has changed since I applied for a job. How will employers know about my updated resume?   </FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><font color="#FF0000"><B>A.</B></FONT> Go to your Job Seeker Folder to edit your resume; it will automatically update the online resume that employers see. </FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="1"><A href="#faqtop">Back to Top</A></TD>
+	</TR>
+	</TABLE><BR><BR>
+	<TABLE>
+	<TR>
+		<TD colspan=2><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="3" COLOR="#003366"><A NAME="7"><B>Cover Letters</FONT></A></TD>
+	</TR>
+	<TR>
+		<TD rowspan=3><img src="{{ asset('pics/dot_clear.gif') }}" width=5 height=1 alt="" border="0"></td>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><font color="#FF0000"><B>Q.</B></FONT> I forgot to include a cover letter when I applied to a job. Can I submit one now?  </FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><font color="#FF0000"><B>A.</B></FONT> You can only include a cover letter when you initially apply for a job. You also cannot edit a cover letter already submitted.  </FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="1"><A href="#faqtop">Back to Top</A></TD>
+
+	</TR>
+	</TABLE><BR><BR>
+	<TABLE>
+	<TR>
+		<TD colspan=2><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="3" COLOR="#003366"><A NAME="9"><B>Employer Folder</FONT></A></TD>
+	</TR>
+	<TR>
+		<TD rowspan=3><img src="{{ asset('pics/dot_clear.gif') }}" width=5 height=1 alt="" border="0"></td>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><font color="#FF0000"><B>Q.</B></FONT> When does my Employer Folder membership expire?  </FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><font color="#FF0000"><B>A.</B></FONT> Your Employer Folder never expires. </FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="1"><A href="#faqtop">Back to Top</A></TD>
+	</TR>
+	</TABLE><BR><BR>
+	<TABLE>
+	<TR>
+		<TD colspan=2><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="3" COLOR="#003366"><A NAME="10"><B>Job Notification</FONT></A></TD>
+	</TR>
+	<TR>
+		<TD rowspan=3><img src="{{ asset('pics/dot_clear.gif') }}" width=5 height=1 alt="" border="0"></td>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><font color="#FF0000"><B>Q.</B></FONT> Can I alter or delete my job notification search once it starts? </FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><font color="#FF0000"><B>A.</B></FONT> No. The best thing to do is to shorten your search duration. You can also submit multiple searches using the same e-mail address.  </FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="1"><A href="#faqtop">Back to Top</A></TD>
+	</TR>
+	</TABLE><BR><BR>
+	<TABLE>
+	<TR>
+		<TD colspan=2><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="3" COLOR="#003366"><A NAME="11"><B>Job Seeker Folder</FONT></A></TD>
+	</TR>
+	<TR>
+		<TD rowspan=3><img src="{{ asset('pics/dot_clear.gif') }}" width=5 height=1 alt="" border="0"></td>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><font color="#FF0000"><B>Q.</B></FONT> When does my Job Seeker Folder become active, and for how long? </FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><font color="#FF0000"><B>A.</B></FONT> Your Job Seeker Folder becomes active as soon as you submit a resume to our database. It will stay active as long as you keep your resume stored in our system. Use the Job Seeker Folder feature to edit, renew or delete your resume. </FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="1"><A href="#faqtop">Back to Top</A></TD>
+	</TR>
+	</TABLE><BR><BR>
+	<TABLE>
+	<TR>
+		<TD colspan=2><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="3" COLOR="#003366"><A NAME="12"><B>Search Resumes</FONT></A></TD>
+	</TR>
+	<TR>
+		<TD rowspan=3><img src="{{ asset('pics/dot_clear.gif') }}" width=5 height=1 alt="" border="0"></td>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><font color="#FF0000"><B>Q.</B></FONT> Where do I sign up to search the resume database?  </FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><font color="#FF0000"><B>A.</B></FONT> Click on the Search Resumes link on the home page and send us a message telling us who you are, where you work, and your work phone number. </FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="1"><A href="#faqtop">Back to Top</A></TD>
+	</TR>
+	</TABLE><BR><BR>
+	<TABLE>
+	<TR>
+		<TD colspan=2><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="3" COLOR="#003366"><A NAME="13"><B>Interns</FONT></A></TD>
+	</TR>
+	<TR>
+		<TD rowspan=3><img src="{{ asset('pics/dot_clear.gif') }}" width=5 height=1 alt="" border="0"></td>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><font color="#FF0000"><B>Q.</B></FONT> Is the Job Seeker Folder limited to users searching for a full-time job?  </FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><font color="#FF0000"><B>A.</B></FONT> No. Anyone who posts a resume in our database will receive a Job Seeker Folder. </FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="1"><A href="#faqtop">Back to Top</A></TD>
+	</TR>
+	</TABLE><BR><BR>
+	<TABLE>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="2"><B>If your question wasn't answered, send an e-mail to: <a href="mailto:info@journalismjobs.com">info@journalismjobs.com</a>, and we will respond as soon as possible. </FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="ARIAL, VERDANA, HELVETICA" SIZE="1"><A href="#faqtop">Back to Top</A></TD>
+	</TR>
+	</TABLE><BR><BR>
+	</td>
+</tr>
+</table>
+
+
+
+{% endblock %}

@@ -1,0 +1,98 @@
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors | length > 0 %}
+            <div class="alert alert-danger">
+                {% for error in errors %}
+                    <p>{{ error.message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}
+
+{% block form_row %}
+    <div class="form-group">
+        {{ form_label(form) }}
+        {{ form_widget(form) }}
+        {{ form_errors(form) }}
+    </div>
+{% endblock %}
+
+{% block form_widget_simple -%}
+    {%- set attr = attr | merge({'class': 'form-control' ~ (attr.class is defined ? ' ' ~ attr.class : '')}) -%}
+    {%- set type = type|default('text') -%}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+{%- endblock form_widget_simple %}
+
+{% block checkbox_row -%}
+    {% if inline is defined and inline %}
+        {% set label_attr = label_attr | merge({'class': 'checkbox-inline'}) %}
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        {{ form_widget(form) }}
+        {{ label | trans({}, translation_domain) }}
+        </label>
+    {% else %}
+        <div class="checkbox">
+            <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+            {{ form_widget(form) }}
+            {{ label | trans({}, translation_domain) }}
+            </label>
+            {{ form_errors(form) }}
+        </div>
+    {% endif %}
+{%- endblock %}
+
+{% block radio_row -%}
+    <div class="radio">
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        {{ form_widget(form) }}
+        {{ label | trans({}, translation_domain) }}
+        </label>
+        {{ form_errors(form) }}
+    </div>
+{%- endblock %}
+
+{% block textarea_widget -%}
+    {%- set attr = attr | merge({'class': 'form-control' ~ (attr.class is defined ? ' ' ~ attr.class : '')}) -%}
+    <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
+{%- endblock textarea_widget %}
+
+{% block choice_widget -%}
+    {% if expanded %}
+        {%- set attr = attr | merge({'class': 'form-group'}) -%}
+        <div {{ block('widget_container_attributes') }}>
+            {% for child in form %}
+                {% set child_label_attr = child.vars.label_attr | merge({'class': multiple ? 'checkbox-inline' : 'radio-inline'}) %}
+                <label{% for attrname, attrvalue in child_label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+                {{- form_widget(child) -}}
+                {{ child.vars.label | trans({}, translation_domain) }}
+                </label>
+            {% endfor %}
+        </div>
+    {% else %}
+        {%- set attr = attr | merge({'class': 'form-control'}) -%}
+        {{- block('choice_widget_collapsed') -}}
+    {% endif %}
+{%- endblock choice_widget %}
+
+{% block _focus_row %}
+<div class="form-group">
+    {{ form_label(form) }}<br/>
+    {% for child in form %}
+        <label{% for attrname, attrvalue in child.vars.label_attr | merge({'class': 'checkbox-inline'}) %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        {{ form_widget(child) }}
+        {{ child.vars.label | trans({}, translation_domain) }}
+        </label>
+        {{ form_errors(child) }}
+    {% endfor %}
+{% endblock %}
+
+{% block _nonFocused_row %}
+    {% set label_attr = label_attr | merge({'class': 'checkbox-inline'}) %}
+    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+    {{ form_widget(form) }}
+    {{ label | trans({}, translation_domain) }}
+    </label>
+    {{ form_errors(form) }}
+</div>
+{% endblock %}

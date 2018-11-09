@@ -1,0 +1,15 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ parameter('site_title') }} - Job Listing - {{ job.titleOfPositionOpen }}{% endblock %}
+
+{% block content %}
+
+<font face="Arial, Helvetica, sans-serif" size="3"><b><font color="##000000">
+            <p>
+                <br>
+            </p><div align="center"> Sorry, that job is no longer listed on {{ parameter('site_title') }}. Click <br> on the Find a Job tab above to search for other jobs. <br> </div>
+<pre>
+</pre>
+
+        </font></b></font>
+{% endblock %}

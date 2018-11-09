@@ -1,0 +1,53 @@
+{% extends 'SonataBlockBundle:Block:block_base.html.twig' %}
+
+{% block block %}
+    <table class="table table-bordered table-striped sonata-ba-list">
+        <thead>
+        <tr>
+            <th>Quick Links</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td>
+                <ul>
+                    <li><a href="{{ path('admin_newroadsmedia_frontend_complete_billing_list') }}">Bill Tracking</a></li>
+                    <li><a href="{{ path('admin_newroadsmedia_frontend_invoice_list') }}">Paid Invoices</a></li>
+                    {#<li>#}
+                        {#Employer:#}
+                        {#<a href="{{ path('admin_newroadsmedia_frontend_employer_create') }}">Add new</a> /#}
+                        {#<a href="{{ path('admin_newroadsmedia_frontend_view_employer_account_list') }}">List</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#Job Seeker:#}
+                        {#<a href="{{ path('admin_newroadsmedia_frontend_resume_create') }}">Add new</a> /#}
+                        {#<a href="{{ path('admin_newroadsmedia_frontend_view_job_seeker_account_list') }}">List</a>#}
+                    {#</li>#}
+                    <li>
+                        News:
+                        <a href="{{ path('admin_newroadsmedia_frontend_news_create') }}">Add new</a> /
+                        <a href="{{ path('admin_newroadsmedia_frontend_news_list') }}">List</a>
+                    </li>
+                    <li>
+                        Job:
+                        <a href="{{ path('admin_newroadsmedia_frontend_job_create') }}">Add new</a> /
+                        <a href="{{ path('admin_newroadsmedia_frontend_job_list') }}">List</a>
+                    </li>
+                    <li><a href="{{ path('admin_newroadsmedia_frontend_employer_resumeAccess') }}">Enable Resume Access</a></li>
+                    <li><a href="{{ path('admin_newroadsmedia_frontend_employer_packagePlan') }}">Job Ad Package</a></li>
+                    <li>
+                        Allow/Disallow Email Invoice Option
+                        [<a href="{{ path('admin_newroadsmedia_frontend_employer_invoiceOption') }}">Enable/Disable</a>]
+                        [<a href="{{ path('admin_newroadsmedia_frontend_employer_list', {'filter': {'invoiceOption': {'value': 1}}}) }}">List Of Enabled Employers</a>]
+                        {% if allowFree %}
+                            [<a href="{{ path('admin_newroadsmedia_frontend_employer_list', {'filter': {'freeOption': {'value': 1}}}) }}">Free Employers List</a>]
+                        {% endif %}
+                    </li>
+                    <li><a href="{{ path('admin_newroadsmedia_frontend_job_crawler_report') }}">Crawler Report</a></li>
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

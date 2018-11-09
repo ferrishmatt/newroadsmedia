@@ -1,0 +1,80 @@
+#wrapper{
+    width:780px;
+    margin-left: 0;
+
+
+}
+
+#wrapper h1 {
+    color:#FFF;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+#wrapper a {
+
+    font-size:14px;
+    padding-top:10px;
+    color: #2366b6;
+    text-decoration:underline;
+
+}
+
+#wrapper br {
+    margin-bottom: 20px;}
+
+#tabContainer {
+    width:740px;
+    padding:10px;
+    background-color:#EAEAEA;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.tabs {
+    height:30px;
+}
+
+#content div#button_ad {
+    margin-top: -30px;
+    margin-left: -100px;
+    padding-left: 0;
+    border: 0;
+}
+
+#content div#button_ad a img {
+    height: 230px;
+    width: 250px;
+}
+
+/* Flash Notices */
+.flash-notice {
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+    color: #92bb38;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.flash-notice ul li {
+    display: block;
+    margin: 5px;
+}
+
+/* Flash Errors */
+.flash-error {
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+    color: #f00;
+}
+
+/* Job Alerts */
+#industries-table {
+    width: 100%;
+}
+
+#industries-table td{
+    width: 33%;
+}

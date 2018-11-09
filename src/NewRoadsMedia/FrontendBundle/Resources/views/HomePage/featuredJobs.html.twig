@@ -1,0 +1,45 @@
+{% set showAllLink = showAllLink is defined and showAllLink %}
+{% if featuredJobs | length > 0 %}
+    <div id="featured-jobs">
+        <h2>
+        {% if featuredJobTitle is defined %}{{ featuredJobTitle }}{% else %}Featured Jobs{% endif %}
+            <div class="view-more-jobs">
+                <a href="{{ path('JobPosts') }}">&gt;&gt; more jobs</a>
+            </div>
+
+    </h2>
+        <table>
+            <tr>
+                {% for row in featuredJobs | batch (featuredJobs | length / 2) %}
+                    <td>
+                    {% for job in row %}
+                        {% set link = job.isExternal ? job.website : path('ViewJob', {'jobLink': job.getPermLink()}) %}
+                        <div class="featured-job{% if loop.last %} last{% endif %}">
+                            {% if job.companyImage %}
+                                <img src="{{ job.companyImage }}" alt="{{ job.company | escape }}" class="company-image"/>
+                            {% endif %}
+                            <h3><a href="{{ link }}">{{ job.titleOfPositionOpen }}</a></h3>
+                            <div class="company">{{ job.company }}</div>
+                            <ul class="details">
+                                {% if job.locationDisplay %}
+                                    <li class="location">{{ job.locationDisplay }}</li>
+                                {% endif %}
+                                {% if job.jobType %}
+                                    <li class="status">{{ job.jobType }}</li>
+                                {% endif %}
+                                <li class="posted">
+                                    Posted: <span class="date">{{ job.createDate | date('j, M') }}</span>
+                                </li>
+                                {% if showAllLink and is_new_job(job) %}
+                                    <li class="new-job">New</li>
+                                {% endif %}
+                            </ul>
+                            <div class="clear"></div>
+                        </div>
+                    {% endfor %}
+                    </td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+{% endif %}

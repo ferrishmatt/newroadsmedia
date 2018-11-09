@@ -1,0 +1,9 @@
+{% spaceless %}
+    {% if banners | length > 0 %}
+        <div class="top-banner">
+            {% for banner in banners %}
+                {{ include('@NewRoadsMediaFrontend/BannerAd/index.html.twig', {banner: banner, sid: sids[banner.id]}) }}
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endspaceless %}

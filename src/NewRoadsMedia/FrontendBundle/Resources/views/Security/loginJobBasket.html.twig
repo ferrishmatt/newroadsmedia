@@ -1,0 +1,178 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ parameter('site_title') }} -- Job Basket Login{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css"  href="{{ asset('css/tjform.css') }}"/>
+    <style type="text/css">
+        #content h2 {
+            font-size: 30px;
+            margin: 0;
+        }
+        #content h2 strong {
+            color: #f90;
+        }
+        #content h3 {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        #content ul {
+            margin-top: 5px;
+        }
+        #content li {
+            list-style-type: disc;
+            margin-left: 16px;
+            font-size: 16px;
+            line-height: 28px;
+        }
+        #content .form-errors li {
+            list-style-type: none;
+        }
+        .button-gray {
+            width: 200px;
+        }
+        .form-errors {
+            color: #c00;
+            text-align: center;
+            margin-bottom: 15px;
+            width: 470px;
+        }
+        .login {
+            width: 100%;
+        }
+        .login td.new-users {
+            border-right: 1px solid #000;
+            width: 75%;
+        }
+        .login td.registered-users {
+            padding-left: 30px;
+        }
+        #content .registered-users h2 {
+            font-size: 20px;
+        }
+
+        #content input, #content select {
+            display: inline-block;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            width: 230px;
+        }
+
+        #content .new-users input {
+            width: 290px;
+            margin-right: 20px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+
+        .button {
+            background: #9ec44a;
+            font-size: 22px;
+            padding: 7px 15px;
+        }
+
+        tr#captcha label{
+            display:inline-block !important;
+            float:left;
+        }
+        tr#captcha img{
+            float:left;
+            margin-bottom:-6px;
+        }
+        tr#captcha br{
+            clear:both;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<br><br>
+<table class="login">
+    <tr>
+        <td class="new-users">
+            {% block login_heading %}
+                <h2>Create a Free Account for <strong>Job Basket</strong></h2>
+                <br/>
+                <h3>Other Account Benefits:</h3>
+                <ul>
+                    <li>Post a resume and let employers contact you about their openings.</li>
+                    <li>Create custom Job Alerts that are emailed to you daily.</li>
+                    <li>Apply for jobs online using your {{ parameter('site_title') }} resume profile.</li>
+                    <li>Manage the entire search using your own password-protected account.</li>
+                </ul>
+                <br/>
+            {% endblock %}
+
+            {% if accountForm.vars.errors %}
+                <div class="form-errors">
+                    {{ form_errors(accountForm) }}
+                </div>
+            {% endif %}
+            {{ form_start(accountForm) }}
+            <table>
+                <tr>
+                    <td>
+                        {{ form_label(accountForm.name, 'Your Name') }}<br/>
+                        {{ form_widget(accountForm.name) }}
+                    </td>
+                    <td>
+                        {{ form_label(accountForm.email, 'Your Email') }}<br/>
+                        {{ form_widget(accountForm.email) }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {{ form_label(accountForm.password.first, 'Create Password') }}<br/>
+                        {{ form_widget(accountForm.password.first) }}
+                    </td>
+                    <td>
+                        {{ form_label(accountForm.password.second, 'Verify Password') }}<br/>
+                        {{ form_widget(accountForm.password.second) }}
+                    </td>
+                </tr>
+                <tr id="captcha">
+                    <td colspan="2"><label>Type in this Security Code Below:</label>{{ form_widget(accountForm.captcha) }}</td>
+                </tr>
+            </table>
+            <div id="terms">
+                By clicking "Create Account" you agree to our <a href="{{ path('Terms') }}" target="_blank">Terms and Conditions</a>.
+            </div>
+
+
+            <br/><br/>
+            <p style="text-align: center;">
+                <button type="submit" class="button">&gt; Create Account</button>
+            </p>
+            {{ form_end(accountForm) }}
+        </td>
+        <td class="registered-users">
+            <h2>Registered Users - Log in</h2>
+            {{ form_errors(form) }}
+            {{ form_start(form, {'attr': {'class': 'cssform'}}) }}
+                <br/>
+                {{ form_label(form._username, 'E-mail Address:') }}<br/>
+                {{ form_widget(form._username) }}<br/>
+                <br/>
+                {{ form_label(form._password, 'Password:') }}<br/>
+                {{ form_widget(form._password) }}<br/>
+                <br/>
+                <div style="font-size: 14px;"><a href="{{ path('ForgotPassword') }}">Forgot</a> your password?</div>
+                <br/>
+                <button type="submit" class="button-gray">Login</button>
+            {{ form_end(form) }}
+        </td>
+    </tr>
+</table>
+{% endblock %}

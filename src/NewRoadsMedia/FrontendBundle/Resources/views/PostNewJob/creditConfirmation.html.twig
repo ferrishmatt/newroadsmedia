@@ -1,0 +1,17 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+    <div style="text-align: center;">
+        <div style="margin-top: 50px; font-size: 16pt; font-weight: bold;">
+            {% if jobs | length == 1 %}
+                Your job ad is now live on {{ parameter('site_title') }}.
+            {% else %}
+                Your job ads are now live on {{ parameter('site_title') }}.
+            {% endif %}
+        </div>
+        <br/>
+        <div><a href="{{ path('EmployerManager') }}"><font color="#ff9900"><b>Click here</b></font></a> to go to your <b>Employer Account.&nbsp;</b></div>
+        <br/>
+        <div>Thank you for using {{ parameter('site_title') }}.</div>
+    </div>
+{% endblock content %}

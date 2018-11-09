@@ -1,0 +1,214 @@
+<?php
+
+namespace NewRoadsMedia\FrontendBundle\Controller;
+
+use NewRoadsMedia\FrontendBundle\Form\Type\JobSearchFormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+
+class HomePageController extends Controller
+{
+    /**
+     * @Route("/index.php", name="Index")
+     * @Template
+     */
+    public function indexAction()
+    {
+        $searchForm = $this->createForm(new JobSearchFormType(), null, array(
+            'simple' => true,
+            'method' => 'GET',
+            'action' => $this->generateUrl('JobPosts'),
+        ));
+        $totalCount = $this->get('journalismjobs.manager.job')->getJobCount();
+
+        return array(
+            'searchForm' => $searchForm->createView(),
+            'totalCount' => $totalCount,
+        );
+    }
+
+    /**
+     * @Route("/", name="IndexRedirect")
+     */
+    public function indexRedirectAction()
+    {
+        return $this->redirect($this->generateUrl('Index'), 301);
+    }
+
+    /**
+     * @Route("/job_listings_latest", name="LatestJobPosts")
+     * @Template()
+     */
+    public function latestJobPostsAction()
+    {
+        $jobs = $this->get('journalismjobs.manager.job')->getLatestJobListings();
+
+        return array(
+            'jobs' => $jobs,
+        );
+    }
+
+    /**
+     * @Template()
+     */
+    public function newsAction()
+    {
+        $newsManager = $this->get('journalismjobs.manager.news');
+        $max = $this->get('journalismjobs.manager.configuration')->get('max_news_articles', 5);
+
+        return array(
+            'allNewsArticles' => $newsManager->getLatestNewsArticles('medianews', $max),
+        );
+    }
+
+    /**
+     * @Template()
+     */
+    public function newsArticlesAction()
+    {
+        $max = 12;
+        $offset = $this->get('journalismjobs.manager.configuration')->get('max_news_articles', 5);
+        $page = (int) $this->getRequest()->get('page', 1);
+        if ($page < 1) {
+            $page = 1;
+        }
+        $firstResult = ($page - 1) * $max + $offset;
+        $articles = $this->get('journalismjobs.manager.news')->getNewsArticles('medianews', $firstResult, $max);
+        $jobs = $this->get('journalismjobs.manager.job')->searchJobs(array(
+            'maxResults' => 10,
+        ));
+
+        return array(
+            'articles' => $articles,
+            'jobs' => $jobs,
+            'page' => $page,
+        );
+    }
+
+    /**
+     * @Template()
+     */
+    public function featuredJobsAction()
+    {
+        $featuredJobs = $this->get('journalismjobs.manager.job')->getFrontPageFeaturedJobListings();
+
+        return array(
+            'featuredJobs' => $featuredJobs,
+            'showAllLink' => true,
+        );
+    }
+
+    /**
+     * @Route("/faq_about_employer_folder", name="FaqAboutEmployerFolder")
+     * @Template
+     */
+    public function faqAboutEmployerFolderAction()
+    {
+        return array();
+    }
+
+    /**
+     * @Route("/contact-us", name="ContactUs")
+     * @Template
+     */
+    public function contactUsAction()
+    {
+        $form = $this->createFormBuilder(null, array(
+                'method' => 'POST',
+                'action' => $this->generateUrl('ContactUs'),
+                'attr' => array('novalidate' => 'novalidate'),
+            ))
+            ->add('email', 'email', array(
+                'label' => 'Your Email Address',
+                'constraints' => array(
+                    new NotBlank(array('message' => 'Please enter the email address to which you would like us to reply.')),
+                    new Email(array('message' => 'Please enter a valid email address.')),
+                ),
+                'required' => true,
+            ))
+            ->add('subject', 'text', array(
+                'label' => 'Subject',
+                'required' => true,
+                'constraints' => array(
+                    new NotBlank(array('message' => 'Please enter a subject.')),
+                ),
+            ))
+            ->add('message', 'textarea', array(
+                'label' => 'Message',
+                'required' => true,
+                'constraints' => array(
+                    new NotBlank(array('message' => 'Please enter a message.')),
+                    new Length(array(
+                        'max' => 2000,
+                        'maxMessage' => 'Message cannot be longer than {{ limit }} characters long',
+                    )),
+                ),
+            ))
+            ->getForm()
+        ;
+        $form->handleRequest($this->getRequest());
+        if ($form->isValid()) {
+            $email = $form->get('email')->getData();
+            $subject = $form->get('subject')->getData();
+            $body = $form->get('message')->getData();
+            $this->get('journalismjobs.frontend.mailer')->sendContactUsEmail($email, $subject, $body);
+            $this->get('session')->getFlashBag()->add('notice', 'Email sent. We\'ll get back to you shortly');
+
+            return $this->redirect($this->generateUrl('ContactUs'));
+        }
+
+        return array(
+            'form' => $form->createView(),
+        );
+    }
+
+    /**
+     * @Route("/privacy_policy", name="PrivacyPolicy")
+     * @Template
+     */
+    public function privacyPolicyAction()
+    {
+        return array();
+    }
+
+    /**
+     * @Route("/terms_and_conditions", name="Terms")
+     * @Template
+     */
+    public function termsAction()
+    {
+        return array();
+    }
+
+    /**
+     * @Route("/advertising", name="Advertising")
+     * @Template
+     */
+    public function advertisingAction()
+    {
+        return array();
+    }
+
+    /**
+     * @Route("/search-resumes", name="SearchResumes")
+     * @Template
+     */
+    public function searchResumesAction()
+    {
+        return array();
+    }
+
+    /**
+     * @Route("/salaries", name="Salaries")
+     * @Template
+     */
+    public function salariesAction()
+    {
+        return array();
+    }
+}

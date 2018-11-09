@@ -1,0 +1,52 @@
+<style>
+    body {
+        font:14px/16px verdana,arial,helvetica,sans-serif;
+    }
+    a.job_title{
+        font-size: 18px;
+        color: #9ec44a;
+        font-weight: normal;
+        text-decoration: none;
+        line-height: 25px;
+    }
+
+    span.view-job{
+        margin-right: 0;
+        vertical-align: middle;
+        padding: 3px 5px;
+        font-size: 11px;
+        float: right;
+        display: inline-block;
+        background-color: #9ec44a;
+        color: #fff;
+        margin-bottom: 20px;
+    }
+    hr{
+        clear:both;
+    }
+</style>
+
+<img src="{{ app.request.schemeAndHttpHost ~ asset(logoPath) }}">
+<p>Hello Job Seeker,</p>
+<p>Below are your Job Alerts for {{'now'|date('F d, Y')}}. <a href="{{ app.request.schemeAndHttpHost ~ path('Unsubscribe') }}?email={{ email }}"> > Unsubscribe from all Job Alerts.</a></p>
+
+{% for job in jobs %}
+    <p>
+        <a class="job_title" href="{{ app.request.schemeAndHttpHost ~ path('ViewJob', {'jobLink': job.getPermLink()}) }}">{{ job.titleOfPositionOpen }}</a><br/>
+        <b>
+            {% if job.company %}{{job.company}}<br/>{% endif %}
+            {% if job.jobCity %}{{ job.jobCity }}{% endif %}{% if job.location %}, {{ job.location }}{% endif %} |
+            {% if job.industries %}{{ job.industries | join(', ') }}{% else %}Not Specified{% endif %}
+            <br/>
+            {% if job.jobType %}{{job.jobType}}{% else %}Not Specified{% endif %}
+        </b>
+    </p>
+    <p>
+        {{job.adDescription | striptags | split('.') | first | raw}}.
+    </p>
+    <p>
+        <a href="{{ app.request.schemeAndHttpHost ~ path('ViewJob', {'jobLink': job.getPermLink()}) }}"><span class="view-job">View job ></span></a>
+    </p>
+    <hr/>
+{% endfor %}
+<br/>

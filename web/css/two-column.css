@@ -1,0 +1,119 @@
+#two-column{
+    width: 550px;
+}
+#two-column #left{
+    width: 300px;
+    float: left;
+}
+#two-column #right{
+    width: 250px;
+    float: right;
+}
+#two-column p{
+    margin-bottom: 12px;
+}
+#two-column input{
+    border:none;
+    border:1px solid #000;
+    font-size :14px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width: 540px;
+    padding: 5px;
+}
+#two-column #right input, #two-column #left input{
+    width:240px;
+}
+#two-column textarea {
+    position: relative;
+    padding: 5px;
+    border:1px solid #000;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width: 540px;
+}
+
+#two-column input:focus, #two-column textarea:focus{
+    background: #eee;
+}
+#two-column .tcbutton{
+
+    background: url(../images/background_nav.jpg) top left repeat-x;
+    width:240px;
+
+    color: #fff;
+    padding:8px 18px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+#two-column.tcbutton{
+    padding:8px 18px;
+    background:#222;
+    color:#fff;
+    border: 1px solid #fff;
+    float:right;
+    font-size: 14px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#two-column fieldset {
+    display: inline-block;
+    *display: inline; /* leading asterisk IS correct */
+    margin-right:40px;
+    border: 2px solid #b8b8b8;;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    padding-left: 10px;
+    padding-right: 10px;}
+
+
+
+#two-columnlist{
+    width: 950px;
+}
+
+
+#two-columnlist #left{
+    width: 400px;
+    float: left;
+    margin-left: 50px;
+}
+
+#two-columnlist #leftsmall{
+    width: 150px;
+    float: left;
+
+}
+
+#two-columnlist #rightsmall{
+    width: 200px;
+    float: right;
+    margin-left: 20px;
+}
+
+#two-columnlist #right{
+    width: 350px;
+    float: right;
+    margin-left: 90px;
+}
+
+
+
+#two-columnlist h2{
+    font-weight: bold;
+    font-size: 18px;
+    padding-top: 5px;
+}
+
+#two-columnlist ul li{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 14px;
+    list-style-image: url(../graphics/bullet_01.png);
+}

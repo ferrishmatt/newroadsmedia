@@ -1,0 +1,26 @@
+{% block captcha_widget %}
+    {% if is_human %}
+        -
+    {% else %}
+        {% spaceless %}
+            <img id="{{ image_id }}" src="{{ captcha_code }}" alt="" title="captcha" width="{{ captcha_width }}" height="{{ captcha_height }}" /><br/>
+            {% if reload %}
+                <script type="text/javascript">
+                    function reload_{{ image_id }}() {
+                        var img = document.getElementById('{{ image_id }}');
+                        img.src = '{{ captcha_code }}?n=' + (new Date()).getTime();
+                    }
+                </script>
+                <a class="captcha_reload" href="javascript:reload_{{ image_id }}();">{{ 'Renew' | trans({}, 'gregwar_captcha') }}</a><br/>
+            {% endif %}
+            {{ form_widget(form) }}
+        {% endspaceless %}
+    {% endif %}
+{% endblock %}
+
+{% block file_upload_widget %}
+    {{ block('form_widget_simple', {'type': 'file'}) }}
+    {% if file_type == 'image' and not errors %}
+        <a href="{{ src }}" target="_blank"><img src="{{ src }}" alt="" style="max-width: 400px; max-height: 400px;"/></a>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends '@NewRoadsMediaFrontend/Layout/mobile.html.twig' %}
+
+{% form_theme form '@NewRoadsMediaFrontend/Layout/mobileForm.html.twig' %}
+{% form_theme resumeForm '@NewRoadsMediaFrontend/Layout/mobileForm.html.twig' %}
+
+{% block content %}
+    <h1>Hello, {{ resume.displayName }}</h1>
+
+    {% if resume.okd %}
+        <h2>Manage Your Resume Listing</h2>
+        <div class="form-group">
+            <a class="form-control btn btn-default" href="{{ path('EditResume') }}">Edit Your Resume Profile</a>
+        </div>
+        <div class="form-group">
+            <a class="form-control btn btn-default" href="{{ path('RenewResume') }}">Renew Your Resume Listing</a>
+        </div>
+        <div class="form-group">
+            <a class="form-control btn btn-default" href="{{ path('ViewResume', {'resumeId': resume.id}) }}">View Your Resume</a>
+        </div>
+        <div class="form-group">
+            <a class="form-control btn btn-default" href="{{ path('UploadProfile') }}">Upload/Download Your Resume</a>
+        </div>
+        <div class="form-group">
+            <a class="form-control btn btn-default" href="{{ path('DeleteResume') }}">Delete Your Resume Instantly</a>
+        </div>
+
+        <h2>Resume Traffic</h2>
+        <p>
+            Your resume has been viewed <strong>{{ resume.viewCount }}</strong> times since <strong>{{ resume.dateEntered | date('F d, Y') }}.</strong>
+        </p>
+
+        <h2>Privacy Setting</h2>
+        {{ form_errors(resumeForm) }}
+        {{ form_start(resumeForm) }}
+        {{ form_row(resumeForm.isPublic, {'label': 'Display my Resume and Contact Info to potential employers.'}) }}
+        <button class="btn btn-success">Save Changes</button>
+        {{ form_end(resumeForm) }}
+    {% else %}
+        <div class="alert alert-warning">
+            <p class="text-center">
+                Your Resume Is Not Posted on {{ parameter('site_title') }}.
+            </p>
+            <p class="text-center">
+                <a href="{{ path('UploadProfile') }}">Click Here to Post It Now!</a>
+            </p>
+        </div>
+    {% endif %}
+
+    <h2>Job Alerts</h2>
+    <div class="form-group">
+        {% if notificationCount > 0 %}
+            <a class="btn btn-default" href="{{ path('JobNotificationList') }}">
+                You Have {{ notificationCount }} Alert{% if notificationCount != 1 %}s{% endif %}
+            </a>
+        {% endif %}
+        <a class="btn btn-default" href="{{ path('JobNotification') }}">Sign Up for Job Alerts</a>
+    </div>
+
+    <h2>Job Basket</h2>
+    {% if resume.jobBaskets | length == 0 %}
+        <p>You Have 0 Jobs Saved in Your Basket</p>
+    {% else %}
+        {{ form_start(form) }}
+        <table class="table table-striped">
+            <tbody>
+            {% for index, jobBasket in resume.jobBaskets | slice(0, 5) %}
+                <tr>
+                    <td>{{ form_widget(form.deleteJobBaskets[index]) }}</td>
+                    <td>
+                        <a href="{{ path('ViewJobPost', {'jobId': jobBasket.job.id}) }}">{{ jobBasket.job }}</a><br/>
+                        {{ jobBasket.job.employer.displayCompany }}
+                    </td>
+                    <td>
+                        {{ jobBasket.job.location }}<br/>
+                        {{ jobBasket.job.createDate | date('m/d/y') }}
+                    </td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">{{ form_widget(form.delete, {'attr': {'class': 'btn btn-default'}}) }}</td>
+                </tr>
+            </tfoot>
+        </table>
+        {{ form_end(form) }}
+        {#{% if resume.jobBaskets | length > 5 %}#}
+        <div class="form-group">
+            <a class="form-control btn btn-default" href="{{ path('ViewJobBasket') }}">See All Job Basket Listings</a>
+        </div>
+        {#{% endif %}#}
+    {% endif %}
+
+    <h2>Account Management</h2>
+    <div class="form-group">
+        <a class="form-control btn btn-default" href="{{ path('ChangePassword') }}">Change Username and Password</a>
+    </div>
+    <div class="form-group">
+        <a class="form-control btn btn-default" href="{{ path('DeleteAccount') }}">Delete My Job Seeker Account</a>
+    </div>
+{% endblock %}

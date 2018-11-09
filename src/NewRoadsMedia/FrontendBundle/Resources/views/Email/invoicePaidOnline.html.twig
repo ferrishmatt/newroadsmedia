@@ -1,0 +1,7 @@
+<p>Thank you for paying your invoice online. Below is your receipt. </p>
+
+Result: {{ response.response_msg }} <br/>
+Authorization Number: {{ response.trans_id }}<br/>
+Authorization Code: {{ response.authorization }} <br/>
+Amount Charged: ${{ invoice.amount | number_format(2) }}<br/>
+Invoice Number: {{ invoice.invoice }}

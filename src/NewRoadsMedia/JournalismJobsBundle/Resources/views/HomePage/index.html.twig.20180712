@@ -1,0 +1,334 @@
+{% extends "::base.html.twig" %}
+
+{% block content_heading %}
+    <div class="index index-search-header">
+        <!--img src="{{ asset('bundles/newroadsmediajournalismjobs/images/index-bg-2.jpg') }}" class="background"/-->
+        <div class="index-search-header-content">
+            <h1 style="font-weight: bold; margin-top: 30px; margin-bottom:0px;">Find Your <strong>Next</strong> Media Job</h1>
+	    <div id="header-wrapper">
+		<form onsubmit="window.location.href = 'http://www.journalismjobs.com/job-listings?keywords=' + document.getElementById('header-search-what').value + '&location=' + document.getElementById('stateSearchParam').value; return false;">
+		<div class="header-section">
+		    <h2>Job Title</h2>
+		    <input type="text" id="header-search-what" name="header-search-what" placeholder="(e.g. Writer)">
+		</div>
+		<div class="header-section">
+                    <h2>Location</h2>
+		    <select id="stateSearchParam">
+                        <option value="" selected>Select State (Optional) <span class="arrow-down"></span></li>
+                        {% for row in locationCounts %}
+                            <option value="{{ row.id }}">{{ row.name }}</li>
+                        {% endfor %}
+                    </select>
+                </div>
+		<div class="header-section header-section-input">
+		    <h2 style="visibility: hidden">Submit</h2>
+                    <input type="submit" value="Search" class="search-jobs">
+		    <a style="font-size: 14px;" href="
+http://www.journalismjobs.com/advanced-search">Advanced Search</a>
+                </div>
+		</form>
+	    </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <style>
+    #content {
+        width: 100% !important;
+    }
+.flash-notice {
+     opacity: 1 !important;
+    height: 300%;
+    width: 100% !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    z-index: 101;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid #d2d2d1;
+    box-shadow: 0 0 8px 4px rgba(0,0,0,.25);
+    overflow: hidden;
+}
+.flash-notice > ul {
+    height: auto;
+    width: 640px;
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    margin-left: -320px;
+    background: #fff;
+}
+.flash-notice > ul > div {
+    border-bottom: 1px solid #d2d2d1;
+    background: #f1f1f1;
+    height: 49px;
+    text-align: left;
+}
+.flash-notice > ul > div > span {
+    height: 49px;
+    line-height: 49px;
+    margin: 0 50px 0 22px;
+    border: 0;
+    font-size: 1pc;
+    font-family: helvetica neue,helvetica,arial,sans-serif;
+    font-weight: 700;
+    color: #333;
+}
+.flash-notice > ul > div > button {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 49px;
+    height: 49px;
+    line-height: 49px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    border-left: 1px solid #d2d2d1;
+}
+.flash-notice > ul > li {
+    font-weight: bold;
+    color: #090;
+    text-align: center;
+    padding: 20px 0px;
+    font-size: 16px;
+}
+    </style>
+
+    {{ render(controller('NewRoadsMediaFrontendBundle:HomePage:featuredJobs')) }}
+
+    {% if render(controller('NewRoadsMediaFrontendBundle:BannerAd:index', {'id': constant('NewRoadsMedia\\FrontendBundle\\Entity\\BannerAd::HOME_PAGE_BOTTOM_LARGE_BANNER')})) %}
+        <div class="homepage-ad-middle">
+            Advertisement<br/>
+            {# render(controller('NewRoadsMediaFrontendBundle:BannerAd:index', {'id': constant('NewRoadsMedia\\FrontendBundle\\Entity\\BannerAd::HOME_PAGE_MIDDLE_LARGE_BUTTON')})) #}
+            {{ render(controller('NewRoadsMediaFrontendBundle:BannerAd:index', {'id': constant('NewRoadsMedia\\FrontendBundle\\Entity\\BannerAd::HOME_PAGE_BOTTOM_LARGE_BANNER')})) }}
+            <!--<span class="banner-ad current"><a href="http://sbgi.net/sbgi-careers/" target="_blank"><img src="/images/banners/sinclair/SinclairHR_CareerLove_728x90_AG.gif" alt="Advertisement"></a></span>
+            <span class="banner-ad" style="display:none;"><a href="http://sbgi.net/sbgi-careers/" target="_blank"><img src="/images/banners/sinclair/SinclairHR_CareerPath728x90_AG.gif" alt="Advertisement"></a></span>
+            <span class="banner-ad" style="display:none;"><a href="http://sbgi.net/sbgi-careers/" target="_blank"><img src="/images/banners/sinclair/SinclairHR_Hiring728x90_AG.gif" alt="Advertisement"></a></span>
+            <span class="banner-ad" style="display:none;"><a href="http://sbgi.net/sbgi-careers/" target="_blank"><img src="/images/banners/sinclair/SinclairHR_OppKnocking728x90_AG.gif" alt="Advertisement"></a></span>
+            <span class="banner-ad" style="display:none;"><a href="http://sbgi.net/sbgi-careers/" target="_blank"><img src="/images/banners/sinclair/SinclairHR_Unlimited728x90_AG.gif" alt="Advertisement"></a></span>-->
+        </div>
+    {% endif %}
+
+    {{ render(controller('NewRoadsMediaFrontendBundle:HomePage:news')) }}
+
+    <div id="career-advice">
+        <div id="career-advice-content">
+            <div id="career-advice-articles">
+                <h2>
+                    Career Advice
+                    <div class="view-more-jobs">
+                        <a href="/career-advice">&gt;&gt; see more</a>
+                    </div>
+                </h2>
+                <div class="your-class">
+                    <div>
+                        <div class="slide-tick-wrap">
+                            <div class="image">
+                                <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/video_interview_small.jpg') }}" />
+                            </div>
+                            <h4>
+                                <a href="http://www.journalismjobs.com/tips_for_doing_a_video_interview">How to Ace a Video Interview</a>
+                            </h4>
+			    <div class="career-advice-byline">By Susan Johnston Taylor</div>
+                            <div class="details">
+                                Doing a video interview can be challenging. Make sure you're prepared.
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="slide-tick-wrap">
+                            <div class="image">
+                                <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/tax_tips_for_freelancers_small.jpg') }}" />
+                            </div>
+                            <h4>
+                                <a href="http://www.journalismjobs.com/tax_tips_for_freelance_writers">6 Tax Tips Every Freelancer Needs to Know</a>
+                            </h4>
+			    <div class="career-advice-byline">By Erica Sweeney</div>
+                            <div class="details">
+                                Tax time can be very stressful. Use these tips to make the process simpler.
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="slide-tick-wrap">
+                            <div class="image">
+                                <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/social_media_job_search_small.jpg') }}" />
+                            </div>
+                            <h4>
+                                <a href="http://www.journalismjobs.com/using_social_media_to_find_a_job">Using Social Media in Your Job Search</a>
+                            </h4>
+			    <div class="career-advice-byline">By Tim Sohn</div>
+                            <div class="details">
+                                Social media can play an important role in finding a new job.
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="slide-tick-wrap">
+                            <div class="image">
+                                <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/job_search_online_small.jpg') }}" />
+                            </div>
+                            <h4>
+                                <a href="http://www.journalismjobs.com/applying_for_jobs_online">10 Do’s and Don’ts of Applying for Jobs Online</a>
+                            </h4>
+			    <div class="career-advice-byline">By Erica Sweeney</div>
+                            <div class="details">
+                                Follow these tips to jump-start your job search.
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="slide-tick-wrap">
+                            <div class="image">
+                                <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/interviewing_job_photo_small.jpg') }}" />
+                            </div>
+                            <h4>
+                                <a href="http://www.journalismjobs.com/successful_interview_tips">Nine Things to Say During an Interview</a>
+                            </h4>
+			    <div class="career-advice-byline">By Tim Sohn</div>
+                            <div class="details">
+                                Focus on the positives of the job and don't offer unsolicited advice.
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="slide-tick-wrap">
+                            <div class="image">
+                                <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/writer_at_desk2.jpg') }}" />
+                            </div>
+                            <h4>
+                                <a href="http://www.journalismjobs.com/quitting_your_job_to_become_a_freelancer">7 Things to Know Before Becoming a Full-Time Freelancer</a>
+                            </h4>
+			    <div class="career-advice-byline">By Erica Sweeney</div>
+                            <div class="details">
+                                Staying organized is very important.
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="slide-tick-wrap">
+                            <div class="image">
+                                <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/job_interview2.jpg') }}" />
+                            </div>
+                            <h4>
+                                <a href="http://www.journalismjobs.com/negotiating_salary_offers">Negotiating Salary Offers</a>
+                            </h4>
+			    <div class="career-advice-byline">By Joe Grimm</div>
+                            <div class="details">
+                                Get the best deal for yourself.
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="slide-tick-wrap">
+                            <div class="image">
+                                <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/website_tools_photo_small.jpg') }}" />
+                            </div>
+                            <h4>
+                                <a href="http://www.journalismjobs.com/ten_indispensable_websites_for_journalists">10 Indispensable Websites for Working Journalists</a>
+                            </h4>
+			    <div class="career-advice-byline">By Erica Sweeney</div>
+                            <div class="details">
+                                Make your job easier.
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="slide-tick-wrap">
+                            <div class="image">
+                                <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/public_relations_photo_small.png') }}" />
+                            </div>
+                            <h4>
+                                <a href="http://www.journalismjobs.com/switching_from_journalism_to_PR">Making the Switch From Journalism to PR</a>
+                            </h4>
+			    <div class="career-advice-byline">By Erica Sweeney</div>
+                            <div class="details">
+                                A former journalist offers some insight.
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="slide-tick-wrap">
+                            <div class="image">
+                                <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/journalism_school_class2.jpg') }}" />
+                            </div>
+                            <h4>
+                                <a href="http://www.journalismjobs.com/graduate_degree_needed_for_journalism">Do You Need a Graduate Degree in Journalism?</a>
+                            </h4>
+			    <div class="career-advice-byline">By Walden Siew</div>
+                            <div class="details">
+                                For some media professionals, the degree is essential.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function getRandomInt(min, max) {
+         min = Math.ceil(min);
+         max = Math.floor(max);
+         return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+    }
+
+    var initialIndex = getRandomInt(0, 9);
+
+      $(document).ready(function(){
+        $('.your-class').slick({
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          autoplay: true,
+          autoplaySpeed: 7000,
+	  initialSlide: initialIndex,
+        });
+
+        setInterval(function(){
+            var banners = $('.homepage-ad-middle .banner-ad');
+            var current = banners.filter('.current');
+            var next    = current.next();
+
+            if (!next.length){
+                next = $(banners[0]);
+            }
+
+            current.removeClass('current');
+            next.addClass('current');
+            banners.css('display', 'none');
+            next.css('display', 'inline');
+        },6000);
+      });
+    </script>
+
+    <script>
+    var flashNoticeElement = document.getElementsByClassName('flash-notice')[0];
+
+    if (flashNoticeElement) {
+	var div = document.createElement('div');
+	div.innerHTML = '<span>Email</span><button id="close-flash-button">Close</button>';
+        var ulElement = flashNoticeElement.firstChild;
+        ulElement.prepend(div);
+
+	div.children[1].addEventListener("click", function() {flashNoticeElement.remove()});
+    }
+    </script>
+
+    <div id="banner-ad-bottom">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- JournalismJobs.com -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:728px;height:90px"
+             data-ad-client="ca-pub-3003304833366179"
+             data-ad-slot="5561458230"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <!--{{ render(controller('NewRoadsMediaFrontendBundle:BannerAd:index', {'id': constant('NewRoadsMedia\\FrontendBundle\\Entity\\BannerAd::HOME_PAGE_BOTTOM_LARGE_BANNER')})) }}-->
+    </div>
+{% endblock content %}

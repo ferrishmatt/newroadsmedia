@@ -1,0 +1,17 @@
+{% spaceless %}
+{% if banner %}
+    {% if random(10) < 5 or banner.adsNum == 1 %}
+        {% if banner.isRawCode and banner.rawCode %}
+            <span class="banner-ad">{{ banner.rawCode | raw }}</span>
+        {% elseif not banner.isRawCode and banner.link and banner.image %}
+            <span class="banner-ad"><a href="{{ path('BannerAd', {'id': banner.id, 'sid': sid}) }}" target="_blank"><img src="{{ banner.image }}" alt="Advertisement"/></a></span>
+        {% endif %}
+    {% else %}
+        {% if banner.isRawCode2 and banner.rawCode2 %}
+            <span class="banner-ad">{{ banner.rawCode2 | raw }}</span>
+        {% elseif not banner.isRawCode2 and banner.link2 and banner.image2 %}
+            <span class="banner-ad"><a href="{{ path('BannerAd', {'id': banner.id, 'sid': sid, 'ad_num': 2}) }}" target="_blank"><img src="{{ banner.image2 }}" alt="Advertisement"/></a></span>
+        {% endif %}
+    {% endif %}
+{% endif %}
+{% endspaceless %}

@@ -1,0 +1,50 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style type="text/css">
+        .box {
+            width: 10px;
+            height: 10px;
+            /*padding-top: 3px;*/
+        }
+
+        .green {
+            /*background: #9FC251;*/
+            background-image: url('/images/green_bullets.jpg');
+        }
+
+        .text {
+            font-weight: 525;
+        }
+
+        .action-suspend {
+            color: #FD9827;
+        }
+    </style>
+
+{% endblock %}
+
+<div style="text-align: center">
+    <p style="font-weight: 600; font-size: 20px;">Click the "Suspend" button to instantly<br /> remove this job from our live site.</p>
+    <br />
+    <div style="text-align: left; padding-left: 250px;">
+        <p><div class="box green" style="margin-top: 2px; margin-right: 15px; display: inline-block;"></div><span class="text">This ad will remain in your account in case you need to repost it.</span></p>
+        <br />
+        <p><div class="box green" style="margin-top: 2px; margin-right: 15px; display: inline-block;"></div><span class="text">Time remaining on this posting cannot be stored for later use.</span></p>
+    </div>
+
+    {% if app.session.flashBag.all %}
+        <!--<div class="">
+            <span>Your ad was successfully suspended</span>
+            <br />
+            <a href="{{ path('EmployerManager') }}"></a>
+        </div>-->
+    {% endif %}
+    <div style="padding-top: 50px;">
+        <button style="padding: 10px;"><a href="{{ path('SuspendConfirmationJobPost', {'jobId': jobId}) }}" class="action-suspend" style="color: #FD9827; font-size: 20px;">Suspend</a></button>
+    </div>
+</div>
+{% endblock content %}

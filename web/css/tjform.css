@@ -1,0 +1,1081 @@
+#cssform_employer h2{
+    font-size: 16px;
+    margin-top: 10px;
+}
+#cssform_employer .required
+{font-size: 20px;
+    font-weight: bold;
+    color: #FF9900;
+}
+#cssform_employer input[type="checkbox"]{
+    background-color: #fff;
+    margin-left: 10px;
+}
+
+#cssform_employer p
+{padding-bottom: 10px;}
+
+#cssform_employer label{
+    font-weight: bold;
+}
+#colsearch .label
+{font-weight: bold;
+    margin-bottom: -15px;}
+#cssform_employer fieldset {
+    display: inline-block;
+    *display: inline; /* leading asterisk IS correct */
+    margin-right:40px;
+    border: 2px solid #b8b8b8;;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color:#f7f7f7;
+}
+
+.cssform p{
+    width: 350px;
+    clear: left;
+    margin: 0;
+    padding: 15px 0 8px 0;
+    padding-left: 155px; /*width of left column containing the label elements*/
+    border-top: 1px dashed gray;
+    height: 1%;
+}
+
+
+.leftinput p{
+    width: 350px;
+    padding: 15px 0 8px 0;
+    padding-left: 0px; /*width of left column containing the label elements*/
+    padding-right: 155px;
+}
+
+
+.leftinput label{font-weight: bold}
+
+.cssform h2{
+    font-size: 16px;
+}
+
+.cssform fieldset {
+    display: inline-block;
+    *display: inline; /* leading asterisk IS correct */
+    margin-right:20px;
+    border: 2px solid #b8b8b8;;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    padding-left: 10px;
+    padding-right: 5px;
+}
+
+.cssform fieldset.fsmedium  {
+    display: inline-block;
+    *display: inline; /* leading asterisk IS correct */
+    margin-right:40px;
+    border: 2px solid #b8b8b8;;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    width:340px;
+    height:280px;
+    padding-top:15px;
+    padding-bottom: 0px;
+}
+
+
+
+.cssform fieldset.fsmaller  {
+    display: inline-block;
+    *display: inline; /* leading asterisk IS correct */
+    margin-left:80px;
+    border: 2px solid #b8b8b8;;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    width:260px;
+    height:240px;
+    padding-top:15px;
+    padding-bottom: 0px;
+}
+
+fieldset.extrapad {
+    display: inline-block;
+    *display: inline; /* leading asterisk IS correct */
+    margin-right:40px;
+    border: 2px solid #b8b8b8;;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    width:450px;
+    height:360px;
+    padding-top:15px;
+    padding-bottom: 0px;
+
+
+}
+
+fieldset.extra_extrapad {
+    width:530px;
+    height:540px;
+}
+
+fieldset.test {
+    display: inline-block;
+    *display: inline; /* leading asterisk IS correct */
+    margin-right:40px;
+    border: 2px solid #b8b8b8;;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+
+    padding: 35px 35px 35px 35px;
+}
+
+legend.small
+{
+    font-weight: bold;
+    font-size: 14px;
+    color: black;
+    padding: 5px;
+}
+
+legend
+{
+    font-weight: bold;
+    font-size: 1.5em;
+
+    padding: 5px;
+}
+
+legend.csslegendbig
+{
+    font-size: 25px
+}
+
+
+legend.csslegendleft
+{
+    font-size: 25px;
+    padding-left: 0px;
+}
+
+.cssform dt.small
+{
+    font-size: 12px
+}
+
+.cssform  a
+
+{text-decoration:underline;
+}
+.cssform dt
+{
+    font-size: 16px
+}
+
+/*.cssform input[type="text"]{ *//*width of text boxes. IE6 does not understand this attribute*/
+    /*width: 180px;*/
+/*}*/
+
+.cssform textarea{
+    width: 250px;
+    height: 150px;
+}
+
+.button
+
+{background-color: transparent;
+    border: 1px solid #666666;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    background: url(../images/background_nav.jpg) top left repeat-x;
+    display: inline-block;
+    padding: 7px 10px 7px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #fff;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:16px;}
+
+
+
+
+/*.button {
+
+	background: url(../images/background_nav.jpg) top left repeat-x;
+	display: inline-block;
+	padding: 5px 10px 6px;
+	color: #fff;
+	text-decoration: none;
+	font-weight: bold;
+	position: relative;
+	cursor: pointer;
+	margin-bottom: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:16px;}*/
+
+.button-gray {
+
+    background-color: #666666;
+    border: 1px solid #666666;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    display: inline-block;
+    padding: 5px 10px 6px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:16px;}
+
+.button-grayl {
+
+    background-color: #666666;
+    border: 1px solid #666666;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    display: inline-block;
+    padding: 10px 14px 10px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 0px;
+    margin-left: -55px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:18px;}
+.buttonr
+
+{background-color: transparent;
+    margin-left: 15px;
+    border: 1px solid #666666;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    background-color: #7BB200;
+    display: inline-block;
+    padding: 10px 14px 10px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #fff;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:18px;}
+
+
+
+#content p.button {
+
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+}
+
+#content a.button {
+
+    background: url(../images/background_nav.jpg) top left repeat-x;
+    display: inline-block;
+    padding: 5px 10px 6px;
+    border: none;
+
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:16px;}
+
+.button_new {
+    background-color: transparent;
+    border: 1px solid #666666;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    background: url(../images/background_nav.jpg) top left repeat-x;
+    display: inline-block;
+    padding: 7px 10px 7px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #fff;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:16px;}
+
+
+
+
+.clear{
+
+    display: inline-block;
+    padding: 5px 10px 6px;
+
+
+    text-decoration: none;
+    font-weight: bold;
+
+
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:16px;
+}
+
+
+.myform{
+    font-family: Arial, sans-serif;
+
+    margin-left: 28%;
+    margin-right: 10%;
+    width:400px;
+    padding:14px;
+    border:solid 2px #ffcc99;
+    background:#F9F6F4;
+}
+
+.myform h2 {
+    font-family: Arial, sans-serif;
+
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:8px;
+    text-transform: none;
+}
+
+
+form.easyfrm fieldset {
+    margin-bottom: 10px;
+    border:solid 3px #ffcc99;
+
+}
+form.easyfrm legend {
+    padding: 0 2px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    font-size:12px;
+
+}
+form.easyfrm label {
+    display: inline-block;
+    line-height: 1.8;
+    vertical-align: top;
+}
+form.easyfrm fieldset ol {
+    margin: 0;
+    padding: 0;
+}
+form.easyfrm fieldset li {
+    list-style: none;
+    padding: 5px;
+    margin: 0;
+}
+
+
+form.easyfrm fieldset fieldset {
+    border: none;
+    margin: 3px 0 0;
+}
+form.easyfrm fieldset fieldset legend {
+    padding: 0 0 5px;
+    font-weight: normal;
+}
+form.easyfrm fieldset fieldset label {
+    display: block;
+    width: auto;
+}
+form.easyfrm em {
+    font-weight: bold;
+    font-style: normal;
+    color: #f00;
+}
+form.easyfrm label {
+    width: 120px; /* Width of labels */
+}
+form.easyfrm fieldset fieldset label {
+    margin-left: 123px; /* Width plus 3 (html space) */
+}
+
+#content .formboxbutton_center {
+
+    padding-right: 20px;
+    margin-bottom: 0px;
+    margin-left: 400px;
+
+}
+
+#content .formboxbuttonl {
+    width: 150px;
+    float: left;
+    padding-right: 20px;
+    margin-bottom: 0px;
+    margin-left: 190px;
+    padding-top: 20px;
+}
+
+#content .formboxbuttonr  {
+    width: 150px;
+    float: left;
+    margin-left: 120px;
+    margin-bottom: 0px;
+    padding-top: 20px;
+}
+
+
+#content .formboxbuttonl_top {
+    width:70px;
+    float: left;
+
+    margin-bottom: 0px;
+    margin-left: 300px;
+
+
+}
+
+#content .formboxbuttonr_top  {
+    width: 70px;
+    float: right;
+    margin-right: 300px;
+    margin-bottom: 0px;
+
+
+}
+
+
+
+
+#content .formboxbuttonleft {
+    width: 200px;
+    float: left;
+    margin-bottom: 0px;
+    margin-left: 240px;
+    padding-top: 20px;
+
+}
+
+#content .formboxbuttonright  {
+    width: 200px;
+    float: right;
+    margin-right: 240px;
+    margin-bottom: 0px;
+    padding-top: 20px;
+
+}
+
+
+
+a.highlight {background: #F79221;
+    color: #fff;
+    font-size: 15px;
+}
+
+#formbox_wrapper{
+    width: 900px;
+    padding-bottom: 395px;
+}
+
+#formbox_wrapper h2.left{
+    float:left;
+    background: #666666;
+    color: #fff;
+    padding-left: 50px;
+    padding-bottom: 3px;
+    width: 360px;
+    padding-top: 6px;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+#formbox_wrapper h2.right{
+    float:right;
+    background: #666666;
+    color: #fff;
+    padding-left: 30px;
+    padding-right: 20px;
+    margin-right: 40px;
+    padding-bottom: 3px;
+    padding-top: 6px;
+    width: 350px;
+
+    font-weight: bold;
+    font-size: 1.5em;}
+
+
+
+#formbox_wrapper .goright
+{margin-left: 60px;
+
+
+}
+#formbox_wrapper .whitestrip
+{padding-right: 0px;
+    padding-left: 0px;
+    margin-left: 10px;
+    background: #FFF;}
+
+.formboxleft_border {
+    float: left;
+    width: 50%;
+    padding-bottom: 50px;
+    padding-top: 15px;
+    border-right: 1px solid;
+}
+
+.formboxright_borderctr {
+    float: right;
+    width: 40%;
+    margin-left: 0px;
+    margin-right: 100px;
+    padding-top: 15px;
+    padding-left: 0px;
+    padding-bottom: 180px;
+    margin-top: 0px;
+
+}
+
+
+
+
+.formboxright_border {
+    float: right;
+    width: 40%;
+
+    padding-right: 85spx;
+    padding-top: 15px;
+    padding-left: 45px;
+    padding-bottom: 180px;
+    margin-top: 0px;
+
+}
+
+.formboxleft_border  form.fbleft, dd.fbleft, dt.fbleft, dl.fbleft{
+    margin-left: 40px;
+}
+
+
+.formboxright_border  form.fbright,  dl.fbright, dd.fbright, dt.fbright{
+    margin-left: 10px;
+}
+
+#formbox1 {
+    float: left;
+    width: 45%;
+    margin-left: 10px;
+}
+
+#formbox1-small {
+    float: left;
+    width: 35%;
+}
+
+#formbox2-large {
+    float: right;
+    width: 45%;
+}
+
+#formbox2{
+    float: right;
+    width: 35%;
+}
+#formbox3 {
+    float: right;
+    width: 45%;
+    margin-top: 5px;
+    padding-top: 0px;
+
+}
+#formbox4 {
+    float: right;
+    width: 35%;
+    margin-right: 60px;
+
+}
+#formbox1 h2
+{
+    font-size: 23px;
+    font-weight: bold;
+}
+
+
+.middle {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50em;
+
+
+}
+
+.middle h3{text-align: center}
+
+.listmiddle {
+    margin-left: 320px;
+}
+
+
+#two-column{
+    width: 550px;
+}
+#two-column #left{
+    width: 300px;
+    float: left;
+}
+#two-column #right{
+    width: 250px;
+    float: right;
+}
+#two-column p{
+    margin-bottom: 12px;
+}
+#two-column input{
+    border:none;
+    border:1px solid #000;
+    font-size :14px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width: 540px;
+    padding: 5px;
+}
+#two-column #right input, #two-column #left input{
+    width:240px;
+}
+#two-column textarea {
+    position: relative;
+    padding: 5px;
+    border:1px solid #000;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width: 540px;
+}
+
+#two-column input:focus, #two-column textarea:focus{
+    background: #eee;
+}
+#two-column .tcbutton{
+
+    background: url(../images/background_nav.jpg) top left repeat-x;
+    width:240px;
+
+    color: #fff;
+    padding:8px 18px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+#two-column.tcbutton{
+    padding:8px 18px;
+    background:#222;
+    color:#fff;
+    border: 1px solid #fff;
+    float:right;
+    font-size: 14px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#two-column fieldset {
+    display: inline-block;
+    *display: inline; /* leading asterisk IS correct */
+    margin-right:40px;
+    border: 2px solid #b8b8b8;;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    padding-left: 10px;
+    padding-right: 10px;}
+
+
+
+#two-columnlist{
+    width: 950px;
+}
+
+
+#two-columnlist #left{
+    width: 400px;
+    float: left;
+    margin-left: 50px;
+}
+
+#two-columnlist #leftsmall{
+    width: 150px;
+    float: left;
+
+}
+
+#two-columnlist #rightsmall{
+    width: 200px;
+    float: right;
+    margin-left: 20px;
+}
+
+#two-columnlist #right{
+    width: 350px;
+    float: right;
+    margin-left: 90px;
+}
+
+
+
+#two-columnlist h2{
+    font-weight: bold;
+    font-size: 18px;
+    padding-top: 5px;
+}
+
+#two-columnlist ul li{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 14px;
+    list-style-image: url(../graphics/bullet_01.png);
+}
+
+#tableform table
+{background: #F9F6F4;
+    margin-left: 10px;
+}
+#tableform input
+{
+    margin-top: 5px;
+    margin-right: 0px;
+    margin-bottom: 5px;
+    margin-left: 0px;
+    padding-top: 3px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-left: 3px;
+}
+
+#tableform label
+{
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+
+    padding-bottom: 3px;
+}
+
+#tableform .vertm
+{vertical-align:middle;}
+
+#content h2.noborder{
+    font-size: 18px;
+    margin-top: 10px;
+    background-color: white;
+    margin-left: 0px;
+    margin-right: 640px;
+    margin-bottom: 10px;
+    border: none;
+}
+
+
+#event_entry
+{margin-left: 200px;}
+
+
+#event_entry h2
+{
+    margin-top: 10px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+    font-family: inherit;
+    font-weight: bold;
+    line-height: 1;
+    color: #FF9900;
+    text-rendering: optimizelegibility;
+    font-size: 30px;
+    line-height: 40px;
+}
+
+
+
+#event_entry p.lead
+{
+    margin-top: 10px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+    font-family: inherit;
+    text-rendering: optimizelegibility;
+    font-size: 16px;
+
+}
+
+
+
+#event_entry .required
+{font-size: 20px;
+    font-weight: bold;
+    color: #FF9900;
+}
+.eventform label
+{
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.eventform  legend{
+    padding-top: 10px;
+    padding-right: 2px;
+    padding-bottom: 10px;
+    padding-left: 2px;
+    font-weight: bold;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-size: 14px;
+
+
+
+}
+
+
+
+.eventform p{
+    width: 500px;
+    clear: left;
+    margin: 0;
+    padding: 5px 0 8px 0;
+    padding-left: 100px; /*width of left column containing the label elements*/
+    border-bottom: dotted 2px #E4E4E4;
+    height: 1%;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.eventform p.submit{
+    width: 500px;
+    clear: left;
+    margin: 0;
+    padding-top: 10px;
+    padding-left: 0px; /*width of left column containing the label elements*/
+
+    font-size: 140%;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+
+
+.eventform label{
+    font-weight: bold;
+    float: left;
+    margin-left: -100px; /*width of left column*/
+    width: 200px; /*width of labels. Should be smaller than left column (155px) to create some right margin*/
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.eventform label.mult{
+    font-weight: bold;
+    float: none;
+    margin-left:0px; /*width of left column*/
+    width: 50px; /*width of labels. Should be smaller than left column (155px) to create some right margin*/
+}
+
+
+
+.eventform input[type="text"]{ /*width of text boxes. IE6 does not understand this attribute*/
+    width: 380px;
+    height: 22px;
+
+}
+
+.eventform input.short{ /*width of text boxes. IE6 does not understand this attribute*/
+    width: 300px;
+    height: 22px;
+
+}
+.eventform  input.counter{width: 40px;
+    margin-left: 100px;}
+
+
+.eventform fieldset {
+    display: inline-block;
+    *display: inline; /* leading asterisk IS correct */
+    margin-right:40px;
+    border: 2px solid #b8b8b8;;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color:#f7f7f7;
+}
+
+.eventform textarea{
+    width: 380px;
+
+}
+
+
+
+
+
+
+.eventform input[type="text"]
+{
+    display: inline-block;
+    height: 20px;
+    padding: 4px 6px;
+    margin-bottom: 9px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #555555;
+
+}
+
+.eventform  select{
+    display: inline-block;
+    height: 28px;
+
+    padding-right: 6px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    padding-left: 6px;
+    margin-bottom: 9px;
+    font-size: 12px;
+    line-height: 28px;
+    color: #555555;
+
+
+}
+
+.eventform label,
+.eventform input,
+.eventform button,
+.eventform select,
+.eventform textarea {
+    font-size: 12px;
+    font-weight: normal;
+
+}
+
+
+
+.cssform_side dt.small
+{
+    font-size: 12px
+}
+
+.cssform_side  a
+
+{text-decoration:underline;
+}
+.cssform_side dt
+{
+    font-size: 16px
+}
+
+
+.cssform_side p{
+    width: 350px;
+
+
+    padding-left: 155px; /*width of left column containing the label elements*/
+    border-top: none;
+
+
+}
+
+
+
+.leftinput_side{
+    width: 210px;
+    padding-right: 10px;
+    padding-left: 10px;
+    float:left;
+    border-right: dotted 2px #E4E4E4;
+    background-color: #f6f6f6;
+    margin-left: -10px;
+
+
+}
+#colsearch .leftinput_side p{
+    width: 210px;
+    font-size: 12px;
+
+}
+.leftinput_side h3{
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+
+#colsearch .leftinput_side label
+{float:left;
+    width: 210px;
+    font-size: 12px;
+
+}
+.leftinput_side a{text-decoration:underline;}
+
+
+.leftinput_side select{
+
+    font-size: 12px;
+}
+#line
+{border-bottom: dotted 2px #E4E4E4;
+    border-bottom-color: #cccccc;
+
+    width: 260px;}
+
+
+
+#rssfeed{
+    float:right;
+    margin-left: 810px;
+
+}
+p.pagenumbs{
+    float:right;
+    display: block;
+    margin-top: 20px;
+    padding-left: 60px;
+    margin-right: -35px;
+
+}
+#rssfeed p.box{background-color: #E4E4E4;
+    background-image: none;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-position: 0% 0%;
+    background-clip: border-box;
+    background-origin: padding-box;
+    background-size: auto auto;
+    float: right;
+    margin-top: -15px;
+    margin-bottom: 5px;
+    padding-bottom: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+
+    padding-top: 2px;}
+
+#rssfeed p.pagenumbs{padding-left: 20px;
+    padding-right: 15px;}
+
+#rssfeed a { font-family: Arial, sans-serif;
+    font-size: 12px;}
+
+#top{float: left; margin-top: -60px;
+    margin-right: 600px;}
+
+#top h2{font-size: 20px;
+    padding-top: 25px;}

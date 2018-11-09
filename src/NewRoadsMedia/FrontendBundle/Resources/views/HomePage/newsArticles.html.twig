@@ -1,0 +1,133 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style type="text/css">
+        #latest-jobs {
+            vertical-align: top;
+        }
+
+        #latest-jobs .jobs {
+            background-color: #eee;
+            padding: 5px 15px;
+        }
+
+        #latest-jobs .jobs h3 {
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            font-size: 120%;
+            border-top: 4px solid #000;
+            padding-top: 5px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        #latest-jobs .jobs .job {
+            margin-bottom: 15px;
+            padding-bottom:10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        #latest-jobs .jobs .job h4 {
+            font-weight: bold;
+        }
+
+        #latest-jobs .jobs .job h4 a {
+            font-size: 15px;
+            color: #555;
+        }
+
+        #latest-jobs .jobs .job h4 a:hover {
+            text-decoration: underline;
+        }
+
+        #latest-jobs .jobs .job .company {
+            font-size: 15px;
+        }
+
+        #latest-jobs .jobs .job .location {
+            font-size: 13px;
+        }
+
+        #read-more {
+            text-align: center;
+        }
+
+        a.more {
+            color: #000;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .vertical_ad_container{
+            padding-top:20px;
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div id="media-news">
+    <h2>{{ parameter('news_title', 'Media News') | upper }} (CON'T)</h2>
+    <table>
+        {% for row in articles | batch(3) %}
+            <tr>
+                {% for newsArticle in row %}
+                    <td>
+                        {% if newsArticle.imageName %}
+                            <div class="image">
+                                {% if newsArticle.imageName | slice(0, 7) == '/media/'  %}
+                                    <img src="{{ newsArticle.imageName }}" alt=""/>
+                                {% else %}
+                                    <img src="{{ asset('images/' ~ newsArticle.imageName) }}" alt=""/>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                        <h4><a href="{{ newsArticle.link }}" target="_blank">{{ newsArticle.title }}</a></h4>
+                        <div class="description">
+                            {{ newsArticle.linkBody | striptags | split(' ') | slice(0, 38) | join(' ') | raw }} ...
+                        </div>
+                        <div class="details">
+                            {% if newsArticle.source | length > 2 %}
+                                Source: {{ newsArticle.source }}<br/>
+                            {% endif %}
+                            Posted: {{ newsArticle.entryDate | date('M d, Y') }}
+                        </div>
+                    </td>
+                {% endfor %}
+                {% if loop.index == 1 %}
+                    <td id="latest-jobs" rowspan="{{ loop.length }}">
+                        <div class="jobs">
+                            <h3>Latest Jobs</h3>
+                            {% for job in jobs %}
+                                {% set link = job.isExternal ? job.website : path('ViewJobPost', {'jobId': job.id}) %}
+                                <div class="job">
+                                    <h4><a href="{{ link }}">{{ job.titleOfPositionOpen }}</a></h4>
+                                    <div class="company">{{ job.company }}</div>
+                                    <div class="location">{{ job.locationDisplay }}</div>
+                                </div>
+                            {% endfor %}
+                            <a class="more" href="{{ path('JobPosts') }}">See more jobs &gt;&gt;</a>
+                        </div>
+                        <div class="vertical_ad_container">
+                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                            <!-- JJobs -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:120px;height:600px"
+                                 data-ad-client="ca-pub-3003304833366179"
+                                 data-ad-slot="2899025439"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        </div>
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+    <div id="read-more">
+        <a class="more" href="{{ path('MediaNews', {'page': page + 1}) }}">&gt;&gt; read more {{ parameter('news_title', 'Media News') | lower }}</a>
+    </div>
+</div>
+{% endblock %}

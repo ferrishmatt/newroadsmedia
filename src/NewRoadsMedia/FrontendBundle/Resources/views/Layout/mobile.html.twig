@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ parameter('site_title') }} - {% block title %}{{ parameter('site_slogan') }}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+
+    {%- block stylesheets -%}
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{{ asset('css/mobile.css') }}"/>
+    {%- endblock -%}
+
+    {%- block javascripts -%}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    {%- endblock -%}
+</head>
+<body id="site-{{ parameter('job_type') | lower }}">
+<nav role="navigation" class="navbar navbar-default">
+    <div class="navbar-header">
+        <button type="button" data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{{ path('Index') }}"><img src="{{ asset(parameter('logo_path')) }}" alt="{{ parameter('site_title') }}" id="logo"/></a>
+    </div>
+    <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li><a href="{{ path('Index') }}"><span class="glyphicon glyphicon-search"></span> Search Jobs</a></li>
+            <li><a href="{{ path('PostResume') }}"><span class="glyphicon glyphicon-plus"></span> Post a Resume</a></li>
+            {% if app.user and is_granted('ROLE_EMPLOYER') %}
+                <li><a href="{{ path('LogoutEmployer') }}"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+            {% elseif app.user and is_granted('ROLE_JOB_SEEKER') %}
+                <li><a href="{{ path('JobSeekerFolder') }}"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
+                <li><a href="{{ path('LogoutJobSeeker') }}"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+            {% else %}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-log-in"></span> Account Login <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('LoginJobSeeker') }}#sign-in">Job Seeker Login</a></li>
+                        <li><a href="{{ path('LoginEmployer') }}#sign-in">Employer Login</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Create Account <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('JobSeekerFolder') }}">Create Job Seeker Account</a></li>
+                        <li><a href="{{ path('EmployerManager') }}">Create Employer Account</a></li>
+                    </ul>
+                </li>
+            {% endif %}
+        </ul>
+        <div class="nav navbar-nav navbar-right">
+            <p class="navbar-text">
+                Follow
+                <a href="https://www.twitter.com/{{ parameter('social.twitter') }}"><img src="{{ asset('images/mobile/twitter_icon.jpg') }}"/></a>
+                <a href="{{ parameter('social.facebook') }}"><img src="{{ asset('images/mobile/facebook_icon.jpg') }}"/></a>
+            </p>
+        </div>
+    </div>
+</nav>
+{% for type, messages in app.session.flashBag.all %}
+    <div class="container">
+        <div class="alert alert-{% if type == 'failure' %}danger{% else %}success{% endif %}">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}
+<div class="container {{ app.request.get('_route') | lower }}" id="content">
+    {% block content %}{% endblock %}
+</div>
+<br/>
+<p class="text-center">
+    <a href="{{ path(app.request.attributes.get('_route'), (app.request.attributes.get('_route_params') ?: []) | merge({'redirect': 'desktop'})) }}">Go to Desktop Site</a>
+</p>
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5ths col-xs-12">
+                <h5>Job Seekers</h5>
+                <ul>
+                    <li><a href="{{ path('JobPosts') }}">Find a Job</a></li>
+                    <li><a href="{{ path('JobNotification') }}">Job Alerts</a></li>
+                    <li><a href="{{ path('PostResume') }}">Post a Resume</a></li>
+                    <li><a href="{{ path('JobSeekerFolder') }}">Account Login</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-5ths col-xs-12">
+                <h5>Employers</h5>
+                <ul>
+                    <li><a href="{{ path('PostNewJob') }}">Post a Job</a></li>
+                    <li><a href="{{ path('SearchResumes') }}">Search Resumes</a></li>
+                    <li><a href="{{ path('Advertising') }}">Advertising</a></li>
+                    <li><a href="{{ path('EmployerManager') }}">Account Login</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-5ths col-xs-12">
+                <h5>General Info</h5>
+                <ul>
+                    <li><a href="{{ path('AboutUs') }}">About Us</a></li>
+                    <li><a href="{{ path('PrivacyPolicy') }}">Privacy Policy</a></li>
+                    <li><a href="{{ path('Terms') }}">Terms and conditions</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-5ths col-xs-12">
+                <h5>Contact Us</h5>
+                <ul>
+                    <li><a href="mailto:{{ parameter('email.info') }}">{{ parameter('email.info') }}</a></li>
+                    <li><a href="tel://{{ parameter('site_phone') }}">{{ parameter('site_phone') }}</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-5ths col-xs-12">
+                <h5>Get Connected</h5>
+                <ul>
+                    <li><a href="{{ parameter('social.facebook') }}" target="_blank"><img src="{{ asset('images/icons/layout/facebook-footer.png') }}" alt="Facebook" width="24" height="24"/>Facebook</a></li>
+                    <li><a href="https://www.twitter.com/{{ parameter('social.twitter') }}" target="_blank"><img src="{{ asset('images/icons/layout/twitter-footer.png') }}" alt="Twitter" width="24" height="24"/>Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

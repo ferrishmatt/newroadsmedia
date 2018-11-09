@@ -1,0 +1,106 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+
+{% if form.vars.errors %}
+    <h1 style="font-size:1.6em;">{{ form_errors(form) }}</h1>
+{% endif %}
+
+{{ form_start(form) }}
+
+<table>
+  <tr> 
+	    <td height="27" colspan="2"><font face="Arial, Helvetica, sans-serif" size="2"> 
+	      <font size="3"><strong>Enter your new billing information below and click "Save Changes."</strong><br><br></font>
+	      </font></td>
+	  </tr>	  
+	  <tr> 
+	    <td height="27"> 
+	      <div align="right"><font face="Arial, Helvetica, sans-serif" size="2"><font face="Arial, Helvetica, sans-serif" size="2">Billing name</font></div>
+	    </td>
+	    <td height="27"><font face="Arial, Helvetica, sans-serif" size="2"> 
+	      <font size="3">{{ form_widget(form.name) }}</font>
+	      </font></td>
+	  </tr>
+	  <tr> 
+	    <td height="27"> 
+	      <div align="right"><font face="Arial, Helvetica, sans-serif" size="2"><font face="Arial, Helvetica, sans-serif" size="2">Company</font></div>
+	    </td>
+	    <td height="27"><font face="Arial, Helvetica, sans-serif" size="2"> 
+	      <font size="3">{{ form_widget(form.company) }}</font>
+	      </font></td>
+	  </tr>	  
+	  <tr> 
+	    <td height="27"> 
+	      <div align="right"><font face="Arial, Helvetica, sans-serif" size="2"><font face="Arial, Helvetica, sans-serif" size="2">Billing Company</font></div>
+	    </td>
+	    <td height="27"><font face="Arial, Helvetica, sans-serif" size="2"> 
+	      <font size="3">{{ form_widget(form.billingCompany) }}</font>
+	      </font></td>
+	  </tr>	  	  
+	  <tr> 
+	    <td height="27"> 
+	      <div align="right"><font face="Arial, Helvetica, sans-serif" size="2"><font face="Arial, Helvetica, sans-serif" size="2">Title</font></div>
+	    </td>
+	    <td height="27"><font face="Arial, Helvetica, sans-serif" size="2"> 
+	      <font size="3">{{ form_widget(form.title) }}</font>
+	      </font></td>
+	  </tr>	  
+	  <tr> 	  
+	    <td> 
+	      <div align="right"><font face="Arial, Helvetica, sans-serif" size="2"><font face="Arial, Helvetica, sans-serif" size="2">Phone</font></div>
+	    </td>
+	    <td><font face="Arial, Helvetica, sans-serif" size="2"> 
+     	{{ form_widget(form.phoneArea, { 'attr': { 'size': 3 } } ) }}
+     	{{ form_widget(form.phone, { 'attr': { 'size': 10 } } ) }}
+	  </tr>
+	  <tr> 	  
+	    <td> 
+	      <div align="right"><font face="Arial, Helvetica, sans-serif" size="2"><font face="Arial, Helvetica, sans-serif" size="2">Fax</font></div>
+	    </td>
+	    <td><font face="Arial, Helvetica, sans-serif" size="2"> 
+	      <font size="3">{{ form_widget(form.faxNumber) }}</font>
+	  </tr>
+    <tr>
+	    <td> 
+	      <div align="right"><font face="Arial, Helvetica, sans-serif" size="2"><font face="Arial, Helvetica, sans-serif" size="2">Street  
+		</font></div>
+	    </td>
+	    <td><font face="Arial, Helvetica, sans-serif" size="2"> 
+	      <font size="3">{{ form_widget(form.address) }}</font>
+	      </font></td>
+	  </tr>
+	  <tr> 
+	    <td> 
+	      <div align="right"><font face="Arial, Helvetica, sans-serif" size="2"><font face="Arial, Helvetica, sans-serif" size="2">City and State</font></div>
+	    </td>
+	    <td><font face="Arial, Helvetica, sans-serif" size="3">
+            {{ form_widget(form.city, {'attr': {'size': 15}}) }} {{ form_widget(form.state, {'attr': {'size': 2} }) }}
+        </font></td>
+	  </tr>
+	  <tr> 
+	    <td> 
+	      <div align="right"><font face="Arial, Helvetica, sans-serif" size="2"><font face="Arial, Helvetica, sans-serif" size="2">Zip Code</font></div>
+	    </td>
+	    <td><font face="Arial, Helvetica, sans-serif" size="2"> 
+            {{ form_widget(form.zip, {'attr': {'size': 5 } } ) }}
+     	    {{ form_widget(form.zipPlus, {'attr': {'size': 4} } ) }}
+	      </font></td> 
+	  </tr>
+	    <tr> 
+	    <td> 
+	      <div align="right"><font face="Arial, Helvetica, sans-serif" size="2"><font face="Arial, Helvetica, sans-serif" size="2">Special Billing <br> Instructions:</font></div>
+	    </td>
+	    <td><font face="Arial, Helvetica, sans-serif" size="2"> 
+	      <font size="3">{{ form_widget(form.specialBillingInstructions) }}
+	      </font></td>
+	  </tr>
+	 
+	 <TR>
+	 <TD></TD>
+	 <TD><input type="submit" value="Save Changes"></TD>
+	 </TR>	  
+</table>
+{{ form_end(form) }}
+
+{% endblock content %}

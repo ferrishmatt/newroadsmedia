@@ -1,0 +1,164 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style type="text/css">
+        .form-error {
+            font-weight: bold;
+            color: #900;
+        }
+
+        #content .main-block p {
+            margin: 15px 0;
+            font-size: 15px;
+        }
+
+        #content .main-block span {
+            font-size: 14px;
+        }
+
+        #content .main-block p a {
+            color: #FF8E00;
+        }
+
+        #content .main-block p a:hover {
+            text-decoration: underline;
+        }
+
+        .main-block td {
+            vertical-align: middle;
+        }
+
+        .submitIt {
+            margin: 20px auto 0;
+            display: block;
+        }
+
+        #form_message {
+            width: 450px;
+            height: 210px;
+        }
+
+        #form_email {
+            width: 300px;
+        }
+
+        #form_subject {
+            width: 450px;
+        }
+
+        .main-block input[type="text"],
+        .main-block input[type="email"],
+        .main-block textarea {
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+            -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+            -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+            transition: border linear 0.2s, box-shadow linear 0.2s;
+            display: inline-block;
+            height: 20px;
+            padding: 4px 6px;
+            font-size: 14px;
+            line-height: 20px;
+            color: #555555;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            margin: 0;
+        }
+
+        .main-block input[type="text"]:focus,
+        .main-block input[type="email"]:focus,
+        .main-block textarea:focus {
+            border-color: rgba(82, 168, 236, 0.8);
+            outline: 0;
+            outline: thin dotted \9;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+            -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="main-block">
+        <div class="row">
+            <div class="span8 offset2 inner-content">
+                <h1>Contact Us</h1>
+
+                <div id="ctl00_mainBlockContentPlaceHolder_divInput">
+
+                    <div class="alert alert-success" id="alert_success" style="display:none">
+                        <strong>Email sent.</strong> <span id="success_text">We'll get back to you shortly</span>
+                    </div>
+
+                    <div style="margin-bottom:15px">
+                        <p>
+                        Do you have a question, comment, or suggestion? We would love to hear from you. Please complete
+                        the form below to send us an email. We are in the Pacific Time Zone and try to answer every email
+                        within one hour of receiving it. You can also reach us by phone at {{ parameter('site_phone') }}.
+                        </p>
+                        <p>
+                            If you experience any difficulty with this page, please feel free to email us directly at:
+                            <a href="mailto:{{ parameter('email.info') }}">{{ parameter('email.info') }}.</a>
+                        </p>
+                    </div>
+
+                    <div style="padding-bottom:10px; display:none" class="validation-summary" id="ctl00_mainBlockContentPlaceHolder_veMessage_divControl">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody><tr>
+                                <td>
+                                    <div style="padding-bottom:3px" class="region5">
+                                        <table>
+                                            <tbody><tr>
+                                                <td style="width:20px"><img id="ctl00_mainBlockContentPlaceHolder_veMessage_imgGlyph" src="http://www.ifreelance.com/graphics/glyphs/ex/red-r5-s3.gif?v=1"></td>
+                                                <td style="font-weight: bold;">Please correct the following errors and make your request again:</td>
+                                            </tr>
+                                            </tbody></table>
+                                        <div style="padding-left:18px" id="ctl00_mainBlockContentPlaceHolder_veMessage_divFailures"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody></table>
+                    </div>
+                    {{ form_start(form) }}
+                        <table cellspacing="0" cellpadding="0" style="table-layout:fixed">
+                            <tbody>
+                                <tr>
+                                    <td><span class="fieldlabel">{{ form_label(form.email) }}*</span></td>
+                                    <td>{{ form_widget(form.email) }}</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="form-error">{{ form_errors(form.email) }}</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="fieldlabel">{{ form_label(form.subject) }}*</span></td>
+                                    <td>{{ form_widget(form.subject) }}</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="form-error">{{ form_errors(form.subject) }}</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="fieldlabel">{{ form_label(form.message) }}*</span></td>
+                                    <td>{{ form_widget(form.message) }}</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="form-error">{{ form_errors(form.message) }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <input type="submit" value="Submit" class="submitIt">
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

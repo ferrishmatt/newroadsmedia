@@ -1,0 +1,47 @@
+# Add files and commands to this file, like the example:
+#   watch('file/path') { `command(s)` }
+#
+#
+$username = 'root'
+ 
+guard:shell do
+  $last_call = Time.now
+  $sass_call = Time.now
+ 
+  def sync(from, to)
+    #doing svn up will cause us to sync a ton of times, but we only need
+    #to sync the first time, so lets only sync every .5 secs at most
+    if Time.now - $last_call > 0.5
+      system("rsync -e 'ssh -p 22' -avz --delete ./#{from}/ #{$username}@64.224.10.245:#{to}/ --exclude '.svn' --exclude '.git' --exclude '.sass-cache'")
+      Notifier.notify("#{from} is up to date.", {title: "OK"})
+    end
+    $last_call = Time.now
+  end
+ 
+  def sass(base)
+    if Time.now - $sass_call > 0.5
+      system("compass compile ./#{base}/css")
+      Notifier.notify("Running Sass on #{base}", {title: "SASS"})
+    end
+    $sass_call = Time.now
+  end
+ 
+  def sync_public(from, to, file)
+    sync(from, "/var/www/newroadsmedia/src/NewRoadsMedia/JournalismJobsBundle/#{to}")
+  end
+ 
+  #common repos
+  watch( %r{^common/.*\.(php|conf)$} ) { |m| sync('common', "/home/#{$username}/lib/common") }
+  watch( %r{^db_handle/.*\.(inc)$} ) { |m| sync('db_handle', "/home/#{$username}/db_handle") }
+  watch( %r{^UTIL/.*\.(php|txt|csv)$} ) { |m| sync('UTIL', "/home/#{$username}/UTIL" ) }
+  watch( %r{.*\.(htaccess|js|php|css|tpl|ini|html|conf|twig|jpg)$} ) { |m| sync_public("/", "/", m[0]) }
+  #watch( %r{^web/.*\.scss$} ) { |m| sass("web") }
+ 
+  #playground and others
+  #watch( %r{^playground/.*} ) { |m| sync_public('playground', 'playground', m[0]) }
+  watch( %r{^source-map/.*\.(source|js|map|html)$} ) { |m| sync_public('source-map', "source-map", m[0]) }
+ 
+  #images
+  #watch( %r{^images/.*} ) { |m| sync_public('images', 'images', m[0]) }
+ 
+end

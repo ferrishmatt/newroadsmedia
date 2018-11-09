@@ -1,0 +1,49 @@
+{% set page_name = 'Employer Folder -- Frequently Asked Questions' %}
+
+{% extends 'NewRoadsMediaFrontendBundle:HomePage:rawContent.html.twig' %}
+
+{% block innerContent %}
+<table width="98%" border="0">
+    <tbody>
+    <tr>
+        <td>
+            <br/>
+            <ul>
+                <font face="Arial, Helvetica, sans-serif" size="2">
+                    <li><b>Is there a cost to edit or update a job listing?</b><br>
+                        <br>No, editing and updating are free. However, changing the job title and description of an ad that has been running for at least one day is not permitted. You will need to post a new ad. <br>
+                        <br>
+                    </li><li><b>If my ad only runs for a few days and I suspend it early, can I use the remaining time later? </b><br>
+                        <br>
+                        Unfortunately, no. <font color="red">Unused time cannot be stored or saved for use later.</font> Otherwise we'd have users posting and suspending several different ads during the same five-week period and only paying ${{ parameter('ad_cost') }} for one ad. The cost is ${{ parameter('ad_cost') }} per ad, regardless if you run it for 1 week or 5 weeks. The five-week rule also applies to accessing our general resume database. You are given free resume access while your ad is running. <br>
+                        <br>
+                    </li><li><b>Can I post more than one job ad through my Employer Folder, or do I need a different Employer Folder account for each job ad?</b><br>
+                        <br>
+                        You can post as many job ads as you want through your Employer Folder account. That is your permanent account. The Employer Folder will also keep a list of all your old ads (if you don't delete any of them).<br>
+                        <br>
+                    </li><li><b>What happens when my job listing expires?</b><br>
+                        <br>
+                        Three days before your ad is set to expire, you will receive an e-mail from us. At that time, you can renew the ad for another five weeks. If you take no action, the listing will automatically expire from our database and will not be viewable to job seekers. The listing, however, will remain in your Employer Folder just in case you need to repost it later. Job seekers will not be able to see it. <br>
+                        <br>
+                    </li><li><b>I want to change the username and password to my Employer Folder. How do I do that?</b><br>
+                        <br>
+                        In your Employer Folder, click on the link that says "Change user login."<br>
+                        <br>
+                    </li><li><b>When does my Employer Folder account expire?</b><br>
+                        <br>
+                        Your Employer Folder
+                        membership never expires. But we recommend that you print out any resumes, cover letters or other material you deem important.<br>
+                        <br>
+                        <br>
+                        <font face="Arial, Helvetica, sans-serif" size="2">If you still have a question, call {{ parameter('site_phone') }}, or send an e-mail
+                            to <a href="mailto:{{ parameter('email.contact') }}">{{ parameter('email.contact') }}</a> <br>
+                            <br>
+                            Hit the "back button" in your Web browser to return to your Employer Folder. </font><p></p>
+                    </li></font></ul><font face="Arial, Helvetica, sans-serif" size="2">
+                </font>
+            </ul>
+        </td>
+    </tr>
+    </tbody>
+</table>
+{% endblock %}

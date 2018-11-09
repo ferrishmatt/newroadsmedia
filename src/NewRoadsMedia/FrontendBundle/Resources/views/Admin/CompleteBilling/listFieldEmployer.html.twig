@@ -1,0 +1,21 @@
+{% extends admin.getTemplate('base_list_field') %}
+
+{% block field %}
+    {% set job = object %}
+    {% if job.invoiceTracks | length > 0 %}
+        <strong>Invoice #</strong> {{ job.invoiceTracks.last.id }}<br/>
+    {% endif %}
+    {{ job.employer.name }} - {{ job.employer.billingCompany }}
+    {% if job.billing == "creditcard" %}-- PAID BY CC, {{ job.createDate | date('M d, Y') }}{% endif %}
+    <br/>
+    {{ job.employer.address }}<br/>
+    {{ job.employer.city }}, {{ job.employer.state }} {{ job.employer.zip }} {{ job.employer.zipPlus }}<br/>
+    {% if job.employer.phoneArea %}
+        ({{ job.employer.phoneArea }}) {{ job.employer.phone }}<br/>
+    {% endif %}
+    1 Job Ad -- {{ job.titleOfPositionOpen }}, posted by {{ job.employer.email }}
+    {% if job.changeLog %}
+    <br/><br/>
+        {{ job.changeLog | raw }}
+    {% endif %}
+{% endblock %}

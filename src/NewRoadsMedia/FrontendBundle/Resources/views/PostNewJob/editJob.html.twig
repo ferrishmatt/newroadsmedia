@@ -1,0 +1,496 @@
+{% extends 'NewRoadsMediaFrontendBundle:PostNewJob:job.html.twig' %}
+
+{% form_theme form 'NewRoadsMediaFrontendBundle:PostNewJob:fields.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style type="text/css">
+        #post_new_job_industries {
+            width: 800px;
+        }
+
+        #post_new_job_industries input {
+            float: left;
+        }
+
+        #post_new_job_industries .industry-label {
+            float: left;
+            display: inline-block;
+            font-size: 14px;
+            margin-left: 4px;
+            width: 240px;
+            height: 30px;
+        }
+        .job-information input {
+            width: 300px;
+            height: 28px;
+            font-size: 18px;
+            font-family: Verdana,Arial,sans-serif;
+            padding: 1px 5px;
+        }
+
+        .job-information select {
+            width: 314px;
+            height: 28px;
+            font-size: 18px;
+            font-family: Verdana,Arial,sans-serif;
+            padding: 1px 5px;
+        }
+
+        #post_new_job_adDescription {
+            height: 900px;
+        }
+
+        .compute-price {
+            font-size: 16px;
+        }
+
+        .focuses label {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        #post_new_job_focus {
+            padding-top: 5px;
+        }
+
+        #post_new_job_focus label {
+            font-weight: normal;
+            font-size: 14px;
+            display: inline-block;
+            margin-left: 5px;
+            margin-right: 25px;
+        }
+
+        #post_new_job_focus label,
+        #post_new_job_focus input {
+            cursor: pointer;
+        }
+
+        #post_new_job_applyUrl {
+            width: 400px;
+        }
+
+        #post_new_job_applyEmail {
+            width: 240px;
+        }
+
+        #post_new_job_applyEmail,
+        #post_new_job_applyUrl {
+            font-size: 14px;
+            padding: 3px;
+        }
+
+        #post_new_job_submit {
+            font-size: 22px;
+            font-weight: bold;
+            padding: 20px 30px;
+            cursor: pointer;
+            width: auto;
+        }
+
+        #content .form-errors ul {
+            float: none;
+        }
+
+        #content .form-errors ul li {
+            list-style-type: none;
+            padding: 5px;
+        }
+
+        #content hr {
+            margin: 30px 0;
+            border-top: 1px solid #000;
+            border-bottom: 0;
+        }
+
+        #content h2 {
+            font-size: 26px;
+        }
+
+        tr.inputtext td.label {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        #post_new_job_deleteImage {
+            width: 15px;
+            height: 15px;
+            vertical-align: middle;
+        }
+
+        label[for="post_new_job_image"] {
+            font-size: 16px;
+        }
+        .form-industries input[type="checkbox"] {
+            margin-right: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% if not employer.freeOption %}
+        <script type="text/javascript">
+            var price = {{ parameter('ad_cost') }};
+            var adsRemaining = {{ adsRemaining }};
+            var originalIndustryCount = {{ originalIndustryCount }};
+            var originalIsDiversity = {{ originalIsDiversity ? 'true' : 'false' }};
+            var originalIsFeatured = {{ originalIsFeatured ? 'true' : 'false' }};
+            $(function() {
+                $('.compute-price :input')
+                    .click(function() {
+                        var industryCount = $('.form-industries :input:checked').length;
+                        var total = (industryCount - originalIndustryCount) * price;
+                        if (total < 0) {
+                            total = 0;
+                        }
+                        $('.extra :input').each(function() {
+                            if ($(this).is(':checked') && !$(this).data('original')) {
+                                total += parseFloat($(this).data('cost'));
+                            }
+                        });
+                        if (adsRemaining> 0 && industryCount > originalIndustryCount) {
+                            var newIndustryCount = industryCount - originalIndustryCount;
+                            var deduct = Math.min(newIndustryCount, adsRemaining);
+                            total -= (deduct * price);
+                        }
+
+                        $('#price').html('Job ads are $' + price + ' each per industry.<br><br> Your {{ action =='edit' ? 'new' : 'current' }} total is:');
+                        $('#price2').html('  $' + total.toFixed(2));
+                    })
+                ;
+            });
+        </script>
+    {% endif %}
+    <script type="text/javascript">
+        $(function() {
+            var $applyTypes = $(':input[name="post_new_job\\[applyType\\]"]');
+            var $applyEmail = $('#post_new_job_applyEmail');
+            var $applyUrl   = $('#post_new_job_applyUrl');
+            $applyTypes.change(function() {
+                if ($applyTypes.filter(':checked').val() == 'email') {
+                    $applyEmail.removeAttr('disabled').focus();
+                } else {
+                    $applyEmail.attr('disabled', 'disabled');
+                }
+                if ($applyTypes.filter(':checked').val() == 'url') {
+                    $applyUrl.removeAttr('disabled').focus();
+                } else {
+                    $applyUrl.attr('disabled', 'disabled');
+                }
+            });
+
+            $('#post_new_job_industries input[type="checkbox"]').change(function() {
+                if ($(this).val() == 16) {
+                    if ($(this).is(':checked')) {
+                        $('#form-position').hide();
+                        $('#post_new_job_position').attr('disabled', 'disabled')
+                    } else {
+                        $('#form-position').show();
+                        $('#post_new_job_position').removeAttr('disabled');
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    {% if action == 'edit' %}
+        <p style="font: bold 14pt arial, serif; line-height: 20px; padding: 30px 100px 30px 5px;">
+            <strong style="text-transform: uppercase;">Edit this job ad:</strong>
+            <span style="color: red">
+                Make your editing changes below. After you finish, click on the "Save Changes" button at the bottom.
+                The changes are made instantly.
+            </span>
+        </p>
+        <p>
+            <font face="Arial, Helvetica, sans-serif" size="2"><font face="Arial, Helvetica, sans-serif" size="5" color="red">*</font>denotes required field </font>
+        </p>
+    {% else %}
+        {{ include('@NewRoadsMediaFrontend/PostNewJob/steps.html.twig', {'step': 2}) }}
+    {% endif %}
+
+    <div{% if action != 'edit' %} class="inner-content"{% endif %}>
+    {{ form_start(form) }}
+    {% if form.vars.errors %}
+        <div style="text-align:center; color:#f00; font-weight: bold; font-size: 18pt;" class="form-errors">
+        {{ form_errors(form) }}
+        </div>
+    {% endif %}
+    <table width="100%" border="0" align="center" cellpadding="3" cellspacing="0">
+        <tbody>
+            <tr>
+                <td colspan="2" style="font-weight: bold; color: #f90; font-size: 24px; border-bottom: 2px solid #525252;">Job Ad Information</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="height: 20px;"></td>
+            </tr>
+            {% if form.industries is defined %}
+                {% if not employer.freeOption %}
+                <tr>
+                    <td valign="top" colspan="2" style="text-align: center;">
+                        <span id="price" style="background-color:yellow; font-weight: bold; font-size: 24px;">
+                            Job ads are ${{ parameter('ad_cost') }} each per industry.
+                            {% if amountDue > 0 %}
+                                <br/><br/>
+                                Your {{ action =='edit' ? 'new' : 'current' }} total is:
+                            {% endif %}
+                        </span>
+                        <span id="price2" style="color:red; font-weight: bold; font-size: 24px;">
+                            {% if amountDue > 0 %}
+                                ${{ amountDue | number_format(2, '.', ',') }}
+                            {% endif %}
+                        </span>
+                    </td>
+                </tr>
+                {% endif %}
+                <tr class="normaltext">
+                    <td colspan="2" style="font-size: 18px; font-weight: bold;">
+                        <br/>
+                        <br/>
+                        <span class="required">*</span> Select at least one media industry:
+                    </td>
+                </tr>
+                <tr class="normaltext compute-price">
+                    <td valign="top" align="left" class="form-industries" colspan="2">
+                        <table style="width:100%;">
+                            {% for row in form.industries | batch(3) %}
+                                <tr>
+                                    {% for child in row %}
+                                        <td>
+                                            {{ form_widget(child) }}
+                                            {{ form_label(child) }}
+                                            {{ form_errors(child) }}
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </td>
+                </tr>
+                <tr><td>&nbsp;</td></tr>
+            {% endif %}
+            {% if form.focus.children %}
+                <tr class="normaltext focuses">
+                    <td valign="top" colspan="2">
+                        {{ form_row(form.focus) }}
+                    </td>
+                </tr>
+                <tr><td>&nbsp;</td></tr>
+            {% else %}
+                {% do form.focus.setRendered %}
+            {% endif %}
+            <tr>
+                <td colspan="2" align="left"><font size="4" face="Arial"><strong>Posting Extras:</strong></font></td>
+            </tr>
+            {% if form.vars.showFrontPage %}
+                <tr class="normaltext compute-price extra">
+                    <td colspan="2">
+                        {{ form_widget(form.isFrontPage, {'attr': {'data-original': originalIsFrontPage ? 1 : 0, 'data-cost': parameter('frontpage_ad_cost')}}) }} List my ad on the <strong>Front Page</strong> of {{ parameter('site_title') }} {% if not employer.freeOption %}<span style="color: #f00;"> (${{ parameter('frontpage_ad_cost') }} extra charge)</span> {% endif %}for 5 days.<br>
+                    </td>
+                </tr>
+            {% endif %}
+            <tr class="normaltext compute-price extra">
+                <td colspan="2">
+                    {{ form_widget(form.isDiversity, {'attr': {'data-original': originalIsDiversity ? 1 : 0, 'data-cost': parameter('diversity_ad_cost')}}) }} List my ad in the <strong>Diversity Jobs Section</strong> {% if not employer.freeOption %}<span style="color: #f00;"> (${{ parameter('diversity_ad_cost') }} extra charge)</span> {% endif %}for the duration of my posting. <br><br>
+                </td>
+            </tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr class="normaltext">
+                <td colspan="2"><font size="4" face="Arial"><strong>Job Information:</strong></font></td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <table width="700" cellspacing="15" class="job-information">
+                        <tbody>
+                            <tr class="inputtext">
+
+                                <td style="font-size:14px; font-weight:bold;">
+                                    Company / Organization
+                                </td>
+                                <td class="field">
+                                    {{ form_widget(form.company) }}
+                                </td>
+
+                            </tr>
+                            <tr class="inputtext" id="form-position"{% if job.hasIndustry(16) %} style="display:none;"{% endif %}>
+                                <td style="font-size:14px; font-weight:bold;">
+                                    <span class="required">*</span>Position
+                                </td>
+                                <td class="field">
+                                    {{ form_widget(form.position, job.hasIndustry(16) ? {'attr': {'disabled': 'disabled'}} : {}) }}
+                                </td>
+                            </tr>
+                            <tr class="inputtext">
+                                <td style="font-size:14px; font-weight:bold;">
+                                    <span class="required">*</span>Job Title
+                                </td>
+                                <td class="field">
+                                    {{ form_widget(form.titleOfPositionOpen) }}
+                                </td>
+                            </tr>
+                            {% if form.duration is defined %}
+                                <tr class="inputtext">
+                                    <td style="font-size:14px; font-weight:bold;">
+                                        <span class="required">*</span>{{ form_label(form.duration) }}
+                                    </td>
+                                    <td class="field">
+                                        {{ form_widget(form.duration) }}
+                                    </td>
+                                </tr>
+                            {% endif %}
+                            <tr class="inputtext">
+                                <td style="font-size:14px; font-weight:bold;">
+                                    Speciality (e.g. Business News)
+                                </td>
+                                <td class="field">
+                                    {{ form_widget(form.specialty) }}
+                                </td>
+                            </tr>
+                            <tr class="inputtext">
+                                <td style="font-size:14px; font-weight:bold;">
+
+                                    <span class="required">*</span>City
+                                </td>
+                                <td class="field">
+                                    {{ form_widget(form.jobCity) }}
+                                </td>
+                            </tr>
+                            <tr class="inputtext">
+                                <td style="font-size:14px; font-weight:bold;">
+                                    <span class="required">*</span>State
+                                </td>
+                                <td class="field">
+                                    {{ form_widget(form.location) }}
+                                </td>
+                            </tr>
+                            <tr class="inputtext">
+                                <td style="font-size:14px; font-weight:bold;">
+                                    Job Status
+                                </td>
+                                <td class="field">
+                                    {{ form_widget(form.jobType) }}
+                                </td>
+                            </tr>
+                            <tr class="inputtext">
+                                <td style="font-size:14px; font-weight:bold;">
+                                    Salary
+                                </td>
+                                <td class="field">
+                                    {{ form_widget(form.salary) }}
+                                </td>
+                            </tr>
+                            <tr class="inputtext">
+                                <td class="label">
+                                    {{ form_label(form.customSalary) }}
+                                </td>
+                                <td class="field">
+                                    {{ form_widget(form.customSalary) }}
+                                </td>
+                            </tr>
+                            <tr class="inputtext">
+                                <td style="font-size:14px; font-weight:bold;">
+                                    Company Website
+                                </td>
+                                <td class="field">
+                                    {{ form_widget(form.website) }}<br/>
+                                    (e.g. http://www.example.com)
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr class="normaltext">
+                <td colspan="2" valign="top" algin="left">
+                    <a name="jobtext"></a>
+                    <font face="Arial, Helvetica, sans-serif" size="3">
+                        <span class="required">*</span>
+                        <b>Enter Your Job Ad Text Below</b>
+                        <!--<font face="Arial, Helvetica, sans-serif" size="2" color="red">Click the "Source" first if your document already contains HTML formatting.</font>-->
+                        <br>
+                        {{ form_widget(form.adDescription, { 'attr': { 'class': 'ckeditor' } } ) }}
+                        <script type="text/javascript">
+                            CKEDITOR.replace( 'post_new_job_adDescription', {
+			                    height: 300
+		                    });
+                        </script>
+                    </font>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><hr/><h2>Application Procedure</h2></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <b>How should applicants apply for your job?</b>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="application-procedure">
+                    <label>
+                        {{ form_widget(form.applyType.children[0]) }} <strong>Option 1.</strong> Applicants will use the contact information provided in the job ad (e.g. street address, fax, email, etc.)
+                    </label>
+                    <label>
+                        {{ form_widget(form.applyType.children[3]) }} <strong>Option 2.</strong> Applicants will apply at the following web address:
+                        {% if form.applyType.vars.value.3 %}
+                            {{ form_widget(form.applyUrl, {'attr': {'placeholder': 'http://www.example.com/job1234_apply_online'}}) }}
+                        {% else %}
+                            {{ form_widget(form.applyUrl, {'attr': {'placeholder': 'http://www.example.com/job1234_apply_online', 'disabled': 'disabled'}}) }}
+                        {% endif %}
+                    </label>
+                    <label>
+                        {{ form_widget(form.applyType.children[2]) }} <strong>Option 3.</strong> Forward resumes to the following email address:
+                        {% if form.applyType.vars.value.2 %}
+                            {{ form_widget(form.applyEmail) }}
+                        {% else %}
+                            {{ form_widget(form.applyEmail, {'attr': {'disabled': 'disabled'}}) }}
+                        {% endif %}
+                    </label>
+                    <!--
+                    <label>
+                        {{ form_widget(form.applyType.children[1]) }} <strong>Option 4.</strong> Store responses in my {{ parameter('site_title') }} employer account. With this option, you must log into your account to see these responses.
+                    </label>
+                    -->
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <hr/>
+                    <table width="700" cellspacing="15" class="job-information">
+                        <tbody>
+                        <tr class="inputtext">
+                            <td style="font-size:14px; font-weight:bold;">
+                                {{ form_label(form.image, 'Add a Company Logo (limit to 250 x 145 pixels):') }}
+                            </td>
+                            <td class="field">
+                                {% if job.companyImage %}
+                                    <img src="{{ job.companyImage }}"/><br/>
+                                    {{ form_widget(form.deleteImage) }}
+                                    {{ form_label(form.deleteImage) }}
+                                    <br/>
+                                {% else %}
+                                    {% do form.deleteImage.setRendered %}
+                                {% endif %}
+                                {{ form_widget(form.image) }}
+                                {{ form_errors(form.image) }}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center; padding-top: 30px;">
+                    {{ form_widget(form.submit, {'attr': {'class': 'submitbtn'}}) }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    {% do form.applyType.setRendered %}
+    {% do form.applyUrl.setRendered %}
+    {{ form_end(form) }}
+    </div>
+{% endblock %}

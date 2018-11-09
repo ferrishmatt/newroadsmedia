@@ -1,0 +1,27 @@
+{% if allNewsArticles | length > 0 %}
+<div class="media-news">
+    <h3>Latest {{ parameter('news_title', 'Media News') }}</h3>
+    {% for newsArticle in allNewsArticles %}
+        {% if newsArticle.imageName %}
+            {% if newsArticle.imageName | slice(0, 7) == '/media/'  %}
+                <img src="{{ newsArticle.imageName }}" border="0" alt="" class="img-{{ newsArticle.imageAlign | lower }}"/>
+            {% else %}
+                <img src="{{ asset('images/' ~ newsArticle.imageName) }}" border="0" alt="" class="img{{ newsArticle.imageAlign }}"/>
+            {% endif %}
+        {% endif %}
+        <h4><a href="{{ newsArticle.link }}" target="_blank" class="short">{{ newsArticle.title }}</a></h4>
+        <p class="text-uppercase">
+            {% if newsArticle.source | length > 2 %}
+                Source: {{ newsArticle.source }}.
+            {% endif %}
+            Posted {{ newsArticle.entryDate | date('M d, Y') }}.
+        </p>
+        <p>
+            {{ newsArticle.linkBody | striptags | split(' ') | slice(0, 38) | join(' ') | raw }}...
+        </p>
+        <div class="clearfix"></div>
+        <br/>
+    {% endfor %}
+    <a class="btn btn-default btn-block" href="{{ path('MediaNews', {'page': page is defined ? page + 1 : 1}) }}">See More {{ parameter('news_title', 'Media News') }}</a>
+</div>
+{% endif %}

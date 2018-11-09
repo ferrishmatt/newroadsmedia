@@ -1,0 +1,139 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ parameter('site_title') }} - Job Application{% endblock %}
+
+{% block content %}
+<div>
+    <br/>
+    <a href="{{ path('ViewAllApplications', {'jobId': application.job.id}) }}">&lt; Return to the Applicants page</a>
+    <br/><br/>
+    <table width="100%" border="0" align="center">
+        <tbody>
+            <tr>
+                <td>
+                    <p><strong>From:</strong> {{ application.email }}</p>
+
+                    {% if application.introLetter %}
+                        <br/>
+                        <strong>Cover Letter:</strong><br/>
+                        <p>{{ application.introLetter | nl2br }}</p>
+                    {% endif  %}
+
+                    {% if application.resumeText %}
+                        <br/>
+                        <strong>Resume:</strong><br/>
+                        {% if containsHtml(application.resumeText) %}
+                            {{ application.resumeText | strip_script | raw }}
+                        {% else %}
+                            <p>{{ application.resumeText | nl2br }}</p>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if resumeFileLink %}
+                        <br/>
+                        <strong>Download Resume: </strong><a href="{{ resumeFileLink }}">Click to download</a>.
+                    {% endif %}
+
+                    {% if application.resume %}
+                        {% set resume = application.resume %}
+                        <br/>
+                        <strong>Applicant:</strong><br/>
+                        <table border="0" cellspacing="0" cellpadding="2">
+                            <tbody>
+                                <tr>
+                                    <td><font face="Arial, Helvetica, sans-serif" size="2">Position:</font></td>
+                                    <td><font color="#660033" face="Arial, Helvetica, sans-serif" size="2"><b>
+                                        {% if resume.position %}{{ resume.position }}{% else %}Not Specified{% endif %}
+                                    </b></font></td>
+                                </tr>
+                                <tr>
+                                    <td><font face="Arial, Helvetica, sans-serif" size="2">Specialty:</font></td>
+                                    <td><font color="#660033" face="Arial, Helvetica, sans-serif" size="2"><b>
+                                        {% if resume.specialty %}{{ resume.specialty }}{% else %}Not Specified{% endif %}
+                                    </b></font></td>
+                                </tr>
+                                <tr>
+                                    <td height="2"><font face="Arial, Helvetica, sans-serif" size="2">Market: </font></td>
+                                    <td height="2"><font color="#660033" face="Arial, Helvetica, sans-serif" size="2"><b>
+                                        {% if resume.market %}{{ resume.market }}{% else %}Not Specified{% endif %}
+                                    </b></font></td>
+                                </tr>
+                                <tr>
+                                    <td><font face="Arial, Helvetica, sans-serif" size="2">Experience:</font></td>
+                                    <td><font color="#660033" face="Arial, Helvetica, sans-serif" size="2"><b>
+                                        {% if resume.experience %}{{ resume.experience }}{% else %}Not Specified{% endif %}
+                                    </b></font></td>
+                                </tr>
+                                <tr>
+                                    <td><font face="Arial, Helvetica, sans-serif" size="2">Education:</font></td>
+                                    <td><font color="#660033" face="Arial, Helvetica, sans-serif" size="2"><b>
+                                        {% if resume.education%}{{ resume.education }}{% else %}Not Specified{% endif %}
+                                    </b></font></td>
+                                </tr>
+                                <tr>
+                                    <td><font face="Arial, Helvetica, sans-serif" size="2">Current Location:</font></td>
+                                    <td><font color="#660033" face="Arial, Helvetica, sans-serif" size="2"><b>
+                                        {% if resume.currentState %}{{ resume.currentState }}{% else %}Not Specified{% endif %}
+                                    </b></font></td>
+                                </tr>
+                                <tr>
+                                    <td><font face="Arial, Helvetica, sans-serif" size="2">Desired Location:</font></td>
+                                    <td><font color="#660033" face="Arial, Helvetica, sans-serif" size="2"><b>
+                                        {% if resume.desiredState %}{{ resume.desiredState }}{% else %}Not Specified{% endif %}
+                                    </b></font></td>
+                                </tr>
+                                <tr>
+                                    <td><font face="Arial, Helvetica, sans-serif" size="2">Job Status:</font></td>
+                                    <td><font color="#660033" face="Arial, Helvetica, sans-serif" size="2"><b>
+                                        {% if resume.jobType %}{{ resume.jobType }}{% else %}Not Specified{% endif %}
+                                    </b></font></td>
+                                </tr>
+                                <tr>
+                                    <td><font face="Arial, Helvetica, sans-serif" size="2">Salary:</font></td>
+                                    <td><font color="#660033" face="Arial, Helvetica, sans-serif" size="2"><b>
+                                        {% if resume.salary %}{{ resume.salary }}{% else %}Not Specified{% endif %}
+                                    </b></font></td>
+                                </tr>
+                                <tr>
+                                    <td><font face="Arial, Helvetica, sans-serif" size="2">Second Language:</font></td>
+                                    <td><font color="#660033" face="Arial, Helvetica, sans-serif" size="2"><b>
+                                        {% if resume.language %}{{ resume.language }}{% else %}Not Specified{% endif %}
+                                    </b></font></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p><font face="Arial, Helvetica, sans-serif" size="2"><b><img src="{{ asset('pics/dot_navy.gif') }}" width="588" height="1"></b></font></p>
+
+                        <p><font face="Arial, Helvetica, sans-serif" size="2" color="##333366"><b>
+                            {% if resume.name %}
+                                {{ resume.name }}<br/>
+                            {% endif %}
+                            Telephone: {{ resume.phoneArea }}-{{ resume.phone }}
+                        </b></font></p>
+
+                        {% if resume.resumeJobObjective %}
+                            <p><font face="Arial, Helvetica, sans-serif" size="2"><B>Job Objective</b><BR>
+                                {{ resume.resumeJobObjective }}
+                            </font></p>
+                        {% endif %}
+                        {% if resume.resumeWorkExperience %}
+                            <p><font face="Arial, Helvetica, sans-serif" size="2"><B>Work Experience</b><BR>
+                                {% if containsHtml(resume.resumeWorkExperience) %}
+                                    {{ resume.resumeWorkExperience | strip_script | raw }}
+                                {% else %}
+                                    <p>{{ resume.resumeWorkExperience | nl2br }}</p>
+                                {% endif %}
+                            </font></p>
+                        {% endif %}
+
+                        {% if resume.website and resume.website != 'http://' %}
+                            This applicant also has a website <b><a href="{{ resume.website }}">{{ resume.website }}</a></b>
+                        {% endif %}
+                    {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

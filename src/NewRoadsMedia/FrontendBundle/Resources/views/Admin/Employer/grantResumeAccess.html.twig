@@ -1,0 +1,21 @@
+{% extends base_template %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style type="text/css">
+        #form {
+            display: inline-block;
+        }
+    </style>
+{% endblock %}
+
+{% block form %}
+    <p>
+        Grant resume access to <strong>{{ object.email }}</strong> for <strong>5 weeks</strong>?  Resume access will expire on <strong>{{ '+5 weeks' | date('F d, Y') }}</strong>.
+    </p>
+    {{ form_errors(form) }}
+    {{ form_start(form) }}
+    <a href="javascript:history.go(-1);" class="btn btn-default">Cancel</a>
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}

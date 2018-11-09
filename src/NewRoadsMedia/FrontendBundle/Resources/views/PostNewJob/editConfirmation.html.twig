@@ -1,0 +1,32 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style type="text/css">
+        #content p {
+            text-align: center;
+            color: red;
+            font-weight: bold;
+            font-size: 16px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<br>
+<p>Your ad was updated successfully.</p>
+{% if job.isActive %}
+    <p>
+        <a href="{{ path('EmployerManager') }}">Click here</a> to return to your Employer Folder. <br>
+    </p>
+{% else %}
+    <p>
+        This ad is not currently running on {{ parameter('site_title') }}.<br/>
+        If you want to repost this edited version, <a href="{{ path('PostNewJobOrderSummary', {'jobId': job.id}) }}">click here</a>.<br/>
+        Your account will be billed ${{ total | number_format(2) }}. Your ad will run for 5 weeks.
+    </p>
+    <p>
+        Otherwise, <a href="{{ path('EmployerManager') }}">click here</a> to return to your Employer Folder.
+    </p>
+{% endif %}
+{% endblock content %}

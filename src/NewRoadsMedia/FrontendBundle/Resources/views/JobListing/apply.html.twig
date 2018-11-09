@@ -1,0 +1,109 @@
+<h2 style="text-align: center; color: red; text-transform: uppercase; font-size: 32px;">Apply Online</h2>
+
+<div class="registered-job-seekers">
+    <h3>Registered Job Seekers</h3>
+    <p>Email the resume you have registered on JournalismJobs.com to this employer.</p>
+    {% if alreadyApplied %}
+        <p style="text-align: center; font-weight: bold;">You have already submitted an application to this job posting.</p>
+    {% else %}
+        {% if loginForm.vars.errors %}
+            <div class="form-errors">
+                {{ form_errors(loginForm) }}
+            </div>
+        {% endif %}
+        {{ form_start(loginForm) }}
+        {% if isLoggedIn %}
+            {{ form_widget(loginForm.action) }}
+        {% else %}
+            {{ form_label(loginForm._username) }}
+            {{ form_widget(loginForm._username) }}
+            {% if loginForm._username.vars.errors %}
+                <div class="form-errors">
+                    {{ form_errors(loginForm._username) }}
+                </div>
+            {% endif %}
+            {{ form_label(loginForm._password) }}
+            {{ form_widget(loginForm._password) }}
+            {% if loginForm._password.vars.errors %}
+                <div class="form-errors">
+                    {{ form_errors(loginForm._password) }}
+                </div>
+            {% endif %}
+        {% endif %}
+        <button type="submit">Apply Now!</button>
+        {{ form_end(loginForm) }}
+    {% endif %}
+</div>
+
+<div align="center" style="margin-left: 300px;">
+    <table width="75%" border="0" cellspacing="0" cellpadding="8">
+        <tr>
+            <td width="100%" bgcolor="#CCCC99" valign="top" colspan="2">
+
+                {% if form.vars.errors %}
+                    <h2>{{ form_errors(form) }}</h2>
+                {% endif %}
+
+                {{ form_start(form) }}
+                <table width="75fs%" border="0" cellspacing="0" cellpadding="8">
+                    <tr>
+                        <td width="100%" bgcolor="#CCCC99" valign="top">
+                            <font face="Arial, Helvetica, sans-serif" size="3" color="#000000">
+                                Paste your resume or a cover letter into the box below to apply for
+                                this job <i>only</i>. Your resume will be forwarded to this employer,
+                                and will not be stored in the {{ parameter('site_title') }} resume database.
+                            </font>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="100%" bgcolor="#333366">
+                            <div align="center">
+                                <b><font color="#CCCC99" face="Arial, Helvetica, sans-serif" size="3">
+                                        1. Enter your e-mail address &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </font></b>
+                                <font size="3">{{ form_widget(form.email) }}</font>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#333366">
+                            <div align="center">
+                                <font size="3">
+                                    <font color="#CCCC99" face="Arial, Helvetica, sans-serif" size="3">
+                                        <p><b>2. Paste a cover letter or resume in the box below.</b></p>
+                                        <p><b>
+                                                IMPORTANT: If you are having trouble pasting your
+                                                resume below, type a short description of your experience
+                                                and how the employer can contact you.
+                                            </b></p>
+                                    </font>
+                                    <font color="#CCCC99">
+                                        <br>
+                                        {{ form_widget(form.introLetter) }}
+                                    </font>
+                                </font>
+                                <div align="center">
+                                    <br><br>
+                                            <span style="color:#CCCC99">
+                                                <b>3. Enter Captcha Text:</b>
+                                            </span>
+                                    <font face="Arial, Helvetica, sans-serif" size="5" color="red">*</font>
+                                    <br/>
+                                    {{ form_widget(form.captcha) }}
+                                </div>
+                                <br/><br/>
+                                <p>
+                                    <input type="submit" name="Submit" value="Submit"> &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="reset" value="Clear Form">
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr></tr>
+                </table>
+                {{ form_end(form) }}
+            </td>
+        </tr>
+    </table>
+</div>

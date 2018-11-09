@@ -1,0 +1,8 @@
+{% include 'NewRoadsMediaFrontendBundle:JobListing:jobDetails.html.twig' %}
+<br/><br/><br/>
+<p style="font-weight: bold; font-size: 14px;">
+    Description
+</p>
+<p>
+  {{ job.adDescription | add_links | raw }}
+</p>

@@ -1,0 +1,98 @@
+{% set employer = invoiceTrack.employer %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <style type="text/css">
+        body {
+            background: no-repeat center center;
+            font-family:  Arial, sans-serif;
+            font-size: 0.5em;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body style="margin:0;">
+
+<div style="background-color: #5352a0; height: 30px; margin-bottom: 15px;"></div>
+
+<table style="width: 100%;">
+    <tr>
+        <td>
+            {% block logo %}
+                <img src="file://{{ parameter('kernel.root_dir') }}/../../web/images/logos/jj-logo.jpg" alt="" title="" style="width: 272px; height: 49px;"/>
+            {% endblock %}
+        </td>
+        <td style="width: 330px;">
+            <strong style="font-size: 1.9em;">Invoice</strong><br/>
+            <table border="1" cellpadding="0" cellspacing="0" style="width: 300px; margin-top: 10px;">
+                <tbody>
+                <tr align="center">
+                    <td><span style ="font-size: 1.5em;"><strong>Invoice Number</strong></span></td>
+                    <td><span style ="font-size: 1.5em;"><strong>Total Due</strong></strong></span></td>
+                </tr>
+                <tr>
+                    <td><span style ="font-size: 1.5em;">{{ invoiceTrack.id }}</td>
+                    <td><span style ="font-size: 1.5em;">{{ invoiceTrack.amount | number_format(2, '.', ',') }}</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<div style="padding: 30px;">
+    <table border="1" cellpadding="10" cellspacing="0" style="width: 500px;">
+        <tr>
+            <td>
+                <span style =" margin-top:3em;font-size:1.5em;"><strong> Bill to: </strong></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style =" margin-left:1.4em; font-size:1.4em;" >{{ employer.name }}</span><br >
+                <span style =" margin-left:1.4em; font-size:1.4em;" >{{ employer.billingCompany }}</span><br />
+                <span style =" margin-left:1.4em; font-size:1.4em; " >{{ employer.address }}</span><br />
+                <span style =" margin-bottom: 3em; margin-left:1.4em; font-size:1.4em;" >{{ employer.city }}, {{ employer.state }} {{ employer.zip }} {{ employer.zipPlus }}</span>
+            </td>
+        </tr>
+    </table>
+
+    <div>
+        <br/>
+        <br/>
+        <p>
+            <span style ="font-size:1.4em;"><strong>Description of Services:</strong></span>
+        </p>
+        <span style ="font-size:1.4em;">{{ invoiceTrack.orderText | raw }}</span>
+        <br /><p><span style ="font-size:1.4em;">Ad(s) posted by {{ employer.billingEmail }} on {{ 'now' | date('F d, Y') }}</span></p><br />
+        {% if employer.specialBillingInstructions %}
+            <p><span style ="font-size:1.4em;"><strong>Special Billing Instructions:</strong><br />
+                    {{ employer.specialBillingInstructions | nl2br }}</span></p>
+            <br />
+        {% endif %}
+        <hr/>
+        <p style ="font-size:1.4em;"><strong>Two Payment Options</strong></p>
+        <p style ="font-size:1.4em;">1.) Pay your invoice online at: <a href="{{ url('Invoice') }}">{{ url('Invoice') }}</a></p>
+        <p style ="font-size:1.4em;">
+            2.) Send a check, payable to {{ parameter('site_title') }}, to: <br /><br />
+            Accounting Dept.<br />
+            {{ parameter('site_title') }}<br />
+            72 Plaza Dr., 2nd floor<br />
+            Berkeley, CA 94705
+        </p>
+        <p><span style ="font-size:1.4em;"><strong>Reference our invoice number with your payment.</strong></span> </p><br />
+        <hr/>
+        {#<p><span style ="font-size:1.4em;">#}
+        {#<strong>Tax Information:</strong><br />#}
+        {#{{ parameter('site_title') }} LLC's federal I.D. number is: 26-0105723.#}
+        {#</span></p>#}
+        <p><span style ="font-size:1.4em;">
+            <strong>Have a Question?</strong><br />
+            Call {{ parameter('site_phone') }} or send an e-mail to <a href="mailto:{{ parameter('email.accounting') }}">{{ parameter('email.accounting') }}</a>
+        </span></p>
+    </div>
+</div>
+
+</body>
+</html>

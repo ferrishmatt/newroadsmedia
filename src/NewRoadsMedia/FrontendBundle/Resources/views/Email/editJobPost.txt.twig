@@ -1,0 +1,29 @@
+Dear {{ parameter('site_title') }} User,
+
+You added additional categories to the job you're running on {{ parameter('site_title') }}:
+
+{% if addedDiversity %}
+- Diversity Section: ${{ diversityAdCost | number_format(2) }}.
+{% endif %}
+{% if addedFeatured %}
+- Featured Job Section: ${{ featuredAdCost | number_format(2) }}.
+{% endif %}
+{% if addedIndustry %}
+{% for industry in newIndustries %}
+- {{ industry }}.
+{% endfor %}
+Each category is ${{ adCost | number_format(2) }}.
+{% endif %}
+Your additional charges total are: ${{ total | number_format(2) }}.
+
+Please pay for these charges online at:
+
+{{ url('Invoice') }}
+
+Please enter this Job Ad ID #:{{ job.id }} in the "Invoice" field on the payment page.
+
+Thank you,
+
+{{ parameter('site_title') }}
+
+{{ parameter('email.info') }}

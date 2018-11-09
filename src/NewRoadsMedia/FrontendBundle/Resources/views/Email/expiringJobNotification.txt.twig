@@ -1,0 +1,8 @@
+Dear {{ parameter('site_title') }} user,
+
+Your job ad for a {{ job.titleofPositionOpen }} (ID {{ job.id }}) is set to expire in three days on {{ job.expirationDate | date('F d, Y') }} at {{ job.expirationDate | date('h:ia T') }}.
+To renew this ad, return to {{ parameter('site_title') }} and log in to the "Employer Folder" feature on our home page with your username: {{ employer.email }}, and password: {{ employer.password }}. If you want us to renew your ad, forward this e-mail to: {{ parameter('email.ads') }}. You Job ad is ${{ adCost | number_format(2, '.', ',') }} to renew; ads run for 5 weeks. Your ad will expire automatically if you take no action.
+
+If you have a question or need help, send a message to: {{ parameter('email.info') }} or call {{ parameter('site_phone') }}.
+
+Thank you for using {{ parameter('site_title') }}

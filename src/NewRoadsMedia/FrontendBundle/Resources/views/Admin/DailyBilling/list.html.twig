@@ -1,0 +1,68 @@
+{% extends 'SonataAdminBundle:CRUD:list.html.twig' %}
+
+{% block list_table %}
+    <div class="box box-primary">
+        <div class="box-body table-responsive no-padding">
+            <table class="table table-bordered">
+                <tbody>
+                    {% set invoiceDate = null %}
+                    {% for invoiceTrack in invoiceTracks %}
+                        {% set invoiceCreateDate = invoiceTrack.billDate | date('Y-m-d') %}
+                        {% if invoiceCreateDate != invoiceDate %}
+                            {% set invoiceDate = invoiceCreateDate %}
+                            <tr>
+                                <td class="text-center"><h2>{{ invoiceTrack.billDate | date('F d, Y') }}</h2></td>
+                            </tr>
+                        {% endif %}
+                        <tr>
+                            <td>
+                                <strong>Invoice #</strong> {{ invoiceTrack.id }}<br/>
+                                {{ invoiceTrack.employer.name }} - {{ invoiceTrack.employer.billingCompany }}
+                                {% if invoiceTrack.billingType == 'creditcard' %}-- PAID BY CC, {{ invoiceTrack.billDate | date('M d, Y') }}{% endif %}
+                                <br/>
+                                {{ invoiceTrack.employer.address }}<br/>
+                                {{ invoiceTrack.employer.city }}, {{ invoiceTrack.employer.state }} {{ invoiceTrack.employer.zip }} {{ invoiceTrack.employer.zipPlus }}<br/>
+                                {% if invoiceTrack.employer.phoneArea %}
+                                    ({{ invoiceTrack.employer.phoneArea }}) {{ invoiceTrack.employer.phone }}<br/>
+                                {% endif %}
+                                {{ invoiceTrack.jobs | length }} Job Ad(s) --
+                                {% for job in invoiceTrack.jobs %}{{ job.titleOfPositionOpen }},{% endfor %}
+                                posted by {{ invoiceTrack.employer.email }}
+                                <br/>Total Amount {% if invoiceTrack.billingType == 'creditcard' %}Paid{% else %}is{% endif %}: ${{ invoiceTrack.amount | number_format(2) }}
+                                {% if invoiceTrack.employer.specialBillingInstructions %}
+                                    <br/>Special Billing Instructions: {{ invoiceTrack.employer.specialBillingInstructions }}
+                                {% endif %}
+                                <br/><br/><br/><br/>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>
+                            <div class="text-center">
+                                <ul class="pagination">
+                                    {% if pages > 2 %}
+                                        <li><a href="{{ admin.generateUrl('list', {'page': 1}) }}">&laquo;</a></li>
+                                    {% endif %}
+                                    {% if page > 1 %}
+                                        <li><a href="{{ admin.generateUrl('list', {'page': page - 1}) }}">&lsaquo;</a></li>
+                                    {% endif %}
+                                    {% for i in 1..pages %}
+                                        <li{% if page == i %} class="active"{% endif %}>
+                                            <a href="{{ admin.generateUrl('list', {'page': i}) }}">{{ i }}</a>
+                                        </li>
+                                    {% endfor %}
+                                    {% if page < pages %}
+                                        <li><a href="{{ admin.generateUrl('list', {'page': page + 1}) }}">&rsaquo;</a></li>
+                                        <li><a href="{{ admin.generateUrl('list', {'page': pages}) }}">&raquo;</a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+{% endblock %}

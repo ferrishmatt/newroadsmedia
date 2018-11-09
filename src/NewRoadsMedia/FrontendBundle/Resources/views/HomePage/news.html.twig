@@ -1,0 +1,39 @@
+<div id="media-news-wrapper">
+  <h2>
+    Latest {{ parameter('news_title', 'Media News') }}
+    <div class="view-more-jobs"><a href="{{ path('MediaNews') }}">&gt;&gt; more news</a></div>
+  </h2>
+  <div id="media-news">
+    <table>
+      {% for row in allNewsArticles | batch(4) %}
+      <tr>
+        {% for newsArticle in row %}
+        <td>
+          <div class="news-item-wrapper">
+            {% if newsArticle.imageName %}
+              <div class="image">
+                {% if newsArticle.imageName | slice(0, 7) == '/media/'  %}
+                  <img src="{{ newsArticle.imageName }}" alt=""/>
+                {% else %}
+                  <img src="{{ asset('images/' ~ newsArticle.imageName) }}" alt=""/>
+                {% endif %}
+              </div>
+            {% endif %}
+            <h4><a href="{{ newsArticle.link }}" target="_blank">{{ newsArticle.title }}</a></h4>
+            <div class="description">
+              {{ newsArticle.linkBody | striptags | split(' ') | slice(0, 38) | join(' ') | raw }} ...
+            </div>
+            <div class="details">
+              {% if newsArticle.source | length > 2 %}
+                Source: {{ newsArticle.source }}<br/>
+              {% endif %}
+              Posted: {{ newsArticle.entryDate | date('M d, Y') }}
+            </div>
+          </div>
+        </td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>

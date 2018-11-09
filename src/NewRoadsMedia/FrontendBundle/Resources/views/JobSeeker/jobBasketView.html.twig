@@ -1,0 +1,71 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Job Basket{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style type="text/css">
+        #content .flash-notice {
+            color: #ff9900;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div>
+        <table width="100%" border="0">
+            <tbody><tr>
+                <td><font face="Arial, Helvetica, sans-serif" size="4"><b><font color="#ff9900"> &lt;
+                                <a href="{{ path('JobSeekerFolder') }}" style="color: #ff9900">Go to Your Job Seeker Account</a>  </font></b></font></td>
+                <td>
+                    <div align="right"><font face="Arial, Helvetica, sans-serif" size="2"><b><font color="#333366">{{ 'now' | date('F d, Y') }}</font></b></font></div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br><br>
+        <table width="100%" border="0" cellspacing="-" cellpadding="4">
+            <tbody>
+            <tr bgcolor="#666666">
+                <td>
+                    <font face="Arial, Helvetica, sans-serif" size="3">
+                    <b></b></font>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h2>Your Job Basket</h2>
+        {{ form_errors(form) }}
+        {{ form_start(form) }}
+            <table style="width: 100%;">
+                <tr>
+                    <th><strong>Delete?</strong></th>
+                    <th><strong>Job</strong></th>
+                    <th><strong>Employer</strong></th>
+                    <th><strong>Location</strong></th>
+                    <th><strong>Date Posted</strong></th>
+                    {#<th><strong>Applied?</strong></th>#}
+                </tr>
+                {% for index, jobBasket in resume.jobBaskets %}
+                    {% set attr = jobBasket.hasApplied ? {'checked': 'checked'} : {} %}
+                    <tr>
+                        <td>{{ form_widget(form.deleteJobBaskets[index]) }}</td>
+                        <td><a href="{{ path('ViewJobPost', {'jobId': jobBasket.job.id}) }}">{{ jobBasket.job }}</a></td>
+                        <td>{{ jobBasket.job.employer.displayCompany }}</td>
+                        <td>{{ jobBasket.job.location }}</td>
+                        <td>{{ jobBasket.job.createDate | date('m/d/y') }}</td>
+                        {#<td>{{ form_widget(form.applyJobBaskets[index], {'attr': attr}) }}</td>#}
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="2">{{ form_widget(form.delete, {'attr': {'style': 'background:#EF891A; color:#fff; font-size: 20px; border: none;'}}) }}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    {#<td>{{ form_widget(form.apply, {'attr': {'style': 'background:#EF891A; color:#fff; font-size: 20px; border: none;'}}) }}</td>#}
+                </tr>
+            </table>
+        {{ form_end(form) }}
+</div>
+{% endblock %}

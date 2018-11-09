@@ -1,0 +1,266 @@
+#content {
+    padding: 30px 0;
+}
+
+#content h1 {
+    color: #777;
+    margin-bottom: 30px;
+}
+
+label.heading {
+    font-weight: bold;
+}
+
+.form-errors {
+    font-weight: bold;
+    color: #962D22;
+}
+
+.flash-error,
+.flash-notice {
+    margin-bottom: 25px;
+}
+
+.flash-notice {
+    color: #f90;
+}
+
+.form-add {
+    font-weight: bold;
+    margin: 5px 0 15px;
+    display: inline-block;
+}
+
+.form-add .right {
+    float: right;
+}
+
+.form-delete {
+    float: right;
+}
+
+/* Buttons */
+#content .button {
+    border-radius: 5px;
+    border: none;
+    background-color: #f90;
+    color: #ffffff;
+    text-shadow: none;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px 15px;
+    margin: 10px auto 20px;
+    display: block;
+    cursor: pointer;
+    max-width: 160px;
+}
+
+#content .button:hover {
+    color: #fff;
+}
+
+#content .button.green {
+    background-color: #7bb200;
+}
+
+/* Top Links */
+#content .top-links {
+    float: right;
+}
+
+#content .top-links .button {
+    margin: 0;
+}
+
+/* Multiple Select */
+#content .sections .item .multiple-select {
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    width: 200px;
+    overflow: auto;
+    height: 200px;
+}
+
+#content .sections .item .multiple-select-item label {
+    margin: 5px;
+    cursor: pointer;
+}
+
+#content .sections .item .multiple-select-item input {
+    cursor: pointer;
+}
+
+/* Sections */
+#content .sections {
+    width: 775px;
+}
+
+#content .sections .section h2 a {
+    background-color: #777;
+    display: block;
+    color: #fff;
+    padding: 10px;
+}
+
+#content .sections .section h2 a .click-to {
+    float: right;
+    font-weight: normal;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+#content .sections .section.has-errors h2 a:before {
+    content: "> ";
+    color: #ff0000;
+}
+
+#content .sections input[type="text"],
+#content .sections input[type="email"],
+#content .sections input[type="url"]
+{
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    padding: 5px 10px;
+    width: 300px;
+}
+
+#content .sections select {
+    height: 27px;
+    border-radius: 3px;
+    margin: 0;
+    background-color: #fff;
+}
+
+#content .sections select[multiple="multiple"] {
+    width: 300px;
+    height: 150px;
+}
+
+#content .sections input[type="text"].current-job-status {
+    width: 166px;
+}
+
+#content .sections input[type="text"].phone-area {
+    width: 30px;
+}
+
+#content .sections input[type="text"].phone {
+    width: 244px;
+}
+
+#content .sections input[type="text"].city {
+    width: 155px;
+}
+
+#content .sections table {
+    border-collapse: collapse;
+}
+
+#content .sections table tr td {
+    vertical-align: top;
+}
+
+#content .sections table tr td.label {
+    padding-left: 0;
+    padding-right: 20px;
+    padding-top: 8px;
+}
+
+#content .sections .item {
+    padding: 15px 0;
+}
+
+#content .sections .item label {
+    margin-bottom: 15px;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+#content .sections textarea {
+    display: block;
+    width: 99%;
+    height: 200px;
+}
+
+#content .sections .full-width {
+    width: 100%;
+}
+
+#content #Certifications table tr td {
+    padding: 15px 3px;
+}
+
+#content .sections .employment-dates .jquery-date {
+    width: 120px;
+    margin-right: 5px;
+}
+
+#content .sections .employment-dates label {
+    margin-right: 5px;
+}
+
+/* Links */
+#content .links {
+    border: 1px solid #777;
+    width: 250px;
+    float: right;
+}
+
+#content .links h2 {
+    background-color: #777;
+    margin: 0;
+    color: #fff;
+    padding: 5px 5px 8px;
+    text-align: center;
+}
+
+#content .links ul {
+    padding: 10px;
+    list-style: disc;
+}
+
+#content .links ul li {
+    line-height: 25px;
+    margin-left: 20px;
+}
+
+#content .links ul li.active {
+    margin-left: 0;
+    padding-left: 20px;
+    list-style: none;
+    background-size: 20px 20px;
+    background-image: url('/images/profile/arrow_icon.png');
+    background-repeat: no-repeat;
+    background-position: -5px 3px;
+}
+
+/* Credentials */
+#content .sections input[type="text"].credential-type {
+    width: 150px;
+}
+
+#content .sections .item label.inline {
+    display: inline;
+    margin: 0;
+}
+
+#content .sections input[type="text"].date-toggle {
+    width: 150px;
+}
+
+#content .sections td.certification-expiration {
+    width: 390px;
+}
+
+#content #Certifications table.full-width tr td {
+    padding: 3px;
+}
+
+/* Has Errors */
+#content .sections input[type="text"].has-error,
+#content .sections input[type="email"].has-error,
+#content .sections input[type="url"].has-error,
+#content .sections select.has-error,
+#content .sections textarea.has-error {
+    border: 1px solid #ff0000;
+}

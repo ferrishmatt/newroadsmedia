@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <atom:link href="{{ url('RssJobPosts') }}" rel="self" type="application/rss+xml" />
+        <title>{{ parameter('site_title') }} - Latest Ads Posted</title>
+        <link>{{ url('Index') }}</link>
+        <description>Latest Jobs</description>
+        <language>en-us</language>
+        <copyright>Copyright {{ 'now' | date('Y') }} {{ parameter('site_title') }}</copyright>
+        <lastBuildDate>{{ 'now' | date('D, d M Y H:i:s O') }}</lastBuildDate>
+{% for job in jobs %}
+        <item>
+            <title>{{ job.titleOfPositionOpen }}</title>
+            <description>{% if job.jobCity %}{{ job.jobCity }}, {% endif %}{{ job.location.locationDescription }}</description>
+            <link>{{ url('ViewJobPost', { 'jobId': job.id }) }}</link>
+            <guid isPermaLink="true">{{ url('ViewJobPost', { 'jobId': job.id }) }}</guid>
+            <pubDate>{{ job.createDate | date('D, d M Y H:i:s O') }}</pubDate>
+        </item>
+{% endfor %}
+    </channel>
+</rss>

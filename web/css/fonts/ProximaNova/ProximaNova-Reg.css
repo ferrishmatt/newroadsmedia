@@ -1,0 +1,10 @@
+/* ProximaNova-Reg webfont (new-bulletproof) */ 
+@font-face {
+    font-family: 'ProximaNova-Reg';
+    src: url('ProximaNova-Reg.eot?#iefix') format('embedded-opentype'),
+         url('ProximaNova-Reg.woff') format('woff'),
+         url('ProximaNova-Reg.ttf')  format('truetype'),
+         url('ProximaNova-Reg.svg#webfont') format('svg');
+         font-weight: normal;
+         font-style: normal;
+}

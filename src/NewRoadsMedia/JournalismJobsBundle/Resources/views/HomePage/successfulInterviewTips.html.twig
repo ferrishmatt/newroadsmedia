@@ -1,0 +1,100 @@
+{% set page_name = '' %}
+
+{% extends "::base.html.twig" %}
+
+{% block title %}Nine Things to Say During an Interview{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://ucarecdn.com/widget/2.8.2/uploadcare/uploadcare.min.js" charset="utf-8"></script>
+    <script src="{{ asset('js/upload-care.js') }}"></script>
+    <script src="{{ asset('js/jquery.wordcount.js') }}"></script>
+    <script src="{{ asset('js/job-listing.js') }}"></script>
+    <script type="text/javascript">
+        $(function() {
+            {% if nonRegisteredForm.resumeFile is defined %}
+                uploadcare_init('{{ nonRegisteredForm.resumeFile.vars.id }}');
+            {% endif %}
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {#<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"/>#}
+    <link rel="stylesheet" href="{{ asset('css/job-listing.css') }}"/>
+{% endblock %}
+
+{% block content %}
+<div class="inner-content text-article">
+    <img class="article-photo" src="{{ asset('bundles/newroadsmediajournalismjobs/images/interviewing_job_photo.jpg') }}">
+    <div class="article-wrap">
+    <p class="pre-headline">Job Search</p>
+
+    <h1 class="article-title">Nine Things to Say During an Interview</h1>
+
+    <p class="byline-share-line">
+	<b class="byline">By Tim Sohn</b>
+	<a href="#" title="Share Job" class="share-job-link"><img src="{{ asset('images/icons/share_icon.png') }}" alt="Share Job"/>Share</a>
+    </p>
+
+    <ul class="job-listing-share">
+                    <li>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ url('ViewJobPost', {'jobId': job.id}) }}" target="_blank" title="Share on Facebook"><img
+                                    src="{{ asset('images/icons/facebook_icon.png') }}" alt="Share on Facebook"/>Facebook</a>
+                    </li>
+                    <li>
+                        {% set twitterUrl = 'http://twitter.com/share?text=' ~ (('Great Job on ' ~ parameter('site_title')) | url_encode) ~ '&url=' ~ url('ViewJobPost', { 'jobId': job.id } ) %}
+                        <a href="{{ twitterUrl }}" target="_blank" title="Share on Twitter"><img
+                                    src="{{ asset('images/icons/twitter_icon.png') }}" alt="Share on Twitter"/>Twitter</a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ url('ViewJobPost', {'jobId': job.id}) }}&title={{ (parameter('site_title') ~ ' - ' ~ job.titleOfPositionOpen) | url_encode }}&summary=&source=" target="_blank" title="Share on Linked In"><img
+                                    src="{{ asset('images/icons/linked_in_icon.png') }}" alt="Share on Linked In"/>Linked In</a>
+                    </li>
+                    <li>
+                        <a href="https://plus.google.com/share?url={{ url('ViewJobPost', {'jobId': job.id}) }}" target="_blank" title="Share on Google Plus"><img
+                                    src="{{ asset('images/icons/google_plus_icon.png') }}" alt="Share on Google Plus"/>Google +</a>
+                    </li>
+                    <li style="display: none;">
+                        <a class="email" href="#" title="E-mail this job to a friend"><img src="{{ asset('images/icons/email_icon.png') }}" alt="E-mail this job to a friend"/>E-mail</a>
+                    </li>
+                </ul>
+
+                <p>Knowing what to say – and not to say – during a job interview can be tricky. Every interviewer has a different personality, and each job has different requirements and expectations. While every interview is unique, there are minimum standards you should maintain for each one. Use the tips below to stay on track in your next interview.</p>
+
+                <h2>Focus on the positive</h2>
+                <p>During the interview, focus on the positives of the job and don't offer any unsolicited advice on how the company might fix things. The last thing a company wants is to hire a self-proclaimed know-it-all. “Unless you are asked what you would do to improve the company, jumping in and saying how you would do things differently sounds arrogant,” says Christy Hopkins, a human resources consultant.</p>
+
+                <h2>Be specific</h2>
+                <p>If you described yourself as "an award-winning reporter" in your cover letter, be prepared to share some examples. For instance, if you won an award for your coverage of a corrupt politician, briefly explain how you broke that story. Just make sure not to be too boastful when detailing your successes. </p>
+
+                <h2>Stay on topic</h2>
+                <p>The fact that you want to own your own media empire one day is not something an employer needs to know. That might give off the impression you're not committed to this job even before you start. Stay focused on the job for which you're interviewing and keep personal goals private. </p>
+
+                <div class="article-quote">"Give clear and succinct answers to the interviewer's questions, but don't go overboard."</div>
+
+                <h2>Take the high road</h2>
+                <p>Talking negatively about a current or previous employer is very unprofessional and reflects badly on your character. In fact, the interviewer might think you were the problem at your last job. Even if encouraged by an interviewer, don't say negative things about a prior employer. Instead, illustrate how positive experiences from your previous jobs might help you with this job.</p>
+
+                <h2>Be ready for unexpected questions</h2>
+                <p>Sometimes employers asks candidates to list a weakness. If this happens, use an example that is not central to the job you're applying for. Sharing a weakness shows you're human, but just make sure you explain how you've successfully overcome this weakness and learned from it.</p>
+
+                <h2>Stay clear of politics</h2>
+                <p>Talking politics can kill your chances with a potential employer. The odds that you might say something offensive is not worth the risk. </p>
+
+                <h2>Let some things be unsaid</h2>
+                <p>Mentioning salary, sick leave and vacation time in your first interview may give off the impression you're mainly interested in the perks and not the job. Marcus Lemonis of CNBC’s The Profit says: “One thing turns me off in an interview more than anything else — and that's spending time talking about the pay. Let's like each other first. Let's agree philosophically on what your role is going to be and what you're going to add," he said.</p>
+
+                <h2>Bring some questions</h2>
+                <p>If you've done your basic research on the company, you should have at least three questions. A few questions might be: Will my role expand beyond this job description? Will there be opportunities for me to work collaboratively? Are employees rewarded with regular promotions? Asking questions shows the employer you're really interested and thinking long-term. </p>
+
+                <h2>Be a good listener and don't talk too much</h2>
+                <p>Give clear and succinct answers to the interviewer's questions, but don't go overboard. You don't want to come across as being too chatty. Besides, being a good listener is a sign you'll be a team player and someone who is receptive to feedback. </p>
+
+    </div>
+</div>
+
+{% endblock %}

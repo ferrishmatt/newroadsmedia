@@ -1,0 +1,9 @@
+{% block _post_new_job_industries_widget %}
+    <div id="post_new_job_industries">
+        {% for child in form %}
+            {{ form_widget(child) }}
+            <span class="industry-label">{{ form_label(child) }}</span>
+            {{ form_errors(child) }}
+        {% endfor %}
+    </div>
+{% endblock %}

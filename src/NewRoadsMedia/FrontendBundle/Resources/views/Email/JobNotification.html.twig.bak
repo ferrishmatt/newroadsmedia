@@ -1,0 +1,45 @@
+<style>
+    body {
+        font:12px/16px verdana,arial,helvetica,sans-serif;
+    }
+</style>
+
+<img src="{{ app.request.schemeAndHttpHost ~ asset(logoPath) }}">
+<p>
+    Thank you for using {{ parameter('site_title') }}'s Job Alerts service.
+    You will receive Job announcements until: {{ notification.expiration | date('F d, Y') }}.&nbsp;
+    <a href="{{ app.request.schemeAndHttpHost ~ path('JobNotification') }}"> Click here to unsubscribe</a>
+</p>
+<p>
+    Today's Job Alerts is sponsored by:
+    <hr/>
+    <p>
+        <img src="{{ app.request.schemeAndHttpHost ~ asset('images/logos/Georgetown_SCS.jpg') }}">
+    </p>
+    Georgetown University Master's in Journalism
+    <ul>
+        <li>Learn from award-winning journalists and industry innovators</li>
+        <li>Master contemporary digital and entrepreneurial skills</li>
+        <li>Work with leading media organizations in the nation’s capital</li>
+    </ul>
+
+    Go to: <a href="https://ad.doubleclick.net/ddm/clk/311162715;138868269;n">https://ad.doubleclick.net/ddm/clk/311162715;138868269;n</a>
+    <br/>
+    <br/>
+    <hr/>
+</p>
+<p>
+    <b>Your matches are listed below:</b>
+</p>
+
+{% for job in jobs %}
+    Company: {{ job.company }}<br/>
+    Job Title: <a href="{{ app.request.schemeAndHttpHost ~ path('ViewJobPost', {'jobId': job.id}) }}">{{ job.titleOfPositionOpen }}</a><br/>
+    Industry: {% if job.industry %}{{ job.industry }}{% else %}Not Specified{% endif %}<br/>
+    Location: {% if job.location %}{{ job.location }}{% else %}Not Specified{% endif %}<br/>
+    Job Status: {% if job.jobType %}{{ job.jobType }}{% else %}Not Specified{% endif %}<br/>
+    Position: {% if job.position %}{{ job.position }}{% else %}Not Specified{% endif %}<br/>
+    Salary: {% if job.salary %}{{ job.salary }}{% else %}Not Specified{% endif %}<br/>
+    Ad Expires: {{ job.expirationDate | date('F d, Y') }}<br/>
+    Job ID: {{ job.id }}<br/><br/>
+{% endfor %}

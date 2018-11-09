@@ -1,0 +1,230 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css"  href="{{ asset('css/post_job_styles.css') }}"/>
+    <style type="text/css">
+        .form-errors {
+            font-weight: bold;
+            color: #900;
+            text-align: center;
+        }
+        .form-errors li {
+            line-height: 24px;
+        }
+        #content td {
+            vertical-align: top;
+        }
+        #content input,
+        #content select,
+        #content textarea {
+            display: inline-block;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            width: 230px;
+            margin-right: 5px;
+        }
+        #content label[for="invoice_creditMonth"] {
+            margin-right: 10px;
+        }
+        #content select {
+            width: auto;
+        }
+        #content #invoice_amount {
+            width: 220px;
+        }
+        #content tr td:first-child {
+            padding-top: 5px;
+        }
+        button {
+            background-color: transparent;
+            border: 1px solid #666666;
+            border-radius: 2px;
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            background: url(../images/background_nav.jpg) top left repeat-x;
+            display: inline-block;
+            padding: 7px 10px 7px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #fff;
+            position: relative;
+            cursor: pointer;
+            margin-bottom: 0px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        function popUp(URL) {
+            window.open(URL, (new Date()).getTime().toString(), 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=350,height=300,left=490,top=412');
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+<div>
+    {% if form.vars.errors %}
+        <div class="form-errors">
+            {{ form_errors(form) }}
+        </div>
+    {% endif %}
+    {{ form_start(form) }}
+    <table border="0">
+    <tbody>
+    <tr>
+        <td colspan="2">
+            <font face="Arial, Helvetica, sans-serif" size="4" color="#000000">
+                Use this secure form to pay for an invoice via Credit Card
+            </font>
+        </td>
+    </tr>
+    <tr class="normaltext" bgcolor="#FFFFFF">
+        <td colspan="3"><span class="required">*</span>denotes required field</td>
+    </tr>
+    <tr class="normaltext">
+        <td height="27">
+            <div align="right">
+            </div>
+        </td>
+    </tr>
+    <tr class="normaltext">
+        <td height="27">
+            <div align="right">
+                <span class="required">*</span>
+                {{ form_label(form.invoice) }} <br>(use commas to seperate multiple invoices)
+            </div>
+        </td>
+        <td colspan="2" height="27">
+            {{ form_widget(form.invoice) }}
+        </td>
+    </tr>
+    <tr class="normaltext">
+        <td height="27">
+            <div align="right"><span class="required">*</span>{{ form_label(form.amount) }} <br>(e.g. 75.00)</div>
+        </td>
+        <td colspan="2" height="27">
+            {{ form_widget(form.amount) }}
+        </td>
+    </tr>
+    <tr class="normaltext">
+        <td height="27">
+            <div align="right"><span class="required">*</span>{{ form_label(form.name) }}</div>
+        </td>
+        <td colspan="2" height="27">
+            {{ form_widget(form.name) }}
+        </td>
+    </tr>
+    <tr class="normaltext">
+        <td height="27">
+            <div align="right"><span class="required">*</span>{{ form_label(form.email) }}</div>
+        </td>
+        <td colspan="2" height="27">
+            {{ form_widget(form.email) }}
+        </td>
+    </tr>
+    <tr class="normaltext">
+        <td height="27">
+            <div align="right"><span class="required">*</span>{{ form_label(form.company) }}</div>
+        </td>
+        <td colspan="2" height="27">
+            {{ form_widget(form.company) }}
+        </td>
+    </tr>
+    <tr class="normaltext">
+        <td>
+            <div align="right"><span class="required">*</span>{{ form_label(form.address) }}</div>
+        </td>
+        <td colspan="2">
+            {{ form_widget(form.address) }}
+        </td>
+    </tr>
+    <tr class="normaltext">
+        <td>
+            <div align="right"><span class="required">*</span>{{ form_label(form.city) }} and {{ form_label(form.state) }}</div>
+        </td>
+        <td colspan="2">
+            {{ form_widget(form.city) }}
+            {{ form_widget(form.state, {'attr': {'style': 'width: 28px;'}}) }}
+        </td>
+    </tr>
+    <tr class="normaltext">
+        <td>
+            <div align="right"><span class="required">*</span>{{ form_label(form.zip) }}</div>
+        </td>
+        <td colspan="2">
+            {{ form_widget(form.zip) }}
+        </td>
+    </tr>
+    <tr class="normaltext">
+        <td valign="top">
+            <div align="right">{{ form_label(form.specialInstructions) }} <br></div>
+        </td>
+        <td colspan="2">{{ form_widget(form.specialInstructions, {'attr': {'cols': 40, 'rows': 4}}) }}</td>
+    </tr>
+    <tr class="normaltext">
+        <td>
+            <div align="right">{{ form_label(form.creditCard) }}</div>
+        </td>
+        <td>
+            {{ form_widget(form.creditCard) }}
+        </td>
+        <td rowspan="3">&nbsp;&nbsp;<!-- GeoTrust QuickSSL [tm] Smart Icon tag. Do not edit. -->
+            <script language="JavaScript" type="text/javascript" src="//smarticon.geotrust.com/si.js"></script>
+            <!-- end GeoTrust Smart Icon tag --></td>
+    </tr>
+    <tr class="normaltext">
+        <td>
+            <div align="right">{{ form_label(form.creditNumber) }}</div>
+        </td>
+        <td valign="middle" colspan="">
+            {{ form_widget(form.creditNumber) }} (no spaces or hyphens)
+        </td>
+    </tr>
+    <tr class="normaltext">
+        <td>
+            <div align="right">{{ form_label(form.cardCode) }}</div>
+        </td>
+        <td valign="middle" colspan="">
+            {{ form_widget(form.cardCode, {'attr': {'size': 4}}) }} <a href="javascript:popUp('{{ asset('images/ccv.gif') }}')">What's this?</a>
+        </td>
+    </tr>
+    <tr class="normaltext">
+        <td>
+            <div align="right">Expiration Date</div>
+        </td>
+        <td>
+            <font face="Arial, Helvetica, sans-serif" size="2">
+                {{ form_widget(form.creditMonth) }}
+                {{ form_label(form.creditMonth) }}
+                {{ form_widget(form.creditYear) }}
+                {{ form_label(form.creditYear) }}
+            </font>
+        </td>
+    </tr>
+    </tbody>
+    </table>
+    <br/>
+    <br/>
+    <p>
+        <br/>
+        <button style="font: bold 16px;" type="submit">Complete Transaction</button>
+    </p>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

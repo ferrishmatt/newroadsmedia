@@ -1,0 +1,148 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Job Seeker Account{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style type="text/css">
+        #content {
+            margin-top: 40px;
+        }
+        #content .flash-notice {
+            color: #ff9900;
+        }
+        #content h2.name {
+            font-size: 32px;
+        }
+        #content h2.login {
+            background: url('/images/square.png') no-repeat 0 50%;
+            padding-left: 15px;
+        }
+
+        .upload-resume {
+            text-align: center;
+        }
+
+        .upload-resume strong {
+            color: #f90;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div>
+    {% if not resume.resumeFile %}
+        <div class="upload-resume">
+            <strong>Your Resume Is Not Uploaded. </strong> <a href="{{ path('UploadProfile') }}">Upload one now!</a>
+        </div>
+    {% endif %}
+    <h2 class="name">Hello, {{ resume.displayName }}</h2>
+    <h2 style="padding-left: 25px; color: #245E7A; font-size: 25px;">What do you need to do today?</h2>
+    <div style="padding-left: 25px;">
+        <br />
+        <h2 class="login" style="font-size: 23px;"><a href="{{ path('ViewResume', {'resumeId': resume.id}) }}" style="color: #4D4D4F;">View Resume Profile</a></h2>
+        {{ form_errors(resumeForm) }}
+        {{ form_start(resumeForm) }}
+        <ul class="list-inline">
+            {% if resume.okd %}
+                <li class="orange" style="display: inline;"><a href="{{ path('EditResume') }}">Edit Profile</a></li> |
+                <li class="orange" style="display: inline;"><a href="{{ path('RenewResume') }}">Renew Resume</a></li> |
+                <!--<li class="orange"><a href="{{ path('ViewResume', {'resumeId': resume.id}) }}">View Your Resume</a></li>
+                <li class="orange"><a href="{{ path('UploadProfile') }}">Upload/Download Your Resume</a></li>-->
+                <li class="orange" style="display: inline;"><a href="{{ path('DeleteResume') }}">Delete Resume</a></li>
+            {% else %}
+                {% do resumeForm.isPublic.setRendered %}
+                <li class="arrow" style="color: #FF9900; font-weight: bold;">Your Resume Is Not Posted on {{ parameter('site_title') }}. </li>
+                <li class="orange"><a href="{{ path('UploadProfile') }}">&gt; Click Here to Post It Now!</a></li>
+            {% endif %}
+        </ul>
+        <ul>    
+            <li class="orange">
+                <br/>
+                <b>Resume Traffic</b>:
+                Your resume has been viewed <strong>{{ resume.viewCount }}</strong> times since <strong>{{ resume.dateEntered | date('F d, Y') }}.</strong>
+            </li>
+            <li class="orange">
+                <br/>
+                <strong>Privacy setting</strong>:<br/>
+                {{ form_widget(resumeForm.isPublic) }}
+                <span style="padding-left: 5px;">{{ form_label(resumeForm.isPublic, 'Display my Resume and Contact Info to potential employers.') }}</span>
+                <br/><br/>
+                <button type="submit">Save Changes</button>
+            </li>
+        </ul>
+        {{ form_end(resumeForm) }}
+
+        <br />
+
+        <hr/>
+
+        <h2 class="login" style="font-size: 23px;">Job Alerts:</h2>
+        <ul>
+            <li class="arrow"><a href="{{ path('JobNotification') }}">Sign Up for Daily Job Alerts</a></li>
+            {% if notificationCount > 0 %}
+                <li class="orange">
+                    <a href="{{ path('JobNotificationList') }}">
+                        You Have {{ notificationCount }} Alert{% if notificationCount > 1 %}s{% endif %}
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+
+        <hr/>
+        
+        <br />
+
+        <h2 class="login" style="font-size: 23px;">Your Job Basket:</h2>
+        <ul>
+            {% if resume.jobBaskets | length == 0 %}
+                <li class="arrow">You Have 0 Jobs Saved in Your Basket</li>
+            {% else %}
+                {{ form_start(form) }}
+                <table style="width: 100%;">
+                    <tr>
+                        <th><strong>Delete?</strong></th>
+                        <th><strong>Job</strong></th>
+                        <th><strong>Employer</strong></th>
+                        <th><strong>Location</strong></th>
+                        <th><strong>Date Posted</strong></th>
+                    </tr>
+                    {% for index, jobBasket in resume.jobBaskets | slice(0, 5) %}
+                        {% set attr = jobBasket.hasApplied ? {'checked': 'checked'} : {} %}
+                        <tr>
+                            <td>{{ form_widget(form.deleteJobBaskets[index]) }}</td>
+                            <td><a href="{{ path('ViewJobPost', {'jobId': jobBasket.job.id}) }}">{{ jobBasket.job }}</a></td>
+                            <td>{{ jobBasket.job.employer.displayCompany }}</td>
+                            <td>{{ jobBasket.job.location }}</td>
+                            <td>{{ jobBasket.job.createDate | date('m/d/y') }}</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="2" style="padding-top: 5px;">{{ form_widget(form.delete, {'attr': {'style': 'background:#7bb221; color:#fff; font-size: 20px; border: none;'}}) }}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                {{ form_end(form) }}
+                {% if resume.jobBaskets | length > 5 %}
+                    <li class="orange">
+                        <a href="{{ path('ViewJobBasket') }}">See More Job Basket Listings</a>
+                    </li>
+                {% endif %}
+            {% endif %}
+
+        </ul>
+
+        <br />
+
+        <hr/>
+
+        <h2 class="login" style="font-size: 23px;">Account Management:</h2>
+        <ul>
+            <li class="orange"><a href="{{ path('ChangePassword') }}">Change Username and Password</a> </li>
+            <li class="orange"><a href="{{ path('DeleteAccount') }}">Delete My Job Seeker Account</a> </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

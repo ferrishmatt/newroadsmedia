@@ -1,0 +1,90 @@
+{% extends '@NewRoadsMediaFrontend/Layout/mobile.html.twig' %}
+
+{% block title %}Job Seeker Account{% endblock %}
+
+{% form_theme form '@NewRoadsMediaFrontend/Layout/mobileForm.html.twig' %}
+{% form_theme accountForm '@NewRoadsMediaFrontend/Layout/mobileForm.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        var signIn = function() {
+            $('#content .nav-tabs li:last a').click();
+            history.pushState('', document.title, window.location.pathname);
+        };
+        window.onhashchange = signIn;
+    </script>
+{% endblock %}
+
+{% block content %}
+    {{ form_errors(accountForm) }}
+    {{ form_errors(form) }}
+    <ul class="nav nav-tabs">
+        <li{% if not form.vars.errors %} class="active"{% endif %}><a data-toggle="tab" href="#create-account">Create Account</a></li>
+        <li{% if form.vars.errors %} class="active"{% endif %}><a data-toggle="tab" href="#sign-in">Sign In</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="create-account" class="tab-pane fade{% if not form.vars.errors %} in active{% endif %}">
+            <h2>{% block login_create_heading %}Create Job Seeker Account{% endblock %}</h2>
+            {% block login_create_description %}{% endblock %}
+            {{ form_start(accountForm) }}
+            <div class="form-group">
+                {{ form_label(accountForm.name, 'Your Name') }}
+                {{ form_widget(accountForm.name, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            {% if accountForm.company is defined %}
+                <div class="form-group">
+                    {{ form_label(accountForm.company) }}
+                    {{ form_widget(accountForm.company, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            {% endif %}
+            <div class="form-group">
+                {{ form_label(accountForm.email) }}
+                {{ form_widget(accountForm.email, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(accountForm.password.first) }}
+                {{ form_widget(accountForm.password.first, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(accountForm.password.second) }}
+                {{ form_widget(accountForm.password.second, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                <label>Type in this Security Code Below:</label>
+                {{ form_widget(accountForm.captcha) }}
+            </div>
+            <p class="text-center">
+                By clicking "Create Account" you agree to our <a href="{{ path('Terms') }}" target="_blank">Terms and Conditions</a>.
+            </p>
+            <div class="form-group">
+                <button type="submit" class="form-control btn btn-success">Create Account</button>
+            </div>
+            {{ form_end(accountForm) }}
+        </div>
+        <div id="sign-in" class="tab-pane fade{% if form.vars.errors %} in active{% endif %}">
+            <h2>{% block login_signin_heading %}Job Seeker Sign In{% endblock %}</h2>
+            {{ form_start(form) }}
+            <div class="form-group">
+                {{ form_label(form._username) }}
+                {{ form_widget(form._username, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form._password) }}
+                {{ form_widget(form._password, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                <button type="submit" class="form-control btn btn-success">Sign In</button>
+            </div>
+            <p class="text-center">
+                <a href="{{ path('ForgotPassword') }}">Forgot Password?</a>
+            </p>
+            {{ form_end(form) }}
+        </div>
+    </div>
+    <script type="text/javascript">
+        if (window.location.hash == '#sign-in') {
+            signIn();
+        }
+    </script>
+{% endblock %}

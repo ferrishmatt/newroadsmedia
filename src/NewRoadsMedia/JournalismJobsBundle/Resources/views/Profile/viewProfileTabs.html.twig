@@ -1,0 +1,89 @@
+<tr>
+    <td colspan="2" class="view-profile-tabs">
+        <table id="resume-individual-listing">
+            {% if resume.position %}
+                <tr>
+                    <td class="label">Position</td>
+                    <td>{{ resume.position }}</td>
+                </tr>
+            {% endif %}
+            {#{% if resume.specialty %}#}
+                {#<tr>#}
+                    {#<td class="label">Specialty</td>#}
+                    {#<td>{{ resume.specialty }}</td>#}
+                {#</tr>#}
+            {#{% endif %}#}
+            {% if resume.market %}
+                <tr>
+                    <td class="label">Market</td>
+                    <td>{{ resume.market }}</td>
+                </tr>
+            {% endif %}
+            {#{% if resume.experience %}#}
+                {#<tr>#}
+                    {#<td class="label">Experience</td>#}
+                    {#<td>{{ resume.experience }}</td>#}
+                {#</tr>#}
+            {#{% endif %}#}
+            {% if resume.education %}
+                <tr>
+                    <td class="label">Education</td>
+                    <td>{{ resume.education }}</td>
+                </tr>
+            {% endif %}
+            {#{% if resume.currentState %}#}
+                {#<tr>#}
+                    {#<td class="label">Current Location</td>#}
+                    {#<td>{{ resume.currentState }}</td>#}
+                {#</tr>#}
+            {#{% endif %}#}
+            {%  if resume.desiredState %}
+                <tr>
+                    <td class="label">Desired Location</td>
+                    <td>{{ resume.desiredState }}</td>
+                </tr>
+            {% endif %}
+            {% if resume.jobType %}
+                <tr>
+                    <td class="label">Job Status</td>
+                    <td>{{ resume.jobType }}</td>
+                </tr>
+            {% endif %}
+            {% if resume.salary %}
+                <tr>
+                    <td class="label">Salary</td>
+                    <td>{{ resume.salary }}</td>
+                </tr>
+            {% endif %}
+            {#{% if resume.language %}#}
+            {#<tr>#}
+            {#<td class="label">Second Language</td>#}
+            {#<td>{{ resume.language }}</td>#}
+            {#</tr>#}
+            {#{% endif %}#}
+        </table>
+
+        {% if resume.resumeWorkExperience %}
+            <p>
+                <strong>Work Experience</strong><br/>
+                {{ resume.resumeWorkExperience | raw }}
+            </p>
+        {% endif %}
+
+        {% if resume.workSamples | length > 0 %}
+            <p style="margin-top: 15px;">
+                <strong>Work Samples</strong><br/>
+                {% for workSample in resume.workSamples %}
+                    <a href="{{ workSample.website }}" target="_blank">{% if workSample.description %}{{ workSample.description }}{% else %}{{ workSample.website }}{% endif %}</a><br/>
+                {% endfor %}
+            </p>
+        {% endif %}
+
+        {% if resume.website != '' and resume.website != 'http://' %}
+            <p style="margin-top: 15px;">
+                <strong>Personal Web Site</strong><br/>
+                <a href="{{ resume.website }}">{{ resume.website }}</a>
+            </p>
+        {% endif %}
+    </td>
+</tr>

@@ -1,0 +1,228 @@
+{% extends 'NewRoadsMediaFrontendBundle:PostNewJob:job.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style type="text/css">
+        label {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .form-text {
+            width: 300px;
+            height: 24px;
+            font-size: 18px;
+        }
+
+        .form-text-small {
+            height: 24px;
+            font-size: 18px;
+        }
+
+        .form-errors {
+            color: #f00;
+            font-weight: bold;
+        }
+
+        #content .inner-content .form-errors ul {
+            float: none;
+        }
+
+        #content .inner-content .form-errors ul li {
+            list-style-type: none;
+        }
+
+        input.submitbtn[disabled="disabled"] {
+            background-color: #ccc;
+            color: #999;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        function popUp(URL) {
+            window.open(URL, (new Date()).getTime().toString(), 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=350,height=300,left=490,top=412');
+        }
+        $(function() {
+            var $paymentMethods = $(':input[name="post_new_job_billing[paymentMethod]"]');
+            var $emailLabel = $('label[for="post_new_job_billing_billingEmail"]');
+            var originalEmailLabel = $emailLabel.html();
+            $paymentMethods.change(function() {
+                var method = $paymentMethods.filter(':checked').val();
+                if (method == 'email') {
+                    $emailLabel.html('Email Address for Invoice');
+                } else {
+                    $emailLabel.html(originalEmailLabel);
+                }
+            }).trigger('change');
+
+            $('form').on('submit', function() {
+                $(this).find('input[type="submit"]').attr('disabled', 'disabled');
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    {{ include('@NewRoadsMediaFrontend/PostNewJob/steps.html.twig', {'step': 5}) }}
+    <div class="inner-content">
+    <center>
+    {% if form.vars.errors %}
+        <div class="form-errors">
+            {{ form_errors(form) }}
+        </div>
+    {% endif %}
+
+    {% if employer.hasInvoiceOption %}
+        <font face="arial" size="4" color="red"><b><br>
+            Select a billing method and click on "Complete Transaction" below.<br><br>
+        </b></font>
+    {% endif %}
+
+    {{ form_start(form) }}
+    <table border="0">
+        <tr class="normaltext" valign="top">
+            <td bgcolor="#CCCCCC" colspan="3">
+                <strong>
+                    <font face="arial" size="3">
+                        {% for child in form.paymentMethod %}
+                            {{ form_widget(child) }}{{ form_label(child) }}{% if not loop.last %}<br/>{% endif %}
+                        {% endfor %}
+                    </font>
+                </strong>
+            </td>
+        </tr>
+        <tr bgcolor="#FFFFFF" class="normaltext">
+            <td colspan="3"><span class="required">*</span>denotes required field</td>
+        </tr>
+        <tr class="normaltext">
+            <td height="27">
+                <div align="right">
+                    <a name="invoice"></a>
+                    <span class="required">*</span>{{ form_label(form.name) }}
+                </div>
+            </td>
+            <td height="27" colspan="2">
+                {{ form_widget(form.name, {'attr': {'class': 'form-text'}}) }}
+            </td>
+        </tr>
+        <tr class="normaltext">
+            <td height="27">
+                <div align="right"><span class="required">*</span>{{ form_label(form.billingCompany) }}</div>
+            </td>
+            <td height="27" colspan="2">
+                {{ form_widget(form.billingCompany, {'attr': {'class': 'form-text'}}) }}
+            </td>
+        </tr>
+        <tr class="normaltext">
+            <td height="27">
+                <div align="right"><span class="required">*</span>{{ form_label(form.billingEmail) }}</div>
+            </td>
+            <td height="27" colspan="2">
+                {{ form_widget(form.billingEmail, {'attr': {'class': 'form-text'}}) }}
+            </td>
+        </tr>
+        <tr class="normaltext">
+            <td>
+                <div align="right"><span class="required">*</span>{{ form_label(form.address) }}</div>
+            </td>
+            <td colspan="2">
+                {{ form_widget(form.address, {'attr': {'class': 'form-text'}}) }}
+            </td>
+        </tr>
+        <tr class="normaltext">
+            <td>
+                <div align="right" style="font-weight:bold;"><span class="required">*</span>{{ form_label(form.city) }} and {{ form_label(form.state) }}</div>
+            </td>
+            <td colspan="2">
+                {{ form_widget(form.city, {'attr': {'class': 'form-text-small', 'style': 'width: 238px;'}}) }}
+                {{ form_widget(form.state, {'attr': {'class': 'form-text-small', 'style': 'width: 50px;'}}) }}
+            </td>
+        </tr>
+        <tr class="normaltext">
+            <td>
+                <div align="right"><span class="required">*</span>{{ form_label(form.zip) }}</div>
+            </td>
+            <td colspan="2">
+                {{ form_widget(form.zip, {'attr': {'size': 5, 'class': 'form-text-small'}} ) }}
+                {{ form_widget(form.zipPlus, {'attr': {'size': 4, 'class': 'form-text-small'}} ) }}
+            </td>
+        </tr>
+        <tr class="normaltext">
+            <td>
+                <div align="right"><span class="required">*</span>{{ form_label(form.phone) }}</div>
+            </td>
+            <td colspan="2">
+                {{ form_widget(form.phoneArea, {'attr': {'size': 3, 'class': 'form-text-small'}}) }}
+                {{ form_widget(form.phone, {'attr': {'size': 10, 'class': 'form-text-small'}}) }}
+            </td>
+        </tr>
+        <tr class="normaltext">
+            <td valign="top">
+                <div align="right">{{ form_label(form.specialBillingInstructions) }}<br> (e.g. purchase order number):<br/></div>
+            </td>
+            <td colspan="2">{{ form_widget(form.specialBillingInstructions) }}</td>
+        </tr>
+        <tr class="normaltext">
+        </tr>
+        <tr class="normaltext">
+            <td>
+                <a name="creditcard"></a>
+                <div align="right">{{ form_label(form.creditCard) }}</div>
+            </td>
+            <td>
+                {{ form_widget(form.creditCard) }}
+            </td>
+            <td rowspan="3">&nbsp;&nbsp;<!-- GeoTrust QuickSSL [tm] Smart Icon tag. Do not edit. -->
+                <SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript" SRC="//smarticon.geotrust.com/si.js"></SCRIPT>
+                <!-- end GeoTrust Smart Icon tag -->
+            </td>
+        </tr>
+        <tr class="normaltext">
+            <td>
+                <div align="right">{{ form_label(form.creditNumber) }}</div>
+            </td>
+            <td valign="middle" colspan="">
+                {{ form_widget(form.creditNumber, {'attr': {'class': 'form-text'}}) }} (no spaces or hyphens)
+            </td>
+        </tr>
+        <tr class="normaltext">
+            <td>
+                <div align="right">{{ form_label(form.cardCode) }}</div>
+            </td>
+            <td valign="middle" colspan="">
+                {{ form_widget(form.cardCode, {'attr': {'size': 4, 'class': 'form-text-small'}}) }} <a href="javascript:popUp('{{ asset('images/ccv.gif') }}');">What's this?</a>
+            </td>
+        </tr>
+        <tr class="normaltext">
+            <td>
+                <div align="right">{{ form_label(form.creditMonth, 'Expiration Date') }}</div>
+            </td>
+            <td>
+                <font face="Arial, Helvetica, sans-serif" size="2">
+                    {{ form_widget(form.creditMonth) }}
+                    Month
+                    {{ form_widget(form.creditYear) }}
+                    Year
+                </font>
+            </td>
+        </tr>
+    </table>
+    <br/><br/>
+    <b><font face="arial" size="4" color="red">Please print the receipt on the next page</font></b>
+    <br/><br/>
+    <P>
+    <br/>
+    <input type="submit" value="Complete Transaction" style="font: bold 16px;" class="submitbtn">
+    {{ form_end(form) }}
+
+    <p align="center"><font face="Arial, Helvetica, sans-serif" size="1"><b>
+        Copyright &copy; 1998-{{ 'now' | date('Y') }}. {{ parameter('site_title') }}. All Rights Reserved.<br>
+        Site usage subject to <a href="{{ path('Terms') }}">Terms and Conditions</a>.  Read our <a href="{{ path('PrivacyPolicy') }}">Privacy Policy</a>.
+        <br>
+        Tel. {{ parameter('site_phone') }}. &nbsp;&nbsp;E-mail: <a href="mailto:{{ parameter('email.info') }}">{{ parameter('email.info') }}</a>
+    </b></font></p>
+    </div>
+{% endblock %}

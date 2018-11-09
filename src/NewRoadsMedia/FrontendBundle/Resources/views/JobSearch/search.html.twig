@@ -1,0 +1,400 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% if title %}{{ parameter('site_title') }} -- {{ title }}{% else %}{{ parent() }}{% endif %}{% endblock %}
+
+{% form_theme searchBox _self %}
+{% block form_errors %}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+        #content .refine-search input[type="text"] {
+            height: 24px;
+            margin: 5px 0 0;
+            padding: 1px 2px;
+            width: 192px;
+        }
+        #content .refine-search select {
+            height: 30px;
+            margin: 5px 0 0;
+            width: 200px;
+        }
+        input[type="submit"] {
+            background-color: #9ec44a;
+            display: block;
+            padding: 1px 2px 1px;
+            margin: 0 auto;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            position: relative;
+            cursor: pointer;
+            border: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size:20px;
+            height:30px;
+            width: 155px;
+        }
+        p {
+            margin:12px;
+        }
+        #content .banner-ad {
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .search-banner {
+            text-align: center;
+            background-color: #fff;
+        }
+        .search-banner .banner-ad img {
+            max-width: 220px;
+        }
+        #content .search-banner .banner-ad {
+            margin-bottom: 30px;
+        }
+
+        #pages li {
+            display: inline-block;
+            font-size: 16px;
+            padding: 0 2px;
+        }
+        #pages li.active {
+            font-weight: bold;
+        }
+
+        .refine-search label {
+            /*font-weight: bold;*/
+            display: block;
+            font-size:14px;
+        }
+
+        #industry_filter li{
+            margin:5px 0;
+
+        }
+        #industry_filter a{
+            font-size:14px;
+            /*color: #0B0080 !important;*/
+            /*text-decoration: underline;*/
+
+        }
+
+        #industry_filter a:hover{
+            color:#f90 !important;
+            text-decoration: none !important;
+        }
+
+        .refine-search input[type="submit"] {
+            margin: 20px auto;
+        }
+
+        #focus input {
+            width: auto;
+        }
+
+        #focus label {
+            font-weight: normal;
+            display: inline-block;
+            padding-left: 5px;
+            padding-bottom: 5px;
+        }
+
+        .result{
+            display: table;
+            width: 100%;
+            height:100px;
+        }
+        .right-column {
+            padding: 0 0 0 10px;
+        }
+
+        #content > div {
+            width:1125px !important;
+        }
+
+        .refine-search .filter h3{
+            cursor:pointer;
+            display:inline-block;
+        }
+
+        .refine-search .filter i{
+            width:20px;
+            font-weight: bold;
+            /*color:#9ec44a;*/
+        }
+
+        .refine-search .filter ul{
+            display:none;
+        }
+
+        div#browse-search div.filter{
+            border-bottom: 1px solid #fff;
+            padding: 0 10px 15px 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('index_files/jquery-1.js') }}"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('.show-more').click(function(e) {
+                e.preventDefault();
+                $(this).hide().parents('ul').find('li').removeClass('hidden');
+            });
+            $('.refine-tabs li a').click(function() {
+                var $div = $($(this).attr('href'));
+                $('.refine-tab').hide();
+                $div.show();
+                $('.refine-tabs li').removeClass('active');
+                $(this).closest('li').addClass('active');
+
+                return false;
+            });
+
+            $('.refine-search .filter h3').each(function(i, e){
+                $(e).before('<i class="fa fa-caret-right"></i>');
+            });
+            $('.refine-search .filter h3').on('click', function(){
+                var $this = $(this);
+                $this.next('ul').slideToggle();
+                $this.toggleClass('active');
+                $this.prev('i').toggleClass('fa-caret-right').toggleClass('fa-caret-down');
+            });
+            $('.refine-search .filter#industry_filter h3').click();
+
+            $('#green_button').on('click', function(){
+                $('#create_account').slideToggle();
+                $(this).find('i').toggleClass('fa-caret-down').toggleClass('fa-caret-right');
+            });
+
+            if ({{formErrors}}){
+                $('#green_button').click();
+            }
+
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+<div>
+    <div style="text-align: center;">
+        {{ render(controller('NewRoadsMediaFrontendBundle:BannerAd:index', {'id': constant('NewRoadsMedia\\FrontendBundle\\Entity\\BannerAd::SUB_PAGE_MIDDLE_LARGE_BANNER')})) }}
+    </div>
+    <div style="margin: 5px 5px 10px;">
+        {% if title %}
+            <h1 style="margin-bottom: 15px;">{{ title }}</h1>
+        {% endif %}
+        <span style="font-size: 24px;">{{ count | number_format(0, '.', ',') }} Jobs Found</span>
+        {#<a href="{{ path('RssJobPosts', params | merge({'page': null})) }}"><img src="{{ asset('images/rss.png') }}" alt="Rss Feed" style="vertical-align: bottom; margin-left: 10px;"/></a>#}
+    </div>
+
+    <div id="results" style="margin-top: 10px;">
+        <table border="0" cellpadding="2" cellspacing="0" width="100%">
+            <tbody>
+                <tr>
+                    <td class="left-column">
+                        <ul class="refine-tabs">
+                            <li class="active"><a href="#browse-search">Browse</a></li>
+                            <li><a href="#detailed-search">Detailed Search</a></li>
+                        </ul>
+                        <div class="refine-search">
+                            {{ form_start(searchBox, {'attr': {'class': 'cssform'}}) }}
+                            <div id="keywords-container">
+                                {{ form_row(searchBox.keywords, {'label': 'Keywords', 'attr': {'placeholder': 'e.g. Editor'}}) }}
+                                <input type="submit" value="Search"/>
+                                <br style="clear: both;"/>
+                            </div>
+                            <h3 class="heading">Refine your search</h3>
+                            <div id="browse-search" class="refine-tab">
+                                {% include 'NewRoadsMediaFrontendBundle:JobSearch:industryFilter.html.twig' with {'jobManager': jobManager} %}
+                                {% include 'NewRoadsMediaFrontendBundle:JobSearch:extraFilters.html.twig' %}
+                                {% if locationCounts %}
+                                    <div class="filter">
+                                        <h3>Location</h3>
+                                        <ul>
+                                            {% for row in locationCounts %}
+                                                {% set isActive = params.location is defined and params.location == row.id %}
+                                                <li class="{% if loop.index > 10 %}hidden{% endif %} {% if isActive %}active{% endif %}"><a href="{{ path('JobPosts', params | merge({'location': isActive ? null : row.id})) }}">{{ row.name }} </a></li>
+                                            {% endfor %}
+                                            {% if locationCounts | length > 10 %}
+                                                <li><a href="#" class="show-more">Show More...</a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                                {% if jobTypeCounts %}
+                                    <div class="filter">
+                                        <h3>Job Type</h3>
+                                        <ul>
+                                            {% for row in jobTypeCounts %}
+                                                {% set isActive = params.jobType is defined and params.jobType == row.id %}
+                                                <li{% if isActive %} class="active"{% endif %}><a href="{{ path('JobPosts', params | merge({'jobType': isActive ? null : row.id})) }}">{{ row.name }} ({{ row.job_count | number_format() }})</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                                {% if datePostedCounts %}
+                                    <div class="filter">
+                                        <h3>Date Posted</h3>
+                                        <ul>
+                                            {% for row in datePostedCounts %}
+                                                {% set isActive = params.datePosted is defined and params.datePosted == row.id %}
+                                                <li{% if isActive %} class="active"{% endif %}><a href="{{ path('JobPosts', params | merge({'datePosted': isActive ? null : row.id})) }}">{{ row.name }} ({{ row.job_count | number_format() }})</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div id="detailed-search" style="display: none;" class="refine-tab">
+                                {% if searchBox.focus is defined %}
+                                    {% if searchBox.focus.children %}
+                                        <div>
+                                            {{ form_label(searchBox.focus) }}
+                                            <div id="focus">
+                                                {{ form_widget(searchBox.nonFocused) }}
+                                                {{ form_label(searchBox.nonFocused) }}
+                                                {{ form_errors(searchBox.nonFocused) }}
+                                                <br/>
+                                                {% for child in searchBox.focus %}
+                                                    {{ form_widget(child) }}
+                                                    {{ form_label(child) }}
+                                                    {{ form_errors(child) }}
+                                                    <br/>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        {% do searchBox.focus.setRendered %}
+                                        {% do searchBox.nonFocused.setRendered %}
+                                    {% endif %}
+                                {% endif %}
+                                {{ form_row(searchBox.industry) }}
+                                {{ form_row(searchBox.position) }}
+                                {{ form_row(searchBox.location) }}
+                                {{ form_row(searchBox.jobType) }}
+                                {{ form_row(searchBox.salary) }}
+                                {{ form_row(searchBox.datePosted) }}
+                                {{ form_rest(searchBox) }}
+                                <input type="submit" value="Search"/>
+                            </div>
+                            {{ form_end(searchBox) }}
+                        </div>
+                        <h3 style="padding-top: 35px; text-align: center;">ADVERTISEMENT</h3>
+                        {{ render(controller('NewRoadsMediaFrontendBundle:BannerAd:topLeftAd', {'id': constant('NewRoadsMedia\\FrontendBundle\\Entity\\BannerAd::SUB_PAGE_TOP_LEFT')})) }}
+                    </td>
+
+                    <td class="middle-column">
+                        {% if not app.user %}
+                            <div class="search-job-alerts">
+                                <a href="javascript:void(0);" id="green_button"><i class="fa fa-caret-right"></i> Sign Up</a>
+                                <span>Receive Daily Job Alerts in Your Inbox</span>
+                                <div id="create_account">
+                                    {% if accountForm.vars.errors %}
+                                        <div class="form-errors">
+                                            {{ form_errors(accountForm) }}
+                                        </div>
+                                    {% endif %}
+
+                                    {{ form_start(accountForm, {'attr': {'id': 'account_form', 'novalidate': ''}}) }}
+
+                                    {{ form_label(accountForm.name, 'Your Name') }}
+                                    {{ form_widget(accountForm.name) }}
+
+                                    {{ form_label(accountForm.email, 'Your Email') }}
+                                    {{ form_widget(accountForm.email) }}
+
+                                    {{ form_label(accountForm.password.first, 'Create Password') }}
+                                    {{ form_widget(accountForm.password.first) }}
+
+                                    {{ form_label(accountForm.password.second, 'Verify Password') }}
+                                    {{ form_widget(accountForm.password.second) }}
+
+                                    <div class="terms_conditions">
+                                        By clicking "Create Account" you agree to our <a href="{{ path('Terms') }}">Terms and Conditions</a>.
+                                    </div>
+
+                                    <input type="submit" value="Create Account">
+                                    <span class="have_account">Already have an account? <a href="{{ path('LoginJobSeeker') }}">Sign In</a></span>
+                                    {{ form_end(accountForm) }}
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if jobs %}
+                            {% for job in jobs %}
+                                {% include '@NewRoadsMediaFrontend/JobSearch/result.html.twig' with {'job': job} %}
+                            {% endfor %}
+                        {% else %}
+                            <p style="text-align: center;">No results found.</p>
+                        {% endif %}
+                    </td>
+
+                    <td class="right-column">
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <!-- JJobs -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:120px;height:600px"
+                             data-ad-client="ca-pub-3003304833366179"
+                             data-ad-slot="2899025439"></ins>
+                        <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </td>
+                    {# if featuredJobs | length > 0 %}
+                        <td class="right-column">
+                            <div class="search-banner">
+                                {{ render(controller('NewRoadsMediaFrontendBundle:BannerAd:index', {'id': constant('NewRoadsMedia\\FrontendBundle\\Entity\\BannerAd::SUB_PAGE_MIDDLE_MEDIUM_BUTTON')})) }}
+                            </div>
+                            <div id="featured">
+                                <h2 class="featured-jobs">FEATURED JOBS</h2>
+                                <br/>
+                                <!-- Events bullet list -->
+                                <ul class="featured-jobs-item">
+                                    {% for job in featuredJobs %}
+                                        <li style="font-size:15px;">
+                                            <a href="{{ path('ViewJobPost', {'jobId': job.id}) }}"><strong>{{ job.titleOfPositionOpen }}</strong></a>
+                                            <div>{{ job.company }}</div>
+                                            <div>
+                                                {% if job.jobCity %}{{ job.jobCity }},{% endif %}
+                                                {% if job.location %}{{ job.location.locationDescription }}{% endif %}
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </td>
+                    {% endif #}
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        {% if pageCount %}
+                            <div class="pages">
+                                <ul>
+                                    {% if page > 1 %}
+                                        <li class="first"><a href="{{ path('JobPosts', params | merge({'page': 1})) }}">&lt;&lt;</a></li>
+                                        <li class="prev"><a href="{{ path('JobPosts', params | merge({'page': page - 1})) }}">&lt;</a></li>
+                                    {% endif %}
+                                    {% for i in pageStart..pageEnd %}
+                                        <li{% if i == page %} class="active"{% endif %}><a href="{{ path('JobPosts', params | merge({'page': i})) }}">{{ i }}</a></li>
+                                    {% endfor %}
+                                    {% if page < pageCount %}
+                                        <li class="next"><a href="{{ path('JobPosts', params | merge({'page': page + 1})) }}">Next Page &gt;</a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div style="margin:20px"></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

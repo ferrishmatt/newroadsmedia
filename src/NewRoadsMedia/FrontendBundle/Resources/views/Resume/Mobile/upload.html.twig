@@ -1,0 +1,50 @@
+{% extends "@NewRoadsMediaFrontend/Layout/mobile.html.twig" %}
+
+{% form_theme form '@NewRoadsMediaFrontend/Layout/mobileForm.html.twig' %}
+
+{% block title %}Upload Your Resume{% endblock %}
+
+{% block content %}
+    <h1>Upload Your Resume</h1>
+
+    {{ form_errors(form) }}
+    {{ form_start(form) }}
+    {{ form_errors(form.resumeFile) }}
+
+    <br/>
+    {{ form_label(form.resumeFile) }}
+    <p><em>
+        We accept .DOCX, .DOC, .RTF, .TXT, .PDF up to 1000 KB.<br/>
+        We currently do not accept images or scanned documents.
+    </em></p>
+    {{ form_widget(form.resumeFile) }}
+    {% if resume.resumeFile %}
+        <br/>
+        <a href="{{ path('DownloadResume', {'resumeId': resume.id}) }}" class="btn btn-default">Download Resume</a>
+    {% endif %}
+    {% if form.deleteResumeFile is defined %}
+        {{ form_row(form.deleteResumeFile, {'label': 'Delete Resume'}) }}
+    {% endif %}
+
+    <br/>
+    <label>Privacy Settings</label>
+    <p><em>Note: With a private resume, your information will only be visible to employers you apply to.</em></p>
+
+    {{ form_row(form.isPublic) }}
+    <div class="radio">
+        <label class="">
+            <input type="radio" name="{{ form.isPublic.vars.full_name }}" value="1"{% if form.isPublic.vars.value == 1 %} checked="checked"{% endif %}/>
+            Display my Resume and Contact Info
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="{{ form.isPublic.vars.full_name }}" value="0"{% if form.isPublic.vars.value == 0 %} checked="checked"{% endif %}/>
+            Hide my Resume and Contact Info
+        </label>
+    </div>
+
+    <br/>
+    <button type="submit" class="btn btn-success btn-block">Submit</button>
+    {{ form_end(form) }}
+{% endblock %}

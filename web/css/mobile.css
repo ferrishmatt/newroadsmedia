@@ -1,0 +1,224 @@
+.nav {
+    margin-top: 9px;
+}
+
+.nav .navbar-text {
+    padding: 0 15px;
+}
+
+.nav .navbar-text img {
+    margin-left: 10px;
+}
+
+#logo {
+    width: 200px;
+    position: relative;
+    top: 0px
+}
+
+.viewjobpost .nav-tabs {
+    border-bottom: 1px solid #fff;
+}
+
+.img-left {
+    float: left;
+    margin-right: 10px;
+}
+
+.label-new {
+    margin-left: 10px;
+}
+
+.advanced-search {
+    color: #000;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Media News */
+@media (max-width: 768px) {
+    .medianews .media-news img {
+        float: none;
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+.media-news {
+    margin-top: 30px;
+}
+
+/* Career Advice */
+@media (min-width: 450px) {
+    #career-advice-articles div.details{
+        margin-bottom:110px;
+    }
+}
+#career-advice-articles div.image {
+    width: 150px;
+    float: left;
+    margin: 0 10px 10px 0;
+    vertical-align: top;
+    height: 120px;
+}
+
+#career-advice-articles div.image img {
+    max-width: 150px;
+}
+
+/* iPad */
+@media only screen
+    and (min-device-width:768px)
+    and (max-device-width:1024px)
+    and (-webkit-min-device-pixel-ratio: 1){
+        #career-advice-articles div.image img {
+            max-width: 280px;
+            margin-bottom: 15px;
+            margin-right: 10px;
+        }
+
+        #career-advice-articles div.image {
+            width: 280px;
+            float:left;
+        }
+
+/*        #career-advice-articles div.details{
+            clear:none;
+        }*/
+}
+
+
+/* Footer */
+footer {
+    background-color: #313237;
+    color: #a5a6aa;
+    font-size: 1.2em;
+}
+
+footer h5 {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+footer a {
+    color: #a5a6aa;
+}
+
+footer a:hover {
+    color: #fff;
+}
+
+footer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+footer img {
+    margin-right: 10px;
+}
+
+/* Index */
+.index .media-news img {
+  max-width: 150px;
+  margin-bottom: 15px;
+}
+
+.index .media-news h4 {
+  margin-top: 0;
+}
+
+/* Job View */
+.job-view-actions {
+    float: right;
+    margin-top: 20px;
+}
+
+.job-view-actions .dropdown-menu a img {
+    margin-right: 10px;
+    width: 30px;
+}
+
+/* forms */
+form .form-group .alert {
+    margin-top: 15px;
+}
+
+.form-delete {
+    float: right;
+}
+
+.form-delete:hover {
+    text-decoration: none;
+}
+
+.multiple-select {
+    border: 1px solid #ccc;
+    padding: 0 10px;
+    max-height: 185px;
+    overflow: auto;
+}
+
+/* Teaching Jobs */
+#site-teaching #logo {
+    top: 1px;
+}
+
+/* Accounting Jobs */
+#site-accounting #logo {
+    top: -1px;
+}
+
+/* Extending Bootstrap */
+.col-xs-5ths,
+.col-sm-5ths,
+.col-md-5ths,
+.col-lg-5ths {
+    position: relative;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.col-xs-5ths {
+    width: 20%;
+    float: left;
+}
+
+@media (min-width: 768px) {
+    .col-sm-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-lg-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+br.clear{
+    clear:both;
+}
+
+.advertisment_header{
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.career-advice-byline {
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+

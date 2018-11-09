@@ -1,0 +1,234 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Post a Job -- {{ parameter('site_title') }}{% endblock %}
+
+ {% block top_banner %}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+        hr {
+            color:#ccc;
+        }
+
+        #quick-facts div{
+            display:inline-block;
+            width:180px;
+            margin-top:20px;
+            margin-bottom:50px;
+            float:left;
+        }
+
+        #quick-facts div img{
+            margin-bottom:30px;
+        }
+
+        #quick-facts div:first-child{
+            width:300px;
+            margin-right:55px;
+        }
+
+        #content h3{
+            font-size:18pt;
+            margin-bottom:20px;
+        }
+
+        .product-wrapper {
+            background: #f6f7fa;
+            padding: 30px;
+            border-radius: 3px;
+            margin-bottom:15px;
+        }
+
+        @media (min-width: 768px){
+            .product-intro {
+                flex: 1;
+            }
+        }
+
+        #content .product-intro h3{
+            font-size: 20px;
+            margin-bottom: 12.5px;
+            font-weight: 400;
+            line-height: 1.1;
+            color: #444;
+        }
+
+        .text-muted {
+           color: #666;
+           margin-bottom:1em;
+        }
+
+        @media (min-width: 768px){
+            .product-price {
+                margin-left: 30px;
+            }
+
+            .product-pricePanel>div:first-child {
+                width: 140px;
+            }
+            .product-pricePanel {
+                display: inline-flex;
+                align-items: center;
+            }
+            .product-priceText {
+                font-size: 30px;
+            }
+            .product-pricePanel>div+div {
+                border-left: 1px solid #ccc;
+            }
+            .product-wrapper {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        .product-pricePanel {
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .product-pricePanel>div {
+            padding: 15px;
+        }
+
+        #content .product-wrapper a.btn{
+            // width:131px;
+            background-color: #9ec44a !important;
+            border-color: #9ec44a;
+            text-transform: uppercase;
+            border: 0;
+            box-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+            transition: all 0.4s;
+            position: relative;
+            padding: 18px 36px;
+            font-size: 18px;
+            line-height: 1.3333333;
+            border-radius: 3px;
+            color: #fff;
+            margin-bottom: 0;
+            font-weight: normal;
+            text-align: center;
+            vertical-align: middle;
+            touch-action: manipulation;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .product-note{
+            margin-top:10px;
+        }
+
+        #ng_logo{
+            margin-top: 20px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div>
+    <div style="width: 100%; float: left;">
+        <h3 style="float: left">Job Posting Options</h3>
+	<a style="float: right; margin-top: 10px;" href="{{ path('LoginEmployer') }}">Registered Employers -- Sign In</a>
+    </div>
+    <div class="product-wrapper">
+        <div class="product-intro">
+            <h3 class="u-mt--remove">Single Job Posting</h3>
+            <p class="text-muted"></p>
+            <div>
+                <strong># of Jobs:</strong> 1
+                &nbsp;|&nbsp;&nbsp;<strong>Job Posting Length: </strong> 35 Days
+            </div>
+	    <p style="margin-top: 10px;">All job ads include resume database access.</p>
+        </div>
+        <div class="product-price">
+            <div class="product-pricePanel">
+                <div>
+                    <span class="product-priceText">$100.00</span>
+                </div>
+                <div>
+                    <a class="btn btn-success btn-lg" rel="nofollow" href="{{ path('PostNewJobCreateAccount') }}">
+                        <i class="fa fa-file-text"></i> Post Job <i class="fa fa-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-wrapper">
+        <div class="product-intro">
+            <h3 class="u-mt--remove">5 Job Package</h3>
+            <p class="text-muted">Purchase four job ads at our regular price and receive one ad free.</p>
+            <div>
+                <strong># of Jobs:</strong> 5
+                &nbsp;|&nbsp;&nbsp;<strong>Job Posting Length: </strong> 35 Days
+            </div>
+            <p class="product-note">NOTE: Job credits never expire. </p>
+        </div>
+        <div class="product-price">
+            <div class="product-pricePanel">
+                <div>
+                    <span class="product-priceText">$400.00</span>
+                </div>
+                <div>
+                    <a class="btn btn-success btn-lg" rel="nofollow" href="{{ path('MultipleJobAds', {'jobPackage': 4}) }}">
+                        <i class="fa fa-shopping-cart"></i> Purchase <i class="fa fa-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-wrapper">
+        <div class="product-intro">
+            <h3 class="u-mt--remove">12 Job Package</h3>
+            <p class="text-muted">Post 9 job ads at our regular price and receive three ads free.</p>
+            <div>
+                <strong># of Jobs:</strong> 12
+                &nbsp;|&nbsp;&nbsp;<strong>Job Posting Length: </strong> 35 Days
+            </div>
+            <p class="product-note">NOTE: Job credits never expire. </p>
+        </div>
+        <div class="product-price">
+            <div class="product-pricePanel">
+                <div>
+                    <span class="product-priceText">$900.00</span>
+                </div>
+                <div>
+                    <a class="btn btn-success btn-lg" rel="nofollow" href="{{ path('MultipleJobAds', {'jobPackage': 9}) }}">
+                        <i class="fa fa-shopping-cart"></i> Purchase <i class="fa fa-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div id="quick-facts">
+        <div>
+            <h2>Quick Facts:</h2>
+            <p>{{ parameter('site_title') }} was launched in August 1998 and has helped thousands of media professionals find new jobs.</p>
+            <br/>
+            <p>Recent users include:</p>
+        </div>
+        <div>
+            <img src="{{ asset('images/logos/reddit-logo.png') }}" alt="Reddit"/>
+            <img src="{{ asset('images/logos/TMZ_logo.jpg') }}" alt="TMZ"/>
+        </div>
+        <div>
+            <img src="{{ asset('images/yahoo_logo.png') }}" alt="Yahoo Logo"/>
+            <img src="{{ asset('images/nat_geo_logo.jpg') }}" alt="National Geographic Logo" id="ng_logo"/>
+        </div>
+        <div>
+            <img src="{{ asset('images/logos/cnbc.png') }}" alt="CNBC Logo"/>
+            <img src="{{ asset('images/CBS_interactive_logo.png') }}" alt="CBS Interactive Logo"/>
+        </div>
+        <div>
+            <img src="{{ asset('images/wsj_logo.jpg') }}" alt="Wall Street Journal Logo"/>
+            <img src="{{ asset('images/logos/CNN_logo.png') }}" alt="CNN" style="padding-left: 20px;"/>
+        </div>
+    </div>
+</div>
+{% endblock content %}

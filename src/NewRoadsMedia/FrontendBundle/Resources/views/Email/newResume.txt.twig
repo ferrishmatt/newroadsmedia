@@ -1,0 +1,20 @@
+Thank you for posting your resume on {{ parameter('site_title') }}.
+
+JOB SEEKER ACCOUNT LOGIN INFORMATION:
+Your username is: {{ resume.email }}
+Your password is: {{ resume.password }}
+
+ACCOUNT LOG IN:
+{{ loginJobSeekerUrl }}
+
+ADMINISTRATION:
+Please log into your Job Seeker Account to edit, renew or delete your resume, or to manage your job search online.
+
+RESUME CRITERIA:
+Industries: {{ resume.industries | join(', ') }}
+Position: {{ resume.position }}
+Specialty: {{ resume.specialty }}
+Experience: {{ resume.experience }}
+Location: {{ resume.desiredState }}
+Job Status: {{ resume.jobType }}
+Salary: {{ resume.salary }}

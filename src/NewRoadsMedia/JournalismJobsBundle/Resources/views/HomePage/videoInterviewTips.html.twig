@@ -1,0 +1,109 @@
+{% set page_name = '' %}
+
+{% extends "::base.html.twig" %}
+
+{% block title %}How to Ace a Video Interview{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://ucarecdn.com/widget/2.8.2/uploadcare/uploadcare.min.js" charset="utf-8"></script>
+    <script src="{{ asset('js/upload-care.js') }}"></script>
+    <script src="{{ asset('js/jquery.wordcount.js') }}"></script>
+    <script src="{{ asset('js/job-listing.js') }}"></script>
+    <script type="text/javascript">
+        $(function() {
+            {% if nonRegisteredForm.resumeFile is defined %}
+                uploadcare_init('{{ nonRegisteredForm.resumeFile.vars.id }}');
+            {% endif %}
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {#<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"/>#}
+    <link rel="stylesheet" href="{{ asset('css/job-listing.css') }}"/>
+{% endblock %}
+
+{% block content %}
+<div class="inner-content text-article">
+    <img class="article-photo" src="{{ asset('bundles/newroadsmediajournalismjobs/images/video_interview_large.jpg') }}">
+    <div class="article-wrap">
+    <p class="pre-headline">Video Interviews</p>
+
+    <h1 class="article-title">How to Ace a Video Interview</h1>
+
+    <p class="byline-share-line">
+    <b class="byline">By Susan Johnston Taylor</b>
+    <a href="#" title="Share Job" class="share-job-link"><img src="{{ asset('images/icons/share_icon.png') }}" alt="Share Job"/>Share</a>
+    </p>
+
+    <ul class="job-listing-share">
+                    <li>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ url('ViewJobPost', {'jobId': job.id}) }}" target="_blank" title="Share on Facebook"><img
+                                    src="{{ asset('images/icons/facebook_icon.png') }}" alt="Share on Facebook"/>Facebook</a>
+                    </li>
+                    <li>
+                        {% set twitterUrl = 'http://twitter.com/share?text=' ~ (('Great Job on ' ~ parameter('site_title')) | url_encode) ~ '&url=' ~ url('ViewJobPost', { 'jobId': job.id } ) %}
+                        <a href="{{ twitterUrl }}" target="_blank" title="Share on Twitter"><img
+                                    src="{{ asset('images/icons/twitter_icon.png') }}" alt="Share on Twitter"/>Twitter</a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ url('ViewJobPost', {'jobId': job.id}) }}&title={{ (parameter('site_title') ~ ' - ' ~ job.titleOfPositionOpen) | url_encode }}&summary=&source=" target="_blank" title="Share on Linked In"><img
+                                    src="{{ asset('images/icons/linked_in_icon.png') }}" alt="Share on Linked In"/>Linked In</a>
+                    </li>
+                    <li>
+                        <a href="https://plus.google.com/share?url={{ url('ViewJobPost', {'jobId': job.id}) }}" target="_blank" title="Share on Google Plus"><img
+                                    src="{{ asset('images/icons/google_plus_icon.png') }}" alt="Share on Google Plus"/>Google +</a>
+                    </li>
+                    <li style="display: none;">
+                        <a class="email" href="#" title="E-mail this job to a friend"><img src="{{ asset('images/icons/email_icon.png') }}" alt="E-mail this job to a friend"/>E-mail</a>
+                    </li>
+                </ul>
+
+<p>Gone are the days when candidates breezed through a phone interview and then met with hiring managers in person. With advancing technology and more workplaces operating virtually, video interviews are becoming more common.</p>
+
+<p>Digital interviews can replace a phone interview to give the hiring manager more details on your personality, body language and what makes you tick. Or if you’re interviewing for a freelance or remote job, they might replace the in-person interview altogether.</p>
+
+<p>This presents its own set of challenges, since most people aren’t used to being on camera.</p>
+
+<p>According to Wonda Cooper, a member of the Society for Human Resource Management and Human Resources Regional Manager for communications company Alorica, many candidates make the mistake of treating a video interview too casually, as if it were a phone call.</p>
+
+<p>“For most of these virtual interviews, the candidate is at home, so they dress comfortably in a bathrobe or T-shirt,” Cooper says.</p>
+
+<p>“They put a blazer on over a T-shirt, then they sand up and the bottom half of them is not dressed appropriately.”</p>
+
+<p>Here’s how to prepare for a video interview.</p>
+
+<h2>Practice, practice, practice.</h2>
+
+<p>Camera-shy candidates might forget to look at the camera or suffer from a cracking, shaky voice, so Cooper encourages job seekers to practice speaking on camera before an interview. “It’s very important that you are comfortable once the camera starts rolling,” she says.</p>
+
+<div class="article-quote">"Take a breath before you sign on for a video interview."</div>
+
+<p>To get practice on-camera, you could ask a friend to do a mock interview over Skype or FaceTime or use an online platform like <a href="https://www.hirevue.com/">HireVue</a>, which is specifically designed for this purpose.</p>
+
+<p>In addition to preparing for the video format, apply the same reporting techniques you’d use to research the company. Find out recent developments and projects, as well as the background of the person who will interview you.</p>
+
+
+
+<h2>Test your equipment.</h2>
+<p>Arriving late or asking to reschedule a video interview due to technical difficulties does not make a good impression, so download any software and test your internet bandwidth well in advance. Even if you already have the software on your computer, check for updates just in case.</p>
+<p>“Depending on the type of internet speed you have at home, you may have no problems but Murphy’s law says be prepared,” Cooper says. She suggests trying it at least a day before and then rechecking a few hours prior. If you don’t have proper bandwidth at home, then make alternate arrangements such as renting an hour’s time in a FedEx Office conference room.</p>
+
+<h2>Rid your space of distractions.</h2>
+<p>Posters or family photos in the background only distract your interviewer. The ideal background is a blank wall, according to Cooper, but a filing cabinet or similar office decor is also acceptable. Also make sure that kids and family pets are out of the room during an interview to avoid any possible distractions.</p>
+
+<h2>Dress for success.</h2>
+<p>Dress professionally and comb your hair just as you would for an in-person interview. Sweatpants (or no pants) may be comfortable in the privacy of your home, but if you stand up or shift your webcam during the interview, your interviewer may get a view you hadn’t planned on. Wear dress pants or a skirt that matches the top half of your outfit.</p>
+<p>Lastly, take a breath before you sign on for a video interview. If you’ve practiced and done your homework, everything should go smoothly.</p>
+
+<!-- <div class="article-quote">"Follow your favorite employers on Twitter."</div> -->
+
+<i><b>About:</b> Susan Johnston Taylor has written about careers and business for The Atlantic, The Boston Globe and U.S. News & World Report online, among other publications.</i>
+    </div>
+</div>
+
+{% endblock %}

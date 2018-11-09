@@ -1,0 +1,9 @@
+Dear {{ parameter('site_title') }} User,
+
+Thank you for your new job posting. You now have {{ employer.adsRemaining }} job credit{% if employer.adsRemaining != 1 %}s{% endif %} left in your employer account.
+
+When you need to purchase more job credits, please log into your employer account, or send an email to: {{ parameter('email.info') }}.
+
+Thank You,
+{{ parameter('site_title') }}
+{{ parameter('email.info') }}

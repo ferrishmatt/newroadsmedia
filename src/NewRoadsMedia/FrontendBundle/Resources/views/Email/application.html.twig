@@ -1,0 +1,17 @@
+<p>The following application was sent for {{ job.titleOfPositionOpen }}</p>
+<p><strong>Applicant Name:</strong> {{ application.name }}</p>
+<p><strong>Applicant Email:</strong> {{ application.email }}</p>
+
+{% if application.coverLetter %}
+    <p><strong>Cover Letter:</strong></p>
+    {{ application.coverLetter | nl2br }}
+{% endif %}
+{% if application.resumeText %}
+    <p><strong>Resume:</strong></p>
+    {{ application.resumeText | raw | nl2br }}
+{% elseif path %}
+    <p><strong>Application is attached</strong></p>
+    <div style="font-size: 11px; color: #999;">
+        <p>WARNING: Computer viruses can be transmitted via email. The recipient should check this email and any attachments for the presence of viruses. The company accepts no liability for any damage caused by any virus transmitted by this email. E-mail transmission cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. The sender therefore does not accept liability for any errors or omissions in the contents of this message, which arise as a result of e-mail transmission.</p>
+    </div>
+{% endif %}

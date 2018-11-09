@@ -1,0 +1,6 @@
+[{% for job in jobs %}{
+"title":"{{ job.titleOfPositionOpen }}",
+"link":"{{ url('ViewJobPost', { 'jobId': job.id }) }}",
+"city":"{{ job.city }}",
+"company":"{{ job.company }}"
+}{% endfor %}]

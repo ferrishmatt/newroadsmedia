@@ -1,0 +1,31 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Delete Profile Photo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/edit-profile.css') }}"/>
+    <style type="text/css">
+        #content {
+            padding-top: 30px;
+        }
+        form {
+            margin-right: 70px;
+        }
+        form a {
+            margin-right: 15px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <h1>Delete Profile Photo</h1>
+    <div style="text-align: center; padding-top: 20px;">
+    <p>Are you sure you want to delete your profile photo?</p>
+    <p style="padding-top: 20px;"><img src="{{ resume.profilePicture }}"/></p>
+    {{ form_start(form) }}
+    <a href="{{ path('EditResume') }}">Cancel</a>
+    {{ form_widget(form.submit) }}
+    {{ form_end(form) }}
+    </div>
+{% endblock %}

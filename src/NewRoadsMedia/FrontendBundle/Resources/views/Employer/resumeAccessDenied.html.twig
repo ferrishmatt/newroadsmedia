@@ -1,0 +1,23 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Searching Resumes{% endblock %}
+
+{% block content %}
+<div class="inner-content">
+    <h1>Searching Resumes</h1>
+    <p>
+        The {{ parameter('site_title') }} resume database is reserved for employers who have a job
+        ad currently running on the site. To gain access to the resume database, you will
+        either need to post or renew a job ad, or you can pay ${{ parameter('ad_cost') }} for a five-week
+        subscription. To sign up, call {{ parameter('site_phone') }}, or send an e-mail to
+        <a href="mailto:{{ parameter('email.resumeaccess') }}">{{ parameter('email.resumeaccess') }}</a>.
+        Access is set up the same day we receive your request.
+    </p>
+    <p>
+        To post a job ad, <a href="{{ path('PostNewJob') }}">click here</a>. Job ads are ${{ parameter('ad_cost') }} each and run for 5 weeks. You will be able to search the resume database after your ad is posted.
+    </p>
+    <p>
+        Thank you for using {{ parameter('site_title') }}.
+    </p>
+</div>
+{% endblock %}

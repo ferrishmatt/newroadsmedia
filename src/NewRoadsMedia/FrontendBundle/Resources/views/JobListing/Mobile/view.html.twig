@@ -1,0 +1,198 @@
+{% extends '@NewRoadsMediaFrontend/Layout/mobile.html.twig' %}
+
+{% form_theme registeredForm '@NewRoadsMediaFrontend/Layout/mobileForm.html.twig' %}
+{% form_theme nonRegisteredForm '@NewRoadsMediaFrontend/Layout/mobileForm.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% if nonRegisteredForm.resumeFile is defined %}
+    <script src="https://ucarecdn.com/widget/2.8.2/uploadcare/uploadcare.min.js" charset="utf-8"></script>
+    <script src="{{ asset('js/upload-care.js') }}"></script>
+    <script type="text/javascript">
+        $(function() {
+            uploadcare_init('#{{ nonRegisteredForm.resumeFile.vars.id }}');
+        });
+    </script>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="job-view-actions">
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span> Share <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ url('ViewJobPost', {'jobId': job.id}) }}" target="_blank" title="Share on Facebook"><img
+                        src="{{ asset('images/icons/facebook_icon.png') }}" alt="Share on Facebook"/>Facebook</a>
+                </li>
+                <li>
+                    {% set twitterUrl = 'http://twitter.com/share?text=' ~ (('Great Job on ' ~ parameter('site_title')) | url_encode) ~ '&url=' ~ url('ViewJobPost', { 'jobId': job.id } ) %}
+                    <a href="{{ twitterUrl }}" target="_blank" title="Share on Twitter"><img
+                        src="{{ asset('images/icons/twitter_icon.png') }}" alt="Share on Twitter"/>Twitter</a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ url('ViewJobPost', {'jobId': job.id}) }}&title={{ (parameter('site_title') ~ ' - ' ~ job.titleOfPositionOpen) | url_encode }}&summary=&source=" target="_blank" title="Share on Linked In"><img
+                        src="{{ asset('images/icons/linked_in_icon.png') }}" alt="Share on Linked In"/>Linked In</a>
+                </li>
+                <li>
+                    <a href="https://plus.google.com/share?url={{ url('ViewJobPost', {'jobId': job.id}) }}" target="_blank" title="Share on Google Plus"><img
+                        src="{{ asset('images/icons/google_plus_icon.png') }}" alt="Share on Google Plus"/>Google +</a>
+                </li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-default" href="{{ path('AddJobBasket', {'jobId': job.id}) }}"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Save Job</a>
+        </div>
+    </div>
+    <h2>{{ job.titleOfPositionOpen }}</h2>
+    {% if job.company %}
+        <div class="row">
+            <div class="col-xs-3">Company</div>
+            <div class="col-xs-9">{{ job.company }}</div>
+        </div>
+    {% endif %}
+    <div class="row">
+        <div class="col-xs-3">Date Posted</div>
+        <div class="col-xs-9">{{ job.createDate | date('F d, Y') }}</div>
+    </div>
+    {% if job.industries | length > 0 %}
+        <div class="row">
+            <div class="col-xs-3">{% if job.industries | length == 1 %}Industry{% else %}Industries{% endif %}</div>
+            <div class="col-xs-9">{{ job.industries | join(', ') }}</div>
+        </div>
+    {% endif %}
+    <div class="row">
+        <div class="col-xs-3">Location</div>
+        {% if job.jobCity or (job.location and job.location.locationDescription) %}
+            <div class="col-xs-9">{% if job.jobCity %}{{ job.jobCity }},{% endif %} {% if job.location and job.location.locationDescription %}{{ job.location.locationDescription }}{% endif %}</div>
+        {% else %}
+            <div class="col-xs-9">Not Specified</div>
+        {% endif %}
+    </div>
+    {% if job.focus | length > 0 %}
+        <div class="row">
+            <div class="col-xs-3">Focus</div>
+            <div class="col-xs-9">{{ job.focus | join(', ') }}</div>
+        </div>
+    {% endif %}
+    {% if job.specialty %}
+        <div class="row">
+            <div class="col-xs-3">Specialty</div>
+            <div class="col-xs-9">{{ job.specialty }}</div>
+        </div>
+    {% endif %}
+    <div class="row">
+        <div class="col-xs-3">Job Status</div>
+        <div class="col-xs-9">{% if job.jobType%}{{ job.jobType }}{% else %}Not Specified{% endif %}</div>
+    </div>
+    {#
+        This is specific to teachingjobs.com. Only teachingjobs.com has the ability to set positionType and industry 2
+        refers to the public schools industry directly.
+    #}
+    {% if job.positionType and job.hasIndustry(2) %}
+        <div class="row">
+            <div class="col-xs-3">Job Type</div>
+            <div class="col-xs-9">{{ job.positionType }}</div>
+        </div>
+    {% endif %}
+    <div class="row">
+        <div class="col-xs-3">Salary</div>
+        <div class="col-xs-9">{% if job.salaryText %}{{ job.salaryText }}{% else %}Not Specified{% endif %}</div>
+    </div>
+    {% if job.certificationNeeded %}
+        <div class="row">
+            <div class="col-xs-3">Certificate Needed</div>
+            <div class="col-xs-9">
+                {{ job.certificationNeeded }}{% if job.certificatesNeeded %}, {{ job.certificatesNeeded }}{% endif %}
+            </div>
+        </div>
+    {% endif %}
+    {% if job.education %}
+        <div class="row">
+            <div class="col-xs-3">Education</div>
+            <div class="col-xs-9">
+                {{ job.education }}
+            </div>
+        </div>
+    {% endif %}
+    {% if job.website %}
+        <div class="row">
+            <div class="col-xs-3">Website</div>
+            <div class="col-xs-9"><a href="{{ job.website }}" target="new">{{ job.website }}</a></div>
+        </div>
+    {% endif %}
+
+    <br/>
+    <strong>Description:</strong><br/>
+
+    {{ job.adDescription | add_links | raw }}
+    <br/>
+
+    {% if job.applyType == 'url' %}
+        <p class="text-center">
+            <a href="{{ job.applyUrl }}" class="btn btn-success">Apply Now</a>
+        </p>
+    {% elseif job.applyType == 'a' %}
+        <div class="alert alert-success">
+            When applying, mention you saw this opening listed at {{ parameter('site_title') }}.
+        </div>
+    {% else %}
+        {% set isRegisteredActive = not nonRegisteredForm.vars.errors %}
+        {% if not is_granted('ROLE_JOB_SEEKER') %}
+            <ul class="nav nav-tabs">
+                <li{% if isRegisteredActive %} class="active"{% endif %}><a data-toggle="tab" href="#registered" class="active">Registered Users</a></li>
+                <li{% if not isRegisteredActive %} class="active"{% endif %}><a data-toggle="tab" href="#non-registered">Non-Registered Users</a></li>
+            </ul>
+        {% endif %}
+        {% if alreadyApplied %}
+            <p class="text-center alert alert-success">You have already submitted an application to this job posting.</p>
+        {% else %}
+            <div class="tab-content panel panel-default">
+
+                <div id="registered" class="tab-pane fade in panel-body{% if isRegisteredActive %} active{% endif %}">
+                    <h4>Registered Users</h4>
+                    <p>Email the resume you posted on {{ parameter('site_title') }} to this employer.</p>
+                    <p>Don't have a resume posted on {{ parameter('site_title') }}?  <a href="{{ path('PostResume') }}">Click here</a> to post one now!</p>
+                    {{ form_errors(registeredForm) }}
+                    {{ form_start(registeredForm) }}
+                    {{ form_row(registeredForm.coverLetter) }}
+                    {% if isLoggedIn %}
+                        {{ form_row(registeredForm.action) }}
+                    {% else %}
+                        {{ form_row(registeredForm.login._username) }}
+                        {{ form_row(registeredForm.login._password) }}
+                    {% endif %}
+                    <div class="form-group">
+                        <button type="submit" class="form-control btn btn-success">Apply Now!</button>
+                    </div>
+                    {{ form_end(registeredForm) }}
+                </div>
+
+                {% if not is_granted('ROLE_JOB_SEEKER') %}
+                    <div id="non-registered" class="tab-pane fade in panel-body{% if not isRegisteredActive %} active{% endif %}">
+                        <h4>Non-Registered Users</h4>
+                        {{ form_errors(nonRegisteredForm) }}
+                        {{ form_start(nonRegisteredForm) }}
+                        {{ form_row(nonRegisteredForm.name) }}
+                        {{ form_row(nonRegisteredForm.email) }}
+                        {{ form_row(nonRegisteredForm.coverLetter) }}
+                        {% if nonRegisteredForm.vars.upload %}
+                            <div class="form-group">
+                            {{ form_label(nonRegisteredForm.resumeFile) }}
+                            {{ form_widget(nonRegisteredForm.resumeFile, {'attr':{'role':'uploadcare-uploader', 'data-crop':'disabled'}}) }}
+                            {{ form_errors(nonRegisteredForm.resumeFile) }}
+                            </div>
+                        {% elseif nonRegisteredForm.resumeText is defined %}
+                            {{ form_row(nonRegisteredForm.resumeText, {'label': 'Your Resume'}) }}
+                        {% endif %}
+                        {{ form_row(nonRegisteredForm.captcha) }}
+                        <button type="submit" class="form-control btn btn-success">Submit Application</button>
+                        {{ form_end(nonRegisteredForm) }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

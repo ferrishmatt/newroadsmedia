@@ -1,0 +1,29 @@
+{% extends 'SonataAdminBundle:CRUD:edit.html.twig' %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(function() {
+            function prepFields(suffix){
+                var $link = $('input[name$="\[link' + suffix +'\]"]');
+                var $image = $('input[name$="\[image' + suffix +'\]"]');
+                var $isRawCode = $('input[name$="\[isRawCode' + suffix +'\]"]');
+                var $rawCode = $('textarea[name$="\[rawCode' + suffix +'\]"]');
+                $isRawCode.on('ifChanged', function() {
+                    var isChecked = $(this).is(':checked');
+                    if (isChecked) {
+                        $link.attr('readonly', 'readonly');
+                        $image.attr('disabled', 'disabled');
+                        $rawCode.removeAttr('readonly').focus();
+                    } else {
+                        $link.removeAttr('readonly');
+                        $image.removeAttr('disabled');
+                        $rawCode.attr('readonly', 'readonly');
+                    }
+                });
+                $isRawCode.trigger('ifChanged');
+            }
+            prepFields('');
+            prepFields('2');
+        });
+    </script>
+{% endblock %}

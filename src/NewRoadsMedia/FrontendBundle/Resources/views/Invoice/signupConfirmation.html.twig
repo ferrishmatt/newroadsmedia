@@ -1,0 +1,27 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style type="text/css">
+        div.signup_result p {
+            margin:10px 0;
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="signup_result">
+    <p><b>Dear Employer,</b> </p>
+    <p>Thank you for signing up for TeachingJobs.com's automated job posting plan. You will receive a payment receipt via email. </p>
+    <p>We will now start on adding your career portal to our automated posting system and will email you when we have finished. </p>
+    <p>Please contact us if you have any questions. </p>
+    <p>
+        Thanks, <br/>
+        Dan Rohn <br/>
+        TeachingJobs.com <br/>
+        <a href="mailto:dan@teachingjobs.com">dan@teachingjobs.com</a> <br/>
+        Tel. 510-508-7386 (Pacific Time Zone)
+    </p>
+</div>
+{% endblock content %}

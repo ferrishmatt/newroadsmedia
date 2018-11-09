@@ -1,0 +1,78 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ parameter('site_title') }} - Job Listing - {{ job.titleOfPositionOpen }}{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('index_files/jquery-1.js') }}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style type="text/css">
+        .new-job {
+            float: right;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div style="padding:20px">
+        <br/>
+        &lt; Return to Your  <a href="{{ path('EmployerManager') }}" style="">Employer Account</a>
+        <br/><br/>
+
+        <form method="POST" action="{{ path('ViewAllApplications', {'jobId': job.id}) }}">
+            <a name="Applicants"></a>
+
+            <table border="0" width="100%" cellpadding="4" cellspacing="0" id="checkboxTable">
+                <tr bgcolor="#6b6c6e">
+                    <td width="4%" bgcolor="#6b6c6e">
+                        <div align="left"><font color="#FFFFFF"><b><font face="Arial, Helvetica, sans-serif" size="2">Delete?</font></b></font></div>
+                    </td>
+                    <td width="30%" bgcolor="#6b6c6e">
+                        <div align="left"><font color="#FFFFFF"><b><font face="Arial, Helvetica, sans-serif" size="2" color="#6b6c6e">|
+                                    </font><font face="Arial, Helvetica, sans-serif" size="2">Applicant</font></b></font></div>
+                    </td>
+                    <td width="30%">
+                        <div align="left"><font color="#FFFFFF"><b><font face="Arial, Helvetica, sans-serif" size="2" color="#6b6c6e">|
+                                    </font><font face="Arial, Helvetica, sans-serif" size="2">Date Applied</font></b></font></div>
+                    </td>
+                </tr>
+                {% for application in job.applications %}
+                    <tr>
+                        <td width="4%" align="CENTER"><input type="checkbox" name="delete_items[]" value="{{ application.id }}"></td>
+                        <td width="30%">
+                            <font face="Arial, Helvetica, sans-serif" size="2"><b>
+                                <a href="{{ path('ViewApplication', {'jobId': job.id, 'applicationId': application.id}) }}">
+                                    {{ application.email }}
+                                </a>
+                            </b></font>
+                        </td>
+                        <td width="30%">
+                            {% if not application.isViewed %}
+                                <span class="new-job">New</span>
+                            {% endif %}
+                            <div align="left"><font face="Arial, Helvetica, sans-serif" size="2">
+                                {{ application.applicationDate | date('F d, Y') }}
+                            </font></div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr><td colspan="5" style="text-align:center;font-size:1.2em"><strong>There are no applications submitted for this job post</strong>.</td></tr>
+                {% endfor %}
+            </table>
+
+            <p>
+                <input type="button" value="Select All" onclick="$('#checkboxTable').find(':checkbox').prop('checked', true);">
+                <input type="button" value="Unselect All" onclick="$('#checkboxTable').find(':checkbox').prop('checked', false);">
+            </p>
+            <p>
+                <input type="Submit" name="Delete" value="Delete Checked Applicants">
+            </p>
+        </form>
+
+        <br>
+
+    </div>
+{% endblock content %}

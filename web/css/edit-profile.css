@@ -1,0 +1,118 @@
+#content h1 {
+    font-size: 32px;
+    border-bottom: 1px solid #999;
+    padding-bottom: 15px;
+    margin: 10px 0;
+}
+
+form {
+    padding-top: 40px;
+}
+
+.form-errors {
+    font-weight: bold;
+    color: #962D22;
+    padding: 5px 0;
+}
+
+.flash-error,
+.flash-notice {
+    padding: 15px 0 30px;
+}
+
+.word-count {
+    float: right;
+    padding-right: 10px;
+}
+
+/* Forms */
+#content input[type="text"],
+#content input[type="email"],
+#content input[type="url"]
+{
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    padding: 5px 10px;
+    width: 300px;
+}
+
+#content select {
+    height: 27px;
+    border-radius: 3px;
+    margin: 0;
+    background-color: #fff;
+}
+
+#content input[type="text"].current-job-status {
+    width: 166px;
+}
+
+#content input[type="text"].phone-area {
+    width: 30px;
+}
+
+#content input[type="text"].phone {
+    width: 244px;
+}
+
+#content input[type="text"].city {
+    width: 155px;
+}
+
+#content textarea {
+    display: block;
+    width: 99%;
+    height: 200px;
+}
+
+#content .item label {
+    margin-bottom: 15px;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+#content button {
+    background-color: #84cf3e;
+    color: #fff;
+    border: 0;
+    border-radius: 3px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 30px;
+    cursor: pointer;
+}
+
+label.heading {
+    font-weight: bold;
+}
+
+#content .item {
+    padding: 15px 0;
+}
+
+.form-collection td,
+.form-collection th {
+    padding-right: 15px;
+}
+
+#profile_candidate_snapshot_city {
+    margin-right: 5px;
+}
+
+/* Multiple Select */
+.multiple-select {
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    width: 200px;
+    overflow: auto;
+    height: 108px;
+}
+
+.multiple-select-item input {
+    cursor: pointer;
+}
+
+#content .multiple-select-item label {
+    cursor: pointer;
+    margin: 0 0 5px;
+}

@@ -1,0 +1,5 @@
+{% extends '@NewRoadsMediaFrontend/HomePage/Mobile/index.html.twig' %}
+
+{% block content %}
+    {% include '@NewRoadsMediaFrontend/HomePage/Mobile/news.html.twig' with {'allNewsArticles': articles} %}
+{% endblock %}

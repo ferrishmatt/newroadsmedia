@@ -1,0 +1,185 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ parameter('site_title') }} -- Post a Resume{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css"  href="{{ asset('css/new_form.css') }}"/>
+    <style type="text/css">
+        #content h2 {
+            margin: 20px 0;
+        }
+        #content h1 {
+            font-size:32px;
+            font-weight:bold;
+            margin: 10px 0;
+            border-bottom: 1px solid #999;
+            padding: 0 0 20px;
+        }
+        #content ul {
+            margin: 10px 18px;
+        }
+        #content ul li {
+            color: #f90;
+            list-style: square;
+            padding-bottom: 10px;
+        }
+        #content ul li span {
+            color: #000;
+        }
+        #content h1 strong {
+            color: #f90;
+        }
+        #content h2 {
+            font-size: 130%;
+        }
+
+        .form-errors {
+            margin-bottom: 5px;
+        }
+
+        #content .form-errors ul li {
+            font-weight: bold;
+            color: #b00;
+        }
+
+        #pageleft {
+            padding-top: 40px;
+        }
+
+        /* Create Account */
+        #terms {
+            line-height: 20px;
+            margin: 30px 5px 30px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        #submitIt {
+            margin: 30px 5px;
+        }
+
+        #submitIt .button {
+            padding: 7px 40px;
+        }
+
+            /* create account inputs */
+        .input {
+            padding-left: 5px;
+        }
+
+        .input label {
+            display: block;
+            font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        .input input {
+            width: 375px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            padding: 5px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        #content button {
+            background-color: #84cf3e;
+            color: #fff;
+            border: 0;
+            border-radius: 3px;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 30px;
+            cursor: pointer;
+        }
+
+        div.captcha label{
+            display:inline-block !important;
+            float:left;
+            font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        div.captcha img{
+            float:left;
+            margin-top:11px;
+        }
+        div.captcha br{
+            clear:both;
+        }
+        div.captcha input{
+            width: 375px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            padding: 5px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            height:27px;
+            width:380px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    {% include 'NewRoadsMediaFrontendBundle:Resume:steps.html.twig' with {'step': 1} %}
+    <div id="pageleft">
+        <h1>Upload Your Resume in 3 Quick Steps</h1>
+        <ul>
+            <li><span>Post a free resume listing on JournalismJobs.com. Edit or delete your resume profile at any time.</span></li>
+            <li><span>Designate your resume as "public" or "private." Private resumes are only visible to employers you apply to.</span></li>
+        </ul>
+        <h2>Create Username and Password</h2>
+        {% if accountForm.vars.errors %}
+            <div class="form-errors">
+                {{ form_errors(accountForm) }}
+            </div>
+        {% endif %}
+        {{ form_start(accountForm, {'attr': {'class': 'fbleft'}}) }}
+
+        <div id="upload-your-resume">
+            {{ form_errors(accountForm.resumeFile) }}
+            {{ form_label(accountForm.resumeFile) }}
+            <p class="resume-attachment-details">
+                We accept .DOCX, .DOC, .RTF, .TXT, .PDF up to 1000 KB.<br/>
+                We currently do not accept images or scanned documents.
+            </p>
+            {{ form_widget(accountForm.resumeFile) }}
+        </div>
+
+        <div class="input">
+            {{ form_label(accountForm.name) }}
+            {{ form_widget(accountForm.name, {'attr': {'class': 'form-text'}}) }}
+        </div>
+        <div class="input">
+            {{ form_label(accountForm.email) }}
+            {{ form_widget(accountForm.email, {'attr': {'class': 'form-text'}}) }}
+        </div>
+        <div class="input">
+            {{ form_label(accountForm.password) }}
+            {{ form_widget(accountForm.password, {'attr': {'class': 'form-text'}}) }}
+        </div>
+
+        <div class="captcha">
+            <label>Type in this Security Code Below:</label>
+            {{ form_widget(accountForm.captcha) }}
+        </div>
+
+        <div id="terms">
+            By clicking "Create Account" you agree to our <a href="{{ path('Terms') }}" target="_blank">Terms and Conditions</a>.
+        </div>
+
+        {#<div id="terms">#}
+            {#{{ form_widget(accountForm.acceptTerms, {'attr': {'class': 'check'}}) }}#}
+            {#<label for="{{ accountForm.acceptTerms.vars.id }}">#}
+                {#I have read and agree to the {{ parameter('site_title') }} <a href="{{ path('Terms') }}" target="_blank">Terms and Conditions</a> and <a href="{{ path('PrivacyPolicy') }}">Privacy Policy</a>.#}
+            {#</label>#}
+        {#</div>#}
+
+        <div id="submitIt">
+            <button type="submit">&gt; Create Account</button>
+        </div>
+        {{ form_end(accountForm) }}
+    </div>
+{% endblock %}

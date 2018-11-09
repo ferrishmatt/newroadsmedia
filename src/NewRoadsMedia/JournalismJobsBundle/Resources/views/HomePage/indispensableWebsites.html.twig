@@ -1,0 +1,104 @@
+{% set page_name = '' %}
+
+{% extends "::base.html.twig" %}
+
+{% block title %}10 Indispensable Websites for Working Journalists{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://ucarecdn.com/widget/2.8.2/uploadcare/uploadcare.min.js" charset="utf-8"></script>
+    <script src="{{ asset('js/upload-care.js') }}"></script>
+    <script src="{{ asset('js/jquery.wordcount.js') }}"></script>
+    <script src="{{ asset('js/job-listing.js') }}"></script>
+    <script type="text/javascript">
+        $(function() {
+            {% if nonRegisteredForm.resumeFile is defined %}
+                uploadcare_init('{{ nonRegisteredForm.resumeFile.vars.id }}');
+            {% endif %}
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+<div class="inner-content text-article">
+    <img class="article-photo indispensible-photo" src="{{ asset('bundles/newroadsmediajournalismjobs/images/website_tools.jpg') }}">
+    <div class="article-wrap">
+    <p class="pre-headline">On The Job</p>
+
+    <h1 class="article-title">10 Indispensable Websites for Working Journalists</h1>
+
+    <p class="byline-share-line">
+	<b class="byline">By Erica Sweeney</b>
+	<a href="#" title="Share Job" class="share-job-link"><img src="{{ asset('images/icons/share_icon.png') }}" alt="Share Job"/>Share</a>
+    </p>
+
+    <ul class="job-listing-share">
+                    <li>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ url('ViewJobPost', {'jobId': job.id}) }}" target="_blank" title="Share on Facebook"><img
+                                    src="{{ asset('images/icons/facebook_icon.png') }}" alt="Share on Facebook"/>Facebook</a>
+                    </li>
+                    <li>
+                        {% set twitterUrl = 'http://twitter.com/share?text=' ~ (('Great Job on ' ~ parameter('site_title')) | url_encode) ~ '&url=' ~ url('ViewJobPost', { 'jobId': job.id } ) %}
+                        <a href="{{ twitterUrl }}" target="_blank" title="Share on Twitter"><img
+                                    src="{{ asset('images/icons/twitter_icon.png') }}" alt="Share on Twitter"/>Twitter</a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ url('ViewJobPost', {'jobId': job.id}) }}&title={{ (parameter('site_title') ~ ' - ' ~ job.titleOfPositionOpen) | url_encode }}&summary=&source=" target="_blank" title="Share on Linked In"><img
+                                    src="{{ asset('images/icons/linked_in_icon.png') }}" alt="Share on Linked In"/>Linked In</a>
+                    </li>
+                    <li>
+                        <a href="https://plus.google.com/share?url={{ url('ViewJobPost', {'jobId': job.id}) }}" target="_blank" title="Share on Google Plus"><img
+                                    src="{{ asset('images/icons/google_plus_icon.png') }}" alt="Share on Google Plus"/>Google +</a>
+                    </li>
+                    <li style="display: none;">
+                        <a class="email" href="#" title="E-mail this job to a friend"><img src="{{ asset('images/icons/email_icon.png') }}" alt="E-mail this job to a friend"/>E-mail</a>
+                    </li>
+                </ul>
+
+<p>Being a journalist is tough. But there are many online tools and resources that can help make your job a little easier. Whether you need some quick facts, FOIA help, or a Twitter graphic, here are 10 websites that all working journalists should have bookmarked:</p>
+
+<h2>1. APStylebook.com</h2>
+
+<p>The AP Stylebook is a mainstay for all journalists. If you’re not a subscriber of the searchable online version, you should be. Its extra tools, like Ask the Editor and email updates, are a big help.</p>
+
+<h2>2. DiversityStyleGuide.com</h2>
+
+<p>The Diversity Style Guide, a project of the Center for Integration and Improvement of Journalism at San Francisco State University, includes hundreds of terms on race and ethnicity, disability, immigration, sexuality and gender identity and more to help with accuracy, authority and sensitivity in reporting.</p>
+
+<h2>3. Census.gov</h2>
+
+<p>Data enriches any story, and there’s nowhere better to get such wide-ranging facts than the U.S. Census Bureau.</p>
+
+<h2>4. FOIA.Wiki</h2>
+
+<p>This free resource recently launched as a hub for just about anything you need on the Freedom of Information Act (FOIA). However, it focuses on federal law and doesn’t include state information. Its collaborative nature means it can be easily updated when laws change.</p>
+
+<h2>5. JournalistsToolbox.org</h2>
+
+<p>This site, housed at SPJ.org and maintained by former Los Angeles Times reporter Mike Reilley, includes a wealth of links to resources about election coverage, First Amendment issues, investigative reporting, education and much more.</p>
+
+<h2>6. SPJ.org</h2>
+
+<p>The Society of Professional Journalists’ website offers an array of tips, resources, training information, news and a lot more. It’s truly the go-to site for all things journalism.</p>
+
+<h2>7. ProfNetConnect.com</h2>
+
+<p>Looking for a source? You’ll find it here. Reporters can submit queries to find experts on a particular subject.</p>
+
+<h2>8. OneWord.com</h2>
+
+<p>We all get a little stuck from time to time. One Word is fun way for writers to jump-start their creative juices. It provides a one-word prompt, and, without thinking too much, you have 60 seconds to free write on that word.</p>
+
+<h2>9. Silk.co</h2>
+
+<p>Presenting complex data in an easily understood way is what journalists do, and this data-visualization tool can turn it into a graphic. Users simply upload a spreadsheet, identify the important variables and choose the type of graph or other visual to make.</p>
+
+<h2>10. Canva.com</h2>
+
+<p>When Facebook posts and tweets include graphics, they get a lot more engagement. But journalists aren’t usually known for their graphic-design skills. This online graphic-building tool is simple to use and offers many free stock photos and templates. You can also create graphics with your own photos. These 10 websites are indispensable for all journalists, but there are also many more invaluable ones out there.</p>
+
+    </div>
+</div>
+{% endblock %}

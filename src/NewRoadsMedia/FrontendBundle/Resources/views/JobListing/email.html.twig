@@ -1,0 +1,114 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+
+<table width="100%" border="0" align="center" cellpadding="4" cellspacing="0">
+    <tr>
+        <td>
+            {% if form.vars.errors %}
+                <h1>{{ form_errors((form)) }}</h1>
+            {% endif %}
+
+            {{ form_start(form) }}
+                <table width="650" border="0" cellspacing="1" cellpadding="2">
+                    <BR>
+                    <tr>
+                        <td valign="top" colspan="2"><font face="Arial, Helvetica, sans-serif" size="3"><b>E-mail this job
+                                    posting to a friend</b> <font face="Arial, Helvetica, sans-serif" size="1">({{ parameter('site_title') }}
+                                    does not retain e-mail addresses)</font><BR><BR></td>
+                    </tr>
+                    <tr>
+                        <td valign="top"><img src="{{ asset('graphics/blank.gif') }}" width=190 height=1 border=0 alt=""></td>
+                        <td valign="top"><img src="{{ asset('graphics/blank.gif') }}" width=460 height=1 border=0 alt=""></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#EAEAD5" valign="top"><font face="Arial, Helvetica, sans-serif" size="2"><b>Your e-mail
+                                    address:</b></font></td>
+                        <td valign="top">{{ form_widget(form.your_email ) }}<BR><BR></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#EAEAD5" valign="top"><font face="Arial, Helvetica, sans-serif" size="2"><b>Recipient's
+                                    e-mail address:</b></font></td>
+                        <td valign="top">{{ form_widget(form.recipient_email ) }}</td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#EAEAD5" valign="top"><font face="Arial, Helvetica, sans-serif"
+                                                                 size="2"><b>Comments:</b></font></td>
+                        <td valign="top">{{ form_widget(form.comments ) }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" valign="top">
+
+                            <input type="Submit" name="Submit" value="Send this posting"></td>
+                    </tr>
+                </table>
+            {{ form_end(form) }}
+
+            <p>&nbsp;</p>
+
+
+            <table border="0" class="job-listing-table">
+                <tr>
+                    <td style="vertical-align: top;padding-left: 0;">
+                        <table class="job-listing">
+                            <tr>
+                                <td class="label">Date Posted</td>
+                                <td>{{ job.createDate | date('F d, Y') }}</td>
+                            </tr>
+                            <tr>
+                                <td class="label">Location</td>
+                                {% if job.jobCity or (job.location and job.location.locationDescription) %}
+                                    <td>{% if job.jobCity %}{{ job.jobCity }},{% endif %} {% if job.location and job.location.locationDescription %}{{ job.location.locationDescription }}{% endif %}</td>
+                                {% else %}
+                                    <td>Not Specified</td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <td class="label">Job Status</td>
+                                <td>{% if job.jobType%}{{ job.jobType }}{% else %}Not Specified{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <td class="label">Salary</td>
+                                <td>{% if job.salary %}{{ job.salary }}{% else %}Not Specified{% endif %}</td>
+                            </tr>
+                            {% if job.website %}
+                                <tr>
+                                    <td class="label">Website</td>
+                                    <td><a href="{{ job.website }}" target="new">{{ job.website }}</a></td>
+                                </tr>
+                            {% endif %}
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 0;">
+                        <div class="ad-description">
+                            <strong>Description:</strong><br/>
+                            {{ job.adDescription | raw }}
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            {% if job.applyType == 'a' %}
+                <font face="Arial, Helvetica, sans-serif" size="2">
+                    <center><b>When applying, mention that you saw this opening listed at {{ parameter('site_title') }}.</center></b>
+                </font><br>
+            {% elseif job.applyType == 'b' %}
+                <font face="Arial, Helvetica, sans-serif" size="2">
+                    <b>This employer only accepts online applications stored at {{ parameter('site_title') }}. Please complete the box <a href="{{ path('ViewJobPost', {'jobId': job.id}) }}">on this page</a>.</b><br>
+                </font>
+            {% elseif job.applyType == 'c' %}
+                <font face="Arial, Helvetica, sans-serif" size="2">
+                    <b>
+                        Apply for this position by using the contact information above or by completing the online
+                        application <a href="{{ path('ViewJobPost', {'jobId': job.id}) }}">on this page</a>. Mention that you saw this opening listed at {{ parameter('site_title') }}.
+                    </b>
+                    <br><br>
+                </font>
+           {% endif %}
+        </td>
+    </tr>
+</table>
+
+{% endblock content %}

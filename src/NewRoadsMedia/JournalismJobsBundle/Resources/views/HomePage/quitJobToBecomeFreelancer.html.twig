@@ -1,0 +1,102 @@
+{% set page_name = '' %}
+
+{% extends "::base.html.twig" %}
+
+{% block title %}7 Things to Know Before Quitting Your Job to Become a Full-Time Freelancer{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://ucarecdn.com/widget/2.8.2/uploadcare/uploadcare.min.js" charset="utf-8"></script>
+    <script src="{{ asset('js/upload-care.js') }}"></script>
+    <script src="{{ asset('js/jquery.wordcount.js') }}"></script>
+    <script src="{{ asset('js/job-listing.js') }}"></script>
+    <script type="text/javascript">
+        $(function() {
+            {% if nonRegisteredForm.resumeFile is defined %}
+                uploadcare_init('{{ nonRegisteredForm.resumeFile.vars.id }}');
+            {% endif %}
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+<div class="inner-content text-article">
+    <div class="article-photo">
+        <img src="{{ asset('bundles/newroadsmediajournalismjobs/images/writer_at_desk.jpg') }}">
+        <span class="photo-caption"></span>
+    </div>
+    <div class="article-wrap">
+    <p class="pre-headline">Freelancing</p>
+
+    <h1 class="article-title">7 Things to Know Before Quitting Your Job to Become a Full-Time Freelancer</h1>
+
+    <p class="byline-share-line">
+	<b class="byline">Erica Sweeney</b>
+	<a href="#" title="Share Job" class="share-job-link"><img src="{{ asset('images/icons/share_icon.png') }}" alt="Share Job"/>Share</a>
+    </p>
+
+    <ul class="job-listing-share">
+                    <li>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ url('ViewJobPost', {'jobId': job.id}) }}" target="_blank" title="Share on Facebook"><img
+                                    src="{{ asset('images/icons/facebook_icon.png') }}" alt="Share on Facebook"/>Facebook</a>
+                    </li>
+                    <li>
+                        {% set twitterUrl = 'http://twitter.com/share?text=' ~ (('Great Job on ' ~ parameter('site_title')) | url_encode) ~ '&url=' ~ url('ViewJobPost', { 'jobId': job.id } ) %}
+                        <a href="{{ twitterUrl }}" target="_blank" title="Share on Twitter"><img
+                                    src="{{ asset('images/icons/twitter_icon.png') }}" alt="Share on Twitter"/>Twitter</a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ url('ViewJobPost', {'jobId': job.id}) }}&title={{ (parameter('site_title') ~ ' - ' ~ job.titleOfPositionOpen) | url_encode }}&summary=&source=" target="_blank" title="Share on Linked In"><img
+                                    src="{{ asset('images/icons/linked_in_icon.png') }}" alt="Share on Linked In"/>Linked In</a>
+                    </li>
+                    <li>
+                        <a href="https://plus.google.com/share?url={{ url('ViewJobPost', {'jobId': job.id}) }}" target="_blank" title="Share on Google Plus"><img
+                                    src="{{ asset('images/icons/google_plus_icon.png') }}" alt="Share on Google Plus"/>Google +</a>
+                    </li>
+                    <li style="display: none;">
+                        <a class="email" href="#" title="E-mail this job to a friend"><img src="{{ asset('images/icons/email_icon.png') }}" alt="E-mail this job to a friend"/>E-mail</a>
+                    </li>
+                </ul>
+
+          <p>Since 2014, about 2 million Americans — including many journalists — have joined the freelance workforce.</p>
+
+          <p>And more and more are following suit. The recent “Freelancing in America: 2016” study conducted by the Freelancers Union and Upwork found that 55 million Americans, or 35 percent of the U.S. workforce, currently freelance, and freelancers earned an estimated $1 trillion last year.</p>
+
+          <p>Freelancers report feeling more respected, engaged, and empowered with their work than their non-freelancing counterparts. Freedom and flexibility are the top reasons many take the freelancing route. While freelancing seems like an attractive career move, here are some things you should know before quitting your full-time job.</p>
+
+          <div class="article-quote">"When you freelance, you’re responsible for keeping track of everything."</div>
+
+          <h2>1. Working from Home Takes Focus</h2>
+
+          <p>Whether it’s kids at home, pets, mounds of laundry or the Netflix show you’ve wanted to binge watch, there are so many things at home that can interfere with getting work done. You’ll have to do your best to avoid such distractions.</p>
+
+          <h2>2. Managing Multiple Projects Is Tough</h2>
+
+          <p>When you freelance, you’re responsible for keeping track of everything — deadlines, smaller tasks associated with a project, endless emails, billing and more. Juggling all of this can be tough. The most successful freelancers are also the most organized ones.</p>
+
+          <h2>3. Paychecks Can Be Sporadic</h2>
+
+          <p>Gone are the days of a regular twice-monthly paycheck. Instead, freelancers are often paid randomly and according to an organization’s accounts payable schedule. For example, some publications pay upon publication, which can be months after a story was submitted.</p>
+
+          <h2>4. Your Taxes Will Increase</h2>
+
+          <p>Employers pay a big part of the Social Security, Medicare, and other payroll taxes on behalf of their employees. Freelancers don’t have the employer contribution and must pay a bigger chunk as a self-employment tax. However, many expenses can be deducted to reduce the tax burden. Freelancers also assume their full health insurance costs, but some quality for a tax credit to subsidize the cost.</p>
+
+          <h2>5. You Have to Hustle</h2>
+
+          <p>Freelance work tends to ebb and flow. Your bank account depends on your ability to sell your skills and get work. Reaching out to publications and other companies to pitch ideas or ask about freelancing opportunities will help gain a few steady clients. Good gigs have nothing to do with luck, but are gained through hard work.</p>
+
+          <h2>6. Expanding Your Skillset Increases Demand</h2>
+
+          <p>If you’ve spent most of your career focused on one aspect of writing or editing, learn some news skills, like social media, blogging or content marketing. The more skills you have, the more marketable you are. A similar approach is to focus on a specific niche, like a particular industry or type of writing.</p>
+
+          <h2>7. Success Will Come</h2>
+
+          <p>Though it may not seem like it in the early days, you can have a successful freelance career. Just remember — success takes hard work, diligence and drive, and doesn’t happen overnight.</p>
+
+          <p>Luckily, journalists already have the strong writing and editing skills needed for a successful freelance writing career. Just be sure to understand what you’re getting into before you quit your job.</p>
+  </div>
+</div>
+{% endblock %}

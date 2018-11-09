@@ -1,0 +1,54 @@
+{% extends "::base.html.twig" %}
+
+{% form_theme form 'NewRoadsMediaFrontendBundle:Resume:form.html.twig' %}
+
+{% block title %}Upload Your Resume{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/upload-profile.css') }}"/>
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="{{ asset('js/upload-profile.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+{% include 'NewRoadsMediaFrontendBundle:Resume:steps.html.twig' with {'step': 2} %}
+<div id="upload-your-resume">
+    <h1>Upload Your Resume</h1>
+
+    {{ form_errors(form) }}
+    {{ form_start(form) }}
+        {{ form_errors(form.resumeFile) }}
+        {{ form_label(form.resumeFile) }}
+        <p class="resume-attachment-details">
+            We accept .DOCX, .DOC, .RTF, .TXT, .PDF up to 1000 KB.<br/>
+            We currently do not accept images or scanned documents.
+        </p>
+        {{ form_widget(form.resumeFile) }}
+        <!--{% if resume.resumeFile %}
+            <p><a href="{{ path('DownloadResume', {'resumeId': resume.id}) }}">Download Resume</a></p>
+        {% endif %}-->
+        <!--{% if form.deleteResumeFile is defined %}
+            {{ form_widget(form.deleteResumeFile) }}
+            {{ form_label(form.deleteResumeFile, 'Delete Resume', {'label_attr': {'class': 'inline'}}) }}
+        {% endif %}-->
+        <div class="privacy-settings">
+            <label>Privacy Settings</label>
+            <ul>
+                <li{% if form.isPublic.vars.value == 1 %} class="active"{% endif %}>Display my Resume and Contact Info</li>
+                <li{% if form.isPublic.vars.value == 0 %} class="active"{% endif %}>Hide my Resume and Contact Info</li>
+            </ul>
+            <p>Note: With a private resume, your information will only be visible to employers you apply to.</p>
+        </div>
+
+        {{ form_row(form.isPublic) }}
+
+        <button type="submit">&gt; Upload Resume / Add Profile</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

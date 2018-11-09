@@ -1,0 +1,7 @@
+source "http://rubygems.org"
+#bundle exec guard after you do bundle install
+#gem "rb-readline" - use this if guard is slow and your ruby doesn't
+#have readline support
+gem "guard", "1.8.3"
+gem "guard-shell"
+gem "compass"

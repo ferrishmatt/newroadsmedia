@@ -1,0 +1,11 @@
+{% if industryCounts %}
+    <div class="filter" id="industry_filter">
+        <h3>Industries</h3>
+        <ul>
+            {% for row in industryCounts %}
+                {% set isActive = params.industry is defined and params.industry == row.id %}
+                <li{% if isActive %} class="active"{% endif %}><a href="{{ path('JobPosts', params | merge({'industry': isActive ? null : row.id})) }}">{{ row.name }} ({{ row.job_count | number_format() }})</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}

@@ -1,0 +1,113 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Employer Folder{% endblock %}
+
+{% block content %}
+<div class="employer-manager">
+    <div class="right-column">
+        {%- if employer.hasPackagePlan and employer.adsRemaining > 0 %}
+            <div class="credits">
+                You have <strong>{{ employer.adsRemaining }}</strong> Job Credit{% if employer.adsRemaining != 1 %}s{% endif %}
+            </div>
+        {% endif -%}
+        <div class="multiple-link">
+            <span class="checkmark">&check;</span> Buy Job Ads in Bulk and Save!  <a href="{{ path('MultipleJobAds') }}">Click here</a>
+        </div>
+    </div>
+    <div class="employer-welcome">
+        Hello {{ app.user.displayName }},
+    </div>
+    <div class="employer-actions">
+        <h1>What do you need to do today?</h1>
+        <div class="job-links">
+            <a href="{{ path('PostNewJobInfo') }}" class="post-a-job-link">
+                <img src="{{ asset('images/layout/employer/post_a_job.png') }}"/>
+                <span class="title">Post a Job</span>
+                <span class="description">Job ads are <strong>${{ parameter('ad_cost') }} each</strong> and run for 5 weeks</span>
+            </a>
+            <a href="{{ path('ResumeSearch') }}" class="search-resumes-link">
+                <img src="{{ asset('images/layout/employer/search_resumes.png') }}"/>
+                <span class="title">Search Resumes</span>
+                <span class="description">Access resumes nationwide</span>
+            </a>
+            <a href="{{ path('ChangePassword') }}" class="account-info-link">
+                <img src="{{ asset('images/layout/employer/account_info.png') }}"/>
+                <span class="title">Account Info</span>
+                <span class="description">Change your username and password</span>
+            </a>
+        </div>
+    </div>
+
+    {% if jobListings | length > 0 %}
+        <h1 class="manage">Manage your job ads</h1>
+        <table class="employer-job-ads">
+            {% for job in jobListings %}
+                {% set jobViewCount = job.jobViewCount %}
+                <tbody class="{{ cycle(['odd', 'even'], loop.index0) }}">
+                    <tr class="top-row">
+                        <td class="icon" rowspan="2"><img src="{{ asset('images/layout/employer/circular_arrow.png') }}"/></td>
+                        <td class="title">
+                            <a href="{{ path('ViewJobPost', {'jobId': job.id}) }}">{{ job.titleOfPositionOpen }}</a>
+                            {% if job.company %}
+                                <br/>{{ job.company }}
+                            {% endif %}
+                        </td>
+                        <td class="icon">
+                            {% if jobViewCount > 0 %}
+                                <img src="{{ asset('images/layout/employer/eye.png') }}"/>
+                            {% endif %}
+                        </td>
+                        <td class="description">
+                            {% set showEmailApplicantCount = job.applyType == 'email' and job.emailApplicantCount > 0 %}
+                            {% if jobViewCount > 0 %}
+                                <p>This ad has been viewed <strong>{{ jobViewCount | number_format(0) }}</strong> time{% if jobViewCount != 1 %}s{% endif %}
+                                {% set minJobViewDate = jobViewManager.getMinJobViewDate(job) %}
+                                {% if minJobViewDate %} since {{ minJobViewDate | date('F d, Y') }}{% endif %}</p>
+                                {% if showEmailApplicantCount > 0 %}<br/>{% endif %}
+                            {% endif %}
+                            {% if showEmailApplicantCount > 0 %}
+                                <p class="email-applicant-count">{{ job.emailApplicantCount | number_format(0, '.', ',') }} {% if job.emailApplicantCount == 1 %}resume has{% else %}resumes have{% endif %} been forwarded to your contact email.</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr class="bottom-row">
+                        <td class="actions">
+                            <a href="{{ path('EditJobInfo', {'jobId': job.id}) }}" class="action-button edit-action-button">Edit</a>
+                            <a href="{{ path('DeleteJobPost', {'jobId': job.id}) }}" class="action-button delete-action-button" onclick="return confirm('Are you sure you want to permanently delete this ad?');">Delete</a>
+                            <a href="{{ path('SuspendJobPost', {'jobId': job.id}) }}" class="action-button suspend-action-button">Suspend</a>
+                            <a href="{{ path('PostNewJobRenewOrderSummary', {'jobId': job.id}) }}" class="action-button renew-action-button">Renew this ad</a>
+                            {% if job.applyType in ['b', 'c'] %}
+                                <a href="{{ path('ViewAllApplications', {'jobId': job.id}) }}" class="action-button applicant-action-button">You have <strong>{{ job.applicantCount }}</strong> Online Resumes</a>
+                            {% endif %}
+                        </td>
+                        <td class="icon">
+                            {% if job.expirationDate %}
+                                <img src="{{ asset('images/layout/employer/timer.png') }}"/>
+                            {% endif %}
+                        </td>
+                        <td class="description">
+                            {% if job.expirationDate %}
+                                This ad expires on:<br/><strong>{{ job.expirationDate | date('F j, Y') }}</strong>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    {% if showNext or showPrev %}
+        <div class="page-links">
+            {% if showPrev %}
+                <a href="{{ path('EmployerManager', {'page': page - 1}) }}">Previous Listings</a>
+            {% endif %}
+            {% if showPrev and showNext %}
+                <span class="separator">|</span>
+            {% endif %}
+            {% if showNext %}
+                <a href="{{ path('EmployerManager', {'page': page + 1}) }}">More Listings</a>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+{% endblock content %}

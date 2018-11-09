@@ -1,0 +1,31 @@
+{# url('ViewJobPost', { 'jobId': job.id }) #}
+<div class="result">
+    <div class="title">
+        {% set link = job.isExternal ? job.website : '/' ~ job.getPermLink() %}
+        <a href="{{ link }}">{{ job.titleOfPositionOpen }}</a>
+    </div>
+    <div class="company">
+        {% if job.company %}{{ job.company }}{% else %}Not Specified{% endif %}
+    </div>
+    <div class="details">
+        {% if is_new_job(job) %}
+            <span class="new-job">New</span>
+        {% endif %}
+        <ul>
+            {% if job.jobCity or job.location %}
+                <li class="location">
+                    {% if job.jobCity %}{{ job.jobCity }}, {% endif %}{% if job.location %}{{ job.location.locationDescription }}{% endif %}
+                </li>
+            {% endif %}
+            {% if job.jobType %}
+                <li class="status">
+                    {{ job.jobType }}
+                </li>
+            {% endif %}
+            <li class="posted">
+                Posted: <span class="date">{{ job.createDate | smart_day('M j') }}</span>
+            </li>
+        </ul>
+    </div>
+    <hr/>
+</div>

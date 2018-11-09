@@ -1,0 +1,74 @@
+{% if industryCounts %}
+    <div class="filter" style="display:none;">
+        <h3>Industry Quick Links</h3>
+        <ul>
+            {% set jobCount = 0 %}
+            {% for row in industryCounts %}
+                {% if row.id == 2 %}
+                    {% set jobCount = row.job_count %}
+                {% elseif row.id == 3 %}
+                    {% set isActive = params.industry is defined and params.industry == [2, 3] %}
+                    <li{% if isActive %} class="active"{% endif %}><a href="{{ path('JobPosts', params | merge({'industry': isActive ? null : [2, 3]})) }}">TV/Radio ({{ row.job_count + jobCount | number_format() }})</a></li>
+                {% else %}
+                    {% set isActive = params.industry is defined and params.industry == row.id %}
+                    <li{% if isActive %} class="active"{% endif %}><a href="{{ path('JobPosts', params | merge({'industry': isActive ? null : row.id})) }}">{{ row.name }} ({{ row.job_count | number_format() }})</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% set count = jobManager.getJobTypeCounts(params, 4) %}
+            {% set isActive = params.jobType is defined and params.jobType == 4 %}
+            {% if count > 0 %}
+                <li{% if isActive %} class="active"{% endif %}><a href="{{ path('JobPosts', params | merge({'jobType': 4})) }}">Freelance Jobs ({{ count | number_format() }})</a></li>
+            {% endif %}
+
+            {% set count = jobManager.getDiversityCount(params) %}
+            {% set isActive = params.diversity is defined and params.diversity == 1 %}
+            {% if count > 0 %}
+                <li{% if isActive %} class="active"{% endif %}><a href="{{ path('JobPosts', params | merge({'diversity': 1})) }}">Diversity Jobs ({{ count | number_format() }})</a></li>
+            {% endif %}
+
+            {% set count = jobManager.getPositionCount(params, 82) %}
+            {% set isActive = params.position is defined and params.position == 82 %}
+            {% if count > 0 %}
+                <li{% if isActive %} class="active"{% endif %}><a href="{{ path('JobPosts', params | merge({'position': 82})) }}">Internships ({{ count | number_format() }})</a></li>
+            {% endif %}
+        </ul>
+    </div>
+
+
+
+    <div class="filter" id="industry_filter">
+        <h3>Industry</h3>
+        <ul>
+            {% set jobCount = 0 %}
+            {% for row in industryCounts %}
+                {% set isActive = params is empty or params.industry is not defined or row.id in params.industry %}
+                <li>
+                    <label>
+                        <input type="checkbox" class="industry_filter_checkbox" name="industry[]" value="{{ row.id }}" {% if isActive %} CHECKED{% endif %}/>
+                        <a href="{{ path('JobPosts', params | merge({'industry': row.id})) }}">{{ row.name }} ({{ row.job_count | number_format() }})</a>
+                    </label>
+                </li>
+            {% endfor %}
+                <li>
+                    <a href="{{ path('JobPosts', params | merge({'diversity': 1})) }}">Diversity Jobs</a>
+                </li>
+        </ul>
+
+
+
+        <script>
+            var url = "{{ path('JobPosts', params | merge({'industry': '__INDUSTRY__'})) | raw }}";
+            $('#industry_filter input[type=checkbox]').on('change', function(){
+                var industries = []
+                $('.industry_filter_checkbox').each(function(){
+                    if (this.checked){
+                        industries.push(this.value);
+                    }
+                });
+                location.href = url.replace('__INDUSTRY__', industries.join(','));
+            })
+        </script>
+    </div>
+
+{% endif %}

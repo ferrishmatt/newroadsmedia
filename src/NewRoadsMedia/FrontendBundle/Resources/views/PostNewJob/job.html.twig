@@ -1,0 +1,25 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ parameter('site_title') }} -- Post a Job Ad{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/post_job_styles.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/forms.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/steps.css') }}"/>
+    <style type="text/css">
+        #content {
+            width: 950px;
+            margin-top: 30px;
+        }
+        #content h3 {
+            border-top: 0;
+            padding-top: 0;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('index_files/jquery-1.js') }}"></script>
+{% endblock %}

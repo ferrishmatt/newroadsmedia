@@ -1,0 +1,88 @@
+{% extends '@NewRoadsMediaFrontend/Layout/mobile.html.twig' %}
+
+{% form_theme form '@NewRoadsMediaFrontend/Layout/mobileForm.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/form-collection.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    <h1>Add Profile Information</h1>
+    {{ form_errors(form) }}
+    {{ form_start(form) }}
+
+    <h2><label>Basic Profile Info</label></h2>
+    {{ form_row(form.name) }}
+    {{ form_row(form.contactEmail) }}
+    {{ form_label(form.phone) }}
+    <div class="row">
+        <div class="form-group col-xs-3">
+            {{ form_widget(form.phoneArea, {'attr': {'class': 'form-control', 'placeholder': 'Area Code'}}) }}
+        </div>
+        <div class="form-group col-xs-9">
+            {{ form_widget(form.phone, {'attr': {'class': 'form-control', 'placeholder': 'Phone'}}) }}
+        </div>
+    </div>
+    {{ form_row(form.website) }}
+    <div class="form-group">
+        {{ form_label(form.image) }}
+        {% if resume.profilePicture %}
+            <br/>
+            <img src="{{ resume.profilePicture }}"/><br/>
+            <a href="{{ path('DeleteProfileImage') }}">Remove Photo</a>
+            <br/>
+        {% endif %}
+        {{ form_widget(form.image) }}
+        {{ form_errors(form.image) }}
+    </div>
+
+    <h2><label>Journalism Experience</label></h2>
+    {{ form_label(form.industries) }}
+    <div class="form-group row">
+    {% for industry in form.industries %}
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            {{ form_widget(industry) }}
+            {{ form_label(industry) }}
+        </div>
+    {% endfor %}
+    </div>
+    {{ form_row(form.title) }}
+    {{ form_row(form.company) }}
+    {{ form_row(form.position) }}
+    {{ form_row(form.experience) }}
+    {{ form_row(form.specialty) }}
+    {{ form_row(form.jobType) }}
+    {{ form_row(form.salary) }}
+    {{ form_row(form.city) }}
+    {{ form_row(form.currentState) }}
+    {{ form_row(form.desiredState) }}
+
+    <div class="form-group">
+        <h2>{{ form_label(form.workSamples) }}</h2>
+        {{ form_widget(form.workSamples, {'attr': {
+            'class': 'form-collection',
+            'data-index': form.workSamples.vars.collection_index,
+            'data-prototype-name': form.workSamples.vars.prototype_name
+        }}) }}
+        <a href="#" class="btn btn-default form-add">Add work sample</a>
+        {{ form_errors(form.workSamples) }}
+    </div>
+
+    <h2>{{ form_label(form.socialMedia, 'Social Media Accounts') }}</h2>
+    {{ form_widget(form.socialMedia) }}
+    {{ form_errors(form.socialMedia) }}
+
+    <h2>{{ form_label(form.resumeJobObjective) }}</h2>
+    {{ form_widget(form.resumeJobObjective, {'attr': {'class': 'ckeditor'}}) }}
+    {{ form_errors(form.resumeJobObjective) }}
+    <br/>
+
+    {{ form_rest(form) }}
+    <div class="form-group">
+        <button type="submit" class="form-control btn btn-success">Save Changes</button>
+    </div>
+
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,814 @@
+/* Post New Job */
+#newusers th {
+    background-color: #959595 !important;
+}
+
+#newusers th#active {
+    background: #f90 !important;
+}
+
+/* Index Search */
+.index-search-header {
+    background: #a3b09c url('/bundles/newroadsmediateachingjobs/images/backgrounds/apple.jpg') no-repeat 50% 50%;
+    background-size: cover;
+    min-width:1075px;
+    text-align: center;
+    color: #000;
+    min-height: 460px;
+    width:100%;
+}
+
+.index-search-header2 {
+    background: #a3b09c url('/bundles/newroadsmediateachingjobs/images/backgrounds/mouse.jpg') no-repeat 50% 50%;
+    background-size: cover;
+    min-width:1075px;
+    text-align: center;
+    color: #000;
+    min-height: 460px;
+    width:100%;
+}
+
+.index form {
+    width: auto;
+    border-radius: 0;
+    margin: 0;
+    padding: 15px 4px;
+}
+
+.index form input[type="text"] {
+    height: 35px;
+    background-position-y: 9px;
+    margin-right: 5px;
+    width: 327px;
+    font-size: 20px;
+}
+
+.index form select {
+    height: 45px;
+    background-position-y: 9px;
+    margin-right: 5px;
+    width: 385px;
+    font-size: 20px;
+}
+
+.index .search-jobs {
+    display: inline-block;
+    margin: 0;
+    border-radius: 2px;
+    border: 1px solid #9ec44a;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 25px;
+    width: 195px;
+    background: #9ec44a url('/images/icons/layout/search.png') no-repeat 28px 5px;
+    background-position: 25px 11px;
+    padding: 10px 10px 10px 30px;
+}
+
+#search-form-table {
+    width: auto;
+}
+
+#search-form-table label {
+    font-size: 16px;
+}
+
+#search-form-table .search-job-links strong {
+    color: #fff;
+}
+
+#search-form-table .advanced-search {
+    text-align: left;
+    padding: 5px 0 0 25px;
+}
+
+/* Index Content */
+#content .index-content {
+    padding-top: 65px;
+}
+#content .index-content h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+#content .index-content ul {
+    text-align: center;
+}
+#content .index-content li {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 20px;
+}
+
+/* Index */
+.index h1 {
+    font-size: 46px;
+    text-align: center;
+    margin-bottom: 25px;
+    padding-top: 70px;
+}
+
+.index-search-header h1 {
+    padding-top: 0px;
+    margin-bottom: 0px;
+    margin-top: 30px;
+    color: #555;
+}
+.index-search-header2 h1 {
+    font-size: 42px;
+    padding-top: 85px;
+    margin-bottom: 0px;
+}
+
+.index h1 strong,
+.index h2 strong {
+    color: #f90;
+}
+
+.index h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-top: 15px;
+    line-height: 30px;
+}
+
+.index hr {
+    width: 570px;
+}
+
+.featured-employers {
+    margin-top: 30px;
+    border-top: 1px solid #000;
+    padding-top: 30px;
+}
+
+#content .featured-employers h3 {
+    color: #949494;
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#content .featured-employers ul {
+    display: table;
+    width: 100%;
+}
+
+#content .featured-employers ul li {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#content .index {
+    margin-top: 40px;
+}
+
+.index .listings {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.index .left-col {
+    width: 40%;
+    vertical-align: top;
+    padding-right: 30px;
+    border-right: 1px solid #999;
+}
+
+#content .index .left-col h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.index ul#tabs {
+    margin: 0;
+    padding: 0;
+}
+
+.index #tabs li {
+    float: left;
+    border: 1px solid #000;
+    display: inline-block;
+    margin: 0;
+    padding: 5px 15px;
+}
+
+.index #tabs li a {
+    font-weight: bold;
+    color: #000;
+}
+
+.index #tabs li.active {
+    background-color: #f90;
+}
+
+.index #tabs li.active a {
+    color: #fff;
+}
+
+.index .right-col {
+    width: 40%;
+    vertical-align: top;
+    padding-left: 30px;
+}
+
+.index .post-profile {
+    border: 1px solid #000;
+    padding: 15px 30px;
+    position: relative;
+}
+
+#content .index .post-profile img {
+    float: right;
+}
+
+#content .index  .post-profile h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #777;
+}
+
+#content .index  .post-profile h3 {
+    font-weight: bold;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.index .post-profile ul {
+    margin-left: 20px;
+    width: 275px;
+}
+
+.index .post-profile li {
+    list-style-type: square;
+    color: #f90;
+    margin-bottom: 10px;
+}
+
+.index .post-profile li span {
+    font-size: 14px;
+    color: #555;
+}
+
+.index .post-profile a {
+    padding: 15px;
+    color: #fff;
+    background-color: #7bb200;
+    font-weight: bold;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+#content .index  .post-profile a:hover {
+    color: #fff;
+}
+
+.index .tab-content {
+    clear: both;
+}
+
+.index .tab-content a.listing {
+    color: #000;
+    line-height: 1.4em;
+}
+
+#content .index .tab-content .new-job {
+    margin-bottom: 1px;
+}
+
+.index .tab-content td {
+    padding: 0;
+    vertical-align: top;
+}
+
+.index .tab-content .icon,
+.featured .icon {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+#content .index .tab-content a,
+#content .index .tab-content a:hover {
+    color: #000;
+    display: block;
+}
+
+#content .index .tab-content .date a {
+    display: inline-block;
+}
+
+#content .index .tab-content .date a:hover {
+    display: inline-block;
+}
+
+.tab-content table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.index .tab-content .image,
+.index .tab-content .title,
+.index .tab-content .location,
+.index .tab-content .date {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    border-top: 1px solid #ccc;
+}
+
+.index .tab-content .image,
+.index .tab-content .company {
+    padding-bottom: 15px;
+}
+
+.index .tab-content .image {
+    vertical-align: top;
+    padding-top: 14px;
+    width: 55px;
+}
+
+.index .tab-content .location {
+    padding-right: 10px;
+}
+
+.index .tab-content .location,
+.index .tab-content .date {
+    white-space: nowrap;
+}
+
+.index .tab-content .date,
+.index .tab-content .new {
+    text-align: right;
+}
+
+.index .tab-content .title {
+    font-weight: bold;
+    padding-right: 5px;
+    min-width: 600px;
+}
+
+#content .view-more-jobs {
+    float: right;
+}
+
+#content .view-more-jobs a {
+    text-transform: none !important;
+    color: #555;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#content .index .tab-content .company a,
+#content .index .tab-content .company a:hover {
+    color: #999;
+}
+
+#content .index .tab-content .date a span,
+#content .index .tab-content .date a:hover span {
+    color: #ccc;
+}
+
+.index .tab-content .image img {
+    margin-right: 10px;
+}
+
+.index .tab-content a.listing:hover {
+    background-color: #f9f9f9;
+}
+
+.index .tab-content .view-more-container {
+    text-align: center;
+}
+
+#content .index .tab-content .view-more {
+    border-radius: 2px;
+    border: 1px solid #9ec44a;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 18px;
+    background-color: #9ec44a;
+    padding: 10px 15px;
+    display: inline-block;
+}
+
+#content .index .tab-content .view-more strong {
+    color: #f90;
+}
+
+#content .index .tab-content .view-more:hover {
+    color: #fff;
+    display: inline-block;
+    text-decoration: underline;
+}
+
+/* Post Resume */
+.post-resume-heading {
+    background-color: #555;
+}
+
+/* Resume Listing */
+#resume-listing-table th {
+    background-color: #555;
+}
+
+/* Employer Manager */
+.job-links .description strong {
+    color: #000;
+}
+
+/* News Articles */
+.news-article dl p a.short {
+    font-size: 18px;
+}
+
+/* Featured Job */
+.featured-jobs {
+    background: #ddd;
+    padding: 15px;
+}
+.featured {
+    margin: 0 auto;
+    width: 1075px;
+    border-collapse: collapse;
+}
+.featured .label {
+    text-transform: uppercase;
+    font-size: 18px;
+    width: 150px;
+    background-color: transparent;
+}
+.featured .title {
+    min-width: 400px;
+}
+.featured td {
+    vertical-align: middle;
+}
+.featured td a {
+    color: #000;
+    display: block;
+}
+.featured td.posted a {
+    color: #9a9b9d;
+}
+.featured td.posted .date {
+    color: #000;
+}
+.featured .company {
+    font-size: 15px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Resume */
+#profile-content #form_industries table label {
+    font-size: 14px;
+}
+
+#profile-content #teaching-experience > .form-row {
+    margin-bottom: 15px;
+}
+
+#profile-content #form_teaching_experience select {
+    width: auto;
+    max-width: 190px;
+}
+
+#profile-content #resume_focus label {
+    min-width: 0;
+}
+
+#profile-content #resume_currentJobStatusChoice {
+    width: auto;
+    margin-right: 5px;
+}
+
+#profile-content #resume_currentJobStatus {
+    width: auto;
+}
+
+#profile-content #work-availability label {
+    min-width: 0;
+}
+
+#profile-content #career-objective label {
+    display: block;
+}
+
+#profile-content .multiple-select {
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    width: 200px;
+    overflow: auto;
+    height: 108px;
+}
+
+#profile-content .multiple-select-item label {
+    cursor: pointer;
+    margin: 0 0 5px;
+    min-width: 0;
+}
+
+#profile-content .multiple-select-item input {
+    cursor: pointer;
+}
+
+#first-navigation #social-media {
+    margin-left: 65px;
+}
+
+/* Media News */
+#media-news-wrapper {
+    background-color: #f0f0f0;
+    width:100% !important;
+    padding: 15px 0px 50px 0px;
+}
+
+#media-news-wrapper h2
+{
+    width: 1055px;
+    margin: 0 auto;
+    padding-top: 5px;
+    font-size: 24px;
+    color: #555;
+    text-transform: none;
+    border-bottom: none;
+}
+
+#media-news {
+    background-color: #fff;
+    width: 1075px;
+    margin: 0 auto;
+    margin-top: 25px;
+}
+
+#media-news h2 {
+    padding-right: 25px;
+}
+
+
+/* Added by Erlan on Nov 16 */
+#career-advice {
+    width:100% !important;
+}
+
+#career-advice-content {
+    width: 1075px;
+    margin: 0 auto;
+    padding-top: 15px;
+    padding-bottom: 50px;
+}
+
+#career-advice-content h2, #media-news h2 {
+    font-size: 24px;
+    color: #555;
+    margin-bottom: 10px;
+    text-transform: none;
+    border-bottom: none;
+    padding-right:25px;
+}
+
+#career-advice h2 {
+    margin-bottom: 23px;
+    margin-left:10px;
+    margin-right:12px;
+}
+
+#career-advice-content .your-class {
+    background-color: #fff;
+    margin-top: 15px;
+}
+
+.your-class .image img {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.your-class .slide-tick-wrap {
+    margin: 12px;
+    width: 334px;
+}
+
+.your-class h4 a {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 1.2;
+    color: #000;
+    font-style: normal;
+}
+
+.your-class .details {
+    color: #888b94;
+    font-size: 14px;
+    line-height: 24px;
+    margin-top: 10px;
+}
+
+.your-class .slide-tick-wrap {
+    margin: 12px;
+    width: 334px;
+}
+
+.your-class > div {
+    display:inline-block;
+    width:358px;
+}
+#content .inner-content .article-wrap p {
+    clear: none;
+}
+
+#content .inner-content .article-title {
+    border: none;
+    font-size: 36px;
+    margin-bottom: 15px;
+    clear: none;
+}
+
+#content .inner-content .article-photo {
+    float: right;
+    margin: 25px;
+}
+
+#content .inner-content .pre-headline {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #ff9900;
+    margin-bottom: 0px;
+}
+
+.text-article{
+    padding: 20px 0 40px 0;
+}
+
+
+#content .inner-content .share-job-link {
+    float: right;
+}
+
+.share-job-link {
+    display: inline-block;
+    padding: 10px 11px 10px 10px;
+    margin-right: 40px;
+    color: #006599;
+    background-color: #fff;
+    height: 16px;
+}
+
+.share-job-link img {
+    vertical-align: middle;
+    margin-top: -4px;
+    width: 20px;
+    margin-right: 5px;
+}
+
+#content .inner-content .article-wrap .job-listing-share {
+    display: none;
+    position: absolute;
+    margin-left: 0px !important;
+}
+
+.job-listing-share li {
+    list-style: none;
+    display: block;
+}
+
+.job-listing-share li a {
+    display: block;
+    padding: 15px 12px 15px 12px;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+}
+
+.job-listing-share li a img {
+    vertical-align: middle;
+    margin-right: 7px;
+}
+
+.article-quote {
+    float: right;
+    font-size: 32px;
+    color: #000;
+    font-weight: bold;
+    padding: 30px 0 30px 0;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    margin: 40px 0 40px 50px;
+    width: 400px;
+}
+
+.hidden {
+    display:none;
+}
+
+
+.slideshow{
+    height:460px;
+}
+
+.slideshow > div{
+    position:absolute;
+}
+
+#content #banner-ad-bottom {
+    text-align: center;
+}
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  float: right;
+  margin-top: 5px;
+  margin-left: 5px;
+  display: inline-block;
+  border-top: 6px solid #333;
+}
+.navigation-link {
+    margin-left: 50px !important;
+}
+.navigation-link > a {
+    margin-left: 10px;
+    vertical-align: top;
+}
+.navigation-link > img {
+    margin-top: -3px;
+}
+
+.navigation-link.navigation-link-post-job a {
+    background-color: #9ec44a;
+    padding: 10px 15px;
+    color: #fff !important;
+}
+
+#header-wrapper {
+    width: 800px;
+    margin: 0 auto;
+}
+#header-wrapper > form {
+    background-color: transparent !important;
+}
+
+.header-section {
+    width: 300px;
+    float: left;
+    text-align: left;
+}
+.header-section.header-section-input {
+    width: 180px;
+    text-align: center;
+}
+.header-section h2 {
+    margin-top: 0px;
+    margin-bottom: 8px;
+    font-size: 1.2em;
+}
+.header-section input[type=text] {
+    padding: 6px 10px !important;
+    font-size: 16px !important;
+    width: 265px !important;
+    background: #fff !important;
+    height: 32px !important;
+    border: 1px solid #ccc !important;
+}
+.header-section select {
+    padding: 6px 10px !important;
+    font-size: 16px !important;
+    width: 285px !important;
+    background: #fff !important;
+    height: 46px !important;
+    border: 1px solid #ccc !important;
+    -webkit-appearance: menulist !important;
+}
+.index .header-section input[type=submit].search-jobs {
+    padding-bottom: 5px;
+    height: 45px;
+    margin-bottom: 8px;
+    background-position: 19px 8px !important;
+    font-size: 18px;
+    padding-top: 7px;
+    padding-bottom: 5px;
+}
+.header-section p {
+    font-size: 15px;
+    margin-top: 5px;
+    font-weight: bold;
+}
+.header-section a {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #222;
+}
+.header-section > h2 {
+    text-align: left;
+    padding-top: 0px;
+    color: #555;
+}
+.index-search-header-content {
+    top: 100px;
+    position: relative;
+}
+#header-wrapper > form {
+    padding: 5px;
+}

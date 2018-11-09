@@ -1,0 +1,45 @@
+{% extends 'NewRoadsMediaFrontendBundle:PostNewJob:job.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style type="text/css">
+        #content .inner-content {
+            border: 1px solid #e3e3e3;
+            border-top-right-radius: 5px;
+            border-top-left-radius: 5px;
+            margin-top: -21px;
+            padding: 20px;
+        }
+
+        .job-listing-preview {
+            width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    {{ include('@NewRoadsMediaFrontend/PostNewJob/steps.html.twig', {'step': 3}) }}
+    <div class="inner-content">
+        <div>
+            <a href="{{ editPath }}" style="float: left; text-align: center;" class="back">&lt;-- Click Here To Edit this Job Ad</a>
+            {% if employer.freeOption %}
+                <form action="{{ postPath }}" method="post">
+                    <input type="hidden" name="action" value="post"/>
+                    <button type="submit" style="float: right; font-size: 16px; text-align :center; cursor: pointer;" class="submitbtn">Post This Job --&gt;</button>
+                </form>
+            {% else %}
+                <a href="{{ continuePath }}" style="float: right; font-size: 16px; text-align :center;" class="submitbtn">Continue to Next Page --&gt;</a>
+            {% endif %}
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <h3 style="font-size: 16pt; color: #ff9900; font-weight: bold; text-align: center; border-top: 0;">A preview of your job is displayed below</h3>
+        <br/>
+        <br/>
+        <div class="job-listing-preview">
+            {% include 'NewRoadsMediaFrontendBundle:JobListing:jobListing.html.twig' with { 'showExpirationDate': false } %}
+        </div>
+    </div>
+{% endblock %}

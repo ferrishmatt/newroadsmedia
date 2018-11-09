@@ -1,0 +1,51 @@
+{% extends '@NewRoadsMediaFrontend/Layout/mobile.html.twig' %}
+
+{% form_theme searchBox '@NewRoadsMediaFrontend/Layout/mobileForm.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(function() {
+            var $toggle = $('.detailed-search-toggle');
+            var $search = $('.detailed-search');
+            $toggle.click(function() {
+                if ($search.is(':visible')) {
+                    $search.slideUp();
+                    $toggle.text('Detailed Search');
+                } else {
+                    $search.slideDown();
+                    $toggle.text('Hide Detailed Search');
+                }
+
+                return false;
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <h2>{{ count | number_format(0, '.', ',') }} Jobs Found</h2>
+    <a href="#" class="btn btn-default detailed-search-toggle">Detailed Search</a>
+    <br/><br/>
+    <div class="panel panel-default detailed-search" style="display: none;">
+        <div class="panel-body">
+            {{ form_start(searchBox) }}
+            {{ form_row(searchBox.keywords) }}
+            {{ form_rest(searchBox) }}
+            <div class="form-group">
+                <button type="submit" class="form-control btn btn-success"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search Jobs</button>
+            </div>
+            {{ form_end(searchBox) }}
+        </div>
+    </div>
+    {% include '@NewRoadsMediaFrontend/JobSearch/Mobile/pagination.html.twig' with {'page': page, 'pageCount': pageCount, 'pageStart': pageStart, 'pageEnd': pageEnd} %}
+    {% for job in jobs %}
+        {% include '@NewRoadsMediaFrontend/JobSearch/Mobile/result.html.twig' with {'job': job} %}
+        <hr/>
+    {% endfor %}
+    {% for job in zipRecruiterData %}
+        {% include '@NewRoadsMediaFrontend/JobSearch/Mobile/zipRecruiter.html.twig' with {'job': job} %}
+        <hr/>
+    {% endfor %}
+    {% include '@NewRoadsMediaFrontend/JobSearch/Mobile/pagination.html.twig' with {'page': page, 'pageCount': pageCount, 'pageStart': pageStart, 'pageEnd': pageEnd} %}
+{% endblock %}

@@ -1,0 +1,243 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ parameter('site_title') }} - Job Listing - {{ job.titleOfPositionOpen }}{% endblock %}
+
+{% form_theme nonRegisteredForm _self %}
+{% form_theme registeredForm _self %}
+
+{% block _registered_application_coverLetter_label %}
+    {% if label is not sameas(false) %}
+        {%- if not compound -%}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {%- endif -%}
+        {%- if required -%}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {%- endif -%}
+        {%- if label is empty -%}
+            {% set label = name|humanize %}
+        {%- endif -%}
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}<br/><span class="registered-cover-letter-word-count word-count"></span></label>
+    {%- endif %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {#<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"/>#}
+    <link rel="stylesheet" href="{{ asset('css/job-listing.css') }}"/>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://ucarecdn.com/widget/2.8.2/uploadcare/uploadcare.min.js" charset="utf-8"></script>
+    <script src="{{ asset('js/upload-care.js') }}"></script>
+    <script src="{{ asset('js/jquery.wordcount.js') }}"></script>
+    <script src="{{ asset('js/job-listing.js') }}"></script>
+    <script type="text/javascript">
+        $(function() {
+            {% if nonRegisteredForm.resumeFile is defined %}
+                uploadcare_init('{{ nonRegisteredForm.resumeFile.vars.id }}');
+            {% endif %}
+        });
+    </script>
+{% endblock %}
+
+{% block content_heading %}
+    <div class="job-heading">
+        <div class="job-heading-content">
+            <div class="job-heading-actions">
+                {% if job.applyType != 'a' %}
+                    <a href="{{ job.applyType == 'url' ? job.applyUrl : '#apply' }}"{% if job.applyType == 'url' %} target="_blank"{% endif %} class="apply-now">Apply Now</a>
+                {% endif %}
+                <ul class="job-action-list">
+                    <li><a href="{{ path('AddJobBasket', {'jobId': job.id}) }}" title="Save to Job Basket"><img src="{{ asset('images/icons/save_job_icon.png') }}" alt="Save to Job Basket"/>Save</a></li>
+                    <li><a href="#" title="Share Job" class="share-job-link"><img src="{{ asset('images/icons/share_icon.png') }}" alt="Share Job"/>Share</a></li>
+                    <li><a href="{{ path('PreviewJobPost', { 'jobId': job.id } ) }}" title="Print Job"><img src="{{ asset('images/icons/print_icon.png') }}" alt="Print Job"/>Print</a></li>
+                </ul>
+                <ul class="job-listing-share">
+                    <li>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ url('ViewJob', {'jobLink': job.getPermLink()}) }}" target="_blank" title="Share on Facebook"><img
+                                    src="{{ asset('images/icons/facebook_icon.png') }}" alt="Share on Facebook"/>Facebook</a>
+                    </li>
+                    <li>
+                        {% set twitterUrl = 'http://twitter.com/share?text=' ~ (('Great Job on ' ~ parameter('site_title')) | url_encode) ~ '&url=' ~ url('ViewJob', { 'jobLink': job.getPermLink() } ) %}
+                        <a href="{{ twitterUrl }}" target="_blank" title="Share on Twitter"><img
+                                    src="{{ asset('images/icons/twitter_icon.png') }}" alt="Share on Twitter"/>Twitter</a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ url('ViewJob', {'jobLink': job.getPermLink()}) }}&title={{ (parameter('site_title') ~ ' - ' ~ job.titleOfPositionOpen) | url_encode }}&summary=&source=" target="_blank" title="Share on Linked In"><img
+                                    src="{{ asset('images/icons/linked_in_icon.png') }}" alt="Share on Linked In"/>Linked In</a>
+                    </li>
+                    <li>
+                        <a href="https://plus.google.com/share?url={{ url('ViewJob', {'jobLink': job.getPermLink()}) }}" target="_blank" title="Share on Google Plus"><img
+                                    src="{{ asset('images/icons/google_plus_icon.png') }}" alt="Share on Google Plus"/>Google +</a>
+                    </li>
+                    <li>
+                        <a class="email" href="#" title="E-mail this job to a friend"><img src="{{ asset('images/icons/email_icon.png') }}" alt="E-mail this job to a friend"/>E-mail</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="job-heading-titles">
+                <h1>{{ job.titleOfPositionOpen }}</h1>
+                {% if job.company %}
+                    <h2>{{ job.company }}{%- if job.jobCity or (job.location and job.location.locationDescription) %}, {% if job.jobCity %}{{ job.jobCity }},{% endif %} {% if job.location and job.location.locationDescription %}{{ job.location.locationDescription }}{% endif %}{% endif -%}</h2>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+{% if registeredForm.vars.errors %}
+    <h2 style="text-align: center; color: #f00;">{{ form_errors(registeredForm) }}</h2>
+{% endif %}
+{% if nonRegisteredForm.vars.errors %}
+    <h2 style="text-align: center; color: #f00;">{{ form_errors(nonRegisteredForm) }}</h2>
+{% endif %}
+
+<table border="0" class="job-listing-table">
+    <tr>
+        <td rowspan="2" style="vertical-align: top;padding-left: 0;">
+            {% include 'NewRoadsMediaFrontendBundle:JobListing:jobDetails.html.twig' with {includeLocation: false} %}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            {% if job.companyImage %}
+                <img src="{{ job.companyImage }}" alt="{{ job.company | escape }}" id="company-logo"/>
+            {% endif %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="padding-left: 0;">
+            <div class="ad-description">
+                <strong>Description:</strong><br/>
+                {{ job.adDescription | add_links | filter_black_listed | raw }}
+            </div>
+        </td>
+    </tr>
+</table>
+
+{% if job.applyType == "a" %}
+    <br/>
+    <div style="font-size: 15px; color: #603; text-align: center;"><b>When applying, mention you saw this opening listed at {{ parameter('site_title') }}.</div>
+    <br/>
+{% elseif job.applyType == 'url' %}
+{% else %}
+    <div>
+        <a name="apply"></a>
+        <h1 class="apply-online">Apply Online</h1>
+        <div class="registered-job-seekers">
+            <h3>Registered Users</h3>
+            <div class="registered-form">
+                {% if alreadyApplied %}
+                    <p style="text-align: center; font-weight: bold;">You have already submitted an application to this job posting.</p>
+                {% else %}
+                    <p>Email the resume you posted on {{ parameter('site_title') }} to this employer.</p>
+                    <p>Don't have a resume posted on {{ parameter('site_title') }}?  <a href="{{ path('PostResume') }}">Click here</a> to post one now!</p>
+                    {% if registeredForm.vars.errors %}
+                        <div class="form-errors">
+                            {{ form_errors(registeredForm) }}
+                        </div>
+                    {% endif %}
+                    {{ form_start(registeredForm) }}
+                    {{ form_label(registeredForm.coverLetter) }}
+                    {{ form_widget(registeredForm.coverLetter) }}
+                    {% if registeredForm.coverLetter.vars.errors %}
+                        <div class="form-errors">
+                            {{ form_errors(registeredForm.coverLetter) }}
+                        </div>
+                        <br/>
+                    {% endif %}
+                    {% if isLoggedIn %}
+                        {{ form_widget(registeredForm.action) }}
+                    {% else %}
+                        <div class="login">
+                            {{ form_label(registeredForm.login._username) }}
+                            {{ form_widget(registeredForm.login._username) }}
+                            {% if registeredForm.login._username.vars.errors %}
+                                <div class="form-errors">
+                                    {{ form_errors(registeredForm.login._username) }}
+                                </div>
+                            {% endif %}
+                            {{ form_label(registeredForm.login._password) }}
+                            {{ form_widget(registeredForm.login._password) }}
+                            {% if registeredForm.login._password.vars.errors %}
+                                <div class="form-errors">
+                                    {{ form_errors(registeredForm.login._password) }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                    <button type="submit" id="apply-now">Apply Now!</button>
+                    {{ form_end(registeredForm) }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="apply-email">
+            <h3>Non-Registered Users</h3>
+            <p class="description">Send your resume to this employer.</p>
+
+            {{ form_start(nonRegisteredForm) }}
+            <h4>Your Contact Information</h4>
+            <div class="contact">
+                {{ form_row(nonRegisteredForm.name) }}
+                {{ form_row(nonRegisteredForm.email) }}
+            </div>
+
+            <h4>{{ form_label(nonRegisteredForm.coverLetter) }} <span class="non-registered-cover-letter-word-count word-count"></span></h4>
+            {{ form_widget(nonRegisteredForm.coverLetter) }}
+            {{ form_errors(nonRegisteredForm.coverLetter) }}
+
+            <h4>Your Resume <small>(your resume will not be stored in our database)</small></h4>
+            {% if nonRegisteredForm.vars.upload %}
+                <div class="resume-tabs">
+                    <ul>
+                        <li{% if nonRegisteredForm.resumeText.vars.value == '' %} class="active"{% endif %}><a href="#upload">Upload</a></li>
+                        <li{% if nonRegisteredForm.resumeText.vars.value != '' %} class="active"{% endif %}><a href="#copy-paste">Copy/Paste</a></li>
+                    </ul>
+                    <div id="upload" class="tab shadedbackground{% if nonRegisteredForm.resumeText.vars.value == '' %} active{% endif %}">
+                        <p class="tips">We accept .DOCX, .DOC, .RTF, .TXT, .PDF up to about two pages.</p>
+                        <br/>
+                        <p>We currently do not accept images or scanned documents.</p>
+                        <br/>
+                        <br/>
+                        {{ form_widget(nonRegisteredForm.resumeFile, {'attr':{'role':'uploadcare-uploader', 'data-crop':'disabled'}}) }}
+                    </div>
+                    <div id="copy-paste" class="tab shadedbackground{% if nonRegisteredForm.resumeText.vars.value != '' %} active{% endif %}">
+                        {{ form_row(nonRegisteredForm.resumeText) }}
+                    </div>
+                </div>
+            {% else %}
+                {{ form_row(nonRegisteredForm.resumeText) }}
+            {% endif %}
+            <div id="captcha-container">
+                {{ form_row(nonRegisteredForm.captcha) }}
+            </div>
+            <button type="submit" id="submit-application">&gt; Submit Application</button>
+            {{ form_end(nonRegisteredForm) }}
+        </div>
+    </div>
+{% endif %}
+
+<div style="text-align: center; font-size: 12px; font-weight: bold; margin-top: 60px;">
+    Job ads copyrighted by {{ parameter('site_title') }} -- &copy; 1998-{{ 'now' | date('Y') }}
+</div>
+<div id="banner-ad-bottom-job-listing">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- JournalismJobs.com -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:728px;height:90px"
+         data-ad-client="ca-pub-3003304833366179"
+         data-ad-slot="5561458230"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+<div id="dialog-email">
+    {{ form_start(emailForm) }}
+    {{ form_widget(emailForm) }}
+    {{ form_end(emailForm) }}
+</div>
+{% endblock content %}

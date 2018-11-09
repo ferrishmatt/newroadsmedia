@@ -1,0 +1,3 @@
+parameters:
+    journalism_jobs_frontend.form.post_new_job.class:     NewRoadsMedia\JournalismJobsBundle\Form\Type\PostNewJobFormType
+    journalism_jobs_frontend.form.resume.class:           NewRoadsMedia\JournalismJobsBundle\Form\Type\ResumeFormType

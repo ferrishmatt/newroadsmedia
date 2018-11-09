@@ -1,0 +1,26 @@
+{% extends base_template %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style type="text/css">
+        label {
+            display: inline-block;
+            margin-right: 15px;
+        }
+
+        .iradio_minimal {
+            margin-right: 2px;
+        }
+    </style>
+{% endblock %}
+
+{% block form %}
+    <div style="width: 500px;">
+        {{ form_errors(form) }}
+        {{ form_start(form) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.action) }}
+        {{ form_end(form) }}
+    </div>
+    <a href="{{ admin.generateObjectUrl('list', object) }}">&lt;&lt; Back</a>
+{% endblock %}

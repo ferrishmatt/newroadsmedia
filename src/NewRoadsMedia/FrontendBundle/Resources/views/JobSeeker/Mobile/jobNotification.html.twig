@@ -1,0 +1,53 @@
+{% extends '@NewRoadsMediaFrontend/Layout/mobile.html.twig' %}
+
+{% form_theme form '@NewRoadsMediaFrontend/Layout/mobileForm.html.twig' %}
+
+{% block title %}Job Notification{% endblock %}
+
+{% block content %}
+    {{ form_errors(form) }}
+
+    <h1>Job Alerts -- Select Your Criteria</h1>
+    <p>Sign-up to receive free job alerts by email daily. Execute multiple searches using the same email address. Delete your subscription at any time.</p>
+
+    {{ form_start(form) }}
+    <div class="form-group">
+        {{ form_label(form.industries, 'Industry') }}
+        {% for row in form.industries | batch(2) %}
+            <div class="row">
+                {% for child in row %}
+                    <div class="col-xs-6">
+                        {{ form_row(child) }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        {{ form_errors(form.industries) }}
+    </div>
+
+    {{ form_row(form.location) }}
+    {{ form_row(form.jobType) }}
+    {{ form_row(form.position) }}
+
+    {% if form.focus.children %}
+        {{ form_label(form.focus) }}
+        <div class="form-group">
+            {% for focus in form.focus %}
+                {{ form_row(focus, {'inline': true}) }}
+            {% endfor %}
+            {{ form_row(form.nonFocused, {'inline': true}) }}
+        </div>
+    {% else %}
+        {% do form.focus.setRendered %}
+        {% do form.nonFocused.setRendered %}
+    {% endif %}
+
+    {{ form_row(form.expiration, {'label': 'Send me job announcements for...'}) }}
+    {{ form_row(form.subscriptionStatus, {'label': false}) }}
+
+    <p class="text-center">
+        <button class="btn btn-success" type="submit">Submit Request</button>
+    </p>
+
+    {{ form_end(form) }}
+{% endblock content %}

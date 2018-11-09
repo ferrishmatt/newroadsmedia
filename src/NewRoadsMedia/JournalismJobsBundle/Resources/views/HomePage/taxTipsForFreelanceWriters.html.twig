@@ -1,0 +1,122 @@
+{% set page_name = '' %}
+
+{% extends "::base.html.twig" %}
+
+{% block title %}Six Reasons to Become a Teacher{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://ucarecdn.com/widget/2.8.2/uploadcare/uploadcare.min.js" charset="utf-8"></script>
+    <script src="{{ asset('js/upload-care.js') }}"></script>
+    <script src="{{ asset('js/jquery.wordcount.js') }}"></script>
+    <script src="{{ asset('js/job-listing.js') }}"></script>
+    <script type="text/javascript">
+        $(function() {
+            {% if nonRegisteredForm.resumeFile is defined %}
+                uploadcare_init('{{ nonRegisteredForm.resumeFile.vars.id }}');
+            {% endif %}
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {#<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"/>#}
+    <link rel="stylesheet" href="{{ asset('css/job-listing.css') }}"/>
+{% endblock %}
+
+{% block content %}
+<div class="inner-content text-article">
+    <img class="article-photo" src="{{ asset('bundles/newroadsmediajournalismjobs/images/tax_tips_for_freelancers.jpg') }}">
+    <div class="article-wrap">
+        <p class="pre-headline">Job Search</p>
+
+        <h1 class="article-title">6 Tax Tips Every Freelancer Needs to Know</h1>
+
+        <p class="byline-share-line">
+            <b class="byline">By Erica Sweeney</b>
+            <a href="#" title="Share Job" class="share-job-link"><img src="{{ asset('images/icons/share_icon.png') }}" alt="Share Job"/>Share</a>
+        </p>
+
+        <ul class="job-listing-share">
+            <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ url('ViewJobPost', {'jobId': job.id}) }}" target="_blank" title="Share on Facebook"><img
+                            src="{{ asset('images/icons/facebook_icon.png') }}" alt="Share on Facebook"/>Facebook</a>
+            </li>
+            <li>
+                {% set twitterUrl = 'http://twitter.com/share?text=' ~ (('Great Job on ' ~ parameter('site_title')) | url_encode) ~ '&url=' ~ url('ViewJobPost', { 'jobId': job.id } ) %}
+                <a href="{{ twitterUrl }}" target="_blank" title="Share on Twitter"><img
+                            src="{{ asset('images/icons/twitter_icon.png') }}" alt="Share on Twitter"/>Twitter</a>
+            </li>
+            <li>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ url('ViewJobPost', {'jobId': job.id}) }}&title={{ (parameter('site_title') ~ ' - ' ~ job.titleOfPositionOpen) | url_encode }}&summary=&source=" target="_blank" title="Share on Linked In"><img
+                            src="{{ asset('images/icons/linked_in_icon.png') }}" alt="Share on Linked In"/>Linked In</a>
+            </li>
+            <li>
+                <a href="https://plus.google.com/share?url={{ url('ViewJobPost', {'jobId': job.id}) }}" target="_blank" title="Share on Google Plus"><img
+                            src="{{ asset('images/icons/google_plus_icon.png') }}" alt="Share on Google Plus"/>Google +</a>
+            </li>
+            <li style="display: none;">
+                <a class="email" href="#" title="E-mail this job to a friend"><img src="{{ asset('images/icons/email_icon.png') }}" alt="E-mail this job to a friend"/>E-mail</a>
+            </li>
+        </ul>
+
+        <p>Seasoned freelancers likely know the drill when tax time rolls around. Newcomers, on the other hand, may be faced with an eye-opening experience.</p>
+
+        <p>Whether you freelance full time or as a side gig, the Internal Revenue Service and
+        state and local tax authorities require you to report your income and pay taxes, but
+        you can also deduct many expenses. Putting this all together can seem daunting, so
+        these six tips will help you get started::</p>
+
+        <h2>1. Solid record-keeping saves time.</h2>
+        <p>Too often, people wait until the last minute to gather and organize their tax
+        information. This time-consuming task is avoidable with ongoing, year-round
+        record-keeping. Whether you use spreadsheets or one of the many cloud-based (and,
+        often free) accounting systems out there, keep everything organized. Recording
+        income and expenses as you go means you’ll simply have to print out a few reports
+        at the end of the year.</p>
+
+        <h2>2. File the right return.</h2>
+        <p>Are you an individual sole proprietor or an incorporated business? This determines
+        the type of return you will file. Individuals use Form 1040, along with a Schedule C
+        to report profit or loss from a business. Full details are available in <a href="https://www.irs.gov/uac/about-publication-334">IRS Pub. 334</a>.
+        If you’ve incorporated your business, you need Form 1065 for a Limited Liability
+        Partnerships, Form 1120 for C-corps or Form 1120S for S-corps. Along with these
+        federal forms, you may also need to file state and local returns.</p>
+
+        <h2>3. Report all income.</h2>
+        <p>If you make $600 or more from a single client during the year, you will receive a
+        Form 1099-MISC. There is a common misconception that income is not taxable if a
+        1099 is not received or you make under $600. However, freelancers must report all
+        income, and it is all fully taxable.</p>
+
+        <div class="article-quote">"Too often, people wait until the last minute to gather and organize their tax information."</div>
+
+        <h2>4. Understand the self-employment tax.</h2>
+        <p>Net earnings of $400 or more require payment of the self-employment tax, which
+        represents the Social Security and Medicare taxes automatically withheld from
+        typical employees’ paychecks. The self-employment tax is 15.3 percent for 2016 and
+        it is paid in addition to income tax.</p>
+
+        <h2>5. Track business expenses.</h2>
+        <p>Freelancers can deduct necessary business expenses. This can include office
+        expenses, telephone, internet, postage and more. However, rules apply. One is that
+        only the business portion of the expenses can be deducted. A full list of common
+        business expenses is available in <a href="https://www.irs.gov/uac/about-publication-535">IRS Pub. 535</a>.
+        Business meals, travel and entertainment are deductible at a 50% rate. Business
+        mileage is a common expense. The 2016 standard mileage reimbursement rate was
+        54 cents per mile (it is 53.5 cents for 2017). Some freelancers may be eligible for a
+        home office deduction, but many limitations apply so it’s best to check with a tax
+        professional.</p>
+
+        <h2>6. Check with a tax professional.</h2>
+        <p>Taxes, especially for freelancers, can be a complex issue that encompasses federal,
+        state, and sometimes local returns. Use these tips to get started, but it’s always best
+        to seek advice from an experience tax professional. He or she can examine your
+        individual situation and provide accurate advice as it applies to your area.</p>
+    </div>
+</div>
+
+{% endblock %}

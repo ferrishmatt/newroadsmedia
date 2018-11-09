@@ -1,0 +1,62 @@
+{% extends '@NewRoadsMediaFrontend/Layout/mobile.html.twig' %}
+
+{% form_theme form '@NewRoadsMediaFrontend/Layout/mobileForm.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/form-collection.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    <h1>Profile Information for Employers</h1>
+    {{ form_errors(form) }}
+    {{ form_start(form) }}
+    {{ form_row(form.contactEmail) }}
+    {{ form_label(form.phone) }}
+    <div class="row">
+        <div class="form-group col-xs-3">
+            {{ form_widget(form.phoneArea, {'attr': {'class': 'form-control', 'placeholder': 'Area Code'}}) }}
+        </div>
+        <div class="form-group col-xs-9">
+            {{ form_widget(form.phone, {'attr': {'class': 'form-control', 'placeholder': 'Phone'}}) }}
+        </div>
+    </div>
+    {{ form_row(form.duration) }}
+    {{ form_row(form.industries) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.experience) }}
+    {{ form_row(form.specialty) }}
+    {{ form_row(form.jobType) }}
+    {{ form_row(form.salary) }}
+    {{ form_row(form.city) }}
+    {{ form_row(form.currentState) }}
+
+    <h2>{{ form_label(form.resumeJobObjective) }}</h2>
+    {{ form_widget(form.resumeJobObjective) }}
+    {{ form_errors(form.resumeJobObjective) }}
+
+    <h2>{{ form_label(form.resume_work_experience) }}</h2>
+    {{ form_widget(form.resume_work_experience) }}
+    {{ form_errors(form.resume_work_experience) }}
+
+    <div class="form-group">
+    <h2>{{ form_label(form.workSamples) }}</h2>
+    {{ form_widget(form.workSamples, {'attr': {
+        'class': 'form-collection',
+        'data-index': form.workSamples.vars.collection_index,
+        'data-prototype-name': form.workSamples.vars.prototype_name
+    }}) }}
+    <a href="#" class="btn btn-default form-add">Add work sample</a>
+    {{ form_errors(form.workSamples) }}
+    </div>
+
+    <h2>{{ form_label(form.socialMedia) }}</h2>
+    {{ form_widget(form.socialMedia) }}
+    {{ form_errors(form.socialMedia) }}
+
+    {{ form_rest(form) }}
+    <div class="form-group">
+        <button type="submit" class="form-control btn btn-success">Submit Profile</button>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

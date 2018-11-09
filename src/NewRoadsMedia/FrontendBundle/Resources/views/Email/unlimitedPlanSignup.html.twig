@@ -1,0 +1,29 @@
+ <p>
+    <img src= "{{ app.request.schemeAndHttpHost ~ asset('/bundles/newroadsmediateachingjobs/images/logos/teaching_jobs_logo.png?v275') }}" alt="" style="display: block;" />
+</p>
+<p>
+    Thank you for signing up for TeachingJobs.com's automated job posting plan. For the next 12 months,
+    we will automatically repost all of your job vacancies on TeachingJobs.com.
+    All jobs are listed for four weeks at a time and are automatically removed from TeachingJobs.com when they are no longer listed on your career portal.
+</p>
+<p>
+    <b>Transaction Details:</b><br/>
+    <b>Description:</b> Unlimited job postings on TeachingJobs.com.<br/>
+    <b>Plan Duration:</b> {{start_date}} to {{end_date}}<br/>
+    <b>Jobs Page URL</b> {{jobs_page_url}}<br/>
+    <b>Authorization Number:</b> {{response.trans_id}}<br/>
+    <b>Authorization Code:</b> {{response.authorization}}<br/>
+    <b>Card Type:</b> {{cc_type}}<br/>
+    <b>Amount Charged:</b> ${{amount | number_format(2)}}<br/>
+    <br/><br/>
+    <b>School / Organization Information:</b><br/>
+    {% for i in billing_info %}
+        {{i}}<br/>
+    {% endfor %}
+</p>
+<p>
+    If you have a question, please email: info@teachingjobs.com, or call 510-508-7386 (Pacific Time Zone).
+</p>
+<p>
+    Thank you for your business.
+</p>

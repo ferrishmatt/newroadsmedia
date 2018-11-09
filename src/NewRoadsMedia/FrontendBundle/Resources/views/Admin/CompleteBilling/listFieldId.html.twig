@@ -1,0 +1,5 @@
+{% extends admin.getTemplate('base_list_field') %}
+
+{% block field %}
+    <a href="{{ path('ViewJobPost', {'jobId': value}) }}" target="_blank">{{ value }}</a>
+{% endblock %}

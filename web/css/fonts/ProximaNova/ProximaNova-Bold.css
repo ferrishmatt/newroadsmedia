@@ -1,0 +1,10 @@
+/* ProximaNova-Bold webfont (new-bulletproof) */ 
+@font-face {
+    font-family: 'ProximaNova-Bold';
+    src: url('ProximaNova-Bold.eot?#iefix') format('embedded-opentype'),
+         url('ProximaNova-Bold.woff') format('woff'),
+         url('ProximaNova-Bold.ttf')  format('truetype'),
+         url('ProximaNova-Bold.svg#webfont') format('svg');
+         font-weight: bold;
+         font-style: normal;
+}

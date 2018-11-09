@@ -1,0 +1,175 @@
+security:
+    encoders:
+        NewRoadsMedia\FrontendBundle\Entity\Resume: plaintext
+        NewRoadsMedia\FrontendBundle\Entity\Employer: plaintext
+        Symfony\Component\Security\Core\User\User: plaintext
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        in_memory:
+            memory:
+                users:
+                    tennis: { password: nrm#839253, roles: [ 'ROLE_ADMIN' ] }
+        employers:
+            entity: { class: NewRoadsMedia\FrontendBundle\Entity\Employer, property: email }
+        job_seekers:
+            entity: { class: NewRoadsMedia\FrontendBundle\Entity\Resume, property: email }
+        chain_provider:
+            chain:
+                providers: [employers, job_seekers]
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        admin:
+            pattern: ^/admin
+            context: admin
+            http_basic:
+                provider: in_memory
+
+        post_resume:
+            access_denied_handler: journalismjobs.handler.access_denied
+            pattern: ^/job-seeker/(edit|post)-resume
+            context: default
+            form_login:
+                provider: job_seekers
+                login_path: /login_post_resume
+                check_path: /job-seeker/post-resume-login-check
+            remember_me:
+                key: %secret%
+                lifetime: 86400
+                path: /
+                domain: ~
+                always_remember_me: true
+
+        job_basket:
+            access_denied_handler: journalismjobs.handler.access_denied
+            pattern: ^/job-seeker/job-basket
+            context: default
+            form_login:
+                provider: job_seekers
+                login_path: /login_job_basket
+                check_path: /job-seeker/job-basket-login-check
+            remember_me:
+                key: %secret%
+                lifetime: 86400
+                path: /
+                domain: ~
+                always_remember_me: true
+
+        job_notification:
+            access_denied_handler: journalismjobs.handler.access_denied
+            pattern: ^/job-seeker/job-notification
+            context: default
+            form_login:
+                provider: job_seekers
+                login_path: /login_job_notification
+                check_path: /job-seeker/job-notification-login-check
+            remember_me:
+                key: %secret%
+                lifetime: 86400
+                path: /
+                domain: ~
+                always_remember_me: true
+
+        employers:
+            access_denied_handler: journalismjobs.handler.access_denied
+            pattern: ^/employers
+            context: default
+            anonymous: ~
+            form_login:
+                provider: employers
+                login_path: /login_employer
+                check_path: /employers/login_check
+                default_target_path: /employers/manager
+            logout:
+                path: /employers/logout
+                invalidate_session: false
+            remember_me:
+                key: %secret%
+                lifetime: 86400
+                path: /
+                domain: ~
+                always_remember_me: true
+
+        job_seekers:
+            access_denied_handler: journalismjobs.handler.access_denied
+            pattern: ^/job-seeker
+            context: default
+            form_login:
+                provider: job_seekers
+                login_path: /login_job_seeker
+                check_path: /job-seeker/login_check
+                default_target_path: /job-seeker
+            logout:
+                path: /job-seeker/logout
+                invalidate_session: false
+            remember_me:
+                key: %secret%
+                lifetime: 86400
+                path: /
+                domain: ~
+                always_remember_me: true
+
+        job_packages:
+            access_denied_handler: journalismjobs.handler.access_denied
+            pattern: ^/job-packages
+            context: default
+            anonymous: ~
+            form_login:
+                provider: employers
+                login_path: /login_job_packages
+                check_path: /job-packages/login_check
+            logout:
+                path: /employers/logout
+                invalidate_session: false
+            remember_me:
+                key: %secret%
+                lifetime: 86400
+                path: /
+                domain: ~
+                always_remember_me: true
+
+        anonymous:
+            pattern: ^/
+            context: default
+            anonymous: ~
+            form_login:
+                provider: chain_provider
+                login_path: /login
+                check_path: /job-seeker/login_check
+            remember_me:
+                key: %secret%
+                lifetime: 86400
+                path: /
+                domain: ~
+                always_remember_me: true
+
+    access_control:
+        - { path: ^/(login|login_post_resume|login_job_basket|login_job_notification|login_job_packages|login_employer|login_job_seeker)$, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: login(_|-)check$, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/payments$, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/sign-up-for-unlimited-job-posting-plan$, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/post-new-job/create-account, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/post-new-job, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: http }
+        - { path: ^/employers/job-info, role: ROLE_EMPLOYER, requires_channel: https }
+        - { path: ^/employers, roles: ROLE_EMPLOYER, requires_channel: http }
+        - { path: ^/job-listings/\d+$, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/\d+\-.*$, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/job-packages, roles: ROLE_EMPLOYER, requires_channel: https }
+        - { path: ^/job-seeker, roles: ROLE_JOB_SEEKER, requires_channel: http }
+        - { path: ^/view-resume, roles: [ROLE_JOB_SEEKER, ROLE_EMPLOYER], requires_channel: http }
+        - { path: ^/user, roles: [ROLE_JOB_SEEKER, ROLE_EMPLOYER], requires_channel: https }
+        - { path: ^/gcb/, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/admin, roles: ROLE_ADMIN, requires_channel: https }
+
+        # TeachingJobs.com specific
+        - { path: ^/career-services-payment$, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+
+        # Fallback
+        - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: http }

@@ -1,0 +1,10 @@
+{% if featuredJobs | length > 0 %}
+    <h3>{% if featuredJobTitle is defined %}{{ featuredJobTitle }}{% else %}Featured Jobs{% endif %}</h3>
+    {% for job in featuredJobs %}
+        {% include '@NewRoadsMediaFrontend/JobSearch/Mobile/result.html.twig' with {'job': job} %}
+        {% if loop.last %}
+            <a href="{{ path('JobPosts') }}" class="btn btn-default">View All Job Listings</a>
+        {% endif %}
+        <hr/>
+    {% endfor %}
+{% endif %}

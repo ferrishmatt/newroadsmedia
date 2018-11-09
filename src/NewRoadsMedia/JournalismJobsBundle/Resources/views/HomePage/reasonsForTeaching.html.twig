@@ -1,0 +1,122 @@
+{% set page_name = '' %}
+
+{% extends "::base.html.twig" %}
+
+{% block title %}Six Reasons to Become a Teacher{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://ucarecdn.com/widget/2.8.2/uploadcare/uploadcare.min.js" charset="utf-8"></script>
+    <script src="{{ asset('js/upload-care.js') }}"></script>
+    <script src="{{ asset('js/jquery.wordcount.js') }}"></script>
+    <script src="{{ asset('js/job-listing.js') }}"></script>
+    <script type="text/javascript">
+        $(function() {
+            {% if nonRegisteredForm.resumeFile is defined %}
+                uploadcare_init('{{ nonRegisteredForm.resumeFile.vars.id }}');
+            {% endif %}
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {#<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"/>#}
+    <link rel="stylesheet" href="{{ asset('css/job-listing.css') }}"/>
+{% endblock %}
+
+{% block content %}
+<div class="inner-content text-article">
+    <img class="article-photo" src="{{ asset('bundles/newroadsmediajournalismjobs/images/reasonsForTeaching.jpg') }}">
+    <div class="article-wrap">
+    <p class="pre-headline">Job Search</p>
+
+    <h1 class="article-title">Six Reasons to Become a Teacher</h1>
+
+    <p class="byline-share-line">
+	<b class="byline">By Erica Sweeney</b>
+	<a href="#" title="Share Job" class="share-job-link"><img src="{{ asset('images/icons/share_icon.png') }}" alt="Share Job"/>Share</a>
+    </p>
+
+    <ul class="job-listing-share">
+                    <li>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ url('ViewJobPost', {'jobId': job.id}) }}" target="_blank" title="Share on Facebook"><img
+                                    src="{{ asset('images/icons/facebook_icon.png') }}" alt="Share on Facebook"/>Facebook</a>
+                    </li>
+                    <li>
+                        {% set twitterUrl = 'http://twitter.com/share?text=' ~ (('Great Job on ' ~ parameter('site_title')) | url_encode) ~ '&url=' ~ url('ViewJobPost', { 'jobId': job.id } ) %}
+                        <a href="{{ twitterUrl }}" target="_blank" title="Share on Twitter"><img
+                                    src="{{ asset('images/icons/twitter_icon.png') }}" alt="Share on Twitter"/>Twitter</a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ url('ViewJobPost', {'jobId': job.id}) }}&title={{ (parameter('site_title') ~ ' - ' ~ job.titleOfPositionOpen) | url_encode }}&summary=&source=" target="_blank" title="Share on Linked In"><img
+                                    src="{{ asset('images/icons/linked_in_icon.png') }}" alt="Share on Linked In"/>Linked In</a>
+                    </li>
+                    <li>
+                        <a href="https://plus.google.com/share?url={{ url('ViewJobPost', {'jobId': job.id}) }}" target="_blank" title="Share on Google Plus"><img
+                                    src="{{ asset('images/icons/google_plus_icon.png') }}" alt="Share on Google Plus"/>Google +</a>
+                    </li>
+                    <li style="display: none;">
+                        <a class="email" href="#" title="E-mail this job to a friend"><img src="{{ asset('images/icons/email_icon.png') }}" alt="E-mail this job to a friend"/>E-mail</a>
+                    </li>
+                </ul>
+
+
+                <div class="article-quote">"Having a positive influence on the community inspires many to become teachers."</div>
+
+                <p>After working for several years in the corporate world and as a small-business
+                owner, Macy Pleis (pictured right) embarked on a new career three years ago. She became a teacher.
+                “In [my previous] roles, there wasn’t any intrinsic motivation or anything that made me feel
+                like I was having an impact,” she says. “I felt like teaching would help me have
+                another reward besides a monetary reward.”</p>
+
+                <p>Pleis teaches career and technical education at Jacksonville Middle School in central
+                Arkansas. She says she loves having a daily impact on the more than 100 seventh-
+                and eighth-graders that she sees each day. Making a difference is usually high on the list of reasons
+                why people want to become teachers. Here are some others:</p>
+
+                <h2>1. Having a Sense of Purpose</h2>
+                <p>Making a difference gives teachers a sense of purpose, and Pleis says her greatest
+                reward as a teacher is “seeing students succeed.”
+                “I have students that I see from past years,” she says. “I see them grow and get
+                better. It’s nice to get to see the progression over time.”</p>
+
+                <h2>2. Paying It Forward</h2>
+                <p>Having a positive influence on the community and its future leaders inspires many
+                to become teachers. “It’s nice to have an impact,” Pleis says. “Sometimes, you get wrapped up in the
+                awfulness of the news, but you’ve got to remember that we have to leave a better
+                place for the kids.”</p>
+
+                <h2>3. Getting Summers Off</h2>
+                <p>While teaching can be demanding, schedules usually allow for blocks of time off
+                during the school year. Most teachers have summers off and, depending on the
+                school district, a spring break and time off around the holidays.</p>
+
+                <h2>4. Being Creative Each Day</h2>
+                <p>Teachers get to tap into their creativity just about every day. They are responsible
+                for developing their class curricula and presenting it in a way that reaches students
+                at all learning levels and keeps them interested and engaged. “What works for one class
+                may not work for another,” Pleis explains. “It changes moment to moment.”</p>
+
+                <h2>5. Embracing Opportunities to Collaborate</h2>
+                <p>One of Pleis’ favorite parts of teaching is the collaboration and camaraderie with her
+                fellow teachers. She says she seeks out opportunities to collaborate online with
+                teachers all over the country about curricula and other issues.</p>
+
+                <h2>6. Having Job Security</h2>
+                <p>Teachers are always needed, which means there is a certain amount of job security
+                in the profession, especially for those willing to work in any type of environment.
+                However, certain areas of the country, such as rural areas, may have more teaching
+                opportunities than others.</p>
+
+                <p>For added benefits and support, Pleis recommends that teachers join a teachers
+                union. Unions vary by state and school district. Now in her third year teaching, Pleis says she has hit her stride.
+                She encourages new teachers to not get overwhelmed with the first classroom assignment
+                and to stick with it. “Teaching is a lot of work, but [there's] a lot of reward,” she says.</p>
+
+                    </div>
+                </div>
+
+{% endblock %}

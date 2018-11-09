@@ -1,0 +1,28 @@
+{% extends '@NewRoadsMediaFrontend/Admin/layout.html.twig' %}
+
+{% block form %}
+    {{ form_errors(form) }}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit">Submit</button>
+    {{ form_end(form) }}
+
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Crawler</th>
+            <th>Job Count</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in report %}
+            <tr>
+                <td>{{ row.date }}</td>
+                <td>{{ row.crawler }}</td>
+                <td style="text-align: right;">{{ row.job_count }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

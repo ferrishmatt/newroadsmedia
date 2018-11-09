@@ -1,0 +1,78 @@
+button[type="submit"] {
+    background-color: #9ec44a;
+    display: inline-block;
+    padding: 10px 40px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative;
+    cursor: pointer;
+    border: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:25px;
+}
+fieldset {
+    border: 2px solid #b8b8b8;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 500px;
+}
+legend {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: black;
+    padding: 5px;
+}
+label {
+    font-weight: bold;
+    display: inline-block;
+    margin-left: 18px;
+    margin-right: 5px;
+}
+fieldset div {
+    display: inline-block;
+}
+fieldset div.row {
+    border-top: 1px dashed gray;
+    display: block;
+}
+fieldset div.row > div {
+    padding: 20px 0;
+}
+#job_posts_search_keywords {
+    width: 200px;
+}
+#focus {
+    margin: 15px;
+}
+#focus label {
+    margin-right: 25px;
+    margin-left: 0;
+}
+
+#content input,
+#content select {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    width: 230px;
+}
+
+#content #focus input {
+    width: auto;
+    margin-right: 10px;
+}

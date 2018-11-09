@@ -1,0 +1,2 @@
+# From http://www.lucas.courot.com/how-to-generate-a-pdf-document-with-symfony2.html
+sudo apt-get install xvfb wkhtmltopdf

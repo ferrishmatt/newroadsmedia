@@ -1,0 +1,153 @@
+
+
+
+.normaltext {
+	font: 12px arial, helvetica, sans-serif;
+}
+
+tr.lefttext td {
+	font: 12px arial, helvetica, sans-serif; 
+	padding-left: 200px;
+	
+}
+tr.normaltext {text-align: left; margin-right: 0px; padding-right: 0px;}
+.inputtext {
+	font: 12px arial, helvetica, sans-serif; 
+	
+}
+
+.inputtext td.field
+{margin-left: 10px;}
+ 
+
+tr inputtext {text-align: left; margin-right: 0px; padding-right: 0px;}
+tr.inputtext td{padding-right: 0px;}
+tr. normaltext input{align: left;
+margin-left: -20px;
+}
+tr.normaltext
+{
+  padding-left: 150px;
+  /*height: 60px;*/
+}
+
+
+
+
+tr.normaltext td input.goleft
+{
+ float: left;
+ display: inline;
+ margin-left: -10px;
+
+}
+
+span.required {
+font: 22px arial, helvetica, sans-serif;
+color : Red;
+line-height: 0px;
+}
+
+.missing {
+	font: 12px arial, helvetica, sans-serif;
+	font-weight: bold;
+	color : Red;
+}
+
+
+.clear    { font-size: 1px; line-height: 1px; height: 1px; clear:both; }
+
+.bold { font-weight:bold; }
+
+.italic { font-style:italic; }
+
+.indent { margin-left:20px; } 
+    
+/*a:link, a:visited { text-decoration:underline; color:#369;}*/
+/*a:hover { color:#f60;}*/
+
+
+table#newusers {
+    border:0; margin:66px auto 16px; padding:0;
+    width:935px;
+    }
+    
+#newusers th { 
+    border:1px solid #000; 
+    padding:5px 2px 5px 5px; 
+    text-align:center;
+    width:20%;
+    color:white; font-weight:normal; font-size:15px;
+    background: #09397b;
+}
+
+#newusers th#active {
+    background:#f90;
+}
+    
+#newusers td.inner-content {
+    padding:15px 12px;
+    background:white;
+    text-align:left;
+    border:1px solid black;
+    border-top:0;
+}
+
+#newusers th.firsttd {
+    border-left:1px solid #000;
+    white-space:nowrap;
+}
+
+.tablehighlight{
+    border-left:1px solid #000;
+    white-space:nowrap;
+	}	
+
+#form {
+    margin:15px 0 4px 0;
+    clear:both;
+    font-weight:bold; 
+}
+
+.req { color:#c00; }
+
+.formfield {
+    border:1px solid #000;
+    }
+#form input {
+    border:1px solid #B8B8B8;
+    width:68px;
+    height:18px;
+    margin-right:12px;
+}
+    
+#form input.submitbtn {
+    position:relative;
+    background-color:#7BA2C6;
+    border:1px solid #696969;
+    width:125px;
+    color:#FFF;
+    font-size:11px;
+    text-align:center;
+    font-weight:bold; 
+    margin-right:0;
+}
+
+#content .inner-content {
+    border: 1px solid #e3e3e3;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    margin-top: -21px;
+    padding: 20px;
+    width:950px;
+}
+
+#content .inner-content h3 {
+    border-top: 0;
+    padding-top: 0;
+}
+
+
+#content > div{
+    width:970px;
+}

@@ -1,0 +1,30 @@
+<p style="font-size:14px;">
+    From: {{ fromEmail }} - {{ comments }}
+    <hr/>
+    <p style="font-size:14px;">
+        To find out more about this job, go to:<br/>
+        {{ url('ViewJob', {'jobLink': job.getPermLink()}) }}
+    </p>
+    <p style="font-size:14px;">
+        Position: {{ job.position }}<br/>
+        Company: {% if job.company %}{{ job.company }}{% else %}Not Specified{% endif %}<br/>
+        Location: {% if job.location %}{{ job.location }}{% else %}Not Specified{% endif %}<br/>
+        Job Status: {% if job.jobType %}{{ job.jobType }}{% else %}Not Specified{% endif %}<br/>
+        Ad Expires: {% if job.expirationDate %} {{ job.expirationDate | date('M d, Y') }} {% else %}Not Specified{% endif %}<br/>
+        Job ID: {{ job.id }}<br/>
+    </p>
+</p>
+<br/><br/>
+
+Description:<br/>
+{% if job.adDescription %}
+    {{ job.adDescription | raw }}
+{% else %}
+    Not Specified
+{% endif %}
+
+<br/>
+<pre>
+When applying, mention you saw this opening listed at
+{{ parameter('site_title') }}. Job ads copyrighted by {{ parameter('site_title') }} - (c) 1998-{{ 'now' | date('Y') }}.
+</pre>
